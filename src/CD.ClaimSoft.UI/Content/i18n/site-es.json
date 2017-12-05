@@ -1,0 +1,28 @@
+{
+  "dashboard": {
+    "WELCOME": "¡Bienvenido a ClaimSoft by Crossover Digital!",
+    "HEADER": "Tablero de Administración"
+  },
+  "sidebar": {
+    "WELCOME": "Bienvenido",
+    "heading": {
+      "HEADER": "Navegacion principal",
+      "COMPONENTS": "Componentes",
+      "MORE": "Aun Mas"
+    },
+    "nav": {
+      "HOME": "CASA",
+      "DASHBOARD": "TABLERO",
+      "PATIENTS": "PACIENTES",
+      "CLAIMS": "RECLAMACIONES",
+      "payment": {
+        "PAYMENTS": "PAGOS",
+        "BATCHES": "LOTES"
+      },
+      "EXPORT": "IMPORTACIÓN /<BR />EXPORTACIÓN",
+      "REPORTS": "INFORMES",
+      "NOTES": "NOTAS",
+      "ADMIN": "ADMINISTRACIÓN"
+    }
+  }
+}

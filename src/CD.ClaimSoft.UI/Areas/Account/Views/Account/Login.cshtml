@@ -1,0 +1,88 @@
+﻿@model CD.ClaimSoft.Application.Models.LoginViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+
+    ViewBag.Title = "Log in";
+}
+
+
+<div class="block-center mt-xl wd-xl">
+    <!-- START panel-->
+    <div class="panel panel-dark panel-flat">
+        <div class="panel-heading text-center">
+            <a href="#">
+                <img src="~/Content/Images/logo.png" alt="Image" class="block-center img-rounded" />
+            </a>
+        </div>
+        <div class="panel-body">
+            <p class="text-center pv">SIGN IN TO CONTINUE</p>
+        @*<form action="/Account/Login" method="post" role="form" data-parsley-validate="" novalidate="" class="mb-lg">*@
+
+            @using (Html.BeginForm("Login", "Account", new {ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post, new {area = "Account", @class = "form-horizontal", role = "form"}))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+
+                <div class="form-group has-feedback">
+                    @*<input id="Email" type="email" placeholder="Enter email" autocomplete="off" required="required" class="form-control" />*@
+                    @Html.TextBoxFor(m => m.UserName, new {@class = "form-control", placeholder = "Enter email", required = "required"})
+                    <span class="fa fa-envelope form-control-feedback text-muted"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.PasswordFor(m => m.Password, new {@class = "form-control", placeholder = "Password", required = "required"})
+                    @*<input id="Password" type="password" placeholder="Password" required="required" class="form-control"/>*@
+                    <span class="fa fa-lock form-control-feedback text-muted"></span>
+                </div>
+                <div class="clearfix">
+                    <div class="checkbox c-checkbox pull-left mt0">
+                        <label>
+                            <input type="checkbox" name="RememberMe" id="RememberMe"
+                                   value="true"
+                                   class="fa fa-check"
+                                   checked="@(Model.RememberMe)"/>
+                            <span class="fa fa-check"></span>Remember Me
+                            <input name="RememberMe" type="hidden" value="@(Model.RememberMe)">
+
+
+                        </label>
+
+                        @*<label>
+                                <input type="checkbox" value="" id="RememberMe2" name="remember" data-parsley-multiple="remember">
+                                <span class="fa fa-check"></span>Remember Me
+
+                                <br><br><br>
+                                <input data-val="true" data-val-required="The Remember Me field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true" data-parsley-multiple="RememberMe"><input name="RememberMe" type="hidden" value="false">
+                                <label for="RememberMe">Remember Me</label>
+
+                            </label>*@
+
+
+
+
+                    </div>
+                    <div class="pull-right">
+                        <a href="@Url.Action("Recover", "Pages")" class="text-muted">Forgot your password?</a>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-block btn-primary mt-lg">Login</button>
+            }
+                @*</form>*@
+
+            @*<p class="pt-lg text-center">Need to Signup?</p>
+                <a href="@Url.Action("Register", "Pages")" class="btn btn-block btn-default">Register Now</a>*@
+        </div>
+    </div>
+    <!-- END panel-->
+</div>
+
+
+
+@* Enable this once you have account confirmation enabled for password reset functionality
+            <p>
+                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+            </p>
+    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

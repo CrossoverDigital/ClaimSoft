@@ -1,0 +1,28 @@
+{
+  "dashboard": {
+    "WELCOME": "Welcome to ClaimSoft by Crossover Digital!",
+    "HEADER": "Administration Dashboard"
+  },
+  "sidebar": {
+    "WELCOME": "Welcome",
+    "heading": {
+      "HEADER": "Main Navigation",
+      "COMPONENTS": "Components",
+      "MORE": "More"
+    },
+    "nav": {
+      "HOME": "HOME",
+      "DASHBOARD": "DASHBOARD",
+      "PATIENTS": "PATIENTS",
+      "CLAIMS": "CLAIMS",
+      "payment": {
+        "PAYMENTS": "PAYMENTS",
+        "BATCHES": "BATCHES"
+      },
+      "EXPORT": "IMPORT /<BR />EXPORT",
+      "REPORTS": "REPORTS",
+      "NOTES": "NOTES",
+      "ADMINISTRATION": "ADMINISTRATION"
+    }
+  }
+}

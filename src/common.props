@@ -1,0 +1,17 @@
+<Project>
+  <PropertyGroup>
+    <Version>3.1.2</Version>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <PackageIconUrl>http://www.claimsoftonline.com/images/logo.png</PackageIconUrl>
+    <PackageProjectUrl>http://www.claimsoftonline.com/</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/claimsoftonline/claimsoftonline/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/claimsoftonline/claimsoftonline</RepositoryUrl>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SourceLink.Create.CommandLine" Version="2.4.0" PrivateAssets="All" />
+  </ItemGroup>
+
+</Project>
