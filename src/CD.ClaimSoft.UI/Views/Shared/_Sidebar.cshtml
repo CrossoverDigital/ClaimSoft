@@ -90,14 +90,27 @@
                     <span data-localize="sidebar.nav.NOTES">NOTES</span>
                 </a>
             </li>
-
-
+            
             <li class="@Html.IsActive(controller: "Administration")">
-                <a href="@Url.Action("Index", "Administration", new { Area = "Administration" })" title="ADMINISTRATION">
+                <a href="#administration" title="ADMINISTRATION" data-toggle="collapse">
                     <i class="fa fa-cogs" aria-hidden="true"></i>
-                    <span data-localize="sidebar.nav.ADMINISTRATION">ADMINISTRATION</span>
+                    <span data-localize="sidebar.nav.administration.ADMINISTRATION">ADMINISTRATION</span>
                 </a>
+                <ul id="administration" class="nav sidebar-subnav collapse">
+                    <li class="@Html.IsActive("Payment", "PaymentsIndex")">
+                        <a href="@Url.Action("Agency", "Administration", new { Area = "Administration" })" title="AGENCIES">
+                            <span data-localize="sidebar.nav.administration.AGENCIES">AGENCIES</span>
+                        </a>
+                    </li>
+                    <li class="@Html.IsActive("Payment", "BatchesIndex") ">
+                        <a href="@Url.Action("Users", "Administration", new { Area = "Administration" })" title="USERS">
+                            <span data-localize="sidebar.nav.administration.USERS">USERS</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
+
+
 
         </ul>
         <!-- END sidebar nav-->

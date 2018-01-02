@@ -1,0 +1,47 @@
+﻿@using CD.ClaimSoft.Application.Models.Agencies
+
+@using Syncfusion.JavaScript
+@using Syncfusion.MVC.EJ
+
+@model Agency
+
+<div style="margin: 5px">
+    @(Html.EJ().Grid<object>
+            ("AgencyPhoneGrid").HtmlAttributes(new { style = "width:400px; min-height: 245px;" })
+            .Datasource(ds => ds.Json(ViewBag.AgencyPhoneDataSource)
+                .UpdateURL("/Administration/Administration/AgencyPhoneUpdate")
+                .InsertURL("/Administration/Administration/AgencyPhoneInsert")
+                .RemoveURL("/Administration/Administration/AgencyPhoneDelete")
+                .Adaptor(AdaptorType.RemoteSaveAdaptor))
+            .IsResponsive()
+            .EditSettings(edit =>
+            {
+                edit.AllowAdding()
+                    .AllowEditing()
+                    .AllowDeleting()
+                    .EditMode(EditMode.InlineFormTemplate)
+                    .InlineFormTemplateID("phoneEditTemplate");
+            })
+            .ToolbarSettings(tools =>
+            {
+                tools.ShowToolbar()
+                    .ToolbarItems(items =>
+                    {
+                        items.AddTool(ToolBarItems.Add);
+                        items.AddTool(ToolBarItems.Edit);
+                        items.AddTool(ToolBarItems.Delete);
+                    });
+            })
+            .Columns(col =>
+            {
+                col.Field("PhoneNumber").HeaderText("Phone Number").Width(150).Priority(1).Add();
+                col.Field("PhoneType.Name").HeaderText("Phone Type").Priority(2).Width(50).Add();
+            })
+            .ClientSideEvents(events =>
+            {
+                events.ActionComplete("actionPhoneEditComplete");
+                events.ActionBegin("actionPhoneEditBegin");
+            }))
+</div>
+
+@(Html.EJ().ScriptManager())

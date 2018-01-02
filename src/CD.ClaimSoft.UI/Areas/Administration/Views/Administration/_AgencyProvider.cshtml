@@ -1,0 +1,68 @@
+﻿@using CD.ClaimSoft.Application.Models.Agencies
+
+@using Syncfusion.JavaScript
+@using Syncfusion.MVC.EJ
+
+@model Agency
+
+<div style="float: left; width: 285px;">
+    <div style="width: 275px; margin-bottom: 5px;">
+        <label style="font-weight: bold; width: 200px;">NPI Number<span class="requiredField">*</span></label>
+        @Html.TextBoxFor(m => m.NpiNumber, new { @class = "e-textbox e-animation", style = "width: 250px;" })
+    </div>
+    <div style="width: 275px; margin-bottom: 5px;">
+        <label style="font-weight: bold; width: 200px;">Tax Identification (TIN)</label>
+        @Html.TextBoxFor(m => m.TaxIdNumber, new { @class = "e-textbox e-animation", style = "width: 250px;" })
+    </div>
+    <div style="width: 275px; margin-bottom: 5px;">
+        <label style="font-weight: bold; width: 200px;">Taxonomy</label>
+        @Html.TextBoxFor(m => m.Taxonomy, new { @class = "e-textbox e-animation", style = "width: 250px;" })
+    </div>
+    <div style="width: 275px;">
+        @Html.EJ().CheckBoxFor(m => m.DisableLifetimeSignature).ShowRoundedCorner(true).Text("Disable Lifetime Signature")
+    </div>
+</div>
+<div style="float: left;">
+    <div style="margin: 0 10px 5px;">
+        @(Html.EJ().Grid<object>
+            ("AgencyNumberGrid").HtmlAttributes(new { style = "width:400px; min-height: 245px;" })
+            .Datasource(ds => ds.Json(ViewBag.AgencyNumberDataSource)
+                .UpdateURL("/Administration/Administration/AgencyNumberUpdate")
+                .InsertURL("/Administration/Administration/AgencyNumberInsert")
+                .RemoveURL("/Administration/Administration/AgencyNumberDelete")
+                .Adaptor(AdaptorType.RemoteSaveAdaptor))
+            .IsResponsive()
+            .EditSettings(edit =>
+            {
+                edit.AllowAdding()
+                    .AllowEditing()
+                    .AllowDeleting()
+                    .EditMode(EditMode.InlineFormTemplate)
+                    .InlineFormTemplateID("numberEditTemplate");
+            })
+            .ToolbarSettings(tools =>
+            {
+                tools.ShowToolbar()
+                    .ToolbarItems(items =>
+                    {
+                        items.AddTool(ToolBarItems.Add);
+                        items.AddTool(ToolBarItems.Edit);
+                        items.AddTool(ToolBarItems.Delete);
+                    });
+            })
+            .Columns(col =>
+            {
+                col.Field("Number").HeaderText("Number").Width(200).Priority(1).Add();
+                col.Field("IgnoreTimeStamps").HeaderText("Ignore Time Stamps").TextAlign(TextAlign.Center).Priority(2).Width(200).Add();
+            })
+            .ClientSideEvents(events =>
+            {
+                events.ActionComplete("actionNumberEditComplete");
+                events.ActionBegin("actionNumberEditBegin");
+            }))
+
+    </div>
+</div>
+<div class="clear"></div>
+
+@(Html.EJ().ScriptManager())

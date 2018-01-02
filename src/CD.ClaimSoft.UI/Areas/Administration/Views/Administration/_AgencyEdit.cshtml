@@ -1,0 +1,105 @@
+﻿@using CD.ClaimSoft.Application.Models.Agencies
+@using CD.ClaimSoft.Common.Helpers
+
+@using Syncfusion.MVC.EJ
+
+@model Agency
+
+<div id="agencyEditTemplate" style="margin-bottom: 15px;">
+
+    @{Html.EJ().Tab("agencyEditTab").Items(data =>
+        {
+            data.Add().ID("agencyDetail").Text("Details").ContentTemplate(@<div></div>);
+            data.Add().ID("agencyProvider").Text("Providers").ContentTemplate(@<div></div>);
+            data.Add().ID("agencyAddress").Text("Addresses").ContentTemplate(@<div></div>);
+            data.Add().ID("agencyPhone").Text("Phone Numbers").ContentTemplate(@<div></div>);
+            data.Add().ID("agencyEmail").Text("Email Addresses").ContentTemplate(@<div></div>);
+            data.Add().ID("agencyNemsis").Text("Nemsis Imports").ContentTemplate(@<div></div>);
+        }).ClientSideEvents(e =>
+        {
+            e.ItemActive("OnClientActive").Create("OnClientActive");
+        }).Render();
+}
+
+</div>
+
+<script>
+
+    function OnClientActive(e) {
+        if (e.model.selectedItemIndex === 0 && ej.isNullOrUndefined(isAgencyDetailLoaded)) {
+
+            //var jsonData = Util.toJS(@(Html.ToJson(@Model)));
+
+            $.ajax({
+                url: "/Administration/Administration/AgencyDetail",
+                type: "POST",
+                data: '{agencyTenantId: "@Model.AgencyTenantId" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (result) {
+                    $("#agencyDetail").html(result);
+
+                    ej.widget.init("#agencyDetail");
+                },
+                failure: function (result) {
+                    alert(result);
+                },
+                error: function (result) {
+                    alert(result);
+                }
+            });
+
+            isAgencyDetailLoaded = true;
+        }
+
+        if (e.model.selectedItemIndex === 1 && ej.isNullOrUndefined(isAgencyProviderLoaded)) {
+            $.ajax({
+                url: "/Administration/Administration/AgencyProvider",
+                type: "POST",
+                data: '{agencyTenantId: "@Model.AgencyTenantId" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (result) {
+                    $("#agencyProvider").html(result);
+
+                    ej.widget.init("#agencyProvider");
+                },
+                failure: function (result) {
+                    alert(result);
+                },
+                error: function (result) {
+                    alert(result);
+                }
+            });
+
+            isAgencyProviderLoaded = true;
+        }
+
+        if (e.model.selectedItemIndex === 2 && ej.isNullOrUndefined(isAgencyPhoneGridFlag)) {
+            $.ajax({
+                url: "/Administration/Administration/AgencyAddressPhone",
+                type: "POST",
+                data: '{agencyTenantId: "@Model.AgencyTenantId" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (result) {
+                    $("#agencyAddressPhone").html(result);
+
+                    ej.widget.init("#agencyAddressPhone");
+                },
+                failure: function (result) {
+                    alert(result);
+                },
+                error: function (result) {
+                    alert(result);
+                }
+            });
+
+            isAgencyPhoneGridFlag = true;
+        }
+    }
+    
+    //# sourceURL=AgencyEdit.cshtml
+</script>
+
+@(Html.EJ().ScriptManager())

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.ClaimSoft.Database", "CD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.ClaimSoft.Common", "CD.ClaimSoft.Common\CD.ClaimSoft.Common.csproj", "{36C91445-578A-4B59-AD20-A1B675E93CFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.ClaimSoft.Database.Identity", "CD.ClaimSoft.Database.Identity\CD.ClaimSoft.Database.Identity.csproj", "{7B4B07E6-2BA6-4468-8CAA-5027F39EC1E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{36C91445-578A-4B59-AD20-A1B675E93CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36C91445-578A-4B59-AD20-A1B675E93CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36C91445-578A-4B59-AD20-A1B675E93CFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B4B07E6-2BA6-4468-8CAA-5027F39EC1E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B4B07E6-2BA6-4468-8CAA-5027F39EC1E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B4B07E6-2BA6-4468-8CAA-5027F39EC1E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B4B07E6-2BA6-4468-8CAA-5027F39EC1E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{DCAFD174-7E0A-4777-8235-D6AAD4DDAF04} = {04919627-83C8-4312-BF05-4A8380C11D47}
 		{0E4E0795-1B15-4CC5-8FF5-C21431A1B5E9} = {04919627-83C8-4312-BF05-4A8380C11D47}
 		{36C91445-578A-4B59-AD20-A1B675E93CFF} = {04919627-83C8-4312-BF05-4A8380C11D47}
+		{7B4B07E6-2BA6-4468-8CAA-5027F39EC1E8} = {04919627-83C8-4312-BF05-4A8380C11D47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E1E0E104-9144-44F3-B9A5-4CB1FB4B902A}

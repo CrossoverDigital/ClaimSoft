@@ -1,0 +1,216 @@
+﻿@using CD.ClaimSoft.Application.Models.Agencies
+@using Syncfusion.JavaScript
+@using Syncfusion.MVC.EJ
+
+@{
+    ViewBag.Title = "Agency Administration";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/Administration/Agency/Agency.js"></script>
+
+<div class="content-heading">
+    <span data-localize="administration.AGENCYADMINISTRATION"></span>
+</div>
+
+@(Html.EJ().Grid<object>("AgencyGrid") //.HtmlAttributes(new { style = "width:80%;" })
+      .Datasource(ds => ds.Json(ViewBag.datasource)
+          .UpdateURL("/Administration/Administration/AgencyUpdate")
+          .InsertURL("/Administration/Administration/AgencyInsert")
+          .Adaptor(AdaptorType.RemoteSaveAdaptor))
+      .AllowPaging()
+      .PageSettings(page => page.PageSize(10))
+      .IsResponsive()
+      .EditSettings(edit =>
+      {
+          edit.AllowAdding()
+              .AllowEditing()
+              .EditMode(EditMode.InlineFormTemplate)
+              .InlineFormTemplateID("agencyEditTemplate")
+              .AllowEditOnDblClick(true);
+      })
+      .ToolbarSettings(tools =>
+      {
+          tools.ShowToolbar()
+              .ToolbarItems(items =>
+              {
+                  items.AddTool(ToolBarItems.Add);
+                  items.AddTool(ToolBarItems.Edit);
+              });
+      })
+      .Columns(col =>
+      {
+          col.Field("Name").HeaderText("Name").Width(150).Priority(3).Add();
+          col.Field("Code").HeaderText("Code").Priority(4).Width(50).Add();
+          col.Field("IsActive").HeaderText("Is Active").Width(50).Priority(5).Add();
+          col.Field("AgencyTenantId").HeaderText("Tenant ID").Width(145).Priority(2).Add();
+      })
+      .ClientSideEvents(events =>
+      {
+          events.ActionComplete("actionComplete")
+              .ActionBegin("actionBegin")
+              .EndAdd("actionEditComplete")
+              .EndEdit("actionEditComplete")
+              .EndDelete("actionEditComplete");
+      })
+)
+
+<script>
+
+    var isAgencyDetailLoaded = null;
+    var isAgencyProviderLoaded = null;
+    var isAgencyPhoneGridFlag = null;
+
+    function actionBegin(args) {
+        if (args.requestType === "save")
+            this.element.ejWaitingPopup("show");
+    }
+
+    function actionComplete(args) {
+        var type = args.requestType;
+        if (type === "beginedit" || type === "add") {
+            $("#AgencyGrid_inlineFormTitle").hide();
+
+            var agencyTenantId = 0;
+            if (!ej.isNullOrUndefined(args.rowIndex))
+                agencyTenantId = this.model.currentViewData[args.rowIndex]["AgencyTenantId"];
+
+            this.element.ejWaitingPopup("show");
+
+            $.ajax
+                ({
+                    url: type === "add" ? "/Administration/Administration/AgencyEdit" : "/Administration/Administration/AgencyEdit?TenantId=" + agencyTenantId,
+                    type: "GET",
+                    success: ej.proxy(function (data) {
+                        var containerId = $("#" + this._id + "EditForm");
+
+                        containerId.html(data);
+
+                        ej.widget.init(containerId);
+
+                        this.element.ejWaitingPopup("hide");
+                    }, this)
+                });
+        }
+
+        if (type === "save" || type === "cancel") {
+            isAgencyDetailLoaded = null;
+            isAgencyProviderLoaded = null;
+            isAgencyPhoneGridFlag = null;
+
+            this.element.ejWaitingPopup("hide");
+        }
+    }
+
+    function actionEditComplete() {
+        isAgencyDetailLoaded = null;
+        isAgencyProviderLoaded = null;
+        isAgencyPhoneGridFlag = null;
+    }
+    
+    function actionAddressEditBegin(args) {
+        if (args.requestType === "save")
+            this.element.ejWaitingPopup("show");
+    }
+
+    function actionAddressEditComplete(args) {
+        var type = args.requestType;
+        if (type === "beginedit" || type === "add") {
+            $("#AgencyAddressGrid_inlineFormTitle").hide();
+
+            var addressId = 0;
+            if (!ej.isNullOrUndefined(args.rowIndex))
+                addressId = this.model.currentViewData[args.rowIndex]["Id"];
+
+            this.element.ejWaitingPopup("show");
+
+            $.ajax
+                ({
+                    url: type === "add" ? "/Administration/Administration/AgencyAddressAdd?Id=" + $('#AgencyId').val() : "/Administration/Administration/AgencyAddressEdit?Id=" + addressId,
+                    type: "GET",
+                    success: ej.proxy(function (data) {
+                        var containerId = $("#" + this._id + "EditForm");
+
+                        containerId.html(data);
+
+                        ej.widget.init(containerId);
+
+                        this.element.ejWaitingPopup("hide");
+                    }, this)
+                });
+        }
+        if (args.requestType === "save")
+            this.element.ejWaitingPopup("hide");
+    }
+
+    function actionPhoneEditBegin(args) {
+        if (args.requestType === "save")
+            this.element.ejWaitingPopup("show");
+    }
+
+    function actionPhoneEditComplete(args) {
+        var type = args.requestType;
+        if (type === "beginedit" || type === "add") {
+            $("#AgencyPhoneGrid_inlineFormTitle").hide();
+
+            var phoneId = 0;
+            if (!ej.isNullOrUndefined(args.rowIndex))
+                phoneId = this.model.currentViewData[args.rowIndex]["Id"];
+
+            this.element.ejWaitingPopup("show");
+
+            $.ajax
+                ({
+                    url: type === "add" ? "/Administration/Administration/AgencyPhoneAdd?Id=" + $('#AgencyId').val() : "/Administration/Administration/AgencyPhoneEdit?Id=" + phoneId,
+                    type: "GET",
+                    success: ej.proxy(function (data) {
+                        var containerId = $("#" + this._id + "EditForm");
+
+                        containerId.html(data);
+
+                        ej.widget.init(containerId);
+
+                        this.element.ejWaitingPopup("hide");
+                    }, this)
+                });
+        }
+        if (args.requestType === "save")
+            this.element.ejWaitingPopup("hide");
+    }
+
+    function actionNumberEditBegin(args) {
+        if (args.requestType === "save")
+            this.element.ejWaitingPopup("show");
+    }
+
+    function actionNumberEditComplete(args) {
+        var type = args.requestType;
+        if (type === "beginedit" || type === "add") {
+            $('#AgencyNumberGrid_inlineFormTitle').hide();
+
+            if (!ej.isNullOrUndefined(args.rowIndex))
+                var numberId = this.model.currentViewData[args.rowIndex]["Id"];
+
+            this.element.ejWaitingPopup("show");
+
+            $.ajax
+                ({
+                    url: type === "add" ? "/Administration/Administration/AgencyNumberAdd?Id=" + $('#AgencyId').val() : "/Administration/Administration/AgencyNumberEdit?Id=" + numberId,
+                    type: "GET",
+                    success: ej.proxy(function (data) {
+                        var containerId = $("#" + this._id + "EditForm");
+
+                        containerId.html(data);
+
+                        ej.widget.init(containerId);
+
+                        this.element.ejWaitingPopup("hide");
+                    }, this)
+                });
+        }
+        if (args.requestType === "save")
+            this.element.ejWaitingPopup("hide");
+    }
+
+</script>

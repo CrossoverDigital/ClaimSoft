@@ -1,0 +1,14 @@
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Database.Identity\bin\Debug\CD.ClaimSoft.Database.Identity.dll.config
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Database.Identity\bin\Debug\CD.ClaimSoft.Database.Identity.dll
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Database.Identity\bin\Debug\CD.ClaimSoft.Database.Identity.pdb
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Database.Identity\bin\Debug\EntityFramework.dll
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Database.Identity\bin\Debug\EntityFramework.SqlServer.dll
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Database.Identity\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Database.Identity\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Database.Identity\bin\Debug\EntityFramework.xml
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Database.Identity\bin\Debug\EntityFramework.SqlServer.xml
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Database.Identity\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Database.Identity\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Database.Identity\obj\Debug\CD.ClaimSoft.Database.Identity.csproj.CoreCompileInputs.cache
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Database.Identity\obj\Debug\CD.ClaimSoft.Database.Identity.dll
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Database.Identity\obj\Debug\CD.ClaimSoft.Database.Identity.pdb

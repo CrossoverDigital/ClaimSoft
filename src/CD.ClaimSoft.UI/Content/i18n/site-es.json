@@ -22,7 +22,12 @@
       "EXPORT": "IMPORTACIÓN /<BR />EXPORTACIÓN",
       "REPORTS": "INFORMES",
       "NOTES": "NOTAS",
-      "ADMIN": "ADMINISTRACIÓN"
+      "ADMIN": "",
+      "administration": {
+        "ADMINISTRATION": "ADMINISTRACIÓN",
+        "AGENCIES": "AGENCIAS",
+        "USERS": "USUARIOS"
+      }
     }
   }
 }

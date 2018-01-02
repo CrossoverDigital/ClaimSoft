@@ -2,8 +2,8 @@
 using System.Web;
 using System.Web.Mvc;
 using CD.ClaimSoft.Application.Models;
-using CD.ClaimSoft.Application.Security;
-using CD.ClaimSoft.Database;
+using CD.ClaimSoft.Database.Identity;
+using CD.ClaimSoft.Database.Identity.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 

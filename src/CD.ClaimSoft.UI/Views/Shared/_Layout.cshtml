@@ -2,24 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="Bootstrap Admin App + jQuery">
     <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+
     <title>ClaimSoft by Crossover Digital</title>
-    <!-- =============== VENDOR STYLES ===============-->
+
     @Styles.Render("~/bundles/fontawesome")
     @Styles.Render("~/bundles/simpleLineIcons")
     @Styles.Render("~/bundles/animatecss")
     @Styles.Render("~/bundles/whirl")
-    <!-- =============== PAGE VENDOR STYLES =============== -->
+
+    <link href="@Styles.Url("~/Content/app/css/bootstrap.css")" rel="stylesheet" type="text/css" id="bscss" />
+
+    @Styles.Render("~/Content/ej/web/bootstrap-theme/ej.web.all.min.css")
+
+    <link href="@Styles.Url("~/Content/mvc-override.css")" rel="stylesheet" type="text/css" />
+
     @if (IsSectionDefined("Styles"))
     {@RenderSection("Styles", required: false)}
-    <!-- =============== BOOTSTRAP STYLES ===============-->
-    <link href="@Styles.Url("~/Content/app/css/bootstrap.css")" rel="stylesheet" type="text/css" id="bscss" />
-    <!-- =============== APP STYLES ===============-->
+
+    @Scripts.Render("~/Scripts/jquery-3.2.1.min.js")
+    @Scripts.Render("~/Scripts/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
+
+    @Scripts.Render("~/Scripts/jsrender.min.js")
+    <script src="~/Vendor/jquery.easing/js/jquery.easing.js"></script>
+    @Scripts.Render("~/Scripts/ej/ej.web.all.min.js")
+
+    @Scripts.Render("~/Scripts/ej/common/ej.unobtrusive.min.js")
+    @*@Scripts.Render("https://cdn.syncfusion.com/js/assets/external/jsrender.min.js")
+        @Scripts.Render("https://cdn.syncfusion.com/15.4.0.17/js/web/ej.web.all.min.js")*@
+    @*@Scripts.Render("https://cdn.syncfusion.com/15.4.0.17/js/common/ej.unobtrusive.min.js")*@
     <link href="@Styles.Url("~/Content/app/css/app.css")" rel="stylesheet" type="text/css" id="maincss" />
-    <link href="@Styles.Url("~/Content/mvc-override.css")" rel="stylesheet" type="text/css" />
+
     <link href="/Content/app/css/theme-a.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/qtip/jquery.qtip.css" rel="stylesheet" />
 </head>
 <body class="aside-collapsed-text">
     <div class="wrapper">
@@ -46,16 +66,17 @@
         <footer>
             @Html.Partial("_Footer")
         </footer>
+        @Html.EJ().ScriptManager()
     </div>
     @if (IsSectionDefined("BodyArea"))
     {@RenderSection("BodyArea", required: false)}
     <!-- =============== VENDOR SCRIPTS ===============-->
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/matchMedia")
-    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/storage")
-    @Scripts.Render("~/bundles/jqueryEasing")
+    @*@Scripts.Render("~/bundles/jqueryEasing")*@
     @Scripts.Render("~/bundles/animo")
     @Scripts.Render("~/bundles/slimscroll")
     @Scripts.Render("~/bundles/screenfull")
@@ -65,5 +86,7 @@
     @RenderSection("scripts", required: false)
     <!-- =============== APP SCRIPTS ===============-->
     @Scripts.Render("~/bundles/ClaimSoft")
+    
+    <script src="~/Scripts/qtip/jquery.qtip.min.js"></script>
 </body>
 </html>

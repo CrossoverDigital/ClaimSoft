@@ -57,7 +57,8 @@ namespace CD.ClaimSoft.UI
                 "~/Scripts/app/modules/imagecrop.js",
                 "~/Scripts/app/modules/chart-knob.js",
                 "~/Scripts/app/modules/chart-easypie.js",
-                "~/Scripts/app/modules/select2.js"
+                "~/Scripts/app/modules/select2.js",
+                "~/Scripts/app/Util.js"
             ));
 
             // Demos

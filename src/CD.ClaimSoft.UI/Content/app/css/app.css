@@ -86,10 +86,60 @@
   12.1 docs
 
  ========================================================================== */
+
+.labelField {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 0;
+    white-space: nowrap;
+    width: auto;
+    word-wrap: break-word;
+}
+
+.e-grid .e-inlineformedit div > label, .e-grid .e-externalformedit div > label {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 0;
+    white-space: nowrap;
+    width: auto;
+    word-wrap: break-word;
+}
+
+.e-grid .e-dialog .e-addedrow label, .e-grid .e-dialog .e-editedrow label, .e-grid .e-inlineformedit label, .e-grid .e-externalformedit label {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 0;
+    white-space: nowrap;
+    width: auto;
+    word-wrap: break-word;
+}
+
+.e-toolbar > .e-horizontal.e-ul {
+    vertical-align: middle;
+    float: right;
+    height: auto;
+}
+
+.e-grid .emptyrecord {
+    padding: 5px;
+    white-space: nowrap;
+}
+
+.requiredField {
+    color: red;
+    padding-left: 5px;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
 /* ========================================================================
    Component: bootstrap-reset.less
  ========================================================================== */
 @import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic);
+
+.clear {
+    clear: both;
+}
 
 .glyphicon {
     display: inline-block;
@@ -551,8 +601,10 @@ body {
         .content-wrapper > h3,
         .content-wrapper > .content-heading {
             margin: -20px;
+            margin-top: 5px;
             margin-bottom: 20px;
             padding: 20px;
+            min-height: 70px;
         }
 
         .content-wrapper > button,

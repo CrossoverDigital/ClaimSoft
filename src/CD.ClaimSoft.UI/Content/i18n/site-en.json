@@ -1,4 +1,7 @@
 {
+  "administration": {
+    "AGENCYADMINISTRATION": "Agency Administration"
+  },
   "dashboard": {
     "WELCOME": "Welcome to ClaimSoft by Crossover Digital!",
     "HEADER": "Administration Dashboard"
@@ -22,7 +25,12 @@
       "EXPORT": "IMPORT /<BR />EXPORT",
       "REPORTS": "REPORTS",
       "NOTES": "NOTES",
-      "ADMINISTRATION": "ADMINISTRATION"
+      "administration": {
+        "ADMINISTRATION": "ADMINISTRATION",
+        "AGENCIES": "AGENCIES",
+        "USERS": "USERS"
+      }
     }
   }
 }
+
