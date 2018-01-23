@@ -1,5 +1,4 @@
 ﻿using System;
-
 using CD.ClaimSoft.Application.Models.Common;
 
 namespace CD.ClaimSoft.Application.Models.Agencies
@@ -10,6 +9,9 @@ namespace CD.ClaimSoft.Application.Models.Agencies
         public int AgencyId { get; set; } // AgencyId
         public int EmailTypeId { get; set; } // EmailTypeId
         public string EmailAddress { get; set; } // EmailAddress (length: 255)
+
+        public bool IsDefault { get; set; }
+
         public string CreateBy { get; set; } // CreateBy (length: 50)
         public DateTime CreateDate { get; set; } // CreateDate
         public string LastModifyBy { get; set; } // LastModifyBy (length: 50)

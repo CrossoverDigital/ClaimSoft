@@ -1,33 +1,58 @@
-﻿using System;
+﻿#region Copyright
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// -=- Copyright (C) ClaimSoft 2017-2018. All Rights Reserved. 
+// -=- This code may not be used without the express written 
+// -=- permission of the copyright holder, ClaimSoft.
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+#endregion
+
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
 namespace CD.ClaimSoft.Common.Helpers
 {
+    /// <summary>
+    /// HTML extension methods for enforcing UI standards.
+    /// </summary>
     public static class HtmlHelperExtensions
     {
+        /// <summary>
+        /// DIsplays a "*" for an property that is attributed as required.
+        /// </summary>
+        /// <typeparam name="TModel">The type of the model.</typeparam>
+        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <param name="html">The HTML.</param>
+        /// <param name="expression">The expression.</param>
+        /// <param name="labelText">The label text.</param>
+        /// <param name="htmlAttributes">The HTML attributes.</param>
+        /// <returns><see cref="MvcHtmlString"/> representing the control to be displayed to the end user.</returns>
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is an appropriate nesting of generic types")]
-
-        public static MvcHtmlString LabelForRequired<TModel, TValue>(this HtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression, string labelText = "")
-
+        public static MvcHtmlString LabelForRequired<TModel, TValue>(this HtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression, string labelText = "", object htmlAttributes = null)
         {
-
-            return LabelHelper(html,
-
-                ModelMetadata.FromLambdaExpression(expression, html.ViewData),
-
-                ExpressionHelper.GetExpressionText(expression), labelText);
-
+            return LabelHelper(html, ModelMetadata.FromLambdaExpression(expression, html.ViewData), ExpressionHelper.GetExpressionText(expression), labelText, new RouteValueDictionary(htmlAttributes));
         }
 
-        private static MvcHtmlString LabelHelper(HtmlHelper html, ModelMetadata metadata, string htmlFieldName, string labelText)
+        /// <summary>
+        /// Label helper method for displaying the label correctly.
+        /// </summary>
+        /// <param name="html">The HTML.</param>
+        /// <param name="metadata">The metadata.</param>
+        /// <param name="htmlFieldName">Name of the HTML field.</param>
+        /// <param name="labelText">The label text.</param>
+        /// <param name="htmlAttributes">The HTML attributes.</param>
+        /// <returns><see cref="MvcHtmlString"/> representing the control to be displayed to the end user.</returns>
+        private static MvcHtmlString LabelHelper(HtmlHelper html, ModelMetadata metadata, string htmlFieldName, string labelText, IDictionary<string, object> htmlAttributes)
         {
             if (string.IsNullOrEmpty(labelText))
             {
@@ -41,17 +66,22 @@ namespace CD.ClaimSoft.Common.Helpers
 
             var isRequired = false;
 
-            if (metadata.ContainerType != null)
+            if (metadata != null && metadata.ContainerType != null && metadata.PropertyName != null)
             {
-                if (metadata.PropertyName != null)
-                {
-                    isRequired = metadata.ContainerType.GetProperty(metadata.PropertyName)
-                                     .GetCustomAttributes(typeof(RequiredAttribute), false)
-                                     .Length == 1;
-                }
+                var propertyInfo = metadata.ContainerType.GetProperty(metadata.PropertyName);
+
+                if (propertyInfo != null)
+                    isRequired = propertyInfo.GetCustomAttributes(typeof(RequiredAttribute), false).Length == 1;
             }
 
-            TagBuilder tag = new TagBuilder("label");
+            var modelWrapper = CreateContainer("div", new { style = "display: inline-block;" });
+
+            var tag = new TagBuilder("label");
+
+            if (htmlAttributes != null)
+            {
+                tag.MergeAttributes(htmlAttributes);
+            }
 
             tag.Attributes.Add("for", TagBuilder.CreateSanitizedId(html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(htmlFieldName)));
 
@@ -72,9 +102,34 @@ namespace CD.ClaimSoft.Common.Helpers
                 output += asteriskTag.ToString(TagRenderMode.Normal);
             }
 
-            return MvcHtmlString.Create(output);
+            modelWrapper.InnerHtml = output;
+
+            return MvcHtmlString.Create(modelWrapper.ToString(TagRenderMode.Normal));
         }
 
+        /// <summary>
+        /// Creates the container for the tag.
+        /// </summary>
+        /// <param name="tagName">Name of the tag.</param>
+        /// <param name="htmlAttributes">The HTML attributes.</param>
+        /// <returns><see cref="TagBuilder"/> as the control container.</returns>
+        private static TagBuilder CreateContainer(string tagName, object htmlAttributes)
+        {
+            var tag = new TagBuilder(tagName);
+
+            IDictionary<string, object> htmlAttributesDictionary = new RouteValueDictionary(htmlAttributes);
+
+            tag.MergeAttributes(htmlAttributesDictionary);
+
+            return tag;
+        }
+
+        /// <summary>
+        /// Method for converting the tag to json.
+        /// </summary>
+        /// <param name="helper">The helper.</param>
+        /// <param name="obj">The object.</param>
+        /// <returns>The HTML markup without encoding.</returns>
         public static IHtmlString ToJson(this HtmlHelper helper, object obj)
         {
             var settings = new JsonSerializerSettings
@@ -87,10 +142,17 @@ namespace CD.ClaimSoft.Common.Helpers
             return helper.Raw(JsonConvert.SerializeObject(obj, settings));
         }
 
+        /// <summary>
+        /// Determines whether the specified controller is active.
+        /// </summary>
+        /// <param name="html">The HTML.</param>
+        /// <param name="controller">The controller.</param>
+        /// <param name="action">The action.</param>
+        /// <returns><code>true</code> returns the active CSS class. Else, empty string.</returns>
         public static string IsActive(this HtmlHelper html, string controller = null, string action = null)
         {
-            var activeClass = $"active{(string)html.ViewContext.RouteData.Values["controller"]}"; // change here if you another name to activate sidebar items
-            // detect current app state
+            var activeClass = $"active{(string)html.ViewContext.RouteData.Values["controller"]}";
+
             var actualAction = (string)html.ViewContext.RouteData.Values["action"];
             var actualController = (string)html.ViewContext.RouteData.Values["controller"];
 
@@ -103,11 +165,21 @@ namespace CD.ClaimSoft.Common.Helpers
             return (controller == actualController && action == actualAction) ? activeClass : string.Empty;
         }
 
+        /// <summary>
+        /// Determines whether or not this location is active to display proper CSS.
+        /// </summary>
+        /// <param name="html">The HTML.</param>
+        /// <returns><code>true</code> returns active location.</returns>
         public static string IsActiveLocationCss(this HtmlHelper html)
         {
             return $"active{(string)html.ViewContext.RouteData.Values["controller"]}";
         }
 
+        /// <summary>
+        /// Determines whether or not this location is active to display proper Icon.
+        /// </summary>
+        /// <param name="html">The HTML.</param>
+        /// <returns><code>true</code> returns active location.</returns>
         public static string IsActiveLocationIcon(this HtmlHelper html)
         {
             switch ((string)html.ViewContext.RouteData.Values["controller"])
@@ -140,6 +212,12 @@ namespace CD.ClaimSoft.Common.Helpers
                     return "fa fa-home";
             }
         }
+
+        /// <summary>
+        /// Determines whether or not this location is active to display proper text.
+        /// </summary>
+        /// <param name="html">The HTML.</param>
+        /// <returns><code>true</code> returns active location.</returns>
         public static string IsActiveLocationText(this HtmlHelper html)
         {
             switch ((string)html.ViewContext.RouteData.Values["controller"])
@@ -171,6 +249,29 @@ namespace CD.ClaimSoft.Common.Helpers
                 default:
                     return "sidebar.nav.HOME";
             }
+        }
+
+        /// <summary>
+        /// Creates an image tag based on the passed in data.
+        /// </summary>
+        /// <typeparam name="TModel">The type of the model.</typeparam>
+        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <param name="helper">The helper.</param>
+        /// <param name="expression">The expression.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="id">The identifier.</param>
+        /// <returns>An image tag.</returns>
+        public static IHtmlString Images<TModel, TValue>(this HtmlHelper<TModel> helper, System.Linq.Expressions.Expression<Func<TModel, TValue>> expression, string name, string id)
+        {
+            TagBuilder tb = new TagBuilder("input");
+
+            tb.Attributes.Add("ex", expression.ToString());
+            tb.Attributes.Add("name", name);
+            tb.Attributes.Add("id", id);
+            tb.Attributes.Add("type", "file");
+            tb.Attributes.Add("accept", "Image/*");
+
+            return new MvcHtmlString(tb.ToString(TagRenderMode.SelfClosing));
         }
     }
 }

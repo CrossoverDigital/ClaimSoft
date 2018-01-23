@@ -5,37 +5,20 @@ namespace CD.ClaimSoft.UI.Controllers
     [Authorize]
     public class PagesController : Controller
     {
-        public ActionResult Error_404()
-        {
-            return View();
-        }
-        public ActionResult Lock()
-        {
-            return View();
-        }
-        public ActionResult Login()
-        {
-            return View();
-        }
-        public ActionResult Recover()
-        {
-            return View();
-        }
-        public ActionResult Register()
-        {
-            return View();
-        }
-        public ActionResult Template()
-        {
-            return View();
-        }
-        public ActionResult Maintenance()
-        {
-            return View();
-        }
-        public ActionResult Error_500()
-        {
-            return View();
-        }
+        public ActionResult Error_404() => View();
+
+        public ActionResult Lock() => View();
+
+        public ActionResult Login() => View();
+
+        public ActionResult Recover() => View();
+
+        public ActionResult Register() => View();
+
+        public ActionResult Template() => View();
+
+        public ActionResult Maintenance() => View();
+
+        public ActionResult Error_500() => View();
     }
 }

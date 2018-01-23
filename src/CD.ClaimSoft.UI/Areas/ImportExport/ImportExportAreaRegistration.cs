@@ -2,17 +2,11 @@
 
 namespace CD.ClaimSoft.UI.Areas.ImportExport
 {
-    public class ImportExportAreaRegistration : AreaRegistration 
+    public class ImportExportAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
-        {
-            get 
-            {
-                return "ImportExport";
-            }
-        }
+        public override string AreaName => "ImportExport";
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "ImportExport_default",

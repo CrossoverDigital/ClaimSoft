@@ -132,6 +132,12 @@
     font-weight: bolder;
 }
 
+.panel-primary > .panel-heading {
+    color: #fff;
+    background-color: #2d6ca2;
+    border-color: #cfdbe2;
+}
+
 /* ========================================================================
    Component: bootstrap-reset.less
  ========================================================================== */
@@ -821,17 +827,17 @@ body {
 
     .aside-collapsed-text .wrapper > .aside,
     .aside-collapsed-text .wrapper > .aside > .aside-inner {
-        width: 100px;
+        width: 120px;
     }
 
         .aside-collapsed-text .wrapper > .aside > .nav-floating {
-            margin-left: 90px;
+            margin-left: 110px;
         }
 
 @media only screen and (min-width: 768px) {
     .aside-collapsed-text .wrapper > section,
     .aside-collapsed-text .wrapper > footer {
-        margin-left: 90px;
+        margin-left: 110px;
     }
 }
 
@@ -2006,7 +2012,7 @@ _:-ms-lang(x),
     }
 
     .aside-collapsed-text .sidebar > .nav > li {
-        width: 100px;
+        width: 120px;
     }
 
         .aside-collapsed-text .sidebar > .nav > li > a {

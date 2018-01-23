@@ -232,7 +232,6 @@ namespace CD.ClaimSoft.UI
               "~/Vendor/fontawesome/css/font-awesome.min.css", new CssRewriteUrlTransform()
             ));
 
-
             bundles.Add(new ScriptBundle("~/bundles/sliderCtrl").Include(
               "~/Vendor/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"
             ));
@@ -468,7 +467,6 @@ namespace CD.ClaimSoft.UI
               "~/Vendor/select2/dist/css/select2.css",
               "~/Vendor/select2-bootstrap-theme/dist/select2-bootstrap.css"
             ));
-
         }
     }
 }

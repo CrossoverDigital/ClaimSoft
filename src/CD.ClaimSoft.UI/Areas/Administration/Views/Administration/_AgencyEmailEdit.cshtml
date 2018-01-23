@@ -1,0 +1,69 @@
+﻿@using CD.ClaimSoft.Application.Models.Agencies
+
+@using Syncfusion.JavaScript
+@using Syncfusion.MVC.EJ
+
+@inherits CD.ClaimSoft.UI.Common.CustomViewPage<AgencyEmail>
+
+<div id="emailEditTemplate" style="margin-bottom: 15px;">
+    <img class="agencyEmailTooltip" style="width: 25px; float: left; margin-right: 10px;" src="~/Content/Images/info.png" alt="Audit Information" />
+    <div style="border: 1px solid #cecece; padding: 5px; width: 300px; display: none;">
+        <div>
+            <div>
+                @Html.HiddenFor(m => m.AgencyId)
+                <span style="font-weight: bold; width: 90px;"> Create By: </span> @Model.CreateBy
+                @Html.HiddenFor(m => m.CreateBy)
+            </div>
+            <div>
+                <span style="font-weight: bold; width: 90px;"> Create Date: </span> @Model.CreateDate
+                @Html.HiddenFor(m => m.CreateDate)
+            </div>
+            <div>
+                <span style="font-weight: bold; width: 122px;">Last Modify By: </span> @Model.LastModifyBy
+                @Html.HiddenFor(m => m.LastModifyBy)
+            </div>
+            <div>
+                <span style="font-weight: bold; width: 122px;">Last Modify Date:</span>@Model.LastModifyDate
+                @Html.HiddenFor(m => m.LastModifyDate)
+            </div>
+        </div>
+    </div>
+    <div style="margin-left: 40px;">
+        <div style="width: 275px; margin-bottom: 5px;">
+            @Html.LabelForRequired(model => model.EmailAddress, null, new { style = "width: auto; display: inline-block;" })
+            @Html.TextBoxFor(m => m.EmailAddress, new {@class = "e-textbox e-animation", style = "width: 250px;"})
+        </div>
+        <div style="width: 275px;">
+            @Html.LabelForRequired(model => model.EmailTypeId, null, new { style = "width: auto; display: inline-block;" })
+            @Html.EJ().DropDownListFor(o => o.EmailTypeId, DdlDataSources.PhoneTypeDdl)
+        </div>
+        <div style="width: 290px; font-weight: bold;">
+            @Html.EJ().CheckBoxFor(m => m.IsDefault).ShowRoundedCorner(true).Text("Use as Default Address")
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $('.agencyEmailTooltip').each(function () {
+        $(this).qtip({
+            content: {
+                text: $(this).next('div')
+            },
+            position: {
+                my: 'left top',
+                at: 'right top',
+                target: $('.agencyEmailTooltip')
+            },
+            style: {
+                classes: 'qtip-bootstrap qtip-shadow qtip-rounded',
+                width: 330,
+                height: 115
+            }
+        });
+    });
+
+    //# sourceURL=AgencyEmailEdit.cshtml
+</script>
+
+@(Html.EJ().ScriptManager())

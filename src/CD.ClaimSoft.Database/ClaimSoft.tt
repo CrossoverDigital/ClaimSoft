@@ -23,7 +23,7 @@
     Settings.GenerateSeparateFiles = false;
     Settings.MakeClassesInternal = false;
     Settings.MakeClassesPartial = true;
-    Settings.MakeDbContextInterfacePartial = false;
+    Settings.MakeDbContextInterfacePartial = true;
     Settings.UseMappingTables = true; // If true, mapping will be used and no mapping tables will be generated. If false, all tables will be generated.
     Settings.UsePascalCase = true;    // This will rename the generated C# tables & properties to use PascalCase. If false table & property names will be left alone.
     Settings.UseDataAnnotations = false; // If true, will add data annotations to the poco classes.
@@ -163,7 +163,7 @@
     //              ColumnFilterExclude = new Regex("^FK_.*$");
     Settings.SchemaFilterExclude = null;
     Settings.SchemaFilterInclude = null;
-    Settings.TableFilterExclude = null;
+    Settings.TableFilterExclude = new Regex("^_.");
     Settings.TableFilterInclude = null;
     Settings.ColumnFilterExclude = null;
 
@@ -182,7 +182,7 @@
 
     // Stored Procedures ******************************************************************************************************************
     // Use the following regex filters to include or exclude stored procedures
-    Settings.StoredProcedureFilterExclude = null;
+    Settings.StoredProcedureFilterExclude = new Regex("^_.");
     Settings.StoredProcedureFilterInclude = null;
 
     // Filtering of stored procedures using a function. This can be used in conjunction with the Regex's above.

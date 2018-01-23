@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CD.ClaimSoft.Application.Models.Agencies
 {
@@ -6,6 +7,12 @@ namespace CD.ClaimSoft.Application.Models.Agencies
     {
         public int Id { get; set; } // Id (Primary key)
         public int AgencyId { get; set; } // AgencyId
+
+        [Required]
+        [DataType(DataType.Text)]
+        [MinLength(3)]
+        [MaxLength(50)]
+        [Display(Name = "Number")]
         public string Number { get; set; } // Number (length: 50)
         public bool IgnoreTimeStamps { get; set; } // IgnoreTimeStamps
         public string CreateBy { get; set; } // CreateBy (length: 50)

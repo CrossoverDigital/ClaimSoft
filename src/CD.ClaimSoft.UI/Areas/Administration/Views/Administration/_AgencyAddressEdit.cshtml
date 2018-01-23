@@ -1,0 +1,109 @@
+﻿@using CD.ClaimSoft.Application.Models.Agencies
+
+@using Syncfusion.JavaScript
+@using Syncfusion.MVC.EJ
+
+@inherits CD.ClaimSoft.UI.Common.CustomViewPage<AgencyAddress>
+
+<div id="addressEditTemplate" style="margin-bottom: 15px; width: 60%;">
+    <img class="agencyAgencyTooltip" style="width: 25px; float: left; margin-right: 10px;" src="~/Content/Images/info.png" alt="Audit Information" />
+    <div style="border: 1px solid #cecece; padding: 5px; width: 300px; display: none;">
+        <div>
+            <div>
+                <span style="font-weight: bold; width: 90px;"> Create By: </span> @Model.CreateBy
+                @Html.HiddenFor(m => m.CreateBy)
+            </div>
+            <div>
+                <span style="font-weight: bold; width: 90px;"> Create Date: </span> @Model.CreateDate
+                @Html.HiddenFor(m => m.CreateDate)
+            </div>
+            <div>
+                <span style="font-weight: bold; width: 122px;">Last Modify By: </span> @Model.LastModifyBy
+                @Html.HiddenFor(m => m.LastModifyBy)
+            </div>
+            <div>
+                <span style="font-weight: bold; width: 122px;">Last Modify Date:</span>@Model.LastModifyDate
+                @Html.HiddenFor(m => m.LastModifyDate)
+            </div>
+        </div>
+    </div>
+    <div style="float: left;">
+        <div style="width: 480px; margin-bottom: 5px;">
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.AgencyId)
+            @Html.LabelForRequired(model => model.Address1, null, new {style = "width: auto; display: inline-block;"})
+            @Html.TextBoxFor(m => m.Address1, new {required = "required", name = "address1", @class = "e-textbox e-animation", style = "width: 480px;"})
+            @Html.ValidationMessageFor(model => model.Address1)
+        </div>
+        <div style="width: 480px; margin-bottom: 5px;">
+            @Html.LabelForRequired(model => model.Address2, null, new { style = "width: auto; display: inline-block;" })
+            @Html.TextBoxFor(m => m.Address2, new { @class = "e-textbox e-animation", style = "width: 480px;" })
+            @Html.ValidationMessageFor(model => model.Address2)
+        </div>
+        <div style="float: left; width: 200px; margin-right: 10px; margin-bottom: 5px;">
+            @Html.LabelForRequired(model => model.City, null, new { style = "width: auto; display: inline-block;" })
+            @Html.TextBoxFor(m => m.City, new { required = "required", name = "city", @class = "e-textbox e-animation", style = "width: 200px;" })
+            @Html.ValidationMessageFor(model => model.City)
+        </div>
+        <div style="float: left; width: 150px; margin-right: 10px;">
+            @Html.LabelForRequired(model => model.StateId, null, new { style = "width: auto; display: inline-block;" })
+            @Html.EJ().DropDownListFor(o => o.StateId, DdlDataSources.StateDdl, new { required = "required" })
+            @Html.ValidationMessageFor(model => model.StateId)
+        </div>
+        <div style="float: left; width: 110px;">
+            @Html.LabelForRequired(model => model.ZipCode, null, new { style = "width: auto; display: inline-block;" })
+            @Html.TextBoxFor(m => m.ZipCode, new { required = "required", name = "zipcode", @class = "e-textbox e-animation" })
+            @Html.ValidationMessageFor(model => model.ZipCode)
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div style="float: left; margin-left: 15px;">
+        <div style="width: 210px; margin-bottom: 5px;">
+            @Html.LabelForRequired(model => model.AddressTypeId, null, new { style = "width: auto; display: inline-block;" })
+            @Html.EJ().DropDownListFor(o => o.AddressTypeId, DdlDataSources.AddressTypeDdl, new { style = "width: 200px;" })
+        </div>
+        <div style="width: 210px; margin-bottom: 5px;">
+            @Html.LabelForRequired(model => model.CountyId, null, new { style = "width: auto; display: inline-block;" })
+            @Html.EJ().DropDownListFor(o => o.CountyId, DdlDataSources.CountyDdl, new { style = "width: 200px;" })
+        </div>
+        <div style="width: 275px;">
+            @Html.LabelForRequired(model => model.CountryId, null, new { style = "width: auto; display: inline-block;" })
+            @Html.EJ().DropDownListFor(o => o.CountryId, DdlDataSources.CountryDdl, new { style = "width: 200px;" })
+        </div>
+        <div style="width: 290px; font-weight: bold;">
+            @Html.EJ().CheckBoxFor(m => m.IsDefault).ShowRoundedCorner(true).Text("Use as Default Address")
+        </div>
+        <div style="width: 290px; font-weight: bold;">
+            @Html.EJ().CheckBoxFor(m => m.IsPayToAddress).ShowRoundedCorner(true).Text("Use as Pay To Address")
+        </div>
+        <div style="width: 290px; font-weight: bold;">
+            @Html.EJ().CheckBoxFor(m => m.IsReturnAddress).ShowRoundedCorner(true).Text("Use as Return Address")
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<script>
+
+    $('.agencyAgencyTooltip').each(function () {
+        $(this).qtip({
+            content: {
+                text: $(this).next('div')
+            },
+            position: {
+                my: 'left top',
+                at: 'right top',
+                target: $('.agencyAgencyTooltip')
+            },
+            style: {
+                classes: 'qtip-bootstrap qtip-shadow qtip-rounded',
+                width: 330,
+                height: 115
+            }
+        });
+    });
+
+    //# sourceURL=AgencyAddressEdit.cshtml
+</script>
+
+@(Html.EJ().ScriptManager())

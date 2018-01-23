@@ -1,30 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace CD.ClaimSoft.UI.Areas.ImportExport.Controllers
 {
     public class ImportExportController : Controller
     {
         // GET: ImportExport/ImportExport
-        public ActionResult Index()
-        {
-            return View();
-        }
+        public ActionResult Index() => View();
 
         // GET: ImportExport/ImportExport/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        public ActionResult Details(int id) => View();
 
         // GET: ImportExport/ImportExport/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        public ActionResult Create() => View();
 
         // POST: ImportExport/ImportExport/Create
         [HttpPost]
@@ -43,10 +30,7 @@ namespace CD.ClaimSoft.UI.Areas.ImportExport.Controllers
         }
 
         // GET: ImportExport/ImportExport/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+        public ActionResult Edit(int id) => View();
 
         // POST: ImportExport/ImportExport/Edit/5
         [HttpPost]
@@ -65,10 +49,7 @@ namespace CD.ClaimSoft.UI.Areas.ImportExport.Controllers
         }
 
         // GET: ImportExport/ImportExport/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        public ActionResult Delete(int id) => View();
 
         // POST: ImportExport/ImportExport/Delete/5
         [HttpPost]

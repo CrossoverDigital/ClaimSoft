@@ -4,13 +4,7 @@ namespace CD.ClaimSoft.UI.Areas.Note
 {
     public class NoteAreaRegistration : AreaRegistration
     {
-        public override string AreaName
-        {
-            get
-            {
-                return "Note";
-            }
-        }
+        public override string AreaName => "Note";
 
         public override void RegisterArea(AreaRegistrationContext context)
         {

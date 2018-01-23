@@ -5,25 +5,14 @@ namespace CD.ClaimSoft.UI.Controllers
     [Authorize]
     public class EcommerceController : Controller
     {
-        public ActionResult EcommerceOrders()
-        {
-            return View();
-        }
-        public ActionResult EcommerceOrderView()
-        {
-            return View();
-        }
-        public ActionResult EcommerceProducts()
-        {
-            return View();
-        }
-        public ActionResult EcommerceProductView()
-        {
-            return View();
-        }
-        public ActionResult EcommerceCheckout()
-        {
-            return View();
-        }
+        public ActionResult EcommerceOrders() => View();
+
+        public ActionResult EcommerceOrderView() => View();
+
+        public ActionResult EcommerceProducts() => View();
+
+        public ActionResult EcommerceProductView() => View();
+
+        public ActionResult EcommerceCheckout() => View();
     }
 }

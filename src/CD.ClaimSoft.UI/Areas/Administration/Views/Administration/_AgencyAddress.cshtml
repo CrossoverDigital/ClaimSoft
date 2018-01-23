@@ -3,24 +3,27 @@
 @using Syncfusion.JavaScript
 @using Syncfusion.MVC.EJ
 
-@model Agency
+@inherits CD.ClaimSoft.UI.Common.CustomViewPage<Agency>
 
 <div style="margin: 5px">
     @(Html.EJ().Grid<object>
-        ("AgencyAddressGrid").HtmlAttributes(new { style = "width:650px; min-height: 245px;" })
+        ("AgencyAddressGrid").HtmlAttributes(new { style = "min-height: 245px;" })
         .Datasource(ds => ds.Json(ViewBag.AgencyAddressDataSource)
             .UpdateURL("/Administration/Administration/AgencyAddressUpdate")
             .InsertURL("/Administration/Administration/AgencyAddressInsert")
             .RemoveURL("/Administration/Administration/AgencyAddressDelete")
             .Adaptor(AdaptorType.RemoteSaveAdaptor))
-        .IsResponsive()
+          .EnableAltRow()
+          .IsResponsive(true)
+          .EnableAutoSaveOnSelectionChange(false)
         .EditSettings(edit =>
         {
             edit.AllowAdding()
                 .AllowEditing()
                 .AllowDeleting()
                 .EditMode(EditMode.InlineFormTemplate)
-                .InlineFormTemplateID("addressEditTemplate");
+                .InlineFormTemplateID("addressEditTemplate")
+                .AllowEditOnDblClick(true);
         })
         .ToolbarSettings(tools =>
         {
@@ -34,6 +37,7 @@
         })
         .Columns(col =>
         {
+            col.Field("Id").HeaderText("Address Id").IsPrimaryKey(true).Visible(false).Add();
             col.Field("Address1").HeaderText("Address").Width(150).Priority(1).Add();
             col.Field("City").HeaderText("City").Priority(2).Width(50).Add();
             col.Field("CountyName").HeaderText("County").Width(50).Priority(3).Add();

@@ -1,4 +1,12 @@
-﻿using System;
+﻿#region Copyright
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// -=- Copyright (C) ClaimSoft 2017-2018. All Rights Reserved. 
+// -=- This code may not be used without the express written 
+// -=- permission of the copyright holder, ClaimSoft.
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -6,50 +14,82 @@ using System.Linq;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 
-using CD.ClaimSoft.Application.Logging;
-
 using CD.ClaimSoft.Common.EntityFramework;
-
 using CD.ClaimSoft.Database;
+using CD.ClaimSoft.Logging;
+using CD.ClaimSoft.Redis;
 
 using Model = CD.ClaimSoft.Application.Models;
 
 namespace CD.ClaimSoft.Application.Administration
 {
-    public class AgencyManager
+    /// <inheritdoc />
+    /// <summary>
+    /// Agency management class that handles all the processing needed to maintain Agencies within the ClaimSoft application.
+    /// </summary>
+    /// <seealso cref="T:CD.ClaimSoft.Application.Administration.IAgencyManager" />
+    public class AgencyManager : IAgencyManager
     {
         #region Instance Variables
 
         /// <summary>
-        /// The log.
+        /// The database context.
         /// </summary>
-        private static readonly Logger Log = new Logger(typeof(AgencyManager));
+        readonly IClaimSoftContext _dbContext;
+
+        /// <summary>
+        /// The cache.
+        /// </summary>
+        readonly IRedisCache _cache;
+
+        /// <summary>
+        /// The log service.
+        /// </summary>
+        readonly ILogService<AgencyManager> _logService;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AgencyManager" /> class.
+        /// </summary>
+        /// <param name="db">The database.</param>
+        /// <param name="cache">The cache.</param>
+        /// <param name="logService">The log service.</param>
+        public AgencyManager(IClaimSoftContext db, IRedisCache cache, ILogService<AgencyManager> logService)
+        {
+            _dbContext = db;
+            _cache = cache;
+            _logService = logService;
+        }
 
         #endregion
 
         #region Agency Methods
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the agencies.
         /// </summary>
-        /// <returns>The colection of agencies in the application.</returns>
+        /// <returns>
+        /// The colection of agencies in the application.
+        /// </returns>
         public List<Model.Agencies.Agency> GetAgencies()
         {
             try
             {
-                using (var claimSoftContext = new ClaimSoftContext())
-                {
-                    return claimSoftContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList();
-                }
+                return _cache.Get(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                _logService.Error(ex);
 
                 throw;
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Creates a new agency.
         /// </summary>
@@ -59,38 +99,38 @@ namespace CD.ClaimSoft.Application.Administration
         {
             try
             {
-                using (var claimSoftContext = new ClaimSoftContext())
+                var agencyTenantId = Guid.NewGuid().ToString().ToUpperInvariant();
+
+                agency.AgencyTenantId = agencyTenantId;
+
+                var entity = Mapper.Map<Agency>(agency);
+
+                _dbContext.Agencies.Attach(entity);
+
+                _dbContext.Entry(entity).State = EntityState.Added;
+
+                var returnValue = _dbContext.SaveChangesWithValidation();
+
+                if (returnValue.IsValid)
                 {
-                    var agencyTenantId = Guid.NewGuid().ToString().ToUpperInvariant();
+                    var agencyList = _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
 
-                    agency.AgencyTenantId = agencyTenantId;
+                    var newAgency = agencyList.First(a => a.AgencyTenantId == agencyTenantId);
 
-                    var entity = Mapper.Map<Agency>(agency);
-
-                    claimSoftContext.Agencies.Attach(entity);
-
-                    claimSoftContext.Entry<Agency>(entity).State = EntityState.Added;
-
-                    var returnValue = claimSoftContext.SaveChangesWithValidation();
-
-                    if (returnValue.IsValid)
-                    {
-                        var newAgency = claimSoftContext.Agencies.Include(aa => aa.AgencyAddresses).First(a => a.AgencyTenantId == agencyTenantId);
-
-                        returnValue.SetReturnObject(Mapper.Map<Agency, Model.Agencies.Agency>(newAgency));
-                    }
-
-                    return returnValue;
+                    returnValue.SetReturnObject(newAgency);
                 }
+
+                return returnValue;
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                _logService.Error(ex);
 
                 throw;
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Updates the agency.
         /// </summary>
@@ -100,20 +140,30 @@ namespace CD.ClaimSoft.Application.Administration
         {
             try
             {
-                using (var claimSoftContext = new ClaimSoftContext())
+                var agencyTenantId = agency.AgencyTenantId;
+
+                var entity = Mapper.Map<Agency>(agency);
+
+                _dbContext.Agencies.Attach(entity);
+
+                _dbContext.Entry(entity).State = EntityState.Modified;
+
+                var returnValue = _dbContext.SaveChangesWithValidation();
+
+                if (returnValue.IsValid)
                 {
-                    var entity = Mapper.Map<Agency>(agency);
+                    var agencyList = _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
 
-                    claimSoftContext.Agencies.Attach(entity);
+                    var updatedAgency = agencyList.First(a => a.AgencyTenantId == agencyTenantId);
 
-                    claimSoftContext.Entry<Agency>(entity).State = EntityState.Modified;
-
-                    return claimSoftContext.SaveChangesWithValidation();
+                    returnValue.SetReturnObject(updatedAgency);
                 }
+
+                return returnValue;
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                _logService.Error(ex);
 
                 throw;
             }
@@ -123,6 +173,7 @@ namespace CD.ClaimSoft.Application.Administration
 
         #region Agency Address Methods
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the agency address.
         /// </summary>
@@ -137,21 +188,19 @@ namespace CD.ClaimSoft.Application.Administration
                     return new Model.Agencies.AgencyAddress();
                 }
 
-                using (var claimSoftContext = new ClaimSoftContext())
-                {
-                    var agencyAddress = claimSoftContext.AgencyAddresses.First(a => a.Id == agencyAddressId);
+                var agencyAddress = _dbContext.AgencyAddresses.First(a => a.Id == agencyAddressId);
 
-                    return Mapper.Map<AgencyAddress, Model.Agencies.AgencyAddress>(agencyAddress);
-                }
+                return Mapper.Map<AgencyAddress, Model.Agencies.AgencyAddress>(agencyAddress);
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                _logService.Error(ex);
 
                 throw;
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Creates the agency address.
         /// </summary>
@@ -161,39 +210,30 @@ namespace CD.ClaimSoft.Application.Administration
         {
             try
             {
-                using (var claimSoftContext = new ClaimSoftContext())
+                var agencyAddressEntity = Mapper.Map<AgencyAddress>(agencyAddress);
+
+                _dbContext.AgencyAddresses.Attach(agencyAddressEntity);
+
+                _dbContext.Entry(agencyAddressEntity).State = EntityState.Added;
+
+                var returnValue = _dbContext.SaveChangesWithValidation();
+
+                if (returnValue.IsValid)
                 {
-                    var agencyAddressEntity = Mapper.Map<AgencyAddress>(agencyAddress);
-
-                    claimSoftContext.AgencyAddresses.Attach(agencyAddressEntity);
-
-                    claimSoftContext.Entry(agencyAddressEntity).State = EntityState.Added;
-
-                    var returnValue = claimSoftContext.SaveChangesWithValidation();
-
-                    if (returnValue.IsValid)
-                    {
-                        var newAgencyAddress = claimSoftContext.AgencyAddresses.First(a => a.AgencyId == agencyAddress.AgencyId
-                                        && a.Address1 == agencyAddress.Address1
-                                        && a.City == agencyAddress.City
-                                        && a.CountyId == agencyAddress.CountyId
-                                        && a.StateId == agencyAddress.StateId
-                                        && a.ZipCode == agencyAddress.ZipCode);
-
-                        returnValue.SetReturnObject(Mapper.Map<AgencyAddress, Model.Agencies.AgencyAddress>(newAgencyAddress));
-                    }
-
-                    return returnValue;
+                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
                 }
+
+                return returnValue;
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                _logService.Error(ex);
 
                 throw;
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Updates the agency address.
         /// </summary>
@@ -203,25 +243,30 @@ namespace CD.ClaimSoft.Application.Administration
         {
             try
             {
-                using (var claimSoftContext = new ClaimSoftContext())
+                var agencyAddressEntity = Mapper.Map<AgencyAddress>(agencyAddress);
+
+                _dbContext.AgencyAddresses.Attach(agencyAddressEntity);
+
+                _dbContext.Entry(agencyAddressEntity).State = EntityState.Modified;
+
+                var returnValue = _dbContext.SaveChangesWithValidation();
+
+                if (returnValue.IsValid)
                 {
-                    var agencyAddressEntity = Mapper.Map<AgencyAddress>(agencyAddress);
-
-                    claimSoftContext.AgencyAddresses.Attach(agencyAddressEntity);
-
-                    claimSoftContext.Entry(agencyAddressEntity).State = EntityState.Modified;
-
-                    return claimSoftContext.SaveChangesWithValidation();
+                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
                 }
+
+                return returnValue;
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                _logService.Error(ex);
 
                 throw;
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Deletes the agency address.
         /// </summary>
@@ -231,20 +276,24 @@ namespace CD.ClaimSoft.Application.Administration
         {
             try
             {
-                using (var claimSoftContext = new ClaimSoftContext())
+                var agencyAddressEntity = Mapper.Map<AgencyAddress>(agencyAddress);
+
+                _dbContext.AgencyAddresses.Attach(agencyAddressEntity);
+
+                _dbContext.Entry(agencyAddressEntity).State = EntityState.Deleted;
+
+                var returnValue = _dbContext.SaveChangesWithValidation();
+
+                if (returnValue.IsValid)
                 {
-                    var agencyAddressEntity = Mapper.Map<AgencyAddress>(agencyAddress);
-
-                    claimSoftContext.AgencyAddresses.Attach(agencyAddressEntity);
-
-                    claimSoftContext.Entry(agencyAddressEntity).State = EntityState.Deleted;
-
-                    return claimSoftContext.SaveChangesWithValidation();
+                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
                 }
+
+                return returnValue;
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                _logService.Error(ex);
 
                 throw;
             }
@@ -254,6 +303,7 @@ namespace CD.ClaimSoft.Application.Administration
 
         #region Agency Number Methods
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the agency number.
         /// </summary>
@@ -263,21 +313,19 @@ namespace CD.ClaimSoft.Application.Administration
         {
             try
             {
-                using (var claimSoftContext = new ClaimSoftContext())
-                {
-                    var agencyNumber = claimSoftContext.AgencyNumbers.FirstOrDefault(an => an.Id == numberId);
+                var agencyNumber = _dbContext.AgencyNumbers.FirstOrDefault(an => an.Id == numberId);
 
-                    return Mapper.Map<AgencyNumber, Model.Agencies.AgencyNumber>(agencyNumber);
-                }
+                return Mapper.Map<AgencyNumber, Model.Agencies.AgencyNumber>(agencyNumber);
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                _logService.Error(ex);
 
                 throw;
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Creates a new agency number.
         /// </summary>
@@ -289,34 +337,30 @@ namespace CD.ClaimSoft.Application.Administration
         {
             try
             {
-                using (var claimSoftContext = new ClaimSoftContext())
+                var entity = Mapper.Map<AgencyNumber>(agencyNumber);
+
+                _dbContext.AgencyNumbers.Attach(entity);
+
+                _dbContext.Entry(entity).State = EntityState.Added;
+
+                var returnValue = _dbContext.SaveChangesWithValidation();
+
+                if (returnValue.IsValid)
                 {
-                    var entity = Mapper.Map<AgencyNumber>(agencyNumber);
-
-                    claimSoftContext.AgencyNumbers.Attach(entity);
-
-                    claimSoftContext.Entry(entity).State = EntityState.Added;
-
-                    var returnValue = claimSoftContext.SaveChangesWithValidation();
-
-                    if (returnValue.IsValid)
-                    {
-                        var newAgencyNumber = claimSoftContext.AgencyNumbers.FirstOrDefault(an => an.AgencyId == agencyNumber.AgencyId && an.Number == agencyNumber.Number);
-
-                        returnValue.SetReturnObject(Mapper.Map<AgencyNumber, Model.Agencies.AgencyNumber>(newAgencyNumber));
-                    }
-
-                    return returnValue;
+                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
                 }
+
+                return returnValue;
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                _logService.Error(ex);
 
                 throw;
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Updates the agency number.
         /// </summary>
@@ -326,25 +370,30 @@ namespace CD.ClaimSoft.Application.Administration
         {
             try
             {
-                using (var claimSoftContext = new ClaimSoftContext())
+                var agencyNumberEntity = Mapper.Map<AgencyNumber>(agencyNumber);
+
+                _dbContext.AgencyNumbers.Attach(agencyNumberEntity);
+
+                _dbContext.Entry(agencyNumberEntity).State = EntityState.Modified;
+
+                var returnValue = _dbContext.SaveChangesWithValidation();
+
+                if (returnValue.IsValid)
                 {
-                    var agencyNumberEntity = Mapper.Map<AgencyNumber>(agencyNumber);
-
-                    claimSoftContext.AgencyNumbers.Attach(agencyNumberEntity);
-
-                    claimSoftContext.Entry(agencyNumberEntity).State = EntityState.Modified;
-
-                    return claimSoftContext.SaveChangesWithValidation();
+                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
                 }
+
+                return returnValue;
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                _logService.Error(ex);
 
                 throw;
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Deletes the agency number.
         /// </summary>
@@ -354,20 +403,24 @@ namespace CD.ClaimSoft.Application.Administration
         {
             try
             {
-                using (var claimSoftContext = new ClaimSoftContext())
+                var agencyNumberEntity = Mapper.Map<AgencyNumber>(agencyNumber);
+
+                _dbContext.AgencyNumbers.Attach(agencyNumberEntity);
+
+                _dbContext.Entry(agencyNumberEntity).State = EntityState.Deleted;
+
+                var returnValue = _dbContext.SaveChangesWithValidation();
+
+                if (returnValue.IsValid)
                 {
-                    var agencyNumberEntity = Mapper.Map<AgencyNumber>(agencyNumber);
-
-                    claimSoftContext.AgencyNumbers.Attach(agencyNumberEntity);
-
-                    claimSoftContext.Entry(agencyNumberEntity).State = EntityState.Deleted;
-
-                    return claimSoftContext.SaveChangesWithValidation();
+                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
                 }
+
+                return returnValue;
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                _logService.Error(ex);
 
                 throw;
             }
@@ -377,6 +430,7 @@ namespace CD.ClaimSoft.Application.Administration
 
         #region Agency Phone Methods
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the agency phone.
         /// </summary>
@@ -386,21 +440,19 @@ namespace CD.ClaimSoft.Application.Administration
         {
             try
             {
-                using (var claimSoftContext = new ClaimSoftContext())
-                {
-                    var agencyNumber = claimSoftContext.AgencyPhones.FirstOrDefault(an => an.Id == phoneId);
+                var agencyPhone = _dbContext.AgencyPhones.FirstOrDefault(an => an.Id == phoneId);
 
-                    return Mapper.Map<AgencyPhone, Model.Agencies.AgencyPhone>(agencyNumber);
-                }
+                return Mapper.Map<AgencyPhone, Model.Agencies.AgencyPhone>(agencyPhone);
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                _logService.Error(ex);
 
                 throw;
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Creates a new agency phone.
         /// </summary>
@@ -412,35 +464,30 @@ namespace CD.ClaimSoft.Application.Administration
         {
             try
             {
-                using (var claimSoftContext = new ClaimSoftContext())
+                var entity = Mapper.Map<AgencyPhone>(agencyPhone);
+
+                _dbContext.AgencyPhones.Attach(entity);
+
+                _dbContext.Entry(entity).State = EntityState.Added;
+
+                var returnValue = _dbContext.SaveChangesWithValidation();
+
+                if (returnValue.IsValid)
                 {
-                    var entity = Mapper.Map<AgencyPhone>(agencyPhone);
-
-                    claimSoftContext.AgencyPhones.Attach(entity);
-
-                    claimSoftContext.Entry(entity).State = EntityState.Added;
-
-                    var returnValue = claimSoftContext.SaveChangesWithValidation();
-
-                    if (returnValue.IsValid)
-                    {
-                        var newAgencyPhone = claimSoftContext.AgencyPhones.FirstOrDefault(an => an.AgencyId == agencyPhone.AgencyId && an.AreaCode == agencyPhone.AreaCode
-                                                                                                 && an.Prefix == agencyPhone.Prefix && an.LineNumber == agencyPhone.LineNumber);
-
-                        returnValue.SetReturnObject(Mapper.Map<AgencyPhone, Model.Agencies.AgencyPhone>(newAgencyPhone));
-                    }
-
-                    return returnValue;
+                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
                 }
+
+                return returnValue;
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                _logService.Error(ex);
 
                 throw;
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Updates the agency phone.
         /// </summary>
@@ -450,25 +497,30 @@ namespace CD.ClaimSoft.Application.Administration
         {
             try
             {
-                using (var claimSoftContext = new ClaimSoftContext())
+                var agencyPhoneEntity = Mapper.Map<AgencyPhone>(agencyPhone);
+
+                _dbContext.AgencyPhones.Attach(agencyPhoneEntity);
+
+                _dbContext.Entry(agencyPhoneEntity).State = EntityState.Modified;
+
+                var returnValue = _dbContext.SaveChangesWithValidation();
+
+                if (returnValue.IsValid)
                 {
-                    var agencyPhoneEntity = Mapper.Map<AgencyPhone>(agencyPhone);
-
-                    claimSoftContext.AgencyPhones.Attach(agencyPhoneEntity);
-
-                    claimSoftContext.Entry(agencyPhoneEntity).State = EntityState.Modified;
-
-                    return claimSoftContext.SaveChangesWithValidation();
+                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
                 }
+
+                return returnValue;
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                _logService.Error(ex);
 
                 throw;
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Deletes the agency phone.
         /// </summary>
@@ -478,20 +530,24 @@ namespace CD.ClaimSoft.Application.Administration
         {
             try
             {
-                using (var claimSoftContext = new ClaimSoftContext())
+                var agencyPhoneEntity = Mapper.Map<AgencyPhone>(agencyPhone);
+
+                _dbContext.AgencyPhones.Attach(agencyPhoneEntity);
+
+                _dbContext.Entry(agencyPhoneEntity).State = EntityState.Deleted;
+
+                var returnValue = _dbContext.SaveChangesWithValidation();
+
+                if (returnValue.IsValid)
                 {
-                    var agencyPhoneEntity = Mapper.Map<AgencyPhone>(agencyPhone);
-
-                    claimSoftContext.AgencyPhones.Attach(agencyPhoneEntity);
-
-                    claimSoftContext.Entry(agencyPhoneEntity).State = EntityState.Deleted;
-
-                    return claimSoftContext.SaveChangesWithValidation();
+                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
                 }
+
+                return returnValue;
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                _logService.Error(ex);
 
                 throw;
             }

@@ -6,9 +6,6 @@ namespace CD.ClaimSoft.UI.Areas.Dashboard.Controllers
     public class DashboardController : Controller
     {
         // GET: Dashboard
-        public ActionResult Index()
-        {
-            return View();
-        }
+        public ActionResult Index() => View();
     }
 }

@@ -5,22 +5,13 @@ namespace CD.ClaimSoft.UI.Areas.Patient.Controllers
     public class PatientController : Controller
     {
         // GET: Patient/Patient
-        public ActionResult Index()
-        {
-            return View();
-        }
+        public ActionResult Index() => View();
 
         // GET: Patient/Patient/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        public ActionResult Details(int id) => View();
 
         // GET: Patient/Patient/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        public ActionResult Create() => View();
 
         // POST: Patient/Patient/Create
         [HttpPost]
@@ -39,10 +30,7 @@ namespace CD.ClaimSoft.UI.Areas.Patient.Controllers
         }
 
         // GET: Patient/Patient/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+        public ActionResult Edit(int id) => View();
 
         // POST: Patient/Patient/Edit/5
         [HttpPost]
@@ -61,10 +49,7 @@ namespace CD.ClaimSoft.UI.Areas.Patient.Controllers
         }
 
         // GET: Patient/Patient/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        public ActionResult Delete(int id) => View();
 
         // POST: Patient/Patient/Delete/5
         [HttpPost]

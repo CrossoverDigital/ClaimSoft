@@ -2,17 +2,11 @@
 
 namespace CD.ClaimSoft.UI.Areas.Report
 {
-    public class ReportAreaRegistration : AreaRegistration 
+    public class ReportAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
-        {
-            get 
-            {
-                return "Report";
-            }
-        }
+        public override string AreaName => "Report";
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Report_default",

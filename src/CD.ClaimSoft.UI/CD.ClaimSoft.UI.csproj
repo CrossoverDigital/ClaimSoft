@@ -50,6 +50,12 @@
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
@@ -58,6 +64,9 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
@@ -115,8 +124,17 @@
     <Reference Include="Microsoft.Owin.Security.Twitter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.0-preview1\lib\net451\Microsoft.Owin.Security.Twitter.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.1.2.6\lib\net46\StackExchange.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis.Extensions.Core, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.Extensions.Core.2.4.0\lib\net45\StackExchange.Redis.Extensions.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis.Extensions.Newtonsoft, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.Extensions.Newtonsoft.2.3.0\lib\net45\StackExchange.Redis.Extensions.Newtonsoft.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.Chart.Wpf, Version=15.4450.0.17, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Compression.Base, Version=15.4450.0.17, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
@@ -171,12 +189,17 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
@@ -210,6 +233,8 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
     </Reference>
@@ -229,6 +254,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutofacBootstrapper.cs" />
     <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
@@ -251,6 +277,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Account\Controllers\AccountController.cs" />
     <Compile Include="Common\BaseController.cs" />
+    <Compile Include="Common\CustomViewPage.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ChartsController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
@@ -266,6 +293,8 @@
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
+    <Compile Include="Dependecies\IViewDependency.cs" />
+    <Compile Include="Dependecies\ViewDependency.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -743,18 +772,17 @@
     <Content Include="Content\ej\mobile\images\ejmmobilefonts.ttf" />
     <Content Include="Content\ej\mobile\images\ejmmobilefonts.eot" />
     <Content Include="Areas\Administration\Views\Administration\_AgencyEdit.cshtml" />
-    <Content Include="Areas\Administration\Views\Administration\AgencyAddressEdit.cshtml" />
-    <Content Include="Areas\Administration\Views\Administration\AgencyNumberEdit.cshtml" />
+    <Content Include="Areas\Administration\Views\Administration\_AgencyAddressEdit.cshtml" />
+    <Content Include="Areas\Administration\Views\Administration\_AgencyNumberEdit.cshtml" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <Content Include="Areas\Administration\Views\Administration\_AgencyDetail.cshtml" />
-    <Content Include="Areas\Administration\Views\Administration\_AgencyProvider.cshtml" />
     <Content Include="Areas\Administration\Views\Administration\_AgencyAddress.cshtml" />
-    <Content Include="Areas\Administration\Views\Administration\AgencyPhoneEdit.cshtml" />
-    <Content Include="Areas\Administration\Views\Administration\_AgencyPhone.cshtml" />
-    <Content Include="Areas\Administration\Views\Administration\_AgencyNemsis.cshtml" />
-    <Content Include="Areas\Administration\Views\Administration\_AgencyEmail.cshtml" />
+    <Content Include="Areas\Administration\Views\Administration\_AgencyPhoneEdit.cshtml" />
+    <Content Include="Areas\Administration\Views\Administration\_AgencyPhoneEmail.cshtml" />
+    <Content Include="Areas\Administration\Views\Administration\_AgencyNotesAttachments.cshtml" />
     <Content Include="Content\qtip\jquery.qtip.min.map" />
+    <Content Include="Areas\Administration\Views\Administration\_AgencyEmailEdit.cshtml" />
     <None Include="Scripts\ej\web\ej.web.all.min.intellisense.js" />
     <None Include="Scripts\ej\web\ej.web.all-vsdoc.js" />
     <Content Include="Scripts\ej\common\ej.core.min.js" />
@@ -1413,23 +1441,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Account\Models\" />
     <Folder Include="Areas\Account\Views\Shared\" />
-    <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Areas\Claim\Models\" />
     <Folder Include="Areas\Claim\Views\Shared\" />
-    <Folder Include="Areas\Dashboard\Models\" />
     <Folder Include="Areas\Dashboard\Views\Shared\" />
-    <Folder Include="Areas\ImportExport\Models\" />
     <Folder Include="Areas\ImportExport\Views\Shared\" />
-    <Folder Include="Areas\Note\Models\" />
     <Folder Include="Areas\Note\Views\Shared\" />
-    <Folder Include="Areas\Patient\Models\" />
     <Folder Include="Areas\Patient\Views\Shared\" />
-    <Folder Include="Areas\Payment\Models\" />
     <Folder Include="Areas\Payment\Views\Shared\" />
-    <Folder Include="Areas\Report\Models\" />
     <Folder Include="Areas\Report\Views\Shared\" />
     <Folder Include="Vendor\blueimp-file-upload\js\cors\" />
     <Folder Include="Vendor\blueimp-file-upload\js\vendor\" />
@@ -1508,9 +1527,25 @@
       <Project>{36c91445-578a-4b59-ad20-a1b675e93cff}</Project>
       <Name>CD.ClaimSoft.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CD.ClaimSoft.Database.FileTable\CD.ClaimSoft.Database.FileTable.csproj">
+      <Project>{9C7D916B-7AED-4425-BD74-FE9C39DB6294}</Project>
+      <Name>CD.ClaimSoft.Database.FileTable</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CD.ClaimSoft.Database.Identity\CD.ClaimSoft.Database.Identity.csproj">
       <Project>{7b4b07e6-2ba6-4468-8caa-5027f39ec1e8}</Project>
       <Name>CD.ClaimSoft.Database.Identity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CD.ClaimSoft.Database\CD.ClaimSoft.Database.csproj">
+      <Project>{0E4E0795-1B15-4CC5-8FF5-C21431A1B5E9}</Project>
+      <Name>CD.ClaimSoft.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CD.ClaimSoft.Logging\CD.ClaimSoft.Logging.csproj">
+      <Project>{89fe1642-ab4e-425c-8902-16d2e6ce4516}</Project>
+      <Name>CD.ClaimSoft.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CD.ClaimSoft.Redis\CD.ClaimSoft.Redis.csproj">
+      <Project>{FB2399F9-21FC-4B59-8DE5-4EF88B27B813}</Project>
+      <Name>CD.ClaimSoft.Redis</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

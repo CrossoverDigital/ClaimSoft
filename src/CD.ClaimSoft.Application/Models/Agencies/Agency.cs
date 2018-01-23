@@ -1,4 +1,12 @@
-﻿using System;
+﻿#region Copyright
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// -=- Copyright (C) ClaimSoft 2017-2018. All Rights Reserved. 
+// -=- This code may not be used without the express written 
+// -=- permission of the copyright holder, ClaimSoft.
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using CD.ClaimSoft.Application.Models.Common;
@@ -7,96 +15,270 @@ namespace CD.ClaimSoft.Application.Models.Agencies
 {
     public class Agency
     {
-        public int AgencyId { get; set; } // Id (Primary key)
-        public string AgencyTenantId { get; set; } // AgencyTenantId (length: 128)
+        /// <summary>
+        /// Gets or sets the agency identifier.
+        /// </summary>
+        /// <value>
+        /// The agency identifier.
+        /// </value>
+        public int AgencyId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the agency tenant identifier.
+        /// </summary>
+        /// <value>
+        /// The agency tenant identifier.
+        /// </value>
+        [Display(Name = "Agency Tenant Id")]
+        public string AgencyTenantId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the code.
+        /// </summary>
+        /// <value>
+        /// The code.
+        /// </value>
         [Required]
         [DataType(DataType.Text)]
         [MinLength(3)]
         [MaxLength(50)]
         [Display(Name = "Code")]
 
-        public string Code { get; set; } // Code (length: 50)
+        public string Code { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
         [Required]
         [DataType(DataType.Text)]
         [MaxLength(100)]
         [Display(Name = "Name")]
-        public string Name { get; set; } // Name (length: 100)
+        public string Name { get; set; }
 
-        public bool IsActive { get; set; } // IsActive
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is active.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is active; otherwise, <c>false</c>.
+        /// </value>
+        [Display(Name = "Is Active")]
+        public bool IsActive { get; set; }
 
-        public System.DateTime? InactivedDate { get; set; } // InactivedDate
+        /// <summary>
+        /// Gets or sets the inactive date.
+        /// </summary>
+        /// <value>
+        /// The inactive date.
+        /// </value>
+        [Display(Name = "Date Inactivated")]
+        public DateTime? InactiveDate { get; set; }
 
+        /// <summary>
+        /// Gets or sets the parent agency identifier.
+        /// </summary>
+        /// <value>
+        /// The parent agency identifier.
+        /// </value>
         [Display(Name = "Parent Agency")]
-        public int? ParentAgencyId { get; set; } // ParentAgencyId
+        public int? ParentAgencyId { get; set; }
 
-        [Display(Name = "Time Zone")]
-        public string AgencyTimeZone { get; set; } // AgencyTimeZone (length: 100)
-
-        public bool UsesDaylightSavings { get; set; } // UsesDaylightSavings
-
+        /// <summary>
+        /// Gets or sets the web site.
+        /// </summary>
+        /// <value>
+        /// The web site.
+        /// </value>
         [Display(Name = "Web Site")]
-        public string WebSite { get; set; } // WebSite (length: 250)
+        [MaxLength(250)]
+        public string WebSite { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the contact.
+        /// </summary>
+        /// <value>
+        /// The name of the contact.
+        /// </value>
         [Required]
         [DataType(DataType.Text)]
         [MaxLength(250)]
         [Display(Name = "Contact Name")]
-        public string ContactName { get; set; } // ContactName (length: 250)
-        public int NpiNumber { get; set; } // NpiNumber
-        public int? TaxIdNumber { get; set; } // TaxIdNumber
-        public string Taxonomy { get; set; } // Taxonomy (length: 50)
-        public bool DisableLifetimeSignature { get; set; } // DisableLifetimeSignature
-        public bool PatientDataUseNemsis { get; set; } // PatientDataUseNemsis
-        public bool ClaimDataUseNemsis { get; set; } // ClaimDataUseNemsis
-        public string NemsisTimezone { get; set; } // NemsisTimezone (length: 100)
-        public int? DefaultClaimTagId { get; set; } // DefaultClaimTagId
-        public int? UnitRoundingTypeId { get; set; } // UnitRoundingTypeId
-        public string ImagePath { get; set; } // ImagePath (length: 250)
-        public string CreateBy { get; set; } // CreateBy (length: 50)
-        public DateTime CreateDate { get; set; } // CreateDate
-        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
-        public DateTime LastModifyDate { get; set; } // LastModifyDate
+        public string ContactName { get; set; }
 
         /// <summary>
-        /// Child AgencyAddresses where [AgencyAddress].[AgencyId] point to this entity (FK_AgencyAddress_Agency)
+        /// Gets or sets the npi number.
         /// </summary>
-        public ICollection<AgencyAddress> AgencyAddresses { get; set; } // AgencyAddress.FK_AgencyAddress_Agency
+        /// <value>
+        /// The npi number.
+        /// </value>
+        [Required]
+        [Display(Name = "NPI Number")]
+        public int NpiNumber { get; set; }
 
+        /// <summary>
+        /// Gets or sets the tax identifier number.
+        /// </summary>
+        /// <value>
+        /// The tax identifier number.
+        /// </value>
+        [Display(Name = "Tax Number")]
+        public int? TaxIdNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets the taxonomy identifier.
+        /// </summary>
+        /// <value>
+        /// The taxonomy identifier.
+        /// </value>
+        [Required]
+        [DataType(DataType.Text)]
+        [MinLength(9)]
+        [MaxLength(50)]
+        [Display(Name = "Taxonomy")]
+        public string Taxonomy { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [disable lifetime signature].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [disable lifetime signature]; otherwise, <c>false</c>.
+        /// </value>
+        [Display(Name = "Disable Lifetime Signature")]
+        public bool DisableLifetimeSignature { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the logo file.
+        /// </summary>
+        /// <value>
+        /// The name of the logo file.
+        /// </value>
+        [Display(Name = "Logo File Name")]
+        [MaxLength(50)]
+        public string LogoFileName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the logo stream identifier.
+        /// </summary>
+        /// <value>
+        /// The logo stream identifier.
+        /// </value>
+        [Display(Name = "Logo Steam ID")]
+        [MaxLength(250)]
+        public Guid? LogoStreamId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the logo.
+        /// </summary>
+        /// <value>
+        /// The logo.
+        /// </value>
+        [Display(Name = "Logo")]
+        public byte[] Logo { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to use the image on the statements.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if use the image on the statements; otherwise, <c>false</c>.
+        /// </value>
+        [Display(Name = "Use Image on Statements")]
+        public bool UseImageOnStatement { get; set; }
+
+        /// <summary>
+        /// Gets or sets the create by.
+        /// </summary>
+        /// <value>
+        /// The create by.
+        /// </value>
+        public string CreateBy { get; set; }
+
+        /// <summary>
+        /// Gets or sets the create date.
+        /// </summary>
+        /// <value>
+        /// The create date.
+        /// </value>
+        public DateTime CreateDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the last modify by.
+        /// </summary>
+        /// <value>
+        /// The last modify by.
+        /// </value>
+        public string LastModifyBy { get; set; }
+
+        /// <summary>
+        /// Gets or sets the last modify date.
+        /// </summary>
+        /// <value>
+        /// The last modify date.
+        /// </value>
+        public DateTime LastModifyDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the agency addresses.
+        /// </summary>
+        /// <value>
+        /// The agency addresses.
+        /// </value>
+        public ICollection<AgencyAddress> AgencyAddresses { get; set; }
+
+        /// <summary>
+        /// Gets or sets the agency emails.
+        /// </summary>
+        /// <value>
+        /// The agency emails.
+        /// </value>
         public ICollection<AgencyEmail> AgencyEmails { get; set; }
-        /// <summary>
-        /// Child AgencyNumbers where [AgencyNumber].[AgencyId] point to this entity (FK_AgencyNumber_Agency)
-        /// </summary>
-        public ICollection<AgencyNumber> AgencyNumbers { get; set; } // AgencyNumber.FK_AgencyNumber_Agency
-        /// <summary>
-        /// Child AgencyPhones where [AgencyPhone].[AgencyId] point to this entity (FK_AgencyPhone_Agency)
-        /// </summary>
-        public ICollection<AgencyPhone> AgencyPhones { get; set; } // AgencyPhone.FK_AgencyPhone_Agency
-        /// <summary>
-        /// Child AgencyUsers where [AgencyUser].[AgencyId] point to this entity (FK_AgencyUser_Agency)
-        /// </summary>
-        public ICollection<AgencyUser> AgencyUsers { get; set; } // AgencyUser.FK_AgencyUser_Agency
-
-        // Foreign keys
 
         /// <summary>
-        /// Parent Agency pointed by [Agency].([ParentAgencyId]) (FK_Agency_Agency)
+        /// Gets or sets the agency numbers.
         /// </summary>
-        public Agency ParentAgency { get; set; } // FK_Agency_Agency
+        /// <value>
+        /// The agency numbers.
+        /// </value>
+        public ICollection<AgencyNumber> AgencyNumbers { get; set; }
 
         /// <summary>
-        /// Parent UnitRoundingType pointed by [Agency].([UnitRoundingTypeId]) (FK_Agency_UnitRoundingType)
+        /// Gets or sets the agency phones.
         /// </summary>
-        public UnitRoundingType UnitRoundingType { get; set; } // FK_Agency_UnitRoundingType
+        /// <value>
+        /// The agency phones.
+        /// </value>
+        public ICollection<AgencyPhone> AgencyPhones { get; set; }
 
+        /// <summary>
+        /// Gets or sets the agency users.
+        /// </summary>
+        /// <value>
+        /// The agency users.
+        /// </value>
+        public ICollection<AgencyUser> AgencyUsers { get; set; }
+
+        /// <summary>
+        /// Gets or sets the parent agency.
+        /// </summary>
+        /// <value>
+        /// The parent agency.
+        /// </value>
+        public Agency ParentAgency { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type of the unit rounding.
+        /// </summary>
+        /// <value>
+        /// The type of the unit rounding.
+        /// </value>
+        public UnitRoundingType UnitRoundingType { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Agency"/> class.
+        /// </summary>
         public Agency()
         {
-            IsActive = true;
-            UsesDaylightSavings = false;
-            DisableLifetimeSignature = false;
-            PatientDataUseNemsis = false;
-            ClaimDataUseNemsis = false;
             CreateDate = DateTime.Now;
             LastModifyDate = DateTime.Now;
             AgencyAddresses = new List<AgencyAddress>();

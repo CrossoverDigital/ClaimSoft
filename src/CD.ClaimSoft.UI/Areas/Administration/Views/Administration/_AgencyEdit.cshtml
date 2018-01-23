@@ -10,11 +10,9 @@
     @{Html.EJ().Tab("agencyEditTab").Items(data =>
         {
             data.Add().ID("agencyDetail").Text("Details").ContentTemplate(@<div></div>);
-            data.Add().ID("agencyProvider").Text("Providers").ContentTemplate(@<div></div>);
             data.Add().ID("agencyAddress").Text("Addresses").ContentTemplate(@<div></div>);
-            data.Add().ID("agencyPhone").Text("Phone Numbers").ContentTemplate(@<div></div>);
-            data.Add().ID("agencyEmail").Text("Email Addresses").ContentTemplate(@<div></div>);
-            data.Add().ID("agencyNemsis").Text("Nemsis Imports").ContentTemplate(@<div></div>);
+            data.Add().ID("agencyPhoneEmail").Text("Phone/Email").ContentTemplate(@<div></div>);
+            data.Add().ID("agencyNotesAttachments").Text("Notes/Attachments").ContentTemplate(@<div></div>);
         }).ClientSideEvents(e =>
         {
             e.ItemActive("OnClientActive").Create("OnClientActive");
@@ -27,8 +25,6 @@
 
     function OnClientActive(e) {
         if (e.model.selectedItemIndex === 0 && ej.isNullOrUndefined(isAgencyDetailLoaded)) {
-
-            //var jsonData = Util.toJS(@(Html.ToJson(@Model)));
 
             $.ajax({
                 url: "/Administration/Administration/AgencyDetail",
@@ -52,17 +48,17 @@
             isAgencyDetailLoaded = true;
         }
 
-        if (e.model.selectedItemIndex === 1 && ej.isNullOrUndefined(isAgencyProviderLoaded)) {
+        if (e.model.selectedItemIndex === 1 && ej.isNullOrUndefined(isAgencyAddressLoaded)) {
             $.ajax({
-                url: "/Administration/Administration/AgencyProvider",
+                url: "/Administration/Administration/AgencyAddress",
                 type: "POST",
                 data: '{agencyTenantId: "@Model.AgencyTenantId" }',
                 contentType: "application/json; charset=utf-8",
                 dataType: "html",
                 success: function (result) {
-                    $("#agencyProvider").html(result);
+                    $("#agencyAddress").html(result);
 
-                    ej.widget.init("#agencyProvider");
+                    ej.widget.init("#agencyAddress");
                 },
                 failure: function (result) {
                     alert(result);
@@ -72,20 +68,20 @@
                 }
             });
 
-            isAgencyProviderLoaded = true;
+            isAgencyAddressLoaded = true;
         }
 
-        if (e.model.selectedItemIndex === 2 && ej.isNullOrUndefined(isAgencyPhoneGridFlag)) {
+        if (e.model.selectedItemIndex === 2 && ej.isNullOrUndefined(isAgencyPhoneEmailLoaded)) {
             $.ajax({
-                url: "/Administration/Administration/AgencyAddressPhone",
+                url: "/Administration/Administration/AgencyPhoneEmail",
                 type: "POST",
                 data: '{agencyTenantId: "@Model.AgencyTenantId" }',
                 contentType: "application/json; charset=utf-8",
                 dataType: "html",
                 success: function (result) {
-                    $("#agencyAddressPhone").html(result);
+                    $("#agencyPhoneEmail").html(result);
 
-                    ej.widget.init("#agencyAddressPhone");
+                    ej.widget.init("#agencyPhoneEmail");
                 },
                 failure: function (result) {
                     alert(result);
@@ -95,10 +91,33 @@
                 }
             });
 
-            isAgencyPhoneGridFlag = true;
+            isAgencyPhoneEmailLoaded = true;
+        }
+    
+        if (e.model.selectedItemIndex === 3 && ej.isNullOrUndefined(isAgencyAdminNotesAttachLoaded)) {
+            $.ajax({
+                url: "/Administration/Administration/AgencyNotesAttachments",
+                type: "POST",
+                data: '{agencyTenantId: "@Model.AgencyTenantId" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (result) {
+                    $("#agencyNotesAttachments").html(result);
+
+                    ej.widget.init("#agencyNotesAttachments");
+                },
+                failure: function (result) {
+                    alert(result);
+                },
+                error: function (result) {
+                    alert(result);
+                }
+            });
+
+            isAgencyAdminNotesAttachLoaded = true;
         }
     }
-    
+
     //# sourceURL=AgencyEdit.cshtml
 </script>
 

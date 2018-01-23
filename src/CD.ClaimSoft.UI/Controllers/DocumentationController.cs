@@ -6,9 +6,6 @@ namespace CD.ClaimSoft.UI.Controllers
     public class DocumentationController : Controller
     {
         // GET: Documentation
-        public ActionResult Index()
-        {
-            return View();
-        }
+        public ActionResult Index() => View();
     }
 }

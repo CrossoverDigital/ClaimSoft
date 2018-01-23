@@ -1,9 +1,19 @@
-﻿using System.Threading.Tasks;
+﻿#region Copyright
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// -=- Copyright (C) ClaimSoft 2017-2018. All Rights Reserved. 
+// -=- This code may not be used without the express written 
+// -=- permission of the copyright holder, ClaimSoft.
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+#endregion
+
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+
 using CD.ClaimSoft.Application.Models;
 using CD.ClaimSoft.Database.Identity;
 using CD.ClaimSoft.Database.Identity.Security;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
@@ -61,10 +71,7 @@ namespace CD.ClaimSoft.UI.Areas.Account.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
-        {
-            return View();
-        }
+        public ActionResult Register() => View();
 
         //
         // POST: /Account/Register
@@ -100,7 +107,7 @@ namespace CD.ClaimSoft.UI.Areas.Account.Controllers
         {
             ManageMessageId? message;
 
-            IdentityResult result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
+            var result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
 
             message = result.Succeeded ? ManageMessageId.RemoveLoginSuccess : ManageMessageId.Error;
 
@@ -128,14 +135,14 @@ namespace CD.ClaimSoft.UI.Areas.Account.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Manage(ManageUserViewModel model)
         {
-            bool hasPassword = HasPassword();
+            var hasPassword = HasPassword();
             ViewBag.HasLocalPassword = hasPassword;
             ViewBag.ReturnUrl = Url.Action("Manage");
             if (hasPassword)
             {
                 if (ModelState.IsValid)
                 {
-                    IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+                    var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
@@ -149,15 +156,12 @@ namespace CD.ClaimSoft.UI.Areas.Account.Controllers
             else
             {
                 // User does not have a password so remove any validation errors caused by a missing OldPassword field
-                ModelState state = ModelState["OldPassword"];
-                if (state != null)
-                {
-                    state.Errors.Clear();
-                }
+                var state = ModelState["OldPassword"];
+                if (state != null) state.Errors.Clear();
 
                 if (ModelState.IsValid)
                 {
-                    IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+                    var result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
@@ -225,16 +229,18 @@ namespace CD.ClaimSoft.UI.Areas.Account.Controllers
         // GET: /Account/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
+            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XSRF_KEY, User.Identity.GetUserId());
             if (loginInfo == null)
             {
                 return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
             }
+
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             if (result.Succeeded)
             {
                 return RedirectToAction("Manage");
             }
+
             return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
         }
 
@@ -258,6 +264,7 @@ namespace CD.ClaimSoft.UI.Areas.Account.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
+
                 var user = new ApplicationUser() { UserName = model.UserName };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
@@ -269,6 +276,7 @@ namespace CD.ClaimSoft.UI.Areas.Account.Controllers
                         return RedirectToLocal(returnUrl);
                     }
                 }
+
                 AddErrors(result);
             }
 
@@ -291,10 +299,7 @@ namespace CD.ClaimSoft.UI.Areas.Account.Controllers
         //
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
-        public ActionResult ExternalLoginFailure()
-        {
-            return View();
-        }
+        public ActionResult ExternalLoginFailure() => View();
 
         [ChildActionOnly]
         public ActionResult RemoveAccountList()
@@ -311,43 +316,38 @@ namespace CD.ClaimSoft.UI.Areas.Account.Controllers
                 UserManager.Dispose();
                 UserManager = null;
             }
+
             base.Dispose(disposing);
         }
 
         #region Helpers
         // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
+        const string XSRF_KEY = "XsrfId";
 
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
-        }
+        IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
 
-        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
+        async Task SignInAsync(ApplicationUser user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
         }
 
-        private void AddErrors(IdentityResult result)
+        void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
-            {
                 ModelState.AddModelError("", error);
-            }
+
         }
 
-        private bool HasPassword()
+        bool HasPassword()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
             if (user != null)
             {
                 return user.PasswordHash != null;
             }
+
             return false;
         }
 
@@ -359,7 +359,7 @@ namespace CD.ClaimSoft.UI.Areas.Account.Controllers
             Error
         }
 
-        private ActionResult RedirectToLocal(string returnUrl)
+        ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
             {
@@ -371,7 +371,7 @@ namespace CD.ClaimSoft.UI.Areas.Account.Controllers
             }
         }
 
-        private class ChallengeResult : HttpUnauthorizedResult
+        class ChallengeResult : HttpUnauthorizedResult
         {
             public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
             {
@@ -393,8 +393,9 @@ namespace CD.ClaimSoft.UI.Areas.Account.Controllers
                 var properties = new AuthenticationProperties() { RedirectUri = RedirectUri };
                 if (UserId != null)
                 {
-                    properties.Dictionary[XsrfKey] = UserId;
+                    properties.Dictionary[XSRF_KEY] = UserId;
                 }
+
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }

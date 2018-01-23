@@ -20,8 +20,10 @@
           .InsertURL("/Administration/Administration/AgencyInsert")
           .Adaptor(AdaptorType.RemoteSaveAdaptor))
       .AllowPaging()
+      .EnableAltRow()
       .PageSettings(page => page.PageSize(10))
-      .IsResponsive()
+      .IsResponsive(true)
+      .EnableAutoSaveOnSelectionChange(false)
       .EditSettings(edit =>
       {
           edit.AllowAdding()
@@ -44,12 +46,13 @@
           col.Field("Name").HeaderText("Name").Width(150).Priority(3).Add();
           col.Field("Code").HeaderText("Code").Priority(4).Width(50).Add();
           col.Field("IsActive").HeaderText("Is Active").Width(50).Priority(5).Add();
-          col.Field("AgencyTenantId").HeaderText("Tenant ID").Width(145).Priority(2).Add();
+          col.Field("AgencyTenantId").HeaderText("Tenant ID").IsPrimaryKey(true).Width(145).Priority(2).Add();
       })
       .ClientSideEvents(events =>
       {
           events.ActionComplete("actionComplete")
               .ActionBegin("actionBegin")
+              .Load("AgencyGridLoad")
               .EndAdd("actionEditComplete")
               .EndEdit("actionEditComplete")
               .EndDelete("actionEditComplete");
@@ -59,8 +62,45 @@
 <script>
 
     var isAgencyDetailLoaded = null;
-    var isAgencyProviderLoaded = null;
-    var isAgencyPhoneGridFlag = null;
+    var isAgencyAddressLoaded = null;
+    var isAgencyPhoneEmailLoaded = null;
+    var isAgencyAdminNotesAttachLoaded = null;
+
+    var AgencyGridCustomAdaptor = new ej.remoteSaveAdaptor().extend({
+        update: function (dm, keyField, value, tableName, query) {
+            var grid = $("#AgencyGrid").ejGrid("instance");
+            //AgencyGridEditForm
+            var record = grid.getSelectedRecords()[0];
+
+            var form = $('#AgencyGridEditForm')[0];
+
+            var data = new FormData(form);
+
+            //formData.append("value", record);
+
+            //if ($("#AgencyLogoPath").length > 0) {
+            //    formData.append("file", $("#AgencyLogoPath")[0]);
+            //}
+
+//            var recordJson = JSON.stringify({ "value": (record) });
+
+            return {
+                url: dm.dataSource.updateUrl,
+                type: "POST",
+                dataType: 'json',
+                enctype: 'multipart/form-data',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+            };
+        }
+    });
+
+    function AgencyGridLoad(args) {
+        this.model.dataSource.adaptor = new AgencyGridCustomAdaptor();
+    }
 
     function actionBegin(args) {
         if (args.requestType === "save")
@@ -96,17 +136,19 @@
 
         if (type === "save" || type === "cancel") {
             isAgencyDetailLoaded = null;
-            isAgencyProviderLoaded = null;
-            isAgencyPhoneGridFlag = null;
-
+            isAgencyAddressLoaded = null;
+            isAgencyPhoneEmailLoaded = null;
+            isAgencyAdminNotesAttachLoaded = null;
+            
             this.element.ejWaitingPopup("hide");
         }
     }
 
     function actionEditComplete() {
         isAgencyDetailLoaded = null;
-        isAgencyProviderLoaded = null;
-        isAgencyPhoneGridFlag = null;
+        isAgencyAddressLoaded = null;
+        isAgencyPhoneEmailLoaded = null;
+        isAgencyAdminNotesAttachLoaded = null;
     }
     
     function actionAddressEditBegin(args) {
@@ -213,4 +255,5 @@
             this.element.ejWaitingPopup("hide");
     }
 
+    //# sourceURL=Agency.cshtml
 </script>

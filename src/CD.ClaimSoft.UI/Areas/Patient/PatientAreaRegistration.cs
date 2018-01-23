@@ -2,17 +2,11 @@
 
 namespace CD.ClaimSoft.UI.Areas.Patient
 {
-    public class PatientAreaRegistration : AreaRegistration 
+    public class PatientAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
-        {
-            get 
-            {
-                return "Patient";
-            }
-        }
+        public override string AreaName => "Patient";
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Patient_default",

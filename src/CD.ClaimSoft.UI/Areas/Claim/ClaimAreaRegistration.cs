@@ -4,13 +4,7 @@ namespace CD.ClaimSoft.UI.Areas.Claim
 {
     public class ClaimAreaRegistration : AreaRegistration
     {
-        public override string AreaName
-        {
-            get
-            {
-                return "Claim";
-            }
-        }
+        public override string AreaName => "Claim";
 
         public override void RegisterArea(AreaRegistrationContext context)
         {

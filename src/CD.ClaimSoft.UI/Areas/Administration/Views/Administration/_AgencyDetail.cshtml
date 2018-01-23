@@ -1,85 +1,165 @@
 ﻿@using CD.ClaimSoft.Application.Models.Agencies
 @using CD.ClaimSoft.Common.Helpers
 @using Syncfusion.JavaScript
-@using Syncfusion.JavaScript.Models
 @using Syncfusion.MVC.EJ
 
-@model Agency
+@inherits CD.ClaimSoft.UI.Common.CustomViewPage<Agency>
+    
+<style>
+
+    input[type='file'] {
+        color: transparent;
+    }
+    
+</style>
+
+<img class="agencyDetailTooltip" style="width: 25px; float: left; margin-right: 10px;" src="~/Content/Images/info.png" alt="Audit Information" />
+<div style="border: 1px solid #cecece; padding: 5px; width: 375px; display: none;">
+    <div>
+        <div>
+            <span style="font-weight: bold; width: 75px;">
+                Agency Id:
+            </span> @Model.AgencyId
+            @Html.HiddenFor(m => m.AgencyId)
+        </div>
+        <div>
+            <span style="font-weight: bold; width: 75px; margin-bottom: 5px;"> Tenant Id: </span> @Model.AgencyTenantId
+            @Html.HiddenFor(m => m.AgencyTenantId)
+        </div>
+    </div>
+    <div>
+        <div>
+            <span style="font-weight: bold; width: 90px;"> Create By: </span> @Model.CreateBy
+            @Html.HiddenFor(m => m.CreateBy)
+        </div>
+        <div>
+            <span style="font-weight: bold; width: 90px;"> Create Date: </span> @Model.CreateDate
+            @Html.HiddenFor(m => m.CreateDate)
+        </div>
+    </div>
+    <div>
+        <div>
+            <span style="font-weight: bold; width: 122px;">Last Modify By: </span> @Model.LastModifyBy
+            @Html.HiddenFor(m => m.LastModifyBy)
+        </div>
+        <div>
+            <span style="font-weight: bold; width: 122px;">Last Modify Date:</span>@Model.LastModifyDate
+            @Html.HiddenFor(m => m.LastModifyDate)
+        </div>
+    </div>
+</div>
 
 <div style="margin-top: 6px; margin-left: 10px;">
-    <img class="agencyDetailTooltip" style="width: 25px; float: left; margin-right: 10px;" src="~/Content/Images/info.png" alt="Audit Information" />
-    <div style="border: 1px solid #cecece; padding: 5px; width: 375px; display: none;">
-        <div>
-            <div>
-                <span style="font-weight: bold; width: 75px;">
-                    Agency Id:
-                </span> @Model.AgencyId
-                @Html.HiddenFor(m => m.AgencyId)
+    <div style="float: left; margin-right: 10px; min-height: 385px;" class="panel panel-primary">
+        <div class="panel-heading"><p class="panel-title">Agency Information</p></div>
+        <div class="panel-body">
+            <div style="float: left;">
+                <div style="width: 290px; margin-bottom: 5px;">
+                    <label style="margin-bottom: 6px;">Logo Upload (PNG, JPG)</label>
+                    <div class="preview" style="width: 225px; height: 225px;">
+                        <div style="width: 35%; height: 50%; top: 40%; margin: 0 auto; position: relative;">
+                            No logo set.
+                        </div>
+                    </div>
+                    <input type="file" id="AgencyLogoPath" name="AgencyLogoPath" accept=".jpg, .jpeg, .png" onchange="updateImageDisplay(this)" style="margin-left: 60px; padding-top: 10px;">
+                </div>
             </div>
-            <div>
-                <span style="font-weight: bold; width: 75px; margin-bottom: 5px;"> Tenant Id: </span> @Model.AgencyTenantId
-                @Html.HiddenFor(m => m.AgencyTenantId)
+            <div style="float: left;">
+                <div style="width: 275px; margin-bottom: 5px;">
+                    @Html.LabelForRequired(model => model.Name, null)
+                    <span style="text-align: right; font-weight: bold;">
+                        @Html.EJ().CheckBoxFor(m => m.IsActive).ShowRoundedCorner(true).Text("Is Active")
+                    </span>
+                    @Html.TextBoxFor(m => m.Name, new { required = "required", name = "name", @class = "e-textbox e-animation", style = "width: 275px;" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+                <div style="width: 290px; margin-bottom: 5px;">
+                    @Html.LabelForRequired(model => model.Code, null)
+                    @Html.TextBoxFor(m => m.Code, new { required = "required", name = "code", @class = "e-textbox e-animation", style = "width: 275px;" })
+                    @Html.ValidationMessageFor(model => model.Code)
+                </div>
+                <div style="width: 290px; margin-bottom: 5px;">
+                    @Html.LabelForRequired(model => model.ContactName, null)
+                    @Html.TextBoxFor(m => m.ContactName, new { required = "required", name = "contactname", @class = "e-textbox e-animation", style = "width: 275px;" })
+                    @Html.ValidationMessageFor(model => model.ContactName)
+                </div>
+                <div style="width: 290px; margin-top: 6px; margin-bottom: 5px;">
+                    @Html.LabelForRequired(model => model.WebSite, null)
+                    @Html.TextBoxFor(m => m.WebSite, new { @class = "e-textbox e-animation", style = "width: 275px;" })
+                </div>
+                <div style="width: 290px; margin-bottom: 5px;">
+                    @Html.LabelForRequired(model => model.ParentAgencyId, null)
+                    @Html.EJ().DropDownListFor(o => o.ParentAgencyId, (DropDownListProperties)ViewBag.ParentAgencyDDL).Width("275")
+
+                </div>
             </div>
+            <div class="clear"></div>
         </div>
-        <div>
-            <div>
-                <span style="font-weight: bold; width: 90px;"> Create By: </span> @Model.CreateBy
-                @Html.HiddenFor(m => m.CreateBy)
-            </div>
-            <div>
-                <span style="font-weight: bold; width: 90px;"> Create Date: </span> @Model.CreateDate
-                @Html.HiddenFor(m => m.CreateDate)
-            </div>
+    </div>
+
+    <div style="float: left; min-height: 385px;" class="panel panel-primary">
+        <div class="panel-heading">
+            <p class="panel-title">Provider Information</p>
         </div>
-        <div>
-            <div>
-                <span style="font-weight: bold; width: 122px;">Last Modify By: </span> @Model.LastModifyBy
-                @Html.HiddenFor(m => m.LastModifyBy)
+        <div class="panel-body">
+            <div style="float: left;">
+                <div style="width: 290px; margin-top: 6px; margin-bottom: 5px;">
+                    @Html.LabelForRequired(model => model.NpiNumber, null, new { style = "width: auto;" })
+                    @Html.TextBoxFor(m => m.NpiNumber, new { required = "required", name = "npinumber", @class = "e-textbox e-animation", style = "width: 250px;" })
+                </div>
+                <div style="width: 290px; margin-bottom: 5px;">
+                    @Html.LabelForRequired(model => model.TaxIdNumber, null, new { style = "width: auto;" })
+                    @Html.TextBoxFor(m => m.TaxIdNumber, new { @class = "e-textbox e-animation", style = "width: 250px;" })
+                </div>
+                <div style="width: 290px; margin-bottom: 5px;">
+                    @Html.LabelForRequired(model => model.Taxonomy, null, new { style = "width: auto;" })
+                    @Html.TextBoxFor(m => m.Taxonomy, new { required = "required", name = "taxonomy", @class = "e-textbox e-animation", style = "width: 250px;" })
+                </div>
+                <div style="width: 290px; font-weight: bold;">
+                    @Html.EJ().CheckBoxFor(m => m.DisableLifetimeSignature).ShowRoundedCorner(true).Text("Disable Lifetime Signature")
+                </div>
             </div>
-            <div>
-                <span style="font-weight: bold; width: 122px;">Last Modify Date:</span>@Model.LastModifyDate
-                @Html.HiddenFor(m => m.LastModifyDate)
+            <div style="float: left; margin: 0 10px 5px;">
+                @(Html.EJ().Grid<object>
+                      ("AgencyNumberGrid").HtmlAttributes(new { style = "width:400px; min-height: 210px;" })
+                      .Datasource(ds => ds.Json(ViewBag.AgencyNumberDataSource)
+                          .UpdateURL("/Administration/Administration/AgencyNumberUpdate")
+                          .InsertURL("/Administration/Administration/AgencyNumberInsert")
+                          .RemoveURL("/Administration/Administration/AgencyNumberDelete")
+                          .Adaptor(AdaptorType.RemoteSaveAdaptor))
+                      .IsResponsive()
+                      .EditSettings(edit =>
+                      {
+                          edit.AllowAdding()
+                              .AllowEditing()
+                              .AllowDeleting()
+                              .EditMode(EditMode.InlineFormTemplate)
+                              .InlineFormTemplateID("numberEditTemplate");
+                      })
+                      .ToolbarSettings(tools =>
+                      {
+                          tools.ShowToolbar()
+                              .ToolbarItems(items =>
+                              {
+                                  items.AddTool(ToolBarItems.Add);
+                                  items.AddTool(ToolBarItems.Edit);
+                                  items.AddTool(ToolBarItems.Delete);
+                              });
+                      })
+                      .Columns(col =>
+                      {
+                          col.Field("Number").HeaderText("Number").Width(200).Priority(1).Add();
+                          col.Field("IgnoreTimeStamps").HeaderText("Ignore Time Stamps").TextAlign(TextAlign.Center).Priority(2).Width(200).Add();
+                      })
+                      .ClientSideEvents(events =>
+                      {
+                          events.ActionComplete("actionNumberEditComplete");
+                          events.ActionBegin("actionNumberEditBegin");
+                      }))
             </div>
         </div>
     </div>
 
-    <div style="float: left;">
-        <div style="width: 275px; margin-bottom: 5px;">
-            @Html.LabelForRequired(model => model.Name, null)
-            <span style="text-align: right; font-weight: bold;">
-                @Html.EJ().CheckBoxFor(m => m.IsActive).ShowRoundedCorner(true).Text("Is Active")
-            </span>
-            @Html.TextBoxFor(m => m.Name, new { required = "required", name = "name", @class = "e-textbox e-animation", style = "width: 275px;" })
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
-        <div style="width: 290px;">
-            @Html.LabelForRequired(model => model.Code, null)
-            @Html.TextBoxFor(m => m.Code, new { @class = "e-textbox e-animation", style = "width: 275px;" })
-        </div>
-    </div>
-    <div style="float: left;">
-        <div style="width: 290px; margin-top: 6px; margin-bottom: 5px;">
-            @Html.LabelForRequired(model => model.WebSite, null)
-            @Html.TextBoxFor(m => m.WebSite, new { @class = "e-textbox e-animation", style = "width: 275px;" })
-        </div>
-        <div style="width: 290px;">
-            @Html.LabelForRequired(model => model.ContactName, null)
-            @Html.TextBoxFor(m => m.ContactName, new { @class = "e-textbox e-animation", style = "width: 275px;" })
-        </div>
-    </div>
-    <div style="float: left;">
-        <div style="width: 290px; margin-top: 6px; margin-bottom: 5px;">
-            @Html.LabelForRequired(model => model.ParentAgencyId, null)
-            @Html.EJ().DropDownListFor(o => o.ParentAgencyId, (DropDownListProperties)ViewBag.ParentAgencyDDL).Width("275")
-        </div>
-        <div style="width: 290px;">
-            @Html.LabelForRequired(model => model.AgencyTimeZone, null)
-            @Html.EJ().DropDownListFor(o => o.AgencyTimeZone, (DropDownListProperties)ViewBag.TimeZoneDDL).Width("275")
-        </div>
-        <div style="width: 290px; text-align: right; padding-right: 25px;">
-            @Html.EJ().CheckBoxFor(m => m.UsesDaylightSavings).ShowRoundedCorner(true).Text("Observes Daylight Savings")
-        </div>
-    </div>
     <div class="clear"></div>
 </div>
 
@@ -91,8 +171,8 @@
                 text: $(this).next('div')
             },
             position: {
-                my: 'center left',
-                at: 'right center',
+                my: 'left top',
+                at: 'right top',
                 target: $('.agencyDetailTooltip')
             },
             style: {
@@ -102,6 +182,64 @@
             }
         });
     });
+    
+    var preview = document.querySelector('.preview');
+
+    function updateImageDisplay(input) {
+        while (preview.firstChild) {
+            preview.removeChild(preview.firstChild);
+        }
+
+        var curFiles = input.files;
+        if (curFiles.length === 0) {
+            var para = document.createElement('p');
+            para.textContent = 'No files currently selected for upload';
+            preview.appendChild(para);
+        } else {
+            var divItem = document.createElement('div');
+            preview.appendChild(divItem);
+            for (var i = 0; i < curFiles.length; i++) {
+                if (validFileType(curFiles[i])) {
+                    var image = document.createElement('img');
+
+                    image.src = window.URL.createObjectURL(curFiles[i]);
+
+                    image.id = 'AgencyLogo';
+                    image.name = 'AgencyLogo';
+
+                    image.style.width = "225px";
+
+                    divItem.appendChild(image);
+                }
+            }
+        }
+    }
+
+    var fileTypes = [
+        'image/jpeg',
+        'image/pjpeg',
+        'image/png'
+    ];
+
+    function validFileType(file) {
+        for (var i = 0; i < fileTypes.length; i++) {
+            if (file.type === fileTypes[i]) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    function returnFileSize(number) {
+        if (number < 1024) {
+            return number + 'bytes';
+        } else if (number > 1024 && number < 1048576) {
+            return (number / 1024).toFixed(1) + 'KB';
+        } else if (number > 1048576) {
+            return (number / 1048576).toFixed(1) + 'MB';
+        }
+    }
 
     //# sourceURL=AgencyDetail.cshtml
 </script>

@@ -6,9 +6,6 @@ namespace CD.ClaimSoft.UI.Controllers
     public class WidgetsController : Controller
     {
         // GET: Widgets
-        public ActionResult Index()
-        {
-            return View();
-        }
+        public ActionResult Index() => View();
     }
 }

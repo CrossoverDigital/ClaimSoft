@@ -4,13 +4,7 @@ namespace CD.ClaimSoft.UI.Areas.Payment
 {
     public class PaymentAreaRegistration : AreaRegistration
     {
-        public override string AreaName
-        {
-            get
-            {
-                return "Payment";
-            }
-        }
+        public override string AreaName => "Payment";
 
         public override void RegisterArea(AreaRegistrationContext context)
         {

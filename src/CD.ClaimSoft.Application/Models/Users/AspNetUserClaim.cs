@@ -1,4 +1,6 @@
-﻿namespace CD.ClaimSoft.Application.Models.Users
+﻿using System;
+
+namespace CD.ClaimSoft.Application.Models.Users
 {
     public class AspNetUserClaim
     {
@@ -7,9 +9,9 @@
         public string ClaimType { get; set; } // ClaimType
         public string ClaimValue { get; set; } // ClaimValue
         public string CreateBy { get; set; } // CreateBy (length: 50)
-        public System.DateTime CreateDate { get; set; } // CreateDate
+        public DateTime CreateDate { get; set; } // CreateDate
         public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
-        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+        public DateTime LastModifyDate { get; set; } // LastModifyDate
 
         // Foreign keys
 
@@ -20,8 +22,8 @@
 
         public AspNetUserClaim()
         {
-            CreateDate = System.DateTime.Now;
-            LastModifyDate = System.DateTime.Now;
+            CreateDate = DateTime.Now;
+            LastModifyDate = DateTime.Now;
         }
     }
 }

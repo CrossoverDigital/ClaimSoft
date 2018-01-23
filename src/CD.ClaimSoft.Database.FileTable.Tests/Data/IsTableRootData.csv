@@ -1,0 +1,16 @@
+Path, Expected
+,true
+tdir, true
+\tdir, true
+\\Chuckzilla\mssqlserver\cdTestDB\tdir, true
+\\Chuckzilla\mssqlserver\cdTestDB\tdir, true
+\\Chuckzilla\mssqlserver\cdTestDB\tdir, true
+\\Chuckzilla\mssqlserver\cdTestDB\tdir, true
+subdir, false
+\subdir, false
+tdir\subdir, false
+\tdir\subdir, false
+\\Chuckzilla\mssqlserver\cdTestDB\tdir\subdir, false
+\\Chuckzilla\mssqlserver\cdTestDB\tdir\subdir, false
+\\Chuckzilla\mssqlserver\cdTestDB\tdir\subdir, false
+\\Chuckzilla\mssqlserver\cdTestDB\tdir\subdir, false

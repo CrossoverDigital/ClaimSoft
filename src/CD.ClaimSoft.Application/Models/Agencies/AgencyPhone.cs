@@ -6,35 +6,27 @@ namespace CD.ClaimSoft.Application.Models.Agencies
 {
     public class AgencyPhone
     {
-        public int Id { get; set; } // Id (Primary key)
-        public int AgencyId { get; set; } // AgencyId
-        public int PhoneTypeId { get; set; } // PhoneTypeId
+        public int Id { get; set; }
+
+        public int AgencyId { get; set; }
 
         [Required]
-        //[DataType(DataType.PhoneNumber)]
-        [MinLength(3)]
-        [MaxLength(3)]
-        [Display(Name = "Area Code")]
-        public int AreaCode { get; set; } // AreaCode
-        public int Prefix { get; set; } // Prefix
-        public int LineNumber { get; set; } // LineNumber
+        [Display(Name = "Phone Type")]
+        public int PhoneTypeId { get; set; }
+
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        [MinLength(10)]
+        [MaxLength(25)]
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
+
+        public bool IsDefault { get; set; }
+
         public string CreateBy { get; set; } // CreateBy (length: 50)
         public DateTime CreateDate { get; set; } // CreateDate
         public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
         public DateTime LastModifyDate { get; set; } // LastModifyDate
-
-        private string _phoneNumber = string.Empty;
-        public string PhoneNumber
-        {
-            get
-            {
-                return $"({AreaCode}) {Prefix}-{LineNumber}";
-            }
-            private set
-            {
-                _phoneNumber = value;
-            }
-        }
 
         /// <summary>
         /// Parent Agency pointed by [AgencyPhone].([AgencyId]) (FK_AgencyPhone_Agency)

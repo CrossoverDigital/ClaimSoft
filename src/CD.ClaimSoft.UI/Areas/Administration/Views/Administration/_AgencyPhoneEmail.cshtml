@@ -1,0 +1,92 @@
+﻿@using CD.ClaimSoft.Application.Models.Agencies
+
+@using Syncfusion.JavaScript
+@using Syncfusion.MVC.EJ
+
+@model Agency
+
+<div style="float: left; margin: 5px">
+    @(Html.EJ().Grid<object>
+            ("AgencyPhoneGrid").HtmlAttributes(new { style = "width:400px; min-height: 245px;" })
+            .Datasource(ds => ds.Json(ViewBag.AgencyPhoneDataSource)
+                .UpdateURL("/Administration/Administration/AgencyPhoneUpdate")
+                .InsertURL("/Administration/Administration/AgencyPhoneInsert")
+                .RemoveURL("/Administration/Administration/AgencyPhoneDelete")
+                .Adaptor(AdaptorType.RemoteSaveAdaptor))
+            .IsResponsive()
+          .EnableAutoSaveOnSelectionChange(false)
+            .EditSettings(edit =>
+            {
+                edit.AllowAdding()
+                    .AllowEditing()
+                    .AllowDeleting()
+                    .EditMode(EditMode.InlineFormTemplate)
+                    .InlineFormTemplateID("phoneEditTemplate");
+            })
+            .ToolbarSettings(tools =>
+            {
+                tools.ShowToolbar()
+                    .ToolbarItems(items =>
+                    {
+                        items.AddTool(ToolBarItems.Add);
+                        items.AddTool(ToolBarItems.Edit);
+                        items.AddTool(ToolBarItems.Delete);
+                    });
+            })
+            .Columns(col =>
+            {
+                col.Field("Id").HeaderText("Phone Id").IsPrimaryKey(true).Visible(false).Add();
+                col.Field("PhoneNumber").HeaderText("Phone Number").Format("{0:1 - (###) ###-####}").Width(150).Priority(1).Add();
+                col.Field("PhoneType.Name").HeaderText("Phone Type").IsPrimaryKey(true).Priority(2).Width(50).Add();
+            })
+            .ClientSideEvents(events =>
+            {
+                events.ActionComplete("actionPhoneEditComplete");
+                events.ActionBegin("actionPhoneEditBegin");
+            }))
+</div>
+
+<div style="float: left; margin: 5px">
+    @(Html.EJ().Grid<object>
+          ("AgencyEmailGrid").HtmlAttributes(new { style = "width:400px; min-height: 245px;" })
+          .Datasource(ds => ds.Json(ViewBag.AgencyEmailDataSource)
+              .UpdateURL("/Administration/Administration/AgencyEmailUpdate")
+              .InsertURL("/Administration/Administration/AgencyEmailInsert")
+              .RemoveURL("/Administration/Administration/AgencyEmailDelete")
+              .Adaptor(AdaptorType.RemoteSaveAdaptor))
+          .IsResponsive()
+          .EnableAutoSaveOnSelectionChange(false)
+          .EditSettings(edit =>
+          {
+              edit.AllowAdding()
+                  .AllowEditing()
+                  .AllowDeleting()
+                  .EditMode(EditMode.InlineFormTemplate)
+                  .InlineFormTemplateID("emailEditTemplate");
+          })
+          .ToolbarSettings(tools =>
+          {
+              tools.ShowToolbar()
+                  .ToolbarItems(items =>
+                  {
+                      items.AddTool(ToolBarItems.Add);
+                      items.AddTool(ToolBarItems.Edit);
+                      items.AddTool(ToolBarItems.Delete);
+                  });
+          })
+          .Columns(col =>
+          {
+              col.Field("Id").HeaderText("Email Id").IsPrimaryKey(true).Visible(false).Add();
+              col.Field("EmailAddress").HeaderText("Email Address").Width(150).Priority(1).Add();
+              col.Field("EmailType.Name").HeaderText("Email Type").IsPrimaryKey(true).Priority(2).Width(50).Add();
+          })
+          .ClientSideEvents(events =>
+          {
+              events.ActionComplete("actionEmailEditComplete");
+              events.ActionBegin("actionEmailEditBegin");
+          }))
+</div>
+
+<div class="clear"></div>
+
+@(Html.EJ().ScriptManager())

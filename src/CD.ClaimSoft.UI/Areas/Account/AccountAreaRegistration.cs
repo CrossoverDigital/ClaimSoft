@@ -2,17 +2,11 @@
 
 namespace CD.ClaimSoft.UI.Areas.Account
 {
-    public class AccountAreaRegistration : AreaRegistration 
+    public class AccountAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
-        {
-            get 
-            {
-                return "Account";
-            }
-        }
+        public override string AreaName => "Account";
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Account_default",

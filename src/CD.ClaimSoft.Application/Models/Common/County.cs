@@ -18,8 +18,8 @@ namespace CD.ClaimSoft.Application.Models.Common
 
         public County()
         {
-            CreateDate = System.DateTime.Now;
-            LastModifyDate = System.DateTime.Now;
+            CreateDate = DateTime.Now;
+            LastModifyDate = DateTime.Now;
         }
     }
 }

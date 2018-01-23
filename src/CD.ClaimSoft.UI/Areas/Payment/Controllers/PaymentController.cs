@@ -5,28 +5,16 @@ namespace CD.ClaimSoft.UI.Areas.Payment.Controllers
     public class PaymentController : Controller
     {
         // GET: Payment/PaymentsIndex
-        public ActionResult PaymentsIndex()
-        {
-            return View();
-        }
+        public ActionResult PaymentsIndex() => View();
 
         // GET: Payment/BatchesIndex
-        public ActionResult BatchesIndex()
-        {
-            return View();
-        }
+        public ActionResult BatchesIndex() => View();
 
         // GET: Payment/Payment/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        public ActionResult Details(int id) => View();
 
         // GET: Payment/Payment/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        public ActionResult Create() => View();
 
         // POST: Payment/Payment/Create
         [HttpPost]
@@ -45,10 +33,7 @@ namespace CD.ClaimSoft.UI.Areas.Payment.Controllers
         }
 
         // GET: Payment/Payment/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+        public ActionResult Edit(int id) => View();
 
         // POST: Payment/Payment/Edit/5
         [HttpPost]
@@ -67,10 +52,7 @@ namespace CD.ClaimSoft.UI.Areas.Payment.Controllers
         }
 
         // GET: Payment/Payment/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        public ActionResult Delete(int id) => View();
 
         // POST: Payment/Payment/Delete/5
         [HttpPost]

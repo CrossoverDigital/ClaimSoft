@@ -1,19 +1,69 @@
-﻿using System;
+﻿#region Copyright
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// -=- Copyright (C) ClaimSoft 2017-2018. All Rights Reserved. 
+// -=- This code may not be used without the express written 
+// -=- permission of the copyright holder, ClaimSoft.
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+#endregion
+
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 using CD.ClaimSoft.Application.Administration;
-using CD.ClaimSoft.Application.Domain;
 using CD.ClaimSoft.Application.Models.Agencies;
+using CD.ClaimSoft.Common.Helpers;
+using CD.ClaimSoft.Common.Utlilty;
+using CD.ClaimSoft.Database.FileTable;
+using CD.ClaimSoft.Logging;
 using CD.ClaimSoft.UI.Common;
 
 using Microsoft.AspNet.Identity;
+
 using Syncfusion.JavaScript.Models;
 
 namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
 {
+    /// <inheritdoc />
+    /// <summary>
+    /// Controller that manages the administration area.
+    /// </summary>
+    /// <seealso cref="T:CD.ClaimSoft.UI.Common.BaseController" />
     public class AdministrationController : BaseController
     {
+        #region Instance Variables
+
+        /// <summary>
+        /// The log service.
+        /// </summary>
+        private readonly ILogService<AdministrationController> _logService;
+
+        /// <summary>
+        /// The agency manager.
+        /// </summary>
+        private readonly IAgencyManager _agencyManager;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdministrationController" /> class.
+        /// </summary>
+        /// <param name="logService">The log service.</param>
+        /// <param name="agencyManager">The agency manager.</param>
+        public AdministrationController(ILogService<AdministrationController> logService, IAgencyManager agencyManager)
+        {
+            _logService = logService;
+            _agencyManager = agencyManager;
+        }
+
+        #endregion
+
         #region Agency Methods
 
         /// <summary>
@@ -22,7 +72,7 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
         /// <returns>The result of this action method.</returns>
         public ActionResult Agency()
         {
-            ViewBag.datasource = new AgencyManager().GetAgencies();
+            ViewBag.datasource = _agencyManager.GetAgencies();
 
             return View();
         }
@@ -39,7 +89,7 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
             if (Request.QueryString["TenantId"] != null)
                 agencyTenantId = Request.QueryString["TenantId"];
 
-            var agency = new AgencyManager().GetAgencies().SingleOrDefault(a => a.AgencyTenantId == agencyTenantId) ?? new Agency
+            var agency = _agencyManager.GetAgencies().SingleOrDefault(a => a.AgencyTenantId == agencyTenantId) ?? new Agency
             {
                 CreateBy = User.Identity.GetUserName(),
                 LastModifyBy = User.Identity.GetUserName()
@@ -49,79 +99,32 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
         }
 
         /// <summary>
-        /// Agencies the detail.
+        /// The agency details.
         /// </summary>
-        /// <param name="agency">The agency.</param>
+        /// <param name="agencyTenantId">The agency tenant identifier.</param>
         /// <returns>The result of this action method.</returns>
         [HttpPost]
         public ActionResult AgencyDetail(string agencyTenantId)
         {
-            //var agencyTenantId = "4886079D-7E30-4713-9015-599BBEFAB640";
-            ////"TENANT-ID-NOT-SET";
-
-            //if (Request.QueryString["TenantId"] != null)
-            //    agencyTenantId = Request.QueryString["TenantId"];
-
-            var agency = new AgencyManager().GetAgencies().SingleOrDefault(a => a.AgencyTenantId == agencyTenantId) ?? new Agency
+            var agency = _agencyManager.GetAgencies().SingleOrDefault(a => a.AgencyTenantId == agencyTenantId) ?? new Agency
             {
                 CreateBy = User.Identity.GetUserName(),
                 LastModifyBy = User.Identity.GetUserName()
             };
 
-            ViewBag.AgencyAddressDataSource = agency.AgencyAddresses.ToList();
-            ViewBag.AgencyPhoneDataSource = agency.AgencyPhones.ToList();
             ViewBag.AgencyNumberDataSource = agency.AgencyNumbers.ToList();
 
-            var parentAgencyDdlProperties = new DropDownListProperties();
-            var parentAgencyDdlFields = new DropDownListFields();
-
-            parentAgencyDdlProperties.DataSource = new AgencyManager().GetAgencies();
-
-            parentAgencyDdlFields.Text = "Name";
-            parentAgencyDdlFields.Value = "Id";
-
-            parentAgencyDdlProperties.DropDownListFields = parentAgencyDdlFields;
-
-            ViewData["ParentAgencyDDL"] = parentAgencyDdlProperties;
-
-            var timeZoneDdlProperties = new DropDownListProperties();
-            var timeZoneDdlFields = new DropDownListFields();
-
-            timeZoneDdlProperties.DataSource = DomainListManager.GetTimeZones();
-
-            timeZoneDdlFields.Text = "StandardName";
-            timeZoneDdlFields.Value = "Id";
-
-            timeZoneDdlProperties.DropDownListFields = timeZoneDdlFields;
-
-            ViewData["TimeZoneDDL"] = timeZoneDdlProperties;
+            InitDropDowns();
 
             return PartialView("_AgencyDetail", agency);
         }
 
-        [HttpPost]
-        public ActionResult AgencyProvider()
+        private void InitDropDowns()
         {
-            var agencyTenantId = "4886079D-7E30-4713-9015-599BBEFAB640";
-            //"TENANT-ID-NOT-SET";
-
-            if (Request.QueryString["TenantId"] != null)
-                agencyTenantId = Request.QueryString["TenantId"];
-
-            var agency = new AgencyManager().GetAgencies().SingleOrDefault(a => a.AgencyTenantId == agencyTenantId) ?? new Agency
-            {
-                CreateBy = User.Identity.GetUserName(),
-                LastModifyBy = User.Identity.GetUserName()
-            };
-
-            ViewBag.AgencyAddressDataSource = agency.AgencyAddresses.ToList();
-            ViewBag.AgencyPhoneDataSource = agency.AgencyPhones.ToList();
-            ViewBag.AgencyNumberDataSource = agency.AgencyNumbers.ToList();
-
             var parentAgencyDdlProperties = new DropDownListProperties();
             var parentAgencyDdlFields = new DropDownListFields();
 
-            parentAgencyDdlProperties.DataSource = new AgencyManager().GetAgencies();
+            parentAgencyDdlProperties.DataSource = _agencyManager.GetAgencies();
 
             parentAgencyDdlFields.Text = "Name";
             parentAgencyDdlFields.Value = "Id";
@@ -129,158 +132,6 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
             parentAgencyDdlProperties.DropDownListFields = parentAgencyDdlFields;
 
             ViewData["ParentAgencyDDL"] = parentAgencyDdlProperties;
-
-            var timeZoneDdlProperties = new DropDownListProperties();
-            var timeZoneDdlFields = new DropDownListFields();
-
-            timeZoneDdlProperties.DataSource = DomainListManager.GetTimeZones();
-
-            timeZoneDdlFields.Text = "StandardName";
-            timeZoneDdlFields.Value = "Id";
-
-            timeZoneDdlProperties.DropDownListFields = timeZoneDdlFields;
-
-            ViewData["TimeZoneDDL"] = timeZoneDdlProperties;
-
-            return PartialView("_AgencyProvider", agency);
-        }
-
-        [HttpPost]
-        public ActionResult AgencyAddress()
-        {
-            var agencyTenantId = "4886079D-7E30-4713-9015-599BBEFAB640";
-            //"TENANT-ID-NOT-SET";
-
-            if (Request.QueryString["TenantId"] != null)
-                agencyTenantId = Request.QueryString["TenantId"];
-
-            var agency = new AgencyManager().GetAgencies().SingleOrDefault(a => a.AgencyTenantId == agencyTenantId) ?? new Agency
-            {
-                CreateBy = User.Identity.GetUserName(),
-                LastModifyBy = User.Identity.GetUserName()
-            };
-
-            ViewBag.AgencyAddressDataSource = agency.AgencyAddresses.ToList();
-            ViewBag.AgencyPhoneDataSource = agency.AgencyPhones.ToList();
-            ViewBag.AgencyNumberDataSource = agency.AgencyNumbers.ToList();
-
-            var parentAgencyDdlProperties = new DropDownListProperties();
-            var parentAgencyDdlFields = new DropDownListFields();
-
-            parentAgencyDdlProperties.DataSource = new AgencyManager().GetAgencies();
-
-            parentAgencyDdlFields.Text = "Name";
-            parentAgencyDdlFields.Value = "Id";
-
-            parentAgencyDdlProperties.DropDownListFields = parentAgencyDdlFields;
-
-            ViewData["ParentAgencyDDL"] = parentAgencyDdlProperties;
-
-            var timeZoneDdlProperties = new DropDownListProperties();
-            var timeZoneDdlFields = new DropDownListFields();
-
-            timeZoneDdlProperties.DataSource = DomainListManager.GetTimeZones();
-
-            timeZoneDdlFields.Text = "StandardName";
-            timeZoneDdlFields.Value = "Id";
-
-            timeZoneDdlProperties.DropDownListFields = timeZoneDdlFields;
-
-            ViewData["TimeZoneDDL"] = timeZoneDdlProperties;
-
-            return PartialView("_AgencyAddress", agency);
-        }
-
-        [HttpPost]
-        public ActionResult AgencyPhone()
-        {
-            var agencyTenantId = "4886079D-7E30-4713-9015-599BBEFAB640";
-            //"TENANT-ID-NOT-SET";
-
-            if (Request.QueryString["TenantId"] != null)
-                agencyTenantId = Request.QueryString["TenantId"];
-
-            var agency = new AgencyManager().GetAgencies().SingleOrDefault(a => a.AgencyTenantId == agencyTenantId) ?? new Agency
-            {
-                CreateBy = User.Identity.GetUserName(),
-                LastModifyBy = User.Identity.GetUserName()
-            };
-
-            ViewBag.AgencyAddressDataSource = agency.AgencyAddresses.ToList();
-            ViewBag.AgencyPhoneDataSource = agency.AgencyPhones.ToList();
-            ViewBag.AgencyNumberDataSource = agency.AgencyNumbers.ToList();
-
-            var parentAgencyDdlProperties = new DropDownListProperties();
-            var parentAgencyDdlFields = new DropDownListFields();
-
-            parentAgencyDdlProperties.DataSource = new AgencyManager().GetAgencies();
-
-            parentAgencyDdlFields.Text = "Name";
-            parentAgencyDdlFields.Value = "Id";
-
-            parentAgencyDdlProperties.DropDownListFields = parentAgencyDdlFields;
-
-            ViewData["ParentAgencyDDL"] = parentAgencyDdlProperties;
-
-            var timeZoneDdlProperties = new DropDownListProperties();
-            var timeZoneDdlFields = new DropDownListFields();
-
-            timeZoneDdlProperties.DataSource = DomainListManager.GetTimeZones();
-
-            timeZoneDdlFields.Text = "StandardName";
-            timeZoneDdlFields.Value = "Id";
-
-            timeZoneDdlProperties.DropDownListFields = timeZoneDdlFields;
-
-            ViewData["TimeZoneDDL"] = timeZoneDdlProperties;
-
-            return PartialView("_AgencyPhone", agency);
-        }
-
-        [HttpPost]
-        public ActionResult AgencyEmail()
-        {
-            var agencyTenantId = "4886079D-7E30-4713-9015-599BBEFAB640";
-            //"TENANT-ID-NOT-SET";
-
-            if (Request.QueryString["TenantId"] != null)
-                agencyTenantId = Request.QueryString["TenantId"];
-
-            var agency = new AgencyManager().GetAgencies().SingleOrDefault(a => a.AgencyTenantId == agencyTenantId) ?? new Agency
-            {
-                CreateBy = User.Identity.GetUserName(),
-                LastModifyBy = User.Identity.GetUserName()
-            };
-
-            ViewBag.AgencyAddressDataSource = agency.AgencyAddresses.ToList();
-            ViewBag.AgencyPhoneDataSource = agency.AgencyPhones.ToList();
-            ViewBag.AgencyNumberDataSource = agency.AgencyNumbers.ToList();
-
-            var parentAgencyDdlProperties = new DropDownListProperties();
-            var parentAgencyDdlFields = new DropDownListFields();
-
-            parentAgencyDdlProperties.DataSource = new AgencyManager().GetAgencies();
-
-            parentAgencyDdlFields.Text = "Name";
-            parentAgencyDdlFields.Value = "Id";
-
-            parentAgencyDdlProperties.DropDownListFields = parentAgencyDdlFields;
-
-            ViewData["ParentAgencyDDL"] = parentAgencyDdlProperties;
-
-            var timeZoneDdlProperties = new DropDownListProperties();
-            var timeZoneDdlFields = new DropDownListFields();
-
-            timeZoneDdlProperties.DataSource = DomainListManager.GetTimeZones();
-
-            timeZoneDdlFields.Text = "StandardName";
-            timeZoneDdlFields.Value = "Id";
-
-            timeZoneDdlProperties.DropDownListFields = timeZoneDdlFields;
-
-            ViewData["TimeZoneDDL"] = timeZoneDdlProperties;
-
-            return PartialView("_AgencyEmail", agency);
         }
 
         /// <summary>
@@ -298,7 +149,7 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
             value.LastModifyBy = User.Identity.GetUserName();
             value.LastModifyDate = now;
 
-            var result = new AgencyManager().CreateAgency(value);
+            var result = _agencyManager.CreateAgency(value);
 
             return Json(result.GetReturnObject<Agency>(), JsonRequestBehavior.AllowGet);
         }
@@ -311,17 +162,67 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
         [HttpPost]
         public ActionResult AgencyUpdate(Agency value)
         {
-            value.LastModifyBy = User.Identity.GetUserName();
-            value.LastModifyDate = DateTime.Now;
+            try
+            {
+                foreach (string file in Request.Files)
+                {
+                    var fileContent = Request.Files[file];
+                    if (fileContent != null && fileContent.ContentLength > 0)
+                    {
+                        value.LogoFileName = fileContent.FileName;
 
-            var result = new AgencyManager().UpdateAgency(value);
+                        var destinationPath = Path.Combine(value.AgencyTenantId, fileContent.FileName);
 
-            return Json(value, JsonRequestBehavior.AllowGet);
+                        var target = new MemoryStream();
+
+                        fileContent.InputStream.CopyTo(target);
+
+                        var data = target.ToArray();
+
+                        FileTableExtensions.CreateFile("_AgencyLogo", destinationPath, data, out var logoStreamId);
+
+                        value.LogoStreamId = logoStreamId;
+                    }
+                }
+
+                value.LastModifyBy = User.Identity.GetUserName();
+                value.LastModifyDate = DateTime.Now;
+
+                var result = _agencyManager.UpdateAgency(value);
+            }
+            catch (Exception)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json("Agency update failed!");
+            }
+
+            return Json("Agency updated successfully!");
         }
 
         #endregion
 
         #region Agency Address Methods
+
+        /// <summary>
+        /// The agency addresses.
+        /// </summary>
+        /// <param name="agencyTenantId">The agency tenant identifier.</param>
+        /// <returns>The result of this action method.</returns>
+        [HttpPost]
+        public ActionResult AgencyAddress(string agencyTenantId)
+        {
+            var agency = _agencyManager.GetAgencies().SingleOrDefault(a => a.AgencyTenantId == agencyTenantId) ?? new Agency
+            {
+                CreateBy = User.Identity.GetUserName(),
+                LastModifyBy = User.Identity.GetUserName()
+            };
+
+            ViewBag.AgencyAddressDataSource = agency.AgencyAddresses.ToList();
+
+            InitDropDowns();
+
+            return PartialView("_AgencyAddress", agency);
+        }
 
         /// <summary>
         /// Called to render the Agency Address Edit partial view.
@@ -340,31 +241,7 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
                 AgencyId = agencyId
             };
 
-            var countyDdlProperties = new DropDownListProperties();
-            var countyDdlFields = new DropDownListFields();
-
-            countyDdlProperties.DataSource = DomainListManager.GetCountyList();
-
-            countyDdlFields.Text = "Name";
-            countyDdlFields.Value = "Id";
-
-            countyDdlProperties.DropDownListFields = countyDdlFields;
-
-            ViewData["CountyDDL"] = countyDdlProperties;
-
-            var stateDdlProperties = new DropDownListProperties();
-            var stateDdlFields = new DropDownListFields();
-
-            stateDdlProperties.DataSource = DomainListManager.GetStateList();
-
-            stateDdlFields.Text = "Name";
-            stateDdlFields.Value = "Id";
-
-            stateDdlProperties.DropDownListFields = stateDdlFields;
-
-            ViewData["StateDDL"] = stateDdlProperties;
-
-            return PartialView("AgencyAddressEdit", agencyAddress);
+            return PartialView("_AgencyAddressEdit", agencyAddress);
         }
 
         /// <summary>
@@ -379,33 +256,9 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
             if (Request.QueryString["Id"] != null)
                 agencyAddressId = int.Parse(Request.QueryString["Id"]);
 
-            var agencyAddress = new AgencyManager().GetAgencyAddress(agencyAddressId);
+            var agencyAddress = _agencyManager.GetAgencyAddress(agencyAddressId);
 
-            var countyDdlProperties = new DropDownListProperties();
-            var countyDdlFields = new DropDownListFields();
-
-            countyDdlProperties.DataSource = DomainListManager.GetCountyList();
-
-            countyDdlFields.Text = "Name";
-            countyDdlFields.Value = "Id";
-
-            countyDdlProperties.DropDownListFields = countyDdlFields;
-
-            ViewData["CountyDDL"] = countyDdlProperties;
-
-            var stateDdlProperties = new DropDownListProperties();
-            var stateDdlFields = new DropDownListFields();
-
-            stateDdlProperties.DataSource = DomainListManager.GetStateList();
-
-            stateDdlFields.Text = "Name";
-            stateDdlFields.Value = "Id";
-
-            stateDdlProperties.DropDownListFields = stateDdlFields;
-
-            ViewData["StateDDL"] = stateDdlProperties;
-
-            return PartialView("AgencyAddressEdit", agencyAddress);
+            return PartialView("_AgencyAddressEdit", agencyAddress);
         }
 
         /// <summary>
@@ -423,7 +276,7 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
             value.LastModifyBy = User.Identity.GetUserName();
             value.LastModifyDate = now;
 
-            var result = new AgencyManager().CreateAgencyAddress(value);
+            var result = _agencyManager.CreateAgencyAddress(value);
 
             return Json(result.GetReturnObject<AgencyAddress>(), JsonRequestBehavior.AllowGet);
         }
@@ -439,7 +292,7 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
             value.LastModifyBy = User.Identity.GetUserName();
             value.LastModifyDate = DateTime.Now;
 
-            var result = new AgencyManager().UpdateAgencyAddress(value);
+            var result = _agencyManager.UpdateAgencyAddress(value);
 
             return Json(value, JsonRequestBehavior.AllowGet);
         }
@@ -452,7 +305,7 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
         [HttpPost]
         public ActionResult AgencyAddressDelete(AgencyAddress value)
         {
-            var result = new AgencyManager().DeleteAgencyAddress(value);
+            var result = _agencyManager.DeleteAgencyAddress(value);
 
             return Json(value, JsonRequestBehavior.AllowGet);
         }
@@ -473,7 +326,7 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
             if (Request.QueryString["Id"] != null)
                 agencyId = int.Parse(Request.QueryString["Id"]);
 
-            return PartialView("AgencyNumberEdit", new AgencyNumber
+            return PartialView("_AgencyNumberEdit", new AgencyNumber
             {
                 AgencyId = agencyId
             });
@@ -491,9 +344,9 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
             if (Request.QueryString["Id"] != null)
                 numberId = int.Parse(Request.QueryString["Id"]);
 
-            var agencyNumber = new AgencyManager().GetAgencyNumber(numberId);
+            var agencyNumber = _agencyManager.GetAgencyNumber(numberId);
 
-            return PartialView("AgencyNumberEdit", agencyNumber);
+            return PartialView("_AgencyNumberEdit", agencyNumber);
         }
 
         /// <summary>
@@ -511,7 +364,7 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
             value.LastModifyBy = User.Identity.GetUserName();
             value.LastModifyDate = now;
 
-            var result = new AgencyManager().CreateAgencyNumber(value);
+            var result = _agencyManager.CreateAgencyNumber(value);
 
             return Json(result.GetReturnObject<AgencyNumber>(), JsonRequestBehavior.AllowGet);
         }
@@ -527,7 +380,7 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
             value.LastModifyBy = User.Identity.GetUserName();
             value.LastModifyDate = DateTime.Now;
 
-            var result = new AgencyManager().UpdateAgencyNumber(value);
+            var result = _agencyManager.UpdateAgencyNumber(value);
 
             return Json(value, JsonRequestBehavior.AllowGet);
         }
@@ -540,14 +393,34 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
         [HttpPost]
         public ActionResult AgencyNumberDelete(AgencyNumber value)
         {
-            var result = new AgencyManager().DeleteAgencyNumber(value);
+            var result = _agencyManager.DeleteAgencyNumber(value);
 
             return Json(value, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
 
-        #region Agency Phone Number Methods
+        #region Agency Phone/Email Methods
+
+        /// <summary>
+        /// The agency phone numbers and email addresses.
+        /// </summary>
+        /// <param name="agencyTenantId">The agency tenant identifier.</param>
+        /// <returns>The result of this action method.</returns>
+        [HttpPost]
+        public ActionResult AgencyPhoneEmail(string agencyTenantId)
+        {
+            var agency = _agencyManager.GetAgencies().SingleOrDefault(a => a.AgencyTenantId == agencyTenantId) ?? new Agency
+            {
+                CreateBy = User.Identity.GetUserName(),
+                LastModifyBy = User.Identity.GetUserName()
+            };
+
+            ViewBag.AgencyPhoneDataSource = agency.AgencyPhones.ToList();
+            ViewBag.AgencyEmailDataSource = agency.AgencyEmails.ToList();
+
+            return PartialView("_AgencyPhoneEmail", agency);
+        }
 
         /// <summary>
         /// Called to render the Agency Phone Edit partial view.
@@ -566,31 +439,7 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
                 AgencyId = agencyId
             };
 
-            var countyDdlProperties = new DropDownListProperties();
-            var countyDdlFields = new DropDownListFields();
-
-            countyDdlProperties.DataSource = DomainListManager.GetCountyList();
-
-            countyDdlFields.Text = "Name";
-            countyDdlFields.Value = "Id";
-
-            countyDdlProperties.DropDownListFields = countyDdlFields;
-
-            ViewData["CountyDDL"] = countyDdlProperties;
-
-            var stateDdlProperties = new DropDownListProperties();
-            var stateDdlFields = new DropDownListFields();
-
-            stateDdlProperties.DataSource = DomainListManager.GetStateList();
-
-            stateDdlFields.Text = "Name";
-            stateDdlFields.Value = "Id";
-
-            stateDdlProperties.DropDownListFields = stateDdlFields;
-
-            ViewData["StateDDL"] = stateDdlProperties;
-
-            return PartialView("AgencyPhoneEdit", agencyPhone);
+            return PartialView("_AgencyPhoneEdit", agencyPhone);
         }
 
         /// <summary>
@@ -605,19 +454,9 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
             if (Request.QueryString["Id"] != null)
                 agencyPhoneId = int.Parse(Request.QueryString["Id"]);
 
-            var agencyPhone = new AgencyManager().GetAgencyPhone(agencyPhoneId);
+            var agencyPhone = _agencyManager.GetAgencyPhone(agencyPhoneId);
 
-            var phoneTypeDdlProperties = new DropDownListProperties();
-            var phoneTypeDdlFields = new DropDownListFields();
-
-            phoneTypeDdlProperties.DataSource = DomainListManager.GetPhoneTypeList();
-
-            phoneTypeDdlFields.Text = "Name";
-            phoneTypeDdlFields.Value = "Id";
-
-            phoneTypeDdlProperties.DropDownListFields = phoneTypeDdlFields;
-
-            return PartialView("AgencyPhoneEdit", agencyPhone);
+            return PartialView("_AgencyPhoneEdit", agencyPhone);
         }
 
         /// <summary>
@@ -635,7 +474,7 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
             value.LastModifyBy = User.Identity.GetUserName();
             value.LastModifyDate = now;
 
-            var result = new AgencyManager().CreateAgencyPhone(value);
+            var result = _agencyManager.CreateAgencyPhone(value);
 
             return Json(result.GetReturnObject<AgencyPhone>(), JsonRequestBehavior.AllowGet);
         }
@@ -651,7 +490,7 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
             value.LastModifyBy = User.Identity.GetUserName();
             value.LastModifyDate = DateTime.Now;
 
-            var result = new AgencyManager().UpdateAgencyPhone(value);
+            var result = _agencyManager.UpdateAgencyPhone(value);
 
             return Json(value, JsonRequestBehavior.AllowGet);
         }
@@ -664,18 +503,74 @@ namespace CD.ClaimSoft.UI.Areas.Administration.Controllers
         [HttpPost]
         public ActionResult AgencyPhoneDelete(AgencyPhone value)
         {
-            var result = new AgencyManager().DeleteAgencyPhone(value);
+            var result = _agencyManager.DeleteAgencyPhone(value);
 
             return Json(value, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
 
-        // GET: Administration/Administration
-        public ActionResult Users()
+        #region Agency Phone/Email Methods
+
+        /// <summary>
+        /// The agencynotes and attachments.
+        /// </summary>
+        /// <param name="agencyTenantId">The agency tenant identifier.</param>
+        /// <returns>The result of this action method.</returns>
+        [HttpPost]
+        public ActionResult AgencyNotesAttachments(string agencyTenantId)
         {
-            return View();
+            var agency = _agencyManager.GetAgencies().SingleOrDefault(a => a.AgencyTenantId == agencyTenantId) ?? new Agency
+            {
+                CreateBy = User.Identity.GetUserName(),
+                LastModifyBy = User.Identity.GetUserName()
+            };
+
+            return PartialView("_AgencyNotesAttachments", agency);
         }
 
+        #endregion
+
+        #region Log Upload
+
+        /// <summary>
+        /// Saves the logo.
+        /// </summary>
+        /// <param name="UploadLogo">The upload logo.</param>
+        /// <param name="UploadLogo_data">The upload logo data.</param>
+        /// <returns></returns>
+        public ActionResult SaveLogo(IEnumerable<HttpPostedFileBase> UploadLogo, string UploadLogo_data)
+        {
+            try
+            {
+                foreach (var file in UploadLogo)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+
+                    var destinationPath = Path.Combine(FileUtility.RemoveInvalidCharacters(UploadLogo_data), fileName);
+
+                    var target = new MemoryStream();
+                    file.InputStream.CopyTo(target);
+                    var data = target.ToArray();
+
+                    FileTableExtensions.CreateFile("_AgencyLogo", destinationPath, data, out var test);
+
+                    //file.SaveAs(destinationPath);
+                }
+
+                return Content("Success");
+            }
+            catch (Exception ex)
+            {
+                _logService.Error(ex);
+
+                return Content(ex.GetFullMessage());
+            }
+        }
+
+        #endregion
+
+        // GET: Administration/Administration
+        public ActionResult Users() => View();
     }
 }

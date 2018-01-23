@@ -9,7 +9,7 @@
 // The following connection settings were used to generate this file:
 //     Configuration file:     "CD.ClaimSoft.Database\App.config"
 //     Connection String Name: "ClaimSoftContext"
-//     Connection String:      "data source=.;initial catalog=cdTest;user id=cdServiceAccount;password=**zapped**;;MultipleActiveResultSets=True;App=EntityFramework"
+//     Connection String:      "data source=.;initial catalog=cdTestDB;user id=cdServiceAccount;password=**zapped**;;MultipleActiveResultSets=True;App=EntityFramework"
 // ------------------------------------------------------------------------------------------------
 // Database Edition       : Enterprise Edition (64-bit)
 // Database Engine Edition: Enterprise
@@ -24,7 +24,7 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.6
+// TargetFrameworkVersion = 4.7
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 
@@ -33,15 +33,19 @@ namespace CD.ClaimSoft.Database
 
     #region Unit of work
 
-    public interface IClaimSoftContext : System.IDisposable
+    public partial interface IClaimSoftContext : System.IDisposable
     {
         System.Data.Entity.DbSet<AddressType> AddressTypes { get; set; } // AddressType
         System.Data.Entity.DbSet<Agency> Agencies { get; set; } // Agency
         System.Data.Entity.DbSet<AgencyAddress> AgencyAddresses { get; set; } // AgencyAddress
+        System.Data.Entity.DbSet<AgencyAttachment> AgencyAttachments { get; set; } // AgencyAttachments
         System.Data.Entity.DbSet<AgencyEmail> AgencyEmails { get; set; } // AgencyEmail
+        System.Data.Entity.DbSet<AgencyNote> AgencyNotes { get; set; } // AgencyNotes
         System.Data.Entity.DbSet<AgencyNumber> AgencyNumbers { get; set; } // AgencyNumber
         System.Data.Entity.DbSet<AgencyPhone> AgencyPhones { get; set; } // AgencyPhone
         System.Data.Entity.DbSet<AgencyUser> AgencyUsers { get; set; } // AgencyUser
+        System.Data.Entity.DbSet<ApplicationLog> ApplicationLogs { get; set; } // ApplicationLog
+        System.Data.Entity.DbSet<ApplicationSetting> ApplicationSettings { get; set; } // ApplicationSettings
         System.Data.Entity.DbSet<AspNetRole> AspNetRoles { get; set; } // AspNetRoles
         System.Data.Entity.DbSet<AspNetUser> AspNetUsers { get; set; } // AspNetUsers
         System.Data.Entity.DbSet<AspNetUserClaim> AspNetUserClaims { get; set; } // AspNetUserClaims
@@ -51,6 +55,7 @@ namespace CD.ClaimSoft.Database
         System.Data.Entity.DbSet<County> Counties { get; set; } // County
         System.Data.Entity.DbSet<EmailType> EmailTypes { get; set; } // EmailType
         System.Data.Entity.DbSet<PhoneType> PhoneTypes { get; set; } // PhoneType
+        System.Data.Entity.DbSet<SettingType> SettingTypes { get; set; } // SettingType
         System.Data.Entity.DbSet<State> States { get; set; } // State
         System.Data.Entity.DbSet<UnitRoundingType> UnitRoundingTypes { get; set; } // UnitRoundingType
 
@@ -78,10 +83,14 @@ namespace CD.ClaimSoft.Database
         public System.Data.Entity.DbSet<AddressType> AddressTypes { get; set; } // AddressType
         public System.Data.Entity.DbSet<Agency> Agencies { get; set; } // Agency
         public System.Data.Entity.DbSet<AgencyAddress> AgencyAddresses { get; set; } // AgencyAddress
+        public System.Data.Entity.DbSet<AgencyAttachment> AgencyAttachments { get; set; } // AgencyAttachments
         public System.Data.Entity.DbSet<AgencyEmail> AgencyEmails { get; set; } // AgencyEmail
+        public System.Data.Entity.DbSet<AgencyNote> AgencyNotes { get; set; } // AgencyNotes
         public System.Data.Entity.DbSet<AgencyNumber> AgencyNumbers { get; set; } // AgencyNumber
         public System.Data.Entity.DbSet<AgencyPhone> AgencyPhones { get; set; } // AgencyPhone
         public System.Data.Entity.DbSet<AgencyUser> AgencyUsers { get; set; } // AgencyUser
+        public System.Data.Entity.DbSet<ApplicationLog> ApplicationLogs { get; set; } // ApplicationLog
+        public System.Data.Entity.DbSet<ApplicationSetting> ApplicationSettings { get; set; } // ApplicationSettings
         public System.Data.Entity.DbSet<AspNetRole> AspNetRoles { get; set; } // AspNetRoles
         public System.Data.Entity.DbSet<AspNetUser> AspNetUsers { get; set; } // AspNetUsers
         public System.Data.Entity.DbSet<AspNetUserClaim> AspNetUserClaims { get; set; } // AspNetUserClaims
@@ -91,6 +100,7 @@ namespace CD.ClaimSoft.Database
         public System.Data.Entity.DbSet<County> Counties { get; set; } // County
         public System.Data.Entity.DbSet<EmailType> EmailTypes { get; set; } // EmailType
         public System.Data.Entity.DbSet<PhoneType> PhoneTypes { get; set; } // PhoneType
+        public System.Data.Entity.DbSet<SettingType> SettingTypes { get; set; } // SettingType
         public System.Data.Entity.DbSet<State> States { get; set; } // State
         public System.Data.Entity.DbSet<UnitRoundingType> UnitRoundingTypes { get; set; } // UnitRoundingType
 
@@ -150,10 +160,14 @@ namespace CD.ClaimSoft.Database
             modelBuilder.Configurations.Add(new AddressTypeConfiguration());
             modelBuilder.Configurations.Add(new AgencyConfiguration());
             modelBuilder.Configurations.Add(new AgencyAddressConfiguration());
+            modelBuilder.Configurations.Add(new AgencyAttachmentConfiguration());
             modelBuilder.Configurations.Add(new AgencyEmailConfiguration());
+            modelBuilder.Configurations.Add(new AgencyNoteConfiguration());
             modelBuilder.Configurations.Add(new AgencyNumberConfiguration());
             modelBuilder.Configurations.Add(new AgencyPhoneConfiguration());
             modelBuilder.Configurations.Add(new AgencyUserConfiguration());
+            modelBuilder.Configurations.Add(new ApplicationLogConfiguration());
+            modelBuilder.Configurations.Add(new ApplicationSettingConfiguration());
             modelBuilder.Configurations.Add(new AspNetRoleConfiguration());
             modelBuilder.Configurations.Add(new AspNetUserConfiguration());
             modelBuilder.Configurations.Add(new AspNetUserClaimConfiguration());
@@ -163,6 +177,7 @@ namespace CD.ClaimSoft.Database
             modelBuilder.Configurations.Add(new CountyConfiguration());
             modelBuilder.Configurations.Add(new EmailTypeConfiguration());
             modelBuilder.Configurations.Add(new PhoneTypeConfiguration());
+            modelBuilder.Configurations.Add(new SettingTypeConfiguration());
             modelBuilder.Configurations.Add(new StateConfiguration());
             modelBuilder.Configurations.Add(new UnitRoundingTypeConfiguration());
 
@@ -174,10 +189,14 @@ namespace CD.ClaimSoft.Database
             modelBuilder.Configurations.Add(new AddressTypeConfiguration(schema));
             modelBuilder.Configurations.Add(new AgencyConfiguration(schema));
             modelBuilder.Configurations.Add(new AgencyAddressConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyAttachmentConfiguration(schema));
             modelBuilder.Configurations.Add(new AgencyEmailConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyNoteConfiguration(schema));
             modelBuilder.Configurations.Add(new AgencyNumberConfiguration(schema));
             modelBuilder.Configurations.Add(new AgencyPhoneConfiguration(schema));
             modelBuilder.Configurations.Add(new AgencyUserConfiguration(schema));
+            modelBuilder.Configurations.Add(new ApplicationLogConfiguration(schema));
+            modelBuilder.Configurations.Add(new ApplicationSettingConfiguration(schema));
             modelBuilder.Configurations.Add(new AspNetRoleConfiguration(schema));
             modelBuilder.Configurations.Add(new AspNetUserConfiguration(schema));
             modelBuilder.Configurations.Add(new AspNetUserClaimConfiguration(schema));
@@ -187,6 +206,7 @@ namespace CD.ClaimSoft.Database
             modelBuilder.Configurations.Add(new CountyConfiguration(schema));
             modelBuilder.Configurations.Add(new EmailTypeConfiguration(schema));
             modelBuilder.Configurations.Add(new PhoneTypeConfiguration(schema));
+            modelBuilder.Configurations.Add(new SettingTypeConfiguration(schema));
             modelBuilder.Configurations.Add(new StateConfiguration(schema));
             modelBuilder.Configurations.Add(new UnitRoundingTypeConfiguration(schema));
             return modelBuilder;
@@ -251,22 +271,17 @@ namespace CD.ClaimSoft.Database
         public string Code { get; set; } // Code (length: 50)
         public string Name { get; set; } // Name (length: 100)
         public bool IsActive { get; set; } // IsActive
-        public System.DateTime? InactivedDate { get; set; } // InactivedDate
+        public System.DateTime? InactiveDate { get; set; } // InactiveDate
         public int? ParentAgencyId { get; set; } // ParentAgencyId
-        public string AgencyTimeZone { get; set; } // AgencyTimeZone (length: 100)
-        public bool UsesDaylightSavings { get; set; } // UsesDaylightSavings
         public string WebSite { get; set; } // WebSite (length: 250)
         public string ContactName { get; set; } // ContactName (length: 250)
         public int NpiNumber { get; set; } // NpiNumber
         public int? TaxIdNumber { get; set; } // TaxIdNumber
         public string Taxonomy { get; set; } // Taxonomy (length: 50)
         public bool DisableLifetimeSignature { get; set; } // DisableLifetimeSignature
-        public bool PatientDataUseNemsis { get; set; } // PatientDataUseNemsis
-        public bool ClaimDataUseNemsis { get; set; } // ClaimDataUseNemsis
-        public string NemsisTimezone { get; set; } // NemsisTimezone (length: 100)
-        public int? DefaultClaimTagId { get; set; } // DefaultClaimTagId
-        public int? UnitRoundingTypeId { get; set; } // UnitRoundingTypeId
-        public string ImagePath { get; set; } // ImagePath (length: 250)
+        public string LogoFileName { get; set; } // LogoFileName (length: 50)
+        public System.Guid? LogoStreamId { get; set; } // LogoStreamId
+        public bool? UseImageOnStatement { get; set; } // UseImageOnStatement
         public string CreateBy { get; set; } // CreateBy (length: 50)
         public System.DateTime CreateDate { get; set; } // CreateDate
         public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
@@ -283,9 +298,17 @@ namespace CD.ClaimSoft.Database
         /// </summary>
         public virtual System.Collections.Generic.ICollection<AgencyAddress> AgencyAddresses { get; set; } // AgencyAddress.FK_AgencyAddress_Agency
         /// <summary>
+        /// Child AgencyAttachments where [AgencyAttachments].[AgencyId] point to this entity (FK_AgencyAttachments_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyAttachment> AgencyAttachments { get; set; } // AgencyAttachments.FK_AgencyAttachments_Agency
+        /// <summary>
         /// Child AgencyEmails where [AgencyEmail].[AgencyId] point to this entity (FK_AgencyEmail_Agency)
         /// </summary>
         public virtual System.Collections.Generic.ICollection<AgencyEmail> AgencyEmails { get; set; } // AgencyEmail.FK_AgencyEmail_Agency
+        /// <summary>
+        /// Child AgencyNotes where [AgencyNotes].[AgencyId] point to this entity (FK_AgencyNotes_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyNote> AgencyNotes { get; set; } // AgencyNotes.FK_AgencyNotes_Agency
         /// <summary>
         /// Child AgencyNumbers where [AgencyNumber].[AgencyId] point to this entity (FK_AgencyNumber_Agency)
         /// </summary>
@@ -306,25 +329,20 @@ namespace CD.ClaimSoft.Database
         /// </summary>
         public virtual Agency ParentAgency { get; set; } // FK_Agency_Agency
 
-        /// <summary>
-        /// Parent UnitRoundingType pointed by [Agency].([UnitRoundingTypeId]) (FK_Agency_UnitRoundingType)
-        /// </summary>
-        public virtual UnitRoundingType UnitRoundingType { get; set; } // FK_Agency_UnitRoundingType
-
         public Agency()
         {
             IsActive = true;
-            UsesDaylightSavings = false;
             DisableLifetimeSignature = false;
-            PatientDataUseNemsis = false;
-            ClaimDataUseNemsis = false;
+            UseImageOnStatement = true;
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
             LastModifyBy = "CDUNCAN";
             LastModifyDate = System.DateTime.Now;
             Agencies = new System.Collections.Generic.List<Agency>();
             AgencyAddresses = new System.Collections.Generic.List<AgencyAddress>();
+            AgencyAttachments = new System.Collections.Generic.List<AgencyAttachment>();
             AgencyEmails = new System.Collections.Generic.List<AgencyEmail>();
+            AgencyNotes = new System.Collections.Generic.List<AgencyNote>();
             AgencyNumbers = new System.Collections.Generic.List<AgencyNumber>();
             AgencyPhones = new System.Collections.Generic.List<AgencyPhone>();
             AgencyUsers = new System.Collections.Generic.List<AgencyUser>();
@@ -350,6 +368,7 @@ namespace CD.ClaimSoft.Database
         public string ZipCode { get; set; } // ZipCode (length: 15)
         public bool IsPayToAddress { get; set; } // IsPayToAddress
         public bool IsReturnAddress { get; set; } // IsReturnAddress
+        public bool IsDefault { get; set; } // IsDefault
         public string CreateBy { get; set; } // CreateBy (length: 50)
         public System.DateTime CreateDate { get; set; } // CreateDate
         public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
@@ -386,6 +405,45 @@ namespace CD.ClaimSoft.Database
         {
             IsPayToAddress = false;
             IsReturnAddress = false;
+            IsDefault = false;
+            CreateBy = "CDUNCAN";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "CDUNCAN";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyAttachments
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyAttachment
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+        public int AgencyNoteId { get; set; } // AgencyNoteId
+        public string Name { get; set; } // Name (length: 50)
+        public string Path { get; set; } // Path (length: 255)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyAttachments].([AgencyId]) (FK_AgencyAttachments_Agency)
+        /// </summary>
+        public virtual Agency Agency { get; set; } // FK_AgencyAttachments_Agency
+
+        /// <summary>
+        /// Parent AgencyNote pointed by [AgencyAttachments].([AgencyNoteId]) (FK_AgencyAttachments_AgencyNotes)
+        /// </summary>
+        public virtual AgencyNote AgencyNote { get; set; } // FK_AgencyAttachments_AgencyNotes
+
+        public AgencyAttachment()
+        {
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
             LastModifyBy = "CDUNCAN";
@@ -404,6 +462,7 @@ namespace CD.ClaimSoft.Database
         public int AgencyId { get; set; } // AgencyId
         public int EmailTypeId { get; set; } // EmailTypeId
         public string EmailAddress { get; set; } // EmailAddress (length: 255)
+        public bool IsDefault { get; set; } // IsDefault
         public string CreateBy { get; set; } // CreateBy (length: 50)
         public System.DateTime CreateDate { get; set; } // CreateDate
         public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
@@ -423,10 +482,50 @@ namespace CD.ClaimSoft.Database
 
         public AgencyEmail()
         {
+            IsDefault = false;
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
             LastModifyBy = "CDUNCAN";
             LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyNotes
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyNote
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+        public string Note { get; set; } // Note (length: 255)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child AgencyAttachments where [AgencyAttachments].[AgencyNoteId] point to this entity (FK_AgencyAttachments_AgencyNotes)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyAttachment> AgencyAttachments { get; set; } // AgencyAttachments.FK_AgencyAttachments_AgencyNotes
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyNotes].([AgencyId]) (FK_AgencyNotes_Agency)
+        /// </summary>
+        public virtual Agency Agency { get; set; } // FK_AgencyNotes_Agency
+
+        public AgencyNote()
+        {
+            CreateBy = "CDUNCAN";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "CDUNCAN";
+            LastModifyDate = System.DateTime.Now;
+            AgencyAttachments = new System.Collections.Generic.List<AgencyAttachment>();
             InitializePartial();
         }
 
@@ -473,9 +572,8 @@ namespace CD.ClaimSoft.Database
         public int Id { get; set; } // Id (Primary key)
         public int AgencyId { get; set; } // AgencyId
         public int PhoneTypeId { get; set; } // PhoneTypeId
-        public int AreaCode { get; set; } // AreaCode
-        public int Prefix { get; set; } // Prefix
-        public int LineNumber { get; set; } // LineNumber
+        public string PhoneNumber { get; set; } // PhoneNumber (length: 25)
+        public bool IsDefault { get; set; } // IsDefault
         public string CreateBy { get; set; } // CreateBy (length: 50)
         public System.DateTime CreateDate { get; set; } // CreateDate
         public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
@@ -495,6 +593,7 @@ namespace CD.ClaimSoft.Database
 
         public AgencyPhone()
         {
+            IsDefault = false;
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
             LastModifyBy = "CDUNCAN";
@@ -530,6 +629,56 @@ namespace CD.ClaimSoft.Database
         public virtual AspNetUser AspNetUser { get; set; } // FK_AgencyUser_AspNetUsers
 
         public AgencyUser()
+        {
+            CreateBy = "CDUNCAN";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "CDUNCAN";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // ApplicationLog
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class ApplicationLog
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public string Severity { get; set; } // Severity (length: 255)
+        public string Logger { get; set; } // Logger (length: 255)
+        public string Message { get; set; } // Message
+        public System.DateTime LogDate { get; set; } // LogDate
+
+        public ApplicationLog()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // ApplicationSettings
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class ApplicationSetting
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int SettingTypeId { get; set; } // SettingTypeId
+        public string SettingKey { get; set; } // SettingKey (length: 50)
+        public string SettingValue { get; set; } // SettingValue (length: 255)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent SettingType pointed by [ApplicationSettings].([SettingTypeId]) (FK_ApplicationSettings_SettingType)
+        /// </summary>
+        public virtual SettingType SettingType { get; set; } // FK_ApplicationSettings_SettingType
+
+        public ApplicationSetting()
         {
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
@@ -872,6 +1021,37 @@ namespace CD.ClaimSoft.Database
         partial void InitializePartial();
     }
 
+    // SettingType
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class SettingType
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public string Name { get; set; } // Name (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child ApplicationSettings where [ApplicationSettings].[SettingTypeId] point to this entity (FK_ApplicationSettings_SettingType)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<ApplicationSetting> ApplicationSettings { get; set; } // ApplicationSettings.FK_ApplicationSettings_SettingType
+
+        public SettingType()
+        {
+            CreateBy = "CDUNCAN";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "CDUNCAN";
+            LastModifyDate = System.DateTime.Now;
+            ApplicationSettings = new System.Collections.Generic.List<ApplicationSetting>();
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
     // State
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
     public partial class State
@@ -928,20 +1108,12 @@ namespace CD.ClaimSoft.Database
         public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
         public System.DateTime LastModifyDate { get; set; } // LastModifyDate
 
-        // Reverse navigation
-
-        /// <summary>
-        /// Child Agencies where [Agency].[UnitRoundingTypeId] point to this entity (FK_Agency_UnitRoundingType)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<Agency> Agencies { get; set; } // Agency.FK_Agency_UnitRoundingType
-
         public UnitRoundingType()
         {
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
             LastModifyBy = "CDUNCAN";
             LastModifyDate = System.DateTime.Now;
-            Agencies = new System.Collections.Generic.List<Agency>();
             InitializePartial();
         }
 
@@ -996,22 +1168,17 @@ namespace CD.ClaimSoft.Database
             Property(x => x.Code).HasColumnName(@"Code").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
             Property(x => x.Name).HasColumnName(@"Name").HasColumnType("nvarchar").IsRequired().HasMaxLength(100);
             Property(x => x.IsActive).HasColumnName(@"IsActive").HasColumnType("bit").IsRequired();
-            Property(x => x.InactivedDate).HasColumnName(@"InactivedDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.InactiveDate).HasColumnName(@"InactiveDate").HasColumnType("datetime").IsOptional();
             Property(x => x.ParentAgencyId).HasColumnName(@"ParentAgencyId").HasColumnType("int").IsOptional();
-            Property(x => x.AgencyTimeZone).HasColumnName(@"AgencyTimeZone").HasColumnType("nvarchar").IsOptional().HasMaxLength(100);
-            Property(x => x.UsesDaylightSavings).HasColumnName(@"UsesDaylightSavings").HasColumnType("bit").IsRequired();
             Property(x => x.WebSite).HasColumnName(@"WebSite").HasColumnType("nvarchar").IsOptional().HasMaxLength(250);
             Property(x => x.ContactName).HasColumnName(@"ContactName").HasColumnType("nvarchar").IsRequired().HasMaxLength(250);
             Property(x => x.NpiNumber).HasColumnName(@"NpiNumber").HasColumnType("int").IsRequired();
             Property(x => x.TaxIdNumber).HasColumnName(@"TaxIdNumber").HasColumnType("int").IsOptional();
             Property(x => x.Taxonomy).HasColumnName(@"Taxonomy").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
             Property(x => x.DisableLifetimeSignature).HasColumnName(@"DisableLifetimeSignature").HasColumnType("bit").IsRequired();
-            Property(x => x.PatientDataUseNemsis).HasColumnName(@"PatientDataUseNemsis").HasColumnType("bit").IsRequired();
-            Property(x => x.ClaimDataUseNemsis).HasColumnName(@"ClaimDataUseNemsis").HasColumnType("bit").IsRequired();
-            Property(x => x.NemsisTimezone).HasColumnName(@"NemsisTimezone").HasColumnType("nvarchar").IsOptional().HasMaxLength(100);
-            Property(x => x.DefaultClaimTagId).HasColumnName(@"DefaultClaimTagId").HasColumnType("int").IsOptional();
-            Property(x => x.UnitRoundingTypeId).HasColumnName(@"UnitRoundingTypeId").HasColumnType("int").IsOptional();
-            Property(x => x.ImagePath).HasColumnName(@"ImagePath").HasColumnType("nvarchar").IsOptional().HasMaxLength(250);
+            Property(x => x.LogoFileName).HasColumnName(@"LogoFileName").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.LogoStreamId).HasColumnName(@"LogoStreamId").HasColumnType("uniqueidentifier").IsOptional();
+            Property(x => x.UseImageOnStatement).HasColumnName(@"UseImageOnStatement").HasColumnType("bit").IsOptional();
             Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
             Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
             Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
@@ -1019,7 +1186,6 @@ namespace CD.ClaimSoft.Database
 
             // Foreign keys
             HasOptional(a => a.ParentAgency).WithMany(b => b.Agencies).HasForeignKey(c => c.ParentAgencyId).WillCascadeOnDelete(false); // FK_Agency_Agency
-            HasOptional(a => a.UnitRoundingType).WithMany(b => b.Agencies).HasForeignKey(c => c.UnitRoundingTypeId).WillCascadeOnDelete(false); // FK_Agency_UnitRoundingType
             InitializePartial();
         }
         partial void InitializePartial();
@@ -1051,6 +1217,7 @@ namespace CD.ClaimSoft.Database
             Property(x => x.ZipCode).HasColumnName(@"ZipCode").HasColumnType("nvarchar").IsRequired().HasMaxLength(15);
             Property(x => x.IsPayToAddress).HasColumnName(@"IsPayToAddress").HasColumnType("bit").IsRequired();
             Property(x => x.IsReturnAddress).HasColumnName(@"IsReturnAddress").HasColumnType("bit").IsRequired();
+            Property(x => x.IsDefault).HasColumnName(@"IsDefault").HasColumnType("bit").IsRequired();
             Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
             Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
             Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
@@ -1062,6 +1229,38 @@ namespace CD.ClaimSoft.Database
             HasRequired(a => a.AddressType).WithMany(b => b.AgencyAddresses).HasForeignKey(c => c.AddressTypeId).WillCascadeOnDelete(false); // FK_AgencyAddress_AddressType
             HasRequired(a => a.Agency).WithMany(b => b.AgencyAddresses).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyAddress_Agency
             HasRequired(a => a.State).WithMany(b => b.AgencyAddresses).HasForeignKey(c => c.StateId).WillCascadeOnDelete(false); // FK_AgencyAddress_State
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyAttachments
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyAttachmentConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyAttachment>
+    {
+        public AgencyAttachmentConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyAttachmentConfiguration(string schema)
+        {
+            ToTable("AgencyAttachments", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.AgencyNoteId).HasColumnName(@"AgencyNoteId").HasColumnType("int").IsRequired();
+            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.Path).HasColumnName(@"Path").HasColumnType("nvarchar").IsRequired().HasMaxLength(255);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyAttachments).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyAttachments_Agency
+            HasRequired(a => a.AgencyNote).WithMany(b => b.AgencyAttachments).HasForeignKey(c => c.AgencyNoteId).WillCascadeOnDelete(false); // FK_AgencyAttachments_AgencyNotes
             InitializePartial();
         }
         partial void InitializePartial();
@@ -1085,6 +1284,7 @@ namespace CD.ClaimSoft.Database
             Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
             Property(x => x.EmailTypeId).HasColumnName(@"EmailTypeId").HasColumnType("int").IsRequired();
             Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("nvarchar").IsRequired().HasMaxLength(255);
+            Property(x => x.IsDefault).HasColumnName(@"IsDefault").HasColumnType("bit").IsRequired();
             Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
             Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
             Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
@@ -1093,6 +1293,35 @@ namespace CD.ClaimSoft.Database
             // Foreign keys
             HasRequired(a => a.Agency).WithMany(b => b.AgencyEmails).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyEmail_Agency
             HasRequired(a => a.EmailType).WithMany(b => b.AgencyEmails).HasForeignKey(c => c.EmailTypeId).WillCascadeOnDelete(false); // FK_AgencyEmail_EmailType
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyNotes
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyNoteConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyNote>
+    {
+        public AgencyNoteConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyNoteConfiguration(string schema)
+        {
+            ToTable("AgencyNotes", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.Note).HasColumnName(@"Note").HasColumnType("nvarchar").IsRequired().HasMaxLength(255);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyNotes).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyNotes_Agency
             InitializePartial();
         }
         partial void InitializePartial();
@@ -1145,9 +1374,8 @@ namespace CD.ClaimSoft.Database
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
             Property(x => x.PhoneTypeId).HasColumnName(@"PhoneTypeId").HasColumnType("int").IsRequired();
-            Property(x => x.AreaCode).HasColumnName(@"AreaCode").HasColumnType("int").IsRequired();
-            Property(x => x.Prefix).HasColumnName(@"Prefix").HasColumnType("int").IsRequired();
-            Property(x => x.LineNumber).HasColumnName(@"LineNumber").HasColumnType("int").IsRequired();
+            Property(x => x.PhoneNumber).HasColumnName(@"PhoneNumber").HasColumnType("nvarchar").IsRequired().HasMaxLength(25);
+            Property(x => x.IsDefault).HasColumnName(@"IsDefault").HasColumnType("bit").IsRequired();
             Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
             Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
             Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
@@ -1186,6 +1414,60 @@ namespace CD.ClaimSoft.Database
             // Foreign keys
             HasRequired(a => a.Agency).WithMany(b => b.AgencyUsers).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyUser_Agency
             HasRequired(a => a.AspNetUser).WithMany(b => b.AgencyUsers).HasForeignKey(c => c.AspNetUserId).WillCascadeOnDelete(false); // FK_AgencyUser_AspNetUsers
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // ApplicationLog
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class ApplicationLogConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<ApplicationLog>
+    {
+        public ApplicationLogConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public ApplicationLogConfiguration(string schema)
+        {
+            ToTable("ApplicationLog", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.Severity).HasColumnName(@"Severity").HasColumnType("nvarchar").IsOptional().HasMaxLength(255);
+            Property(x => x.Logger).HasColumnName(@"Logger").HasColumnType("nvarchar").IsOptional().HasMaxLength(255);
+            Property(x => x.Message).HasColumnName(@"Message").HasColumnType("nvarchar(max)").IsRequired();
+            Property(x => x.LogDate).HasColumnName(@"LogDate").HasColumnType("datetime").IsRequired();
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // ApplicationSettings
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class ApplicationSettingConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<ApplicationSetting>
+    {
+        public ApplicationSettingConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public ApplicationSettingConfiguration(string schema)
+        {
+            ToTable("ApplicationSettings", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.SettingTypeId).HasColumnName(@"SettingTypeId").HasColumnType("int").IsRequired();
+            Property(x => x.SettingKey).HasColumnName(@"SettingKey").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.SettingValue).HasColumnName(@"SettingValue").HasColumnType("nvarchar").IsRequired().HasMaxLength(255);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.SettingType).WithMany(b => b.ApplicationSettings).HasForeignKey(c => c.SettingTypeId).WillCascadeOnDelete(false); // FK_ApplicationSettings_SettingType
             InitializePartial();
         }
         partial void InitializePartial();
@@ -1416,7 +1698,7 @@ namespace CD.ClaimSoft.Database
             ToTable("EmailType", schema);
             HasKey(x => x.Id);
 
-            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.Name).HasColumnName(@"Name").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
             Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
             Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
@@ -1439,6 +1721,31 @@ namespace CD.ClaimSoft.Database
         public PhoneTypeConfiguration(string schema)
         {
             ToTable("PhoneType", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // SettingType
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class SettingTypeConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<SettingType>
+    {
+        public SettingTypeConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public SettingTypeConfiguration(string schema)
+        {
+            ToTable("SettingType", schema);
             HasKey(x => x.Id);
 
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);

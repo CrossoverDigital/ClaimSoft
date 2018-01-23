@@ -2,17 +2,11 @@
 
 namespace CD.ClaimSoft.UI.Areas.Administration
 {
-    public class AdministrationAreaRegistration : AreaRegistration 
+    public class AdministrationAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
-        {
-            get 
-            {
-                return "Administration";
-            }
-        }
+        public override string AreaName => "Administration";
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Administration_default",

@@ -1,16 +1,41 @@
-﻿using System.Collections.Generic;
+﻿#region Copyright
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// -=- Copyright (C) ClaimSoft 2017-2018. All Rights Reserved. 
+// -=- This code may not be used without the express written 
+// -=- permission of the copyright holder, ClaimSoft.
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+#endregion
+
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
+
 using CD.ClaimSoft.Common.EntityFramework;
 
 namespace CD.ClaimSoft.Database
 {
+    /// <inheritdoc />
+    /// <summary>
+    /// Partial database context to extend the save operations.
+    /// </summary>
+    /// <seealso cref="T:System.Data.Entity.DbContext" />
+    /// <seealso cref="T:CD.ClaimSoft.Database.IClaimSoftContext" />
     public partial class ClaimSoftContext
     {
+        /// <summary>
+        /// Saves all changes made in this context to the underlying database.
+        /// </summary>
+        /// <returns>
+        /// The number of state entries written to the underlying database. This can include
+        /// state entries for entities and/or relationships. Relationship state entries are created for
+        /// many-to-many relationships and relationships where there is no foreign key property
+        /// included in the entity class (often referred to as independent associations).
+        /// </returns>
+        /// <exception cref="DbEntityValidationException"></exception>
         public override int SaveChanges()
         {
             try
@@ -35,6 +60,10 @@ namespace CD.ClaimSoft.Database
             }
         }
 
+        /// <summary>
+        /// Saves the changes with validation.
+        /// </summary>
+        /// <returns>The EfStatus model containing the result of the save.</returns>
         public EfStatus SaveChangesWithValidation()
         {
             var status = new EfStatus();
@@ -59,7 +88,10 @@ namespace CD.ClaimSoft.Database
             return status;
         }
 
-        private static readonly Dictionary<int, string> SqlErrorTextDict =
+        /// <summary>
+        /// The SQL error text dictionary.
+        /// </summary>
+        static readonly Dictionary<int, string> SqlErrorTextDict =
             new Dictionary<int, string>
             {
                 {547, "This operation failed because another data entry uses this entry."},
@@ -71,8 +103,10 @@ namespace CD.ClaimSoft.Database
         /// handle then it returns a list of errors. Otherwise it returns null
         /// which means rethrow the error as it has not been handled
         /// </summary>
-        /// <param id="ex"></param>
-        /// <returns>null if cannot handle errors, otherwise a list of errors</returns>
+        /// <param name="ex">The exception.</param>
+        /// <returns>
+        /// null if cannot handle errors, otherwise a list of errors
+        /// </returns>
         IEnumerable<ValidationResult> TryDecodeDbUpdateException(DbUpdateException ex)
         {
             if (!(ex.InnerException is UpdateException) || !(ex.InnerException.InnerException is SqlException))

@@ -1,0 +1,4 @@
+Root, Path, Expected
+\\Chuckzilla\mssqlserver\cdTestDB\tdir, \\Chuckzilla\mssqlserver\cdTestDB\tdir\subdir1\subdir2, \subdir1\subdir2
+\\Chuckzilla\mssqlserver\cdTestDB\tdir, \tdir\subdir1\subdir2, \subdir1\subdir2
+\\Chuckzilla\mssqlserver\cdTestDB\tdir, tdir\subdir1\subdir2, \subdir1\subdir2

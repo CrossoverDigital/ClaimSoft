@@ -28,3 +28,25 @@ src/\.vs/
 src/Backup/
 
 src/Backup1/
+
+src/TestResults/
+
+src/CD\.ClaimSoft\.Redis/bin/
+
+src/CD\.ClaimSoft\.Redis/obj/
+
+src/CD\.ClaimSoft\.Logging/bin/
+
+src/CD\.ClaimSoft\.Logging/obj/
+
+src/CD\.ClaimSoft\.Database\.Identity/bin/
+
+src/CD\.ClaimSoft\.Database\.Identity/obj/
+
+src/CD\.ClaimSoft\.Database\.FileTable\.Tests/obj/
+
+src/CD\.ClaimSoft\.Database\.FileTable\.Tests/bin/
+
+src/CD\.ClaimSoft\.Database\.FileTable/bin/
+
+src/CD\.ClaimSoft\.Database\.FileTable/obj/
