@@ -1,0 +1,20 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eCad.72"  minOccurs="0"  maxOccurs="1"  dataTypeName="EMSAgencyID"  isNillable="No">
+<name>Other EMS or Public Safety Agency ID Number</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The ID number for the EMS Agency or Other Public Safety listed in eScene.02</definition>
+<v2Number></v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment>The ID should be the state ID (license number) for the EMS agency or ID number for the law enforcement. This may be an ID assigned by the state or created by the EMS agency.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <EMSAgencyID baseType="string">
+    <facet name="minLength" value="1"/>
+    <facet name="maxLength" value="25"/>
+  </EMSAgencyID>
+</restrictions>
+</element>

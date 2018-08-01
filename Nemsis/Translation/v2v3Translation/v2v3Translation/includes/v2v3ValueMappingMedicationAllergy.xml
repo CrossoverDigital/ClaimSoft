@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<v2v3ValueMappingMedicationAllergy xmlns="http://www.nemsis.org">
+	<match>
+		<v2Pattern>Codeine</v2Pattern>
+		<v3Replacement>2670</v3Replacement>
+		<v3CodeType>9924003</v3CodeType>
+	</match>
+	<match>
+		<v2Pattern>Sulfa drugs</v2Pattern>
+		<v3Replacement>Z88.2</v3Replacement>
+		<v3CodeType>9924001</v3CodeType>
+	</match>
+</v2v3ValueMappingMedicationAllergy>

@@ -1,0 +1,20 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eCad.79"  minOccurs="0"  maxOccurs="1"  dataTypeName="IncidentFacilityCode"  isNillable="No">
+<name>Incident Facility Code</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The state, regulatory, or other unique number (code) associated with the facility if the Incident is a Healthcare Facility.</definition>
+<v2Number>E08_08</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment>This may be populated from a list created within dFacility.03 (Facility Location Code) or dFacility.05 (Facility National Provider Identifier).</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <IncidentFacilityCode baseType="string">
+    <facet name="minLength" value="2"/>
+    <facet name="maxLength" value="50"/>
+  </IncidentFacilityCode>
+</restrictions>
+</element>

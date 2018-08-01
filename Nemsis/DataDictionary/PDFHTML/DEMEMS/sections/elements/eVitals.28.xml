@@ -1,0 +1,29 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eVitals.28"  minOccurs="0"  maxOccurs="1"  dataTypeName="TypeOfPainScale"  isNillable="Yes">
+<name>Pain Scale Type</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>The type of pain scale used.</definition>
+<v2Number></v2Number>
+<usage>Recommended</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment></v3Comment>
+<v3Changes>Added to better document the patient's pain level.</v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <TypeOfPainScale baseType="string">
+    <facet name="enumeration" value="3328001" annotation="FLACC (Face, Legs, Activity, Cry, Consolability)"/>
+    <facet name="enumeration" value="3328003" annotation="Numeric (0-10)"/>
+    <facet name="enumeration" value="3328005" annotation="Other"/>
+    <facet name="enumeration" value="3328007" annotation="Wong-Baker (FACES)"/>
+  </TypeOfPainScale>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+    <NV.NotReporting><facet name="enumeration" value="7701005" annotation="Not Reporting"/></NV.NotReporting>
+  </NV>
+</attributes>
+</element>

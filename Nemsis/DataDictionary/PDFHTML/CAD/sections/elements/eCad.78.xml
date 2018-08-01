@@ -1,0 +1,19 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eCad.78"  minOccurs="0"  maxOccurs="1"  dataTypeName="IncidentLocationType"  isNillable="No">
+<name>Incident Location Type</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The kind of location where the incident happened</definition>
+<v2Number>E08_07</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>Response</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Code list is represented in ICD-10-CM: Place of Occurrence of the external cause (Y92.0-Y92.9).              <br/><br/>ICD-10-CM             <br/>Website - <a href="http://uts.nlm.nih.gov" target="_blank">http://uts.nlm.nih.gov</a>             <br/>Product - UMLS Metathesaurus</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <IncidentLocationType baseType="string">
+    <facet name="pattern" value="Y92\.[0-9]{1,3}"/>
+  </IncidentLocationType>
+</restrictions>
+</element>

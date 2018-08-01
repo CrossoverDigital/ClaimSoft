@@ -1,0 +1,30 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eArrest.18"  minOccurs="1"  maxOccurs="1"  dataTypeName="CardiacArrestOutcome"  isNillable="Yes">
+<name>End of EMS Cardiac Arrest Event</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>The patient's outcome at the end of the EMS event.</definition>
+<v2Number></v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Cardiac Arrest</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>This element is a component of the Utstein Cardiac Arrest Criteria as identified in the American Heart Association journal "Resuscitation" from 2004 entitled "Cardiac Arrest and Cardiopulmonary Resuscitation Outcome Reports". http://circ.ahajournals.org/cgi/content/full/110/21/3385</v3Comment>
+<v3Changes>Added to better identify the outcome of EMS cardiac arrest patients.</v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <CardiacArrestOutcome baseType="string">
+    <facet name="enumeration" value="3018001" annotation="Expired in ED"/>
+    <facet name="enumeration" value="3018003" annotation="Expired in the Field"/>
+    <facet name="enumeration" value="3018005" annotation="Ongoing Resuscitation in ED"/>
+    <facet name="enumeration" value="3018007" annotation="ROSC in the Field"/>
+    <facet name="enumeration" value="3018009" annotation="ROSC in the ED"/>
+    <facet name="enumeration" value="3018011" annotation="Ongoing Resuscitation by Other EMS"/>
+  </CardiacArrestOutcome>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+</attributes>
+</element>

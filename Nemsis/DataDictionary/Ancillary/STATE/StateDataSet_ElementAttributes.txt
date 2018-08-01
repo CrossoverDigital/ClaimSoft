@@ -1,0 +1,18 @@
+'Dataset'|'DatasetType'|'ElementNumber'|'ElementName'|'Attribute'|
+'StateDataSet'|'group'|'dConfiguration.ConfigurationGroup'|''|'CustomElementID'|
+'StateDataSet'|'element'|'dCustomConfiguration.01'|'Custom Data Element Title'|'nemsisElement'|
+'StateDataSet'|'element'|'dCustomConfiguration.06'|'Custom Data Element Potential Values'|'nemsisCode'|
+'StateDataSet'|'element'|'dCustomConfiguration.06'|'Custom Data Element Potential Values'|'customValueDescription'|
+'StateDataSet'|'group'|'eCustomConfiguration.CustomGroup'|''|'CustomElementID'|
+'StateDataSet'|'element'|'eCustomConfiguration.01'|'Custom Data Element Title'|'nemsisElement'|
+'StateDataSet'|'element'|'eCustomConfiguration.06'|'Custom Data Element Potential Values'|'nemsisCode'|
+'StateDataSet'|'element'|'eCustomConfiguration.06'|'Custom Data Element Potential Values'|'customValueDescription'|
+'StateDataSet'|'element'|'dState.01'|'State Required Element'|'TIMESTAMP'|
+'StateDataSet'|'element'|'eState.01'|'State Required Element'|'TIMESTAMP'|
+'StateDataSet'|'element'|'dConfiguration.03'|'Procedures Permitted by the State'|'NV'|
+'StateDataSet'|'element'|'dConfiguration.04'|'Medications Permitted by the State'|'NV'|
+'StateDataSet'|'element'|'dConfiguration.05'|'Protocols Permitted by the State'|'NV'|
+'StateDataSet'|'element'|'dAgency.03'|'EMS Agency Name'|'NV'|
+'StateDataSet'|'element'|'dFacility.07'|'Facility Street Address'|'StreetAddress2'|
+'StateDataSet'|'element'|'dFacility.15'|'Facility Phone Number'|'PhoneNumberType'|
+'StateDataSet'|'element'|'dFacility.15'|'Facility Phone Number'|'CorrelationID'|

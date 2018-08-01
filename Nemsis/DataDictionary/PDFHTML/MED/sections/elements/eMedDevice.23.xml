@@ -1,0 +1,20 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eMedDevice.23"  minOccurs="0"  maxOccurs="1"  dataTypeName="SBP"  isNillable="No">
+<name>SBP (Systolic Blood Pressure)</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The patient's systolic blood pressure.</definition>
+<v2Number>E14_04</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Required for ACS-Field Triage and other patient scoring systems.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <SBP baseType="integer">
+    <facet name="minInclusive" value="0"/>
+    <facet name="maxInclusive" value="500"/>
+  </SBP>
+</restrictions>
+</element>

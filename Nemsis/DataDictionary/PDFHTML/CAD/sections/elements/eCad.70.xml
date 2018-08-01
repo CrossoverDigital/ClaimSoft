@@ -1,0 +1,20 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eCad.70"  minOccurs="0"  maxOccurs="1"  dataTypeName="YesNoValues"  isNillable="No">
+<name>First EMS Unit on Scene</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>Documentation that this EMS Unit was the first EMS Unit for the EMS Agency on the Scene</definition>
+<v2Number></v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment>Added to improve the evaluation of Response Times when multiple EMS units are responding to the same scene.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <YesNoValues baseType="string">
+    <facet name="enumeration" value="9923001" annotation="No"/>
+    <facet name="enumeration" value="9923003" annotation="Yes"/>
+  </YesNoValues>
+</restrictions>
+</element>

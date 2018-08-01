@@ -1,0 +1,20 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="dAgency.15"  minOccurs="1"  maxOccurs="1"  dataTypeName="Year"  isNillable="No">
+<name>Statistical Calendar Year</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>The calendar year to which the information pertains for the EMS Agency and the specific EMS Agency Number (dAgency.02).</definition>
+<v2Number>D01_10</v2Number>
+<usage>Mandatory</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment>Added Calendar Year to the definition to remove confusion noted in draft comments. Will allow multiple entry to allow data to be stored on several years. This statistical information is associated with the EMS Agency's specific EMS Agency Number (dAgency.02) and elements dAgency.16 through dAgency.22</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <Year baseType="integer">
+    <facet name="minInclusive" value="1900"/>
+    <facet name="maxInclusive" value="2050"/>
+  </Year>
+</restrictions>
+</element>

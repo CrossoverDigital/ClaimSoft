@@ -1,166 +1,163 @@
-﻿@using CD.ClaimSoft.Application.Models.Agencies
-@using CD.ClaimSoft.Common.Helpers
+﻿@using CD.ClaimSoft.Common.Helpers
 @using Syncfusion.JavaScript
 @using Syncfusion.MVC.EJ
 
-@inherits CD.ClaimSoft.UI.Common.CustomViewPage<Agency>
-    
-<style>
+@inherits CD.ClaimSoft.UI.Common.CustomViewPage<CD.ClaimSoft.Database.Model.Agency.Agency>
 
-    input[type='file'] {
-        color: transparent;
-    }
-    
-</style>
 
-<img class="agencyDetailTooltip" style="width: 25px; float: left; margin-right: 10px;" src="~/Content/Images/info.png" alt="Audit Information" />
-<div style="border: 1px solid #cecece; padding: 5px; width: 375px; display: none;">
-    <div>
+<div id="AgencyDetailContent">
+    <style>
+
+        input[type='file'] {
+            color: transparent;
+        }
+    </style>
+
+    <img class="agencyDetailTooltip" style="width: 25px; float: left; margin-right: 10px;" src="~/Content/Images/info.png" alt="Audit Information" />
+    <div style="border: 1px solid #cecece; padding: 5px; width: 375px; display: none;">
         <div>
-            <span style="font-weight: bold; width: 75px;">
-                Agency Id:
-            </span> @Model.AgencyId
-            @Html.HiddenFor(m => m.AgencyId)
+            <div>
+                <span style="font-weight: bold; width: 75px;">
+                    Agency Id:
+                </span> @Model.AgencyId
+                @Html.HiddenFor(m => m.AgencyId)
+            </div>
+            <div>
+                <span style="font-weight: bold; width: 75px; margin-bottom: 5px;"> Tenant Id: </span> @Model.AgencyTenantId
+                @Html.HiddenFor(m => m.AgencyTenantId)
+            </div>
         </div>
         <div>
-            <span style="font-weight: bold; width: 75px; margin-bottom: 5px;"> Tenant Id: </span> @Model.AgencyTenantId
-            @Html.HiddenFor(m => m.AgencyTenantId)
+            <div>
+                <span style="font-weight: bold; width: 90px;"> Create By: </span> @Model.CreateBy
+                @Html.HiddenFor(m => m.CreateBy)
+            </div>
+            <div>
+                <span style="font-weight: bold; width: 90px;"> Create Date: </span> @Model.CreateDate
+                @Html.HiddenFor(m => m.CreateDate)
+            </div>
+        </div>
+        <div>
+            <div>
+                <span style="font-weight: bold; width: 122px;">Last Modify By: </span> @Model.LastModifyBy
+                @Html.HiddenFor(m => m.LastModifyBy)
+            </div>
+            <div>
+                <span style="font-weight: bold; width: 122px;">Last Modify Date:</span>@Model.LastModifyDate
+                @Html.HiddenFor(m => m.LastModifyDate)
+            </div>
         </div>
     </div>
-    <div>
-        <div>
-            <span style="font-weight: bold; width: 90px;"> Create By: </span> @Model.CreateBy
-            @Html.HiddenFor(m => m.CreateBy)
-        </div>
-        <div>
-            <span style="font-weight: bold; width: 90px;"> Create Date: </span> @Model.CreateDate
-            @Html.HiddenFor(m => m.CreateDate)
-        </div>
-    </div>
-    <div>
-        <div>
-            <span style="font-weight: bold; width: 122px;">Last Modify By: </span> @Model.LastModifyBy
-            @Html.HiddenFor(m => m.LastModifyBy)
-        </div>
-        <div>
-            <span style="font-weight: bold; width: 122px;">Last Modify Date:</span>@Model.LastModifyDate
-            @Html.HiddenFor(m => m.LastModifyDate)
-        </div>
-    </div>
-</div>
 
-<div style="margin-top: 6px; margin-left: 10px;">
-    <div style="float: left; margin-right: 10px; min-height: 385px;" class="panel panel-primary">
-        <div class="panel-heading"><p class="panel-title">Agency Information</p></div>
-        <div class="panel-body">
-            <div style="float: left;">
-                <div style="width: 290px; margin-bottom: 5px;">
-                    <label style="margin-bottom: 6px;">Logo Upload (PNG, JPG)</label>
-                    <div class="preview" style="width: 225px; height: 225px;">
-                        <div style="width: 35%; height: 50%; top: 40%; margin: 0 auto; position: relative;">
-                            No logo set.
+    <div style="margin-top: 6px; margin-left: 10px;">
+        <div style="float: left; margin-right: 10px; min-height: 385px;" class="panel panel-primary">
+            <div class="panel-heading"><p class="panel-title">Agency Information</p></div>
+            <div class="panel-body">
+                <div style="float: left;">
+                    <div style="width: 290px; margin-bottom: 5px;">
+                        <label style="margin-bottom: 6px;">Logo Upload (PNG, JPG)</label>
+                        <div class="preview" style="width: 225px; height: 225px;">
+                            <div style="width: 35%; height: 50%; top: 40%; margin: 0 auto; position: relative;">
+                                No logo set.
+                            </div>
                         </div>
+                        <input type="file" id="AgencyLogoPath" name="AgencyLogoPath" accept=".jpg, .jpeg, .png" onchange="updateImageDisplay(this)" style="margin-left: 60px; padding-top: 10px;">
                     </div>
-                    <input type="file" id="AgencyLogoPath" name="AgencyLogoPath" accept=".jpg, .jpeg, .png" onchange="updateImageDisplay(this)" style="margin-left: 60px; padding-top: 10px;">
                 </div>
-            </div>
-            <div style="float: left;">
-                <div style="width: 275px; margin-bottom: 5px;">
-                    @Html.LabelForRequired(model => model.Name, null)
-                    <span style="text-align: right; font-weight: bold;">
-                        @Html.EJ().CheckBoxFor(m => m.IsActive).ShowRoundedCorner(true).Text("Is Active")
-                    </span>
-                    @Html.TextBoxFor(m => m.Name, new { required = "required", name = "name", @class = "e-textbox e-animation", style = "width: 275px;" })
-                    @Html.ValidationMessageFor(model => model.Name)
-                </div>
-                <div style="width: 290px; margin-bottom: 5px;">
-                    @Html.LabelForRequired(model => model.Code, null)
-                    @Html.TextBoxFor(m => m.Code, new { required = "required", name = "code", @class = "e-textbox e-animation", style = "width: 275px;" })
-                    @Html.ValidationMessageFor(model => model.Code)
-                </div>
-                <div style="width: 290px; margin-bottom: 5px;">
-                    @Html.LabelForRequired(model => model.ContactName, null)
-                    @Html.TextBoxFor(m => m.ContactName, new { required = "required", name = "contactname", @class = "e-textbox e-animation", style = "width: 275px;" })
-                    @Html.ValidationMessageFor(model => model.ContactName)
-                </div>
-                <div style="width: 290px; margin-top: 6px; margin-bottom: 5px;">
-                    @Html.LabelForRequired(model => model.WebSite, null)
-                    @Html.TextBoxFor(m => m.WebSite, new { @class = "e-textbox e-animation", style = "width: 275px;" })
-                </div>
-                <div style="width: 290px; margin-bottom: 5px;">
-                    @Html.LabelForRequired(model => model.ParentAgencyId, null)
-                    @Html.EJ().DropDownListFor(o => o.ParentAgencyId, (DropDownListProperties)ViewBag.ParentAgencyDDL).Width("275")
+                <div style="float: left;">
+                    <div style="width: 275px; margin-bottom: 5px;">
+                        @Html.LabelForRequired(model => model.Name, null)
+                        <span style="text-align: right; font-weight: bold;">
+                            @Html.EJ().CheckBoxFor(m => m.IsActive).ShowRoundedCorner(true).Text("Is Active")
+                        </span>
+                        @Html.TextBoxFor(m => m.Name, new { required = "required", name = "name", @class = "e-textbox e-animation", style = "width: 275px;" })
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+                    <div style="width: 290px; margin-bottom: 5px;">
+                        @Html.LabelForRequired(model => model.Code, null)
+                        @Html.TextBoxFor(m => m.Code, new { required = "required", name = "code", @class = "e-textbox e-animation", style = "width: 275px;" })
+                        @Html.ValidationMessageFor(model => model.Code)
+                    </div>
+                    <div style="width: 290px; margin-bottom: 5px;">
+                        @Html.LabelForRequired(model => model.ContactName, null)
+                        @Html.TextBoxFor(m => m.ContactName, new { required = "required", name = "contactname", @class = "e-textbox e-animation", style = "width: 275px;" })
+                        @Html.ValidationMessageFor(model => model.ContactName)
+                    </div>
+                    <div style="width: 290px; margin-top: 6px; margin-bottom: 5px;">
+                        @Html.LabelForRequired(model => model.WebSite, null)
+                        @Html.TextBoxFor(m => m.WebSite, new { @class = "e-textbox e-animation", style = "width: 275px;" })
+                    </div>
+                    <div style="width: 290px; margin-bottom: 5px;">
+                        @Html.LabelForRequired(model => model.ParentAgencyId, null)
+                        @Html.EJ().DropDownListFor(o => o.ParentAgencyId, DdlDataSources.AgenciesDdl).Width("275")
 
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <div style="float: left; min-height: 385px;" class="panel panel-primary">
+            <div class="panel-heading">
+                <p class="panel-title">Provider Information</p>
+            </div>
+            <div class="panel-body">
+                <div style="float: left;">
+                    <div style="width: 290px; margin-top: 6px; margin-bottom: 5px;">
+                        @Html.LabelForRequired(model => model.NpiNumber, null, new { style = "width: auto;" })
+                        @Html.TextBoxFor(m => m.NpiNumber, new { required = "required", name = "npinumber", @class = "e-textbox e-animation", style = "width: 250px;" })
+                    </div>
+                    <div style="width: 290px; margin-bottom: 5px;">
+                        @Html.LabelForRequired(model => model.TaxIdNumber, null, new { style = "width: auto;" })
+                        @Html.TextBoxFor(m => m.TaxIdNumber, new { @class = "e-textbox e-animation", style = "width: 250px;" })
+                    </div>
+                    <div style="width: 290px; margin-bottom: 5px;">
+                        @Html.LabelForRequired(model => model.Taxonomy, null, new { style = "width: auto;" })
+                        @Html.TextBoxFor(m => m.Taxonomy, new { required = "required", name = "taxonomy", @class = "e-textbox e-animation", style = "width: 250px;" })
+                    </div>
+                    <div style="width: 290px; font-weight: bold;">
+                        @Html.EJ().CheckBoxFor(m => m.DisableLifetimeSignature).ShowRoundedCorner(true).Text("Disable Lifetime Signature")
+                    </div>
+                </div>
+                <div style="float: left; margin: 0 10px 5px;">
+                    @(Html.EJ().Grid<object>
+                          ("AgencyNumberGrid").HtmlAttributes(new { style = "width:400px; min-height: 210px;" })
+                          .Datasource(ds => ds.Json(@Model.AgencyNumbers))
+                          .IsResponsive()
+                          .EditSettings(edit =>
+                          {
+                              edit.AllowAdding()
+                                  .AllowEditing()
+                                  .AllowDeleting()
+                                  .EditMode(EditMode.InlineFormTemplate)
+                                  .InlineFormTemplateID("numberEditTemplate");
+                          })
+                          .ToolbarSettings(tools =>
+                          {
+                              tools.ShowToolbar()
+                                  .ToolbarItems(items =>
+                                  {
+                                      items.AddTool(ToolBarItems.Add);
+                                      items.AddTool(ToolBarItems.Edit);
+                                      items.AddTool(ToolBarItems.Delete);
+                                  });
+                          })
+                          .Columns(col =>
+                          {
+                              col.Field("Number").HeaderText("Number").Width(200).Priority(1).Add();
+                              col.Field("IgnoreTimeStamps").HeaderText("Ignore Time Stamps").TextAlign(TextAlign.Center).Priority(2).Width(200).Add();
+                          })
+                          .ClientSideEvents(events =>
+                          {
+                              events.ActionComplete("AgencyNumberGridEditComplete");
+                              events.ActionBegin("AgencyNumberGridEditBegin");
+                          }))
                 </div>
             </div>
-            <div class="clear"></div>
         </div>
+
+        <div class="clear"></div>
     </div>
-
-    <div style="float: left; min-height: 385px;" class="panel panel-primary">
-        <div class="panel-heading">
-            <p class="panel-title">Provider Information</p>
-        </div>
-        <div class="panel-body">
-            <div style="float: left;">
-                <div style="width: 290px; margin-top: 6px; margin-bottom: 5px;">
-                    @Html.LabelForRequired(model => model.NpiNumber, null, new { style = "width: auto;" })
-                    @Html.TextBoxFor(m => m.NpiNumber, new { required = "required", name = "npinumber", @class = "e-textbox e-animation", style = "width: 250px;" })
-                </div>
-                <div style="width: 290px; margin-bottom: 5px;">
-                    @Html.LabelForRequired(model => model.TaxIdNumber, null, new { style = "width: auto;" })
-                    @Html.TextBoxFor(m => m.TaxIdNumber, new { @class = "e-textbox e-animation", style = "width: 250px;" })
-                </div>
-                <div style="width: 290px; margin-bottom: 5px;">
-                    @Html.LabelForRequired(model => model.Taxonomy, null, new { style = "width: auto;" })
-                    @Html.TextBoxFor(m => m.Taxonomy, new { required = "required", name = "taxonomy", @class = "e-textbox e-animation", style = "width: 250px;" })
-                </div>
-                <div style="width: 290px; font-weight: bold;">
-                    @Html.EJ().CheckBoxFor(m => m.DisableLifetimeSignature).ShowRoundedCorner(true).Text("Disable Lifetime Signature")
-                </div>
-            </div>
-            <div style="float: left; margin: 0 10px 5px;">
-                @(Html.EJ().Grid<object>
-                      ("AgencyNumberGrid").HtmlAttributes(new { style = "width:400px; min-height: 210px;" })
-                      .Datasource(ds => ds.Json(ViewBag.AgencyNumberDataSource)
-                          .UpdateURL("/Administration/Administration/AgencyNumberUpdate")
-                          .InsertURL("/Administration/Administration/AgencyNumberInsert")
-                          .RemoveURL("/Administration/Administration/AgencyNumberDelete")
-                          .Adaptor(AdaptorType.RemoteSaveAdaptor))
-                      .IsResponsive()
-                      .EditSettings(edit =>
-                      {
-                          edit.AllowAdding()
-                              .AllowEditing()
-                              .AllowDeleting()
-                              .EditMode(EditMode.InlineFormTemplate)
-                              .InlineFormTemplateID("numberEditTemplate");
-                      })
-                      .ToolbarSettings(tools =>
-                      {
-                          tools.ShowToolbar()
-                              .ToolbarItems(items =>
-                              {
-                                  items.AddTool(ToolBarItems.Add);
-                                  items.AddTool(ToolBarItems.Edit);
-                                  items.AddTool(ToolBarItems.Delete);
-                              });
-                      })
-                      .Columns(col =>
-                      {
-                          col.Field("Number").HeaderText("Number").Width(200).Priority(1).Add();
-                          col.Field("IgnoreTimeStamps").HeaderText("Ignore Time Stamps").TextAlign(TextAlign.Center).Priority(2).Width(200).Add();
-                      })
-                      .ClientSideEvents(events =>
-                      {
-                          events.ActionComplete("actionNumberEditComplete");
-                          events.ActionBegin("actionNumberEditBegin");
-                      }))
-            </div>
-        </div>
-    </div>
-
-    <div class="clear"></div>
 </div>
 
 <script>
@@ -182,7 +179,64 @@
             }
         });
     });
-    
+
+    function AgencyNumberGridEditBegin(args) {
+        if (args.requestType === "save")
+            this.element.ejWaitingPopup("show");
+    }
+
+    function AgencyNumberGridEditComplete(args) {
+        var type = args.requestType;
+        if (type === "beginedit" || type === "add") {
+            $('#AgencyNumberGrid_inlineFormTitle').hide();
+
+            var agencyNumberRecord = null;
+            if (!ej.isNullOrUndefined(args.rowIndex))
+                agencyNumberRecord = this.model.currentViewData[args.rowIndex];
+
+            this.element.ejWaitingPopup("show");
+
+            if (type === "add") {
+                $.ajax({
+                    url: '@Url.Action("AgencyNumberAdd", "Administration", new {Area = "Administration"})',
+                    type: "POST",
+                    data: '{ agencyId: ' + $('#AgencyId').val() + '}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: ej.proxy(function (data) {
+                        var containerId = $("#" + this._id + "EditForm");
+
+                        containerId.html(data);
+
+                        ej.widget.init(containerId);
+
+                        this.element.ejWaitingPopup("hide");
+                    }, this)
+                });
+            } else {
+                $.ajax({
+                    url: '@Url.Action("AgencyNumberEdit", "Administration", new {Area = "Administration"})',
+                    type: "POST",
+                    data: '{ agencyNumber: ' + JSON.stringify(agencyNumberRecord) + '}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: ej.proxy(function (data) {
+                        var containerId = $("#" + this._id + "EditForm");
+
+                        containerId.html(data);
+
+                        ej.widget.init(containerId);
+
+                        this.element.ejWaitingPopup("hide");
+                    }, this)
+                });
+            }
+        }
+
+        if (args.requestType === "save")
+            this.element.ejWaitingPopup("hide");
+    }
+
     var preview = document.querySelector('.preview');
 
     function updateImageDisplay(input) {

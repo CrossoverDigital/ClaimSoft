@@ -1,0 +1,27 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eOutcome.09"  minOccurs="0"  maxOccurs="M"  dataTypeName="icd10CodeOutcomeProcedures"  isNillable="No">
+<name>Emergency Department Procedures</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The procedures performed on the patient during the emergency department visit.</definition>
+<v2Number></v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment>ICD-10-PCS has a seven character alphanumeric code structure. Each character contains up to 34 possible values. 
+							Each value represents a specific option for the general character definition (e.g., stomach is one of the values for the body part character). 
+							The ten digits 0-9 and the 24 letters A-H,J-N and P-Z may be used in each character. 
+							The letters O and I are not used in order to avoid confusion with the digits 0 and 1.
+							<br/>Website - http://uts.nlm.nih.gov  
+							<br/>Product - UMLS Metathesaurus</v3Comment>
+<v3Changes>Added to better evaluate EMS care.</v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <icd10CodeOutcomeProcedures baseType="string">
+    <facet name="pattern" value="[0-9A-HJ-NP-Z]{3,7}"/>
+  </icd10CodeOutcomeProcedures>
+</restrictions>
+<attributes>
+  <CorrelationID baseType="string"><facet name="minLength" value="0"/><facet name="maxLength" value="255"/></CorrelationID>
+</attributes>
+</element>

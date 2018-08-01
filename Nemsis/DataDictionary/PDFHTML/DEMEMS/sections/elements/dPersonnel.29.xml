@@ -1,0 +1,26 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="dPersonnel.29"  minOccurs="0"  maxOccurs="1"  dataTypeName="NationalRegistryCertificationLevel"  isNillable="No">
+<name>EMS Personnel's National Registry Certification Level</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The level of the current National Registry of Emergency Medical Technicians (NREMT) certification.</definition>
+<v2Number></v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment>The category EMT-Intermediate includes EMS professionals with an "85" or "99" certification level.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <NationalRegistryCertificationLevel baseType="string">
+    <facet name="enumeration" value="1529001" annotation="2009 Advanced Emergency Medical Technician (AEMT)"/>
+    <facet name="enumeration" value="1529003" annotation="2009 Emergency Medical Responder (EMR)"/>
+    <facet name="enumeration" value="1529005" annotation="2009 Emergency Medical Technician"/>
+    <facet name="enumeration" value="1529007" annotation="2009 Paramedic"/>
+    <facet name="enumeration" value="1529009" annotation="EMT-Basic"/>
+    <facet name="enumeration" value="1529011" annotation="EMT-Intermediate"/>
+    <facet name="enumeration" value="1529013" annotation="EMT-Paramedic"/>
+    <facet name="enumeration" value="1529015" annotation="First Responder"/>
+  </NationalRegistryCertificationLevel>
+</restrictions>
+</element>

@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -46,27 +49,75 @@
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="StackExchange.Redis, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StackExchange.Redis.1.2.6\lib\net46\StackExchange.Redis.dll</HintPath>
     </Reference>
-    <Reference Include="StackExchange.Redis.Extensions.Core, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StackExchange.Redis.Extensions.Core.2.4.0\lib\net45\StackExchange.Redis.Extensions.Core.dll</HintPath>
+    <Reference Include="StackExchange.Redis.Extensions.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=d7d863643bcd13ef, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.Extensions.Core.3.0.0\lib\netstandard2.0\StackExchange.Redis.Extensions.Core.dll</HintPath>
     </Reference>
-    <Reference Include="StackExchange.Redis.Extensions.Newtonsoft, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StackExchange.Redis.Extensions.Newtonsoft.2.3.0\lib\net45\StackExchange.Redis.Extensions.Newtonsoft.dll</HintPath>
+    <Reference Include="StackExchange.Redis.Extensions.Newtonsoft, Version=3.0.0.0, Culture=neutral, PublicKeyToken=d7d863643bcd13ef, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.Extensions.Newtonsoft.3.0.0\lib\netstandard2.0\StackExchange.Redis.Extensions.Newtonsoft.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis.StrongName, Version=1.2.6.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.StrongName.1.2.6\lib\net46\StackExchange.Redis.StrongName.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,7 +133,112 @@
     </Compile>
     <Compile Include="ClaimSoftContext.cs" />
     <Compile Include="IClaimSoftContext.cs" />
+    <Compile Include="Identity\ApplicationSignInManager.cs" />
+    <Compile Include="Identity\ApplicationUserManager.cs" />
+    <Compile Include="Identity\ApplicationUserStore.cs" />
+    <Compile Include="Model\Agency\Agency.cs" />
+    <Compile Include="Model\Agency\AgencyAddress.cs" />
+    <Compile Include="Model\Agency\AgencyEmail.cs" />
+    <Compile Include="Model\Agency\AgencyFile.cs" />
+    <Compile Include="Model\Agency\AgencyNumber.cs" />
+    <Compile Include="Model\Agency\AgencyPhone.cs" />
+    <Compile Include="Model\Agency\AgencyUser.cs" />
+    <Compile Include="Model\Authorization\Account\ExternalLoginConfirmation.cs" />
+    <Compile Include="Model\Authorization\Account\ExternalLoginList.cs" />
+    <Compile Include="Model\Authorization\Account\ForgotPassword.cs" />
+    <Compile Include="Model\Authorization\Account\Login.cs" />
+    <Compile Include="Model\Authorization\Account\Register.cs" />
+    <Compile Include="Model\Authorization\Account\ResetPassword.cs" />
+    <Compile Include="Model\Authorization\Account\SendCode.cs" />
+    <Compile Include="Model\Authorization\Account\VerifyCode.cs" />
+    <Compile Include="Model\Authorization\Manage\AddPhoneNumber.cs" />
+    <Compile Include="Model\Authorization\Manage\ChangePassword.cs" />
+    <Compile Include="Model\Authorization\Manage\ConfigureTwoFactor.cs" />
+    <Compile Include="Model\Authorization\Manage\Factor.cs" />
+    <Compile Include="Model\Authorization\Manage\Index.cs" />
+    <Compile Include="Model\Authorization\Manage\ManageLogins.cs" />
+    <Compile Include="Model\Authorization\Manage\SetPassword.cs" />
+    <Compile Include="Model\Authorization\Manage\VerifyPhoneNumber.cs" />
+    <Compile Include="Model\Claim\PatientCareReport.cs" />
+    <Compile Include="Model\Claim\PcrAssessmentExam.cs" />
+    <Compile Include="Model\Claim\PcrAssessmentExamsDifferent.cs" />
+    <Compile Include="Model\Claim\PcrAssessmentInjury.cs" />
+    <Compile Include="Model\Claim\PcrBilling.cs" />
+    <Compile Include="Model\Claim\PcrBillingConditionCode.cs" />
+    <Compile Include="Model\Claim\PcrBillingConditionCodesModifier.cs" />
+    <Compile Include="Model\Claim\PcrBillingInsurance.cs" />
+    <Compile Include="Model\Claim\PcrCpr.cs" />
+    <Compile Include="Model\Claim\PcrCprCardiacRhythmDelivery.cs" />
+    <Compile Include="Model\Claim\PcrCprIndicationAttemptResuscitate.cs" />
+    <Compile Include="Model\Claim\PcrDisposition.cs" />
+    <Compile Include="Model\Claim\PcrIntervention.cs" />
+    <Compile Include="Model\Claim\PcrInterventionMedication.cs" />
+    <Compile Include="Model\Claim\PcrInterventionProceduresPerformed.cs" />
+    <Compile Include="Model\Claim\PcrInterventionProceduresPerformedSuccessfulIvSite.cs" />
+    <Compile Include="Model\Claim\PcrInterventionProceduresPerformedTubeConfirmation.cs" />
+    <Compile Include="Model\Claim\PcrInterventionProceduresPerformedTubePlacement.cs" />
+    <Compile Include="Model\Claim\PcrMedicalDeviceData.cs" />
+    <Compile Include="Model\Claim\PcrMedicalHistory.cs" />
+    <Compile Include="Model\Claim\PcrMedicalHistoryAlcoholDrugIndicator.cs" />
+    <Compile Include="Model\Claim\PcrMedicalHistoryAllergy.cs" />
+    <Compile Include="Model\Claim\PcrMedicalHistoryCurrentMedication.cs" />
+    <Compile Include="Model\Claim\PcrMedicalHistoryImmunizationDetail.cs" />
+    <Compile Include="Model\Claim\PcrMedicalHistoryLivingWill.cs" />
+    <Compile Include="Model\Claim\PcrMedicalHistoryMedicationAllergy.cs" />
+    <Compile Include="Model\Claim\PcrMedicalHistoryPatientBarrier.cs" />
+    <Compile Include="Model\Claim\PcrMedicalHistoryPreexistingMedicalSurgery.cs" />
+    <Compile Include="Model\Claim\PcrMiscellaneous.cs" />
+    <Compile Include="Model\Claim\PcrMiscellaneousLocalAgencyResearchField.cs" />
+    <Compile Include="Model\Claim\PcrMiscellaneousPatientIndicationCriteriaRegistry.cs" />
+    <Compile Include="Model\Claim\PcrMiscellaneousPersonnelExposedFluid.cs" />
+    <Compile Include="Model\Claim\PcrMiscellaneousProtectiveEquipmentUsed.cs" />
+    <Compile Include="Model\Claim\PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorism.cs" />
+    <Compile Include="Model\Claim\PcrMiscellaneousTypeExposureBodilyFluid.cs" />
+    <Compile Include="Model\Claim\PcrNarrative.cs" />
+    <Compile Include="Model\Claim\PcrOutcomeLinkage.cs" />
+    <Compile Include="Model\Claim\PcrPatient.cs" />
+    <Compile Include="Model\Claim\PcrScene.cs" />
+    <Compile Include="Model\Claim\PcrSceneOtherEmsAgency.cs" />
+    <Compile Include="Model\Claim\PcrSceneOtherService.cs" />
+    <Compile Include="Model\Claim\PcrSituation.cs" />
+    <Compile Include="Model\Claim\PcrSituationOtherSymptom.cs" />
+    <Compile Include="Model\Claim\PcrSituationPriorAid.cs" />
+    <Compile Include="Model\Claim\PcrSituationPriorAidPerformedBy.cs" />
+    <Compile Include="Model\Claim\PcrTime.cs" />
+    <Compile Include="Model\Claim\PcrTrauma.cs" />
+    <Compile Include="Model\Claim\PcrTraumaAirbagDeployment.cs" />
+    <Compile Include="Model\Claim\PcrTraumaInjuryMechanism.cs" />
+    <Compile Include="Model\Claim\PcrTraumaOccupantSafetyEquipment.cs" />
+    <Compile Include="Model\Claim\PcrTraumaRiskFactorPredictor.cs" />
+    <Compile Include="Model\Claim\PcrTraumaVehicleImpactLocation.cs" />
+    <Compile Include="Model\Claim\PcrUnitAgency.cs" />
+    <Compile Include="Model\Claim\PcrUnitAgencyDispatchDelay.cs" />
+    <Compile Include="Model\Claim\PcrUnitAgencyResponseDelay.cs" />
+    <Compile Include="Model\Claim\PcrUnitAgencySceneDelay.cs" />
+    <Compile Include="Model\Claim\PcrUnitAgencyTransportDelay.cs" />
+    <Compile Include="Model\Claim\PcrUnitAgencyTurnAroundDelay.cs" />
+    <Compile Include="Model\Claim\PcrUnitCall.cs" />
+    <Compile Include="Model\Claim\PcrUnitPersonnel.cs" />
+    <Compile Include="Model\Claim\PcrVitalSignsAssessment.cs" />
+    <Compile Include="Model\Claim\PcrVitalSignsAssessmentInitialCardiacRhythm.cs" />
+    <Compile Include="Model\Common\AddressType.cs" />
+    <Compile Include="Model\Common\Country.cs" />
+    <Compile Include="Model\Common\County.cs" />
+    <Compile Include="Model\Common\EmailType.cs" />
+    <Compile Include="Model\Common\FileType.cs" />
+    <Compile Include="Model\Common\PhoneType.cs" />
+    <Compile Include="Model\Common\SettingType.cs" />
+    <Compile Include="Model\Common\State.cs" />
+    <Compile Include="Model\Common\UnitRoundingType.cs" />
+    <Compile Include="Model\Role\AspNetRole.cs" />
+    <Compile Include="Model\System\ApplicationSetting.cs" />
+    <Compile Include="Model\User\AspNetUser.cs" />
+    <Compile Include="Model\User\AspNetUserClaim.cs" />
+    <Compile Include="Model\User\AspNetUserLogin.cs" />
+    <Compile Include="Model\User\AspNetUserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Identity\ApplicationUser.cs" />
+    <Compile Include="Identity\PasswordHistory.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +278,14 @@
     <ProjectReference Include="..\CD.ClaimSoft.Common\CD.ClaimSoft.Common.csproj">
       <Project>{36c91445-578a-4b59-ad20-a1b675e93cff}</Project>
       <Name>CD.ClaimSoft.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CD.ClaimSoft.Logging\CD.ClaimSoft.Logging.csproj">
+      <Project>{89fe1642-ab4e-425c-8902-16d2e6ce4516}</Project>
+      <Name>CD.ClaimSoft.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CD.ClaimSoft.Redis\CD.ClaimSoft.Redis.csproj">
+      <Project>{fb2399f9-21fc-4b59-8de5-4ef88b27b813}</Project>
+      <Name>CD.ClaimSoft.Redis</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,14 +9,14 @@
     Settings.ConnectionStringName = "ClaimSoftContext";   // Searches for this connection string in config files listed below in the ConfigFilenameSearchOrder setting
     // ConnectionStringName is the only required setting.
     // As an alternative to ConnectionStringName above, which must match your app/web.config connection string name, you can override them below
-    // Settings.ConnectionString = "Data Source=(local);Initial Catalog=Northwind;Integrated Security=True;Application Name=EntityFramework Reverse POCO Generator";
+    // Settings.ConnectionString = "Data Source=(local);Initial Catalog=Northwind;Integrated Security=True;Application Name=Framework Reverse POCO Generator";
     // Settings.ProviderName = "System.Data.SqlClient";
 
     Settings.Namespace = DefaultNamespace; // Override the default namespace here
     Settings.DbContextName = "ClaimSoftContext"; // Note: If generating separate files, please give the db context a different name from this tt filename.
     //Settings.DbContextInterfaceName = "IClaimSoftContext"; // Defaults to "I" + DbContextName or set string empty to not implement any interface.
     Settings.DbContextInterfaceBaseClasses = "System.IDisposable";    // Specify what the base classes are for your database context interface
-    Settings.DbContextBaseClass = "System.Data.Entity.DbContext";   // Specify what the base class is for your DbContext. For ASP.NET Identity use "IdentityDbContext<ApplicationUser>"
+    Settings.DbContextBaseClass = "IdentityDbContext<CD.ClaimSoft.Database.Identity.ApplicationUser>"; //"System.Data..DbContext";   // Specify what the base class is for your DbContext. For ASP.NET Id use "IdDbContext<ApplicationUser>"
     //Settings.DefaultConstructorArgument = "EnvironmentConnectionStrings.ClaimSoftContext"; //defaults to "Name=" + ConnectionStringName
     Settings.ConfigurationClassName = "Configuration"; // Configuration, Mapping, Map, etc. This is appended to the Poco class name to configure the mappings.
     Settings.FilenameSearchOrder = new[] { "app.config", "web.config" }; // Add more here if required. The config files are searched for in the local project first, then the whole solution second.
@@ -36,8 +36,8 @@
     Settings.IncludeViews = true;
     Settings.IncludeSynonyms = false;
     Settings.IncludeStoredProcedures = true;
-    Settings.IncludeTableValuedFunctions = false; // If true, you must set IncludeStoredProcedures = true, and install the "EntityFramework.CodeFirstStoreFunctions" Nuget Package.
-    Settings.DisableGeographyTypes = false; // Turns off use of System.Data.Entity.Spatial.DbGeography and System.Data.Entity.Spatial.DbGeometry as OData doesn't support entities with geometry/geography types.
+    Settings.IncludeTableValuedFunctions = false; // If true, you must set IncludeStoredProcedures = true, and install the "Framework.CodeFirstStoreFunctions" Nuget Package.
+    Settings.DisableGeographyTypes = false; // Turns off use of System.Data..Spatial.DbGeography and System.Data..Spatial.DbGeometry as OData doesn't support entities with geometry/geography types.
     //Settings.CollectionInterfaceType = "System.Collections.Generic.List"; // Determines the declaration type of collections for the Navigation Properties. ICollection is used if not set.
     Settings.CollectionType = "System.Collections.Generic.List";  // Determines the type of collection for the Navigation Properties. "ObservableCollection" for example. Add "System.Collections.ObjectModel" to AdditionalNamespaces if setting the CollectionType = "ObservableCollection".
     Settings.NullableShortHand = true; //true => T?, false => Nullable<T>
@@ -46,7 +46,7 @@
     Settings.IncludeQueryTraceOn9481Flag = false; // If SqlServer 2014 appears frozen / take a long time when this file is saved, try setting this to true (you will also need elevated privileges).
     Settings.IncludeCodeGeneratedAttribute = true; // If true, will include the GeneratedCode attribute, false to remove it.
     Settings.UsePrivateSetterForComputedColumns = true; // If the columns is computed, use a private setter.
-    Settings.AdditionalNamespaces = new[] { "" };  // To include extra namespaces, include them here. i.e. "Microsoft.AspNet.Identity.EntityFramework"
+    Settings.AdditionalNamespaces = new[] { "Microsoft.AspNet.Identity.EntityFramework" };  // To include extra namespaces, include them here. i.e. "Microsoft.AspNet.Identity.EntityFramework"
     Settings.AdditionalContextInterfaceItems = new[] // To include extra db context interface items, include them here. Also set MakeClassesPartial=true, and implement the partial DbContext class functions.
     {
         ""  //  example: "void SetAutoDetectChangesEnabled(bool flag);"
@@ -98,7 +98,7 @@
     // For Spanish pluralization:
     //      1. Intall the "EF6.Contrib" Nuget Package.
     //      2. Add the following to the top of this file and adjust path, and remove the space between the angle bracket and # at the beginning and end.
-    //         < #@ assembly name="your full path to \EntityFramework.Contrib.dll" # >
+    //         < #@ assembly name="your full path to \Framework.Contrib.dll" # >
     //      3. Change the line below to: Inflector.PluralizationService = new SpanishPluralizationService();
     Inflector.PluralizationService = new EnglishPluralizationService();
     // If pluralisation does not do the right thing, override it here by adding in a custom entry.
@@ -117,9 +117,9 @@
 
     // Use these namespaces to specify where the different elements now live. These may even be in different assemblies.
     // Please note this does not create the files in these locations, it only adds a using statement to say where they are.
-    // The way to do this is to add the "EntityFramework Reverse POCO Code First Generator" into each of these folders.
+    // The way to do this is to add the "Framework Reverse POCO Code First Generator" into each of these folders.
     // Then set the .tt to only generate the relevant section you need by setting
-    //      ElementsToGenerate = Elements.Poco; in your Entity folder,
+    //      ElementsToGenerate = Elements.Poco; in your  folder,
     //      ElementsToGenerate = Elements.Context | Elements.UnitOfWork; in your Context folder,
     //      ElementsToGenerate = Elements.PocoConfiguration; in your Maps folder.
     //      PocoNamespace = "YourProject.Entities";
@@ -142,8 +142,8 @@
     // Table Suffix ***********************************************************************************************************************
     // Prepends the suffix to the generated classes names
     // Ie. If TableSuffix is "Dto" then Order will be OrderDto
-    //     If TableSuffix is "Entity" then Order will be OrderEntity
-    Settings.TableSuffix = null;
+    //     If TableSuffix is "" then Order will be Order
+    Settings.TableSuffix = "Entity";
 
     // Filtering **************************************************************************************************************************
     // Use the following table/view name regex filters to include or exclude tables/views
@@ -161,9 +161,10 @@
     //              TableFilterInclude = new Regex("(.*_FR_.*)|(data_.*)");
     //              TableFilterInclude = new Regex("^table_name1$|^table_name2$|etc");
     //              ColumnFilterExclude = new Regex("^FK_.*$");
+    
     Settings.SchemaFilterExclude = null;
     Settings.SchemaFilterInclude = null;
-    Settings.TableFilterExclude = new Regex("^_.");
+    Settings.TableFilterExclude = new Regex("^__MigrationHistory$|^_AgencyImport$|^_AgencyLogo$|^AspNetRoles$|^AspNetUserClaims$|^AspNetUserLogins$|^AspNetUserRoles$|^AspNetUsers$");
     Settings.TableFilterInclude = null;
     Settings.ColumnFilterExclude = null;
 
@@ -303,9 +304,9 @@
 
     // StoredProcedure return types *******************************************************************************************************
     // Override generation of return models for stored procedures that return entities.
-    // If a stored procedure returns an entity, add it to the list below.
-    // This will suppress the generation of the return model, and instead return the entity.
-    // Example:                       Proc name      Return this entity type instead
+    // If a stored procedure returns an , add it to the list below.
+    // This will suppress the generation of the return model, and instead return the .
+    // Example:                       Proc name      Return this  type instead
     //StoredProcedureReturnTypes.Add("SalesByYear", "SummaryOfSalesByYear");
 
 
@@ -347,7 +348,7 @@
     Func<Table, string> WritePocoBaseClasses = t =>
     {
         //if (t.ClassName == "User")
-        //    return ": IdentityUser<int, CustomUserLogin, CustomUserRole, CustomUserClaim>";
+        //    return ": IdUser<int, CustomUserLogin, CustomUserRole, CustomUserClaim>";
 
         // Or use the maker class to dynamically build more complex definitions
         /* Example:

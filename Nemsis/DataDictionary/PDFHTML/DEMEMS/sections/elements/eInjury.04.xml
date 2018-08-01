@@ -1,0 +1,40 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eInjury.04"  minOccurs="1"  maxOccurs="M"  dataTypeName="VehicularInjuryIndicators"  isNillable="Yes">
+<name>Vehicular, Pedestrian, or Other Injury Risk Factor</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>Mechanism and Special Considerations Field Trauma Triage Criteria (steps 3 and 4) as defined by the Centers for Disease Control.</definition>
+<v2Number>E10_04</v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Assesses mechanism of injury and evidence of high-energy impact (Step 3) AND Assess special patient or system considerations (Step 4) based on CDC 2011 Guidelines for the Field Triage of Injured Patients Step 3 and 4. Website: http://www.cdc.gov/mmwr/pdf/rr/rr6101.pdf</v3Comment>
+<v3Changes>Added to better evaluate the CDC-ACS 2011 Guidelines for the Field Triage of Injured Patients. 
+							<br/>Website: http://www.cdc.gov/FieldTriage/</v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <VehicularInjuryIndicators baseType="string">
+    <facet name="enumeration" value="2904001" annotation="Auto v. Pedestrian/Bicyclist Thrown, Run Over, or &gt; 20 MPH Impact"/>
+    <facet name="enumeration" value="2904003" annotation="Fall Adults: &gt; 20 ft. (one story is equal to 10 ft.)"/>
+    <facet name="enumeration" value="2904005" annotation="Fall Children: &gt; 10 ft. or 2-3 times the height of the child"/>
+    <facet name="enumeration" value="2904007" annotation="Crash Death in Same Passenger Compartment"/>
+    <facet name="enumeration" value="2904009" annotation="Crash Ejection (partial or complete) from automobile"/>
+    <facet name="enumeration" value="2904011" annotation="Crash Intrusion, including roof: &gt; 12 in. occupant site; &gt; 18 in. any site"/>
+    <facet name="enumeration" value="2904013" annotation="Crash Vehicle Telemetry Data (AACN) Consistent with High Risk of Injury"/>
+    <facet name="enumeration" value="2904015" annotation="Motorcycle Crash &gt; 20 MPH"/>
+    <facet name="enumeration" value="2904017" annotation="SBP &lt; 110 for age &gt; 65"/>
+    <facet name="enumeration" value="2904019" annotation="Anticoagulants and Bleeding Disorders"/>
+    <facet name="enumeration" value="2904021" annotation="Pregnancy &gt; 20 weeks"/>
+    <facet name="enumeration" value="2904023" annotation="EMS Provider Judgment"/>
+    <facet name="enumeration" value="2904025" annotation="Burn, without other trauma"/>
+    <facet name="enumeration" value="2904027" annotation="Burn, with trauma mechanism"/>
+  </VehicularInjuryIndicators>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+  <CorrelationID baseType="string"><facet name="minLength" value="0"/><facet name="maxLength" value="255"/></CorrelationID>
+</attributes>
+</element>

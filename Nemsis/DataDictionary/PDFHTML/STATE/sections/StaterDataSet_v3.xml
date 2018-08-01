@@ -1,0 +1,11 @@
+<?xml-stylesheet type="text/xsl" href="../xslt/grouping.xslt"?>
+<section name="StaterDataSet">
+  <element number="dConfiguration.01" minOccurs="1" maxOccurs="1" CorrelationID="" isNillable="No" dataType="ANSIStateCode"><name>State Associated with the Certification/Licensure Levels</name><refNumber></refNumber><national>Yes</national><deprecated></deprecated><state>Yes</state><usage>Mandatory</usage><notValue></notValue><pertinentNegative></pertinentNegative></element>
+  <group number="dCustomConfiguration" minOccurs="0" maxOccurs="1" CorrelationID="" isNillable="No"/>
+  <group number="eCustomConfiguration" minOccurs="0" maxOccurs="1" CorrelationID="" isNillable="No"/>
+  <group number="dState" minOccurs="0" maxOccurs="1" CorrelationID="" isNillable="No"/>
+  <group number="eState" minOccurs="0" maxOccurs="1" CorrelationID="" isNillable="No"/>
+  <group number="dConfiguration" minOccurs="0" maxOccurs="1" CorrelationID="" isNillable="No"/>
+  <group number="dAgency" minOccurs="0" maxOccurs="1" CorrelationID="" isNillable="No"/>
+  <group number="dFacility" minOccurs="0" maxOccurs="1" CorrelationID="" isNillable="No"/>
+</section>

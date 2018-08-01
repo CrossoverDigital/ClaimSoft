@@ -1,0 +1,38 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eCad.15"  minOccurs="0"  maxOccurs="M"  dataTypeName="EMSUnitDelayReason"  isNillable="No">
+<name>Type of Response Delay</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The response delays, if any, of the EMS unit associated with the EMS event.</definition>
+<v2Number>E02_07</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>Response</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Rendezvous Transport Unavailable added for situations where there is a wait for an EMS Transport Unit, a Ferry, Air Medical, etc. to return to service.             <br/><br/>A response delay is any time delay that occurs from the time the unit is notified by dispatch (eTimes.03) to the time the unit arrived on scene (eTimes.06).</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <EMSUnitDelayReason baseType="string">
+    <facet name="enumeration" value="2209001" annotation="Crowd"/>
+    <facet name="enumeration" value="2209003" annotation="Directions/Unable to Locate"/>
+    <facet name="enumeration" value="2209005" annotation="Distance"/>
+    <facet name="enumeration" value="2209007" annotation="Diversion (Different Incident)"/>
+    <facet name="enumeration" value="2209009" annotation="HazMat"/>
+    <facet name="enumeration" value="2209011" annotation="None/No Delay"/>
+    <facet name="enumeration" value="2209013" annotation="Other"/>
+    <facet name="enumeration" value="2209015" annotation="Rendezvous Transport Unavailable"/>
+    <facet name="enumeration" value="2209017" annotation="Route Obstruction (e.g., Train)"/>
+    <facet name="enumeration" value="2209019" annotation="Scene Safety (Not Secure for EMS)"/>
+    <facet name="enumeration" value="2209021" annotation="Staff Delay"/>
+    <facet name="enumeration" value="2209023" annotation="Traffic"/>
+    <facet name="enumeration" value="2209025" annotation="Vehicle Crash Involving this Unit"/>
+    <facet name="enumeration" value="2209027" annotation="Vehicle Failure of this Unit"/>
+    <facet name="enumeration" value="2209029" annotation="Weather"/>
+    <facet name="enumeration" value="2209031" annotation="Mechanical Issue-Unit, Equipment, etc."/>
+    <facet name="enumeration" value="2209033" annotation="Flight Planning"/>
+  </EMSUnitDelayReason>
+</restrictions>
+<attributes>
+  <CorrelationID baseType="string"><facet name="minLength" value="0"/><facet name="maxLength" value="255"/></CorrelationID>
+</attributes>
+</element>

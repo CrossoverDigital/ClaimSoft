@@ -6,11 +6,11 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 #endregion
 
-using System;
-using System.Configuration;
+using System.Web;
 using System.Web.Mvc;
-
-using StackExchange.Redis;
+using CD.ClaimSoft.Database.Identity;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace CD.ClaimSoft.UI.Common
 {
@@ -21,22 +21,5 @@ namespace CD.ClaimSoft.UI.Common
     /// <seealso cref="T:System.Web.Mvc.Controller" />
     public class BaseController : Controller
     {
-        /// <summary>
-        /// Redis Connection string info.
-        /// </summary>
-        static readonly Lazy<ConnectionMultiplexer> LazyConnection = new Lazy<ConnectionMultiplexer>(() =>
-        {
-            var cacheConnection = ConfigurationManager.AppSettings["CacheConnection"].ToString();
-
-            return ConnectionMultiplexer.Connect(cacheConnection);
-        });
-
-        /// <summary>
-        /// Gets the Redis connection.
-        /// </summary>
-        /// <value>
-        /// The Redis connection.
-        /// </value>
-        public static ConnectionMultiplexer Connection => LazyConnection.Value;
     }
 }

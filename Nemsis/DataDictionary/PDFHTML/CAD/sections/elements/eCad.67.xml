@@ -1,0 +1,23 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eCad.67"  minOccurs="0"  maxOccurs="1"  dataTypeName="AgeUnits"  isNillable="No">
+<name>Age Units</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The unit used to define the patient's age</definition>
+<v2Number>E06_15</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>Response</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment></v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <AgeUnits baseType="string">
+    <facet name="enumeration" value="2516001" annotation="Days"/>
+    <facet name="enumeration" value="2516003" annotation="Hours"/>
+    <facet name="enumeration" value="2516005" annotation="Minutes"/>
+    <facet name="enumeration" value="2516007" annotation="Months"/>
+    <facet name="enumeration" value="2516009" annotation="Years"/>
+  </AgeUnits>
+</restrictions>
+</element>

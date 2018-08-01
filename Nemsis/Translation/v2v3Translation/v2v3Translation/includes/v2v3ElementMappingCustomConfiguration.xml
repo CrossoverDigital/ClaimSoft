@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<v2v3ElementMappingCustomConfiguration xmlns="http://www.nemsis.org">
+	<match>
+		<customElementId>D01_11</customElementId>
+		<customTitle>Other Agencies In Area</customTitle>
+		<customDefinition>All other EMS or First Responder Agencies, which are in the service area or are available for mutual aid</customDefinition>
+		<customDataType>9902009</customDataType>
+		<customDataElementRecurrence>9923003</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>D04_03</customElementId>
+		<customTitle>Zones</customTitle>
+		<customDefinition>The geographic zones used by an agency to divide the service area into smaller geographic components.  These zones can be defined locally using any method which will allow easy assignment of locations to their respective zone</customDefinition>
+		<customDataType>9902009</customDataType>
+		<customDataElementRecurrence>9923003</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customTitle>Procedures</customTitle>
+		<nemsisElement>dConfiguration.07</nemsisElement>
+		<customDefinition>A list of all procedures that the agency has implemented and available for use.</customDefinition>
+		<customDataType>9902009</customDataType>
+		<customDataElementRecurrence>9923001</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+	</match>
+	<match>
+		<customElementId>D04_09</customElementId>
+		<customTitle>Personnel Level Permitted to Use the Protocol</customTitle>
+		<customDefinition>All personnel levels which are permitted to use the associated Protocol</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923003</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+	</match>
+	<match>
+		<customElementId>D04_16</customElementId>
+		<customTitle>Insurance Companies Used</customTitle>
+		<customDefinition>A list of insurance companies which are prevalent in the Agencies service area</customDefinition>
+		<customDataType>9902009</customDataType>
+		<customDataElementRecurrence>9923003</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+	</match>
+	<match>
+		<customElementId>D05_03</customElementId>
+		<customTitle>Station Zone</customTitle>
+		<customDefinition>The geographic zone or location of the agency's station</customDefinition>
+		<customDataType>9902009</customDataType>
+		<customDataElementRecurrence>9923001</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>D08_16</customElementId>
+		<customTitle>National Registry Credentialed</customTitle>
+		<customDefinition>Indication of National Registry Credential for the level of Certification/Licensure in D08_15</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923001</customDataElementRecurrence>
+		<elementUsage>9903003</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E02_14</customElementId>
+		<customTitle>Vehicle Dispatch Zone</customTitle>
+		<customDefinition>Geographic zone representing the location of the responding vehicle at the time of dispatch.</customDefinition>
+		<customDataType>9902009</customDataType>
+		<customDataElementRecurrence>9923001</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E07_36</customElementId>
+		<customTitle>ICD-9 Code for the Condition Code Number</customTitle>
+		<nemsisElement>ePayment.51</nemsisElement>
+		<customDefinition>The ICD-9 Code assigned by CMS for the condition code documented in E7.35.  Please consult CMS documentation for detailed descriptions of the Condition Codes and their use.</customDefinition>
+		<customDataType>9902009</customDataType>
+		<customDataElementRecurrence>9923001</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E08_03</customElementId>
+		<customTitle>Estimated Date/Time  Initial Responder Arrived on Scene</customTitle>
+		<customDefinition>The date/time differential between the initial responder and the EMS unit arriving on the scene, if applicable.</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923001</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E08_09</customElementId>
+		<customTitle>Scene Zone Number</customTitle>
+		<customDefinition>Geographic zone representing the location of the scene</customDefinition>
+		<customDataType>9902009</customDataType>
+		<customDataElementRecurrence>9923001</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customTitle>Prior Aid</customTitle>
+		<nemsisElement>eProcedures.03</nemsisElement>
+		<customDefinition>Any care which was provided to the patient prior to the arrival of this unit.</customDefinition>
+		<customDataType>9902009</customDataType>
+		<customDataElementRecurrence>9923003</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E09_02</customElementId>
+		<customTitle>Prior Aid Performed by</customTitle>
+		<customDefinition>The type of individual who performed the care prior to the arrival of this unit.</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923003</customDataElementRecurrence>
+		<elementUsage>9903003</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E09_13</customElementId>
+		<customTitle>Primary Symptom</customTitle>
+		<nemsisElement>eSituation.09</nemsisElement>
+		<customDefinition>The primary sign and symptom present in the patient or observed by EMS personnel</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923001</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E09_14</customElementId>
+		<customTitle>Other Associated Symptoms</customTitle>
+		<nemsisElement>eSituation.10</nemsisElement>
+		<customDefinition>Other symptoms identified by the patient or observed by EMS personnel</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923003</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E10_02</customElementId>
+		<customTitle>Intent of the Injury</customTitle>
+		<customDefinition>The intent of the individual inflicting the injury</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923001</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E10_04</customElementId>
+		<customTitle>Vehicular Injury Indicators</customTitle>
+		<nemsisElement>eInjury.04</nemsisElement>
+		<customDefinition>The kind of risk factor predictors associated with the vehicle involved in the incident</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923003</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E10_05</customElementId>
+		<customTitle>Area of the Vehicle impacted by the collision</customTitle>
+		<nemsisElement>eInjury.05</nemsisElement>
+		<customDefinition>The area or location of impact on the vehicle</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923003</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E11_08</customElementId>
+		<customTitle>Estimated Time of  Arrest Prior to EMS Arrival</customTitle>
+		<customDefinition>The length of time the patient was down (estimated) before the responding unit arrived at the patient</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923001</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E14_28</customElementId>
+		<customTitle>Pediatric Trauma Score</customTitle>
+		<customDefinition>The Trauma Score for patients age 12 and under</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923001</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+	</match>
+	<match>
+		<customElementId>E15_01</customElementId>
+		<customTitle>NHTSA Injury Matrix External/Skin</customTitle>
+		<nemsisElement>eExam.04</nemsisElement>
+		<customDefinition>Type of injury identified and associated with the external body/Skin (including burns)</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923003</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E15_11</customElementId>
+		<customTitle>NHTSA Injury Matrix Unspecified</customTitle>
+		<customDefinition>Type of injury identified and associated with Unspecified</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923003</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customTitle>Procedure</customTitle>
+		<nemsisElement>eProcedures.03</nemsisElement>
+		<customDefinition>The procedure performed on the patient.</customDefinition>
+		<customDataType>9902009</customDataType>
+		<customDataElementRecurrence>9923001</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customTitle>Successful IV Site</customTitle>
+		<customDefinition>The location of the IV site (if applicable) on the patient</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923003</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E20_09</customElementId>
+		<customTitle>Destination Zone Number</customTitle>
+		<customDefinition>The zone number of the destination the patient was delivered or transferred to</customDefinition>
+		<customDataType>9902009</customDataType>
+		<customDataElementRecurrence>9923001</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E20_15</customElementId>
+		<customTitle>Condition of Patient at Destination</customTitle>
+		<nemsisElement>eDisposition.19</nemsisElement>
+		<customDefinition>The condition of the patient after care by EMS</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923001</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E23_07</customElementId>
+		<customTitle>Personnel Exposed</customTitle>
+		<customDefinition>The EMS personnel who was/were exposed to unprotected contact with blood or body fluids</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923003</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+	<match>
+		<customElementId>E23_08</customElementId>
+		<customTitle>Required Reportable Conditions</customTitle>
+		<customDefinition>The presence of any condition which is reportable based on federal or state regulations.</customDefinition>
+		<customDataType>9902005</customDataType>
+		<customDataElementRecurrence>9923001</customDataElementRecurrence>
+		<elementUsage>9903007</elementUsage>
+		<customAcceptableNV>NV</customAcceptableNV>
+	</match>
+</v2v3ElementMappingCustomConfiguration>

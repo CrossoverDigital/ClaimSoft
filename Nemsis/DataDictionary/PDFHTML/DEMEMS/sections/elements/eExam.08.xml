@@ -1,0 +1,72 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eExam.08"  minOccurs="0"  maxOccurs="M"  dataTypeName="ChestLungsAssessment"  isNillable="No">
+<name>Chest/Lungs Assessment</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The assessment findings associated with the patient's chest/lungs.</definition>
+<v2Number>E16_07</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Element eExam.08 - Chest/Lungs Assessment represents Version 2.2.1 element E16_07 Chest/Lungs Assessment. The element value choices have been expanded.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <ChestLungsAssessment baseType="string">
+    <facet name="enumeration" value="3508001" annotation="Abrasion"/>
+    <facet name="enumeration" value="3508003" annotation="Avulsion"/>
+    <facet name="enumeration" value="3508005" annotation="Accessory Muscles Used with Breathing"/>
+    <facet name="enumeration" value="3508007" annotation="Bleeding Controlled"/>
+    <facet name="enumeration" value="3508009" annotation="Bleeding Uncontrolled"/>
+    <facet name="enumeration" value="3508011" annotation="Breath Sounds-Absent-Left"/>
+    <facet name="enumeration" value="3508013" annotation="Breath Sounds-Absent-Right"/>
+    <facet name="enumeration" value="3508015" annotation="Breath Sounds-Decreased Left"/>
+    <facet name="enumeration" value="3508017" annotation="Breath Sounds-Decreased Right"/>
+    <facet name="enumeration" value="3508019" annotation="Breath Sounds-Equal"/>
+    <facet name="enumeration" value="3508021" annotation="Breath Sounds-Normal-Left"/>
+    <facet name="enumeration" value="3508023" annotation="Breath Sounds-Normal-Right"/>
+    <facet name="enumeration" value="3508025" annotation="Burn-Blistering"/>
+    <facet name="enumeration" value="3508027" annotation="Burn-Charring"/>
+    <facet name="enumeration" value="3508029" annotation="Burn-Redness"/>
+    <facet name="enumeration" value="3508031" annotation="Burn-White/Waxy"/>
+    <facet name="enumeration" value="3508033" annotation="Crush Injury"/>
+    <facet name="enumeration" value="3508035" annotation="Deformity"/>
+    <facet name="enumeration" value="3508037" annotation="Flail Segment-Left"/>
+    <facet name="enumeration" value="3508039" annotation="Flail Segment-Right"/>
+    <facet name="enumeration" value="3508041" annotation="Foreign Body"/>
+    <facet name="enumeration" value="3508047" annotation="Increased Respiratory Effort"/>
+    <facet name="enumeration" value="3508049" annotation="Implanted Device"/>
+    <facet name="enumeration" value="3508051" annotation="Laceration"/>
+    <facet name="enumeration" value="3508053" annotation="Normal"/>
+    <facet name="enumeration" value="3508055" annotation="Not Done"/>
+    <facet name="enumeration" value="3508057" annotation="Pain"/>
+    <facet name="enumeration" value="3508059" annotation="Pain with Inspiration/expiration-Left"/>
+    <facet name="enumeration" value="3508061" annotation="Pain with Inspiration/expiration-Right"/>
+    <facet name="enumeration" value="3508063" annotation="Puncture/Stab Wound"/>
+    <facet name="enumeration" value="3508065" annotation="Rales-Left"/>
+    <facet name="enumeration" value="3508067" annotation="Rales-Right"/>
+    <facet name="enumeration" value="3508069" annotation="Retraction"/>
+    <facet name="enumeration" value="3508071" annotation="Rhonchi-Left"/>
+    <facet name="enumeration" value="3508073" annotation="Rhonchi-Right"/>
+    <facet name="enumeration" value="3508075" annotation="Rhonchi/Wheezing"/>
+    <facet name="enumeration" value="3508077" annotation="Stridor-Left"/>
+    <facet name="enumeration" value="3508079" annotation="Stridor-Right"/>
+    <facet name="enumeration" value="3508085" annotation="Tenderness-Left"/>
+    <facet name="enumeration" value="3508087" annotation="Tenderness-Right"/>
+    <facet name="enumeration" value="3508089" annotation="Wheezing-Expiratory - Left"/>
+    <facet name="enumeration" value="3508091" annotation="Wheezing-Expiratory - Right"/>
+    <facet name="enumeration" value="3508093" annotation="Wheezing-Inspiratory - Left"/>
+    <facet name="enumeration" value="3508095" annotation="Wheezing-Inspiratory - Right"/>
+    <facet name="enumeration" value="3508097" annotation="Gunshot Wound"/>
+    <facet name="enumeration" value="3508099" annotation="Swelling"/>
+    <facet name="enumeration" value="3508101" annotation="Contusion"/>
+    <facet name="enumeration" value="3508103" annotation="Tenderness-General"/>
+  </ChestLungsAssessment>
+</restrictions>
+<attributes>
+  <CorrelationID baseType="string"><facet name="minLength" value="0"/><facet name="maxLength" value="255"/></CorrelationID>
+  <PN>
+    <PN.ExamFindingNotPresent><facet name="enumeration" value="8801005" annotation="Exam Finding Not Present"/></PN.ExamFindingNotPresent>
+  </PN>
+</attributes>
+</element>

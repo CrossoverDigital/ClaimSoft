@@ -1,0 +1,39 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eHistory.12"  minOccurs="0"  maxOccurs="1"  dataTypeName="Medication"  isNillable="Yes">
+<name>Current Medications</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>The medications the patient currently takes</definition>
+<v2Number>E12_14</v2Number>
+<usage>Recommended</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment>List of medications based on RxNorm (RXCUI) code. 
+<br/><br/>Reference the NEMSIS Suggested Lists at: http://nemsis.org/v3/resources.html 
+<br/><br/>RxNorm 
+<br/>Website - http://uts.nlm.nih.gov 
+<br/><br/>Product - UMLS Metathesaurus 
+<br/>Website - http://www.nlm.nih.gov/research/umls/rxnorm/docs/rxnormfiles.html 
+<br/>Product - RxNorm Full Monthly Release</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <Medication baseType="string">
+    <facet name="minLength" value="2"/>
+    <facet name="maxLength" value="7"/>
+  </Medication>
+</restrictions>
+<attributes>
+  <PN>
+    <PN.NoneReported><facet name="enumeration" value="8801015" annotation="None Reported"/></PN.NoneReported>
+    <PN.Refused><facet name="enumeration" value="8801019" annotation="Refused"/></PN.Refused>
+    <PN.Unresponsive><facet name="enumeration" value="8801021" annotation="Unresponsive"/></PN.Unresponsive>
+    <PN.UnableToComplete><facet name="enumeration" value="8801023" annotation="Unable to Complete"/></PN.UnableToComplete>
+  </PN>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+    <NV.NotReporting><facet name="enumeration" value="7701005" annotation="Not Reporting"/></NV.NotReporting>
+  </NV>
+</attributes>
+</element>

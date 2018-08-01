@@ -1,0 +1,54 @@
+'DatasetName'|'DatasetType'|'ElementNumber'|'ElementName'|'EMS Element'|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.01'|'Custom Data Element Title'|''|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.02'|'Custom Definition'|''|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.03'|'Custom Data Type'|''|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.04'|'Custom Data Element Recurrence'|''|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.05'|'Custom Data Element Usage'|''|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.06'|'Custom Data Element Potential Values'|''|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.07'|'Custom Data Element Potential NOT Values (NV)'|''|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|''|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.09'|'Custom Data Element Grouping ID'|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.10'|'Patient Care Report Number'|'eRecord.01'|
+'MedDeviceDataSet'|'element'|'eMedDevice.11'|'Last Name'|'ePatient.02'|
+'MedDeviceDataSet'|'element'|'eMedDevice.12'|'First Name'|'ePatient.03'|
+'MedDeviceDataSet'|'element'|'eMedDevice.13'|'Middle Initial/Name'|'ePatient.04'|
+'MedDeviceDataSet'|'element'|'eMedDevice.14'|'Gender'|'ePatient.13'|
+'MedDeviceDataSet'|'element'|'eMedDevice.15'|'Race'|'ePatient.14'|
+'MedDeviceDataSet'|'element'|'eMedDevice.16'|'Age'|'ePatient.15'|
+'MedDeviceDataSet'|'element'|'eMedDevice.17'|'Age Units'|'ePatient.16'|
+'MedDeviceDataSet'|'element'|'eMedDevice.19'|'Date/Time Vital Signs Taken'|'eVitals.01'|
+'MedDeviceDataSet'|'element'|'eMedDevice.23'|'SBP (Systolic Blood Pressure)'|'eVitals.06'|
+'MedDeviceDataSet'|'element'|'eMedDevice.24'|'DBP (Diastolic Blood Pressure)'|'eVitals.07'|
+'MedDeviceDataSet'|'element'|'eMedDevice.25'|'Method of Blood Pressure Measurement'|'eVitals.08'|
+'MedDeviceDataSet'|'element'|'eMedDevice.26'|'Mean Arterial Pressure'|'eVitals.09'|
+'MedDeviceDataSet'|'element'|'eMedDevice.27'|'Heart Rate'|'eVitals.10'|
+'MedDeviceDataSet'|'element'|'eMedDevice.28'|'Method of Heart Rate Measurement'|'eVitals.11'|
+'MedDeviceDataSet'|'element'|'eMedDevice.29'|'Pulse Oximetry'|'eVitals.12'|
+'MedDeviceDataSet'|'element'|'eMedDevice.30'|'Respiratory Rate'|'eVitals.14'|
+'MedDeviceDataSet'|'element'|'eMedDevice.31'|'End Tidal Carbon Dioxide (ETCO2)'|'eVitals.16'|
+'MedDeviceDataSet'|'element'|'eMedDevice.32'|'Carbon Monoxide (CO)'|'eVitals.17'|
+'MedDeviceDataSet'|'element'|'eMedDevice.33'|'Blood Glucose Level'|'eVitals.18'|
+'MedDeviceDataSet'|'element'|'eMedDevice.34'|'Temperature'|'eVitals.24'|
+'MedDeviceDataSet'|'element'|'eMedDevice.35'|'Temperature Method'|'eVitals.25'|
+'MedDeviceDataSet'|'element'|'eMedDevice.36'|'Date/Time of Laboratory or Imaging Result'|'eLabs.01'|
+'MedDeviceDataSet'|'element'|'eMedDevice.37'|'Laboratory Result Type'|'eLabs.03'|
+'MedDeviceDataSet'|'element'|'eMedDevice.38'|'Laboratory Result'|'eLabs.04'|
+'MedDeviceDataSet'|'element'|'eMedDevice.39'|'Imaging Study Type'|'eLabs.05'|
+'MedDeviceDataSet'|'element'|'eMedDevice.40'|'Imaging Study Results'|'eLabs.06'|
+'MedDeviceDataSet'|'element'|'eMedDevice.41'|'Imaging Study File or Waveform Graphic Type'|'eLabs.07'|
+'MedDeviceDataSet'|'element'|'eMedDevice.42'|'Imaging Study File or Waveform Graphic'|'eLabs.08'|
+'MedDeviceDataSet'|'element'|'eMedDevice.43'|'Medical Device Serial Number'|'eDevice.01'|
+'MedDeviceDataSet'|'element'|'eMedDevice.44'|'Date/Time of Event (per Medical Device)'|'eDevice.02'|
+'MedDeviceDataSet'|'element'|'eMedDevice.45'|'Medical Device Event Type'|'eDevice.03'|
+'MedDeviceDataSet'|'element'|'eMedDevice.46'|'Medical Device Waveform Graphic Type'|'eDevice.04'|
+'MedDeviceDataSet'|'element'|'eMedDevice.47'|'Medical Device Waveform Graphic'|'eDevice.05'|
+'MedDeviceDataSet'|'element'|'eMedDevice.48'|'Medical Device Mode (Manual, AED, Pacing, CO2, O2, etc)'|'eDevice.06'|
+'MedDeviceDataSet'|'element'|'eMedDevice.49'|'Medical Device ECG Lead'|'eDevice.07'|
+'MedDeviceDataSet'|'element'|'eMedDevice.50'|'Medical Device ECG Interpretation'|'eDevice.08'|
+'MedDeviceDataSet'|'element'|'eMedDevice.51'|'Type of Shock'|'eDevice.09'|
+'MedDeviceDataSet'|'element'|'eMedDevice.52'|'Shock or Pacing Energy'|'eDevice.10'|
+'MedDeviceDataSet'|'element'|'eMedDevice.53'|'Total Number of Shocks Delivered'|'eDevice.11'|
+'MedDeviceDataSet'|'element'|'eMedDevice.54'|'Pacing Rate'|'eDevice.12'|
+'MedDeviceDataSet'|'element'|'eCustomResults.01'|'Custom Data Element Result'|''|
+'MedDeviceDataSet'|'element'|'eCustomResults.02'|'Custom Element ID Referenced'|''|
+'MedDeviceDataSet'|'element'|'eCustomResults.03'|'CorrelationID of PatientCareReport Element or Group'|''|

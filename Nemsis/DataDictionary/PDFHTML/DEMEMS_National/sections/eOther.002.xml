@@ -1,0 +1,6 @@
+<?xml-stylesheet type="text/xsl" href="../xslt/grouping.xslt"?>
+<section name="eOther">
+  <group number="eOther.EMSCrewMemberGroup" minOccurs="1" maxOccurs="M" CorrelationID="" isNillable="No">
+    <element number="eOther.05" minOccurs="1" maxOccurs="1" CorrelationID="" isNillable="Yes" dataType="YesNoValues"><name>Suspected EMS Work Related Exposure, Injury, or Death</name><refNumber></refNumber><national>Yes</national><deprecated></deprecated><state>Yes</state><usage>Required</usage><notValue>Yes</notValue><pertinentNegative></pertinentNegative></element>
+  </group>
+</section>

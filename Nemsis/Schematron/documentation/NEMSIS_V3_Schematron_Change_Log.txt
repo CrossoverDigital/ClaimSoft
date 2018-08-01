@@ -1,0 +1,178 @@
+NEMSIS Schematron Change Log
+
+
+
+3.4.0.170111
+
+
+National Patterns and Rules
+
+nemSch_consistency_eDisposition.12: Moved validation of eDisposition.19 from ERROR to WARNING.
+
+
+
+3.4.0.160713CP2
+
+
+National Patterns and Rules
+
+nemSch_consistency_dAgency.13: Corrected typo in comment from "eAgency.26" to "dAgency.26" (no impact on validation). (JForum 521)
+nemSch_sequence_time_eTimes: Removed eDisposition.25 from validation of eTimes.15, since eTimes.15 is checked in the validation of eDisposition.25 (removes redudant validation message when eTimes.15 and eDisposition.25 are out of sequence). (JForum 508)
+nemSch_consistency_dAgency.ServiceGroup: Corrected typo in comment from "dAgency.04" to "dAgency.05" (no impact on validation). (Jforum 507)
+
+
+Documentation Interface
+
+Improved and simplified Overview pages.
+
+
+
+3.4.0.160316CP1
+
+
+National Patterns and Rules
+
+Build number change only. No substantive changes.
+
+
+Schemas
+
+nemsis-schematron.sch: Modified validation of schema/@schemaVersion to allow version numbers with CP (critical patch) notation.
+
+
+
+3.4.0.151028
+
+
+National Patterns and Rules
+
+nemSch_sequence_time: Changed assertion messages in validation of eDisposition.25 to match the assertion tests.
+nemSch_consistency_dAgency.ServiceGroup: Changed validation of dAgency.07 to allow empty instances.
+
+
+
+3.4.0.150518
+
+
+National Patterns and Rules
+
+nemSch_consistency_eDisposition.12: Changed no_treatment flag to include Patient Refused Evaluation/Care. Fixed XPath references to eDisposition.05, 06, 07. Changed validation of eSituation elements to not apply when there is no treatment. Changed validation of eTimes.11 and eTimes.12 to only apply when a patient is transported by EMS. Changed validation of eSituation elements to only apply when a patient is treated
+
+nemSch_sequence_time: Fixed XPath reference to eVitals.02.
+
+nemSch_uniqueness_EMSDataSet: Corrected title.
+
+
+
+3.4.0.150302
+
+
+NEMSIS V3 Schematron Guide
+
+Verifying Validity of Schematron files: Added example commands for validating Schematron files.
+XSLT 2 Query Language Binding: Added section.
+XSLT document() Function: Added section.
+NEMSIS Schematron Development Kit: Added section.
+Reference Implementation: Added note about @document attribute in SVRL output. Added note about using APIs.
+
+
+National Patterns and Rules
+
+nemSch_consistency_dAgency.13: Added pattern.
+nemSch_consistency_dAgency.05_dAgency.06: Renamed pattern to nemSch_consistency_dAgency.ServiceGroup. Renamed rule and assert. Added rule nemSch_consistency_dAgency.ServiceGroup_dAgency.07.
+nemSch_consistency_delay: Renamed pattern to nemSch_uniqueness_EMSDataSet. Renamed rules and asserts. Added rules and asserts for other recurring national elements that have an enumerated value choice that is exclusive of other choices.
+nemSch_consistency_eArrest.03_eArrest.09: Renamed asserts. Added asserts to constrain eArrest.09 based on eArrest.03.
+nemSch_consistency_eArrest: Added constraint for eArrest.17.
+nemSch_consistency_eDisposition.12: Added constraints for additional elements that should be recorded based on eDisposition.12.
+nemSch_consistency_eDisposition: Added pattern.
+nemSch_consistency_eInjury: Added exclusion when there is no patient.
+nemSch_consistency_ePatient: Added pattern.
+nemSch_consistency_eScene: Added assert nemSch_consistency_eScene.07_mci_eScene.08. Added rule nemSch_consistency_eScene.21.
+nemSch_consistency_eSituation: Added rule nemSch_consistency_eSituation_injury.
+nemSch_consistency_group: Added rule nemSch_consistency_eMedications.DosageGroup.
+nemSch_consistency_nilNvPn: Removed references to eInjury.04 (no longer allows @PN). Updated text in assert nemSch_nilNvPn_nil_Nv.
+nemSch_format_ansi: Removed pattern.
+nemSch_lookup_elements: Updated element list.
+nemSch_sequence_dAgency.AgencyYearGroup: Added pattern.
+nemSch_sequence_time: Added new elements eArrest.19 and eSituation.18. Added asserts to constrain times to be no later than the current time. Added asserts to constrain eLabs.01, eMedications.01, eProcedures.01, and eVitals.01 to be no later than eTimes.07 when "Prior to This Unit's Care" is "Yes".
+nemSch_uniqueness_DEMDataSet: Added pattern.
+nemSch_uniqueness_NvPn: Added pattern.
+
+
+Documentation Interface
+
+Added Overview page
+Added data dictionary links to NEMSIS element names
+Improved and simplified layout
+
+
+Schemas
+
+nemsis-schematron.sch: Improved validation of nemsisDiagnostic to not be sensitive to differences in whitespace-only text nodes.
+
+
+
+3.3.4-141104
+
+
+National Patterns and Rules
+
+nemSch_consistency_eDiposition.12: Added "no_emstransport" flag and changed validation on eTimes.09 to only apply when a patient is transported by EMS.
+nemSch_sequence_time: In rule nemSch_sequence_time_eLabs.01, fixed XPath references to eLabs.02. In rule nemSch_sequence_time_eMedications.01, fixed XPath references to eMedications.02. In rule nemSch_sequence_time_eProcedures.01, fixed XPath references to eProcedures.02. In rule nemSch_sequence_time_eVitals.01, fixed XPath references to eVitals.02.
+
+
+
+3.3.4-140619
+
+
+National Patterns and Rules
+
+nemSch_consistency_nilNvPn: Fixed context of rule nemSch_nilNvPn_eExam.AssessmentGroup to also select elements that are in a child group within eExam.AssessmentGroup. (Issue affected eExam.11, eExam.14, eExam.16, and eExam.18 when containing a PN attribute.)
+
+
+
+3.3.4-140319
+
+
+National Patterns and Rules
+
+nemSch_consistency_eDisposition.12: Removed references to unpublished eDisposition.12 code values 4212045, 4212047, and 4212049 (the values were added to the 3.3.4-CR1 XSDs and then removed prior to release)
+
+
+
+3.3.4-140303
+
+
+NEMSIS V3 Schematron Guide
+
+No substantive changes
+
+
+Templates and National Rule Files
+
+Replaced document() function with XSLT variable for nemSch_elements lookup list
+Updated NEMSIS name of elements eDisposition.24 and eDisposition.25
+
+
+National Patterns and Rules
+
+nemSch_consistency_dAgency.05_dAgency.06: corrected "dAgency.04" to "dAgency.05"
+nemSch_consistency_delay: changed punctuation in title
+nemSch_consistency_eArrest: added normalize-space() function in context of rule nemSch_consistency_eArrest.01
+nemSch_consistency_eArrest: added normalize-space() function in context of rule nemSch_consistency_eInjury_eSituation.02
+nemSch_consistency_group: corrected grammatical error in first comment
+nemSch_consistency_group: added normalize-space() function in context of rules
+nemSch_consistency_group: added $eMedications.03 in text of assert nemSch_consistency_eMedications.MedicationGroup_all
+nemSch_consistency_group: added $eProcedures.03 in text of assert nemSch_consistency_eProcedures.ProcedureGroup_all
+nemSch_format_ansi: added "nem" namespace prefix to dAgency.04 in context of rule nemSch_format_ansi_state
+
+
+Documentation Interface
+
+Added listing of rules under each pattern in menu
+
+
+Schemas
+
+nemsis-svrl.rnc/g: restored zero-or-one constraint to (foreign | human-text) in diagnostic-reference when id is not nemsisDiagnostic
+nemsis-svrl.rnc/g: added constraints for diagnostic-reference when id is nemsisDiagnostic

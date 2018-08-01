@@ -1,0 +1,33 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="dConfiguration.03"  minOccurs="1"  maxOccurs="M"  dataTypeName="snomed"  isNillable="Yes">
+<name>Procedures Permitted by the State</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>A list of all of the procedures permitted by the EMS Agency's licensing state.</definition>
+<v2Number></v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>Response</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>This data element should capture all of the procedures permitted by the state for any/all levels of EMS personnel in the state. This is associated with the EMS Agency State (dAgency.01). This is related to the EMS Agency's procedures (dConfiguration.07) which have been implemented within the EMS System.
+										<br/><br/>State EMS systems which have regulatory authority to determine the procedures statewide may identify SNOMEDCT procedure codes based on medical direction and their own need.										
+										<br/><br/>Code list is represented in SNOMEDCT: Reference the NEMSIS Suggested Lists at: http://nemsis.org/v3/resources.html							
+										<br/><br/>SNOMEDCT
+										<br/>Website: http://www.nlm.nih.gov/research/umls/Snomed/snomed_main.html
+										<br/>Product: Product - UMLS Metathesaurus
+										<br/><br/>The EMS agency should submit "Not Applicable" and "Nil" to the state system for the demographic export. The state EMS system does not need to import this information into their database.  It is the responsibility of the state to submit this element to the national EMS database (NEMSIS).  Reference the Demographic Dataset Submission Guide for further details.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <snomed baseType="integer">
+    <facet name="maxInclusive" value="999999999999999"/>
+    <facet name="minInclusive" value="100000"/>
+  </snomed>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+  <CorrelationID baseType="string"><facet name="minLength" value="0"/><facet name="maxLength" value="255"/></CorrelationID>
+</attributes>
+</element>

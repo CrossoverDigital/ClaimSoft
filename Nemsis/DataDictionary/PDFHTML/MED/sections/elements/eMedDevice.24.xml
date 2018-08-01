@@ -1,0 +1,19 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eMedDevice.24"  minOccurs="0"  maxOccurs="1"  dataTypeName="DBP"  isNillable="No">
+<name>DBP (Diastolic Blood Pressure)</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The patient's diastolic blood pressure.</definition>
+<v2Number>E14_05</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment>Diastolic blood pressure pattern allows for the following values:<br/>1) A number 0 through 500 <br/>2) P<br/>3) p</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <DBP baseType="string">
+    <facet name="pattern" value="[5][0][0]|[1-4][0-9][0-9]|[0]|[1-9][0-9]|P|p"/>
+  </DBP>
+</restrictions>
+</element>

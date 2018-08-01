@@ -1,0 +1,24 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eResponse.07"  minOccurs="1"  maxOccurs="1"  dataTypeName="PrimaryRoleOfUnit"  isNillable="No">
+<name>Primary Role of the Unit</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>The primary role of the EMS Unit which responded to this specific EMS event</definition>
+<v2Number>E02_05</v2Number>
+<usage>Mandatory</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>Response</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Supervisor clarified to Administrative Only. If the Supervisor is responding to assist, that would be considered Non-Transport. Transport separated into Air and Ground.  In Version 2 there was no way to identify Air Transport.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <PrimaryRoleOfUnit baseType="string">
+    <facet name="enumeration" value="2207003" annotation="Ground Transport"/>
+    <facet name="enumeration" value="2207005" annotation="Non-Transport Administrative (e.g., Supervisor)"/>
+    <facet name="enumeration" value="2207007" annotation="Non-Transport Assistance"/>
+    <facet name="enumeration" value="2207009" annotation="Non-Transport Rescue"/>
+    <facet name="enumeration" value="2207011" annotation="Air Transport-Helicopter"/>
+    <facet name="enumeration" value="2207013" annotation="Air Transport-Fixed Wing"/>
+  </PrimaryRoleOfUnit>
+</restrictions>
+</element>

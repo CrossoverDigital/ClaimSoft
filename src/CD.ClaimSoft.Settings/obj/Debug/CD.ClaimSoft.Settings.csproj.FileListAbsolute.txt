@@ -1,0 +1,11 @@
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Settings\bin\Debug\CD.ClaimSoft.Settings.dll.config
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Settings\bin\Debug\CD.ClaimSoft.Settings.dll
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Settings\bin\Debug\CD.ClaimSoft.Settings.pdb
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Settings\bin\Debug\EntityFramework.dll
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Settings\bin\Debug\EntityFramework.SqlServer.dll
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Settings\bin\Debug\EntityFramework.xml
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Settings\bin\Debug\EntityFramework.SqlServer.xml
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Settings\obj\Debug\CD.ClaimSoft.Settings.csprojResolveAssemblyReference.cache
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Settings\obj\Debug\CD.ClaimSoft.Settings.csproj.CoreCompileInputs.cache
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Settings\obj\Debug\CD.ClaimSoft.Settings.dll
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Settings\obj\Debug\CD.ClaimSoft.Settings.pdb

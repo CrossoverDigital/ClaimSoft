@@ -1,0 +1,19 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eCad.62"  minOccurs="0"  maxOccurs="1"  dataTypeName="CensusTracts"  isNillable="No">
+<name>Patient Home Census Tract</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The census tract in which the patient lives</definition>
+<v2Number></v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>Response</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Census Tract Data Website (files and descriptions): <a href="http://www.census.gov/geo/maps-data/data/tract_rel_download.html" target="_blank">http://www.census.gov/geo/maps-data/data/tract_rel_download.html</a></v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <CensusTracts baseType="string">
+    <facet name="pattern" value="[0-9]{11}"/>
+  </CensusTracts>
+</restrictions>
+</element>

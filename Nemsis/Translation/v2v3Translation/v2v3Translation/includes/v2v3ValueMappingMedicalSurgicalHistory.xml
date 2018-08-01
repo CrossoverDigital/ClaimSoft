@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<v2v3ValueMappingMedicalSurgicalHistory xmlns="http://www.nemsis.org">
+	<match>
+		<v2Pattern>401.9</v2Pattern>
+		<v3Replacement>I10</v3Replacement>
+	</match>
+</v2v3ValueMappingMedicalSurgicalHistory>

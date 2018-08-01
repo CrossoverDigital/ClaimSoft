@@ -1,6 +1,8 @@
-﻿@using CD.ClaimSoft.Application.Models.Agencies
+﻿@using CD.ClaimSoft.Database.Model.Agency
 @using Syncfusion.JavaScript
 @using Syncfusion.MVC.EJ
+
+@inherits CD.ClaimSoft.UI.Common.CustomViewPage<CD.ClaimSoft.Database.Model.Agency.Agency>
 
 @{
     ViewBag.Title = "Agency Administration";
@@ -14,246 +16,110 @@
     <span data-localize="administration.AGENCYADMINISTRATION"></span>
 </div>
 
-@(Html.EJ().Grid<object>("AgencyGrid") //.HtmlAttributes(new { style = "width:80%;" })
-      .Datasource(ds => ds.Json(ViewBag.datasource)
-          .UpdateURL("/Administration/Administration/AgencyUpdate")
-          .InsertURL("/Administration/Administration/AgencyInsert")
-          .Adaptor(AdaptorType.RemoteSaveAdaptor))
-      .AllowPaging()
-      .EnableAltRow()
-      .PageSettings(page => page.PageSize(10))
-      .IsResponsive(true)
-      .EnableAutoSaveOnSelectionChange(false)
-      .EditSettings(edit =>
-      {
-          edit.AllowAdding()
-              .AllowEditing()
-              .EditMode(EditMode.InlineFormTemplate)
-              .InlineFormTemplateID("agencyEditTemplate")
-              .AllowEditOnDblClick(true);
-      })
-      .ToolbarSettings(tools =>
-      {
-          tools.ShowToolbar()
-              .ToolbarItems(items =>
-              {
-                  items.AddTool(ToolBarItems.Add);
-                  items.AddTool(ToolBarItems.Edit);
-              });
-      })
-      .Columns(col =>
-      {
-          col.Field("Name").HeaderText("Name").Width(150).Priority(3).Add();
-          col.Field("Code").HeaderText("Code").Priority(4).Width(50).Add();
-          col.Field("IsActive").HeaderText("Is Active").Width(50).Priority(5).Add();
-          col.Field("AgencyTenantId").HeaderText("Tenant ID").IsPrimaryKey(true).Width(145).Priority(2).Add();
-      })
-      .ClientSideEvents(events =>
-      {
-          events.ActionComplete("actionComplete")
-              .ActionBegin("actionBegin")
-              .Load("AgencyGridLoad")
-              .EndAdd("actionEditComplete")
-              .EndEdit("actionEditComplete")
-              .EndDelete("actionEditComplete");
-      })
+@(Html.EJ().Grid<Agency>("AgencyGrid") //.HtmlAttributes(new { style = "width:80%;" })
+          .Datasource(ds => ds.Json(DdlDataSources.GetAgenciesDatasource)
+              .UpdateURL("/Administration/Administration/AgencyUpdate")
+              .InsertURL("/Administration/Administration/AgencyInsert")
+              .Adaptor(AdaptorType.RemoteSaveAdaptor))
+          .AllowPaging()
+          .EnableAltRow()
+          .PageSettings(page => page.PageSize(10))
+          .IsResponsive(true)
+          .EnableAutoSaveOnSelectionChange(false)
+          .EditSettings(edit =>
+          {
+              edit.AllowAdding()
+                  .AllowEditing()
+                  .EditMode(EditMode.InlineFormTemplate)
+                  .InlineFormTemplateID("AgencyEditTemplate")
+                  .AllowEditOnDblClick(true);
+          })
+          .ToolbarSettings(tools =>
+          {
+              tools.ShowToolbar()
+                  .ToolbarItems(items =>
+                  {
+                      items.AddTool(ToolBarItems.Add);
+                      items.AddTool(ToolBarItems.Edit);
+                  });
+          })
+          .Columns(col =>
+          {
+              col.Field("Name").HeaderText("Name").Width(150).Priority(3).Add();
+              col.Field("Code").HeaderText("Code").Priority(4).Width(50).Add();
+              col.Field("IsActive").HeaderText("Is Active").Width(50).Priority(5).Add();
+              col.Field("AgencyTenantId").HeaderText("Tenant ID").IsPrimaryKey(true).Width(145).Priority(2).Add();
+          })
+          .ClientSideEvents(events =>
+          {
+              events.ActionComplete("AgencyGridActionComplete")
+                  .ActionBegin("AgencyGridActionBegin");
+          })
 )
 
 <script>
 
-    var isAgencyDetailLoaded = null;
-    var isAgencyAddressLoaded = null;
-    var isAgencyPhoneEmailLoaded = null;
-    var isAgencyAdminNotesAttachLoaded = null;
-
-    var AgencyGridCustomAdaptor = new ej.remoteSaveAdaptor().extend({
-        update: function (dm, keyField, value, tableName, query) {
-            var grid = $("#AgencyGrid").ejGrid("instance");
-            //AgencyGridEditForm
-            var record = grid.getSelectedRecords()[0];
-
-            var form = $('#AgencyGridEditForm')[0];
-
-            var data = new FormData(form);
-
-            //formData.append("value", record);
-
-            //if ($("#AgencyLogoPath").length > 0) {
-            //    formData.append("file", $("#AgencyLogoPath")[0]);
-            //}
-
-//            var recordJson = JSON.stringify({ "value": (record) });
-
-            return {
-                url: dm.dataSource.updateUrl,
-                type: "POST",
-                dataType: 'json',
-                enctype: 'multipart/form-data',
-                data: data,
-                processData: false,
-                contentType: false,
-                cache: false,
-                timeout: 600000,
-            };
-        }
-    });
-
-    function AgencyGridLoad(args) {
-        this.model.dataSource.adaptor = new AgencyGridCustomAdaptor();
-    }
-
-    function actionBegin(args) {
+    function AgencyGridActionBegin(args) {
         if (args.requestType === "save")
             this.element.ejWaitingPopup("show");
     }
 
-    function actionComplete(args) {
+    function AgencyGridActionComplete(args) {
         var type = args.requestType;
         if (type === "beginedit" || type === "add") {
             $("#AgencyGrid_inlineFormTitle").hide();
 
-            var agencyTenantId = 0;
+            var selectedAgency = null;
             if (!ej.isNullOrUndefined(args.rowIndex))
-                agencyTenantId = this.model.currentViewData[args.rowIndex]["AgencyTenantId"];
+                selectedAgency = this.model.currentViewData[args.rowIndex];
 
             this.element.ejWaitingPopup("show");
 
-            $.ajax
-                ({
-                    url: type === "add" ? "/Administration/Administration/AgencyEdit" : "/Administration/Administration/AgencyEdit?TenantId=" + agencyTenantId,
+            if (type === "add") {
+                $.ajax({
+                    url: '@Url.Action("AgencyAdd", "Administration", new {Area = "Administration"})',
                     type: "GET",
-                    success: ej.proxy(function (data) {
-                        var containerId = $("#" + this._id + "EditForm");
+                    success: ej.proxy(function(data) {
+                            var containerId = $("#" + this._id + "EditForm");
 
-                        containerId.html(data);
+                            containerId.html(data);
 
-                        ej.widget.init(containerId);
+                            $("#agencyEditTab").ejTab();
 
-                        this.element.ejWaitingPopup("hide");
-                    }, this)
+                            ej.widget.init(containerId);
+
+                            this.element.ejWaitingPopup("hide");
+                        },
+                        this)
                 });
+            } else {
+               $.ajax({
+                    url: '@Url.Action("AgencyEdit", "Administration", new {Area = "Administration"})',
+                    type: "POST",
+                    data: '{ model: ' + JSON.stringify(selectedAgency) + '}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: ej.proxy(function(data) {
+                            var containerId = $("#" + this._id + "EditForm");
+
+                            containerId.html(data);
+
+                            $("#agencyEditTab").ejTab();
+
+                            ej.widget.init(containerId);
+
+                            this.element.ejWaitingPopup("hide");
+                        },
+                        this)
+                });
+            }
         }
 
         if (type === "save" || type === "cancel") {
-            isAgencyDetailLoaded = null;
-            isAgencyAddressLoaded = null;
-            isAgencyPhoneEmailLoaded = null;
-            isAgencyAdminNotesAttachLoaded = null;
-            
             this.element.ejWaitingPopup("hide");
         }
-    }
-
-    function actionEditComplete() {
-        isAgencyDetailLoaded = null;
-        isAgencyAddressLoaded = null;
-        isAgencyPhoneEmailLoaded = null;
-        isAgencyAdminNotesAttachLoaded = null;
-    }
-    
-    function actionAddressEditBegin(args) {
-        if (args.requestType === "save")
-            this.element.ejWaitingPopup("show");
-    }
-
-    function actionAddressEditComplete(args) {
-        var type = args.requestType;
-        if (type === "beginedit" || type === "add") {
-            $("#AgencyAddressGrid_inlineFormTitle").hide();
-
-            var addressId = 0;
-            if (!ej.isNullOrUndefined(args.rowIndex))
-                addressId = this.model.currentViewData[args.rowIndex]["Id"];
-
-            this.element.ejWaitingPopup("show");
-
-            $.ajax
-                ({
-                    url: type === "add" ? "/Administration/Administration/AgencyAddressAdd?Id=" + $('#AgencyId').val() : "/Administration/Administration/AgencyAddressEdit?Id=" + addressId,
-                    type: "GET",
-                    success: ej.proxy(function (data) {
-                        var containerId = $("#" + this._id + "EditForm");
-
-                        containerId.html(data);
-
-                        ej.widget.init(containerId);
-
-                        this.element.ejWaitingPopup("hide");
-                    }, this)
-                });
-        }
-        if (args.requestType === "save")
-            this.element.ejWaitingPopup("hide");
-    }
-
-    function actionPhoneEditBegin(args) {
-        if (args.requestType === "save")
-            this.element.ejWaitingPopup("show");
-    }
-
-    function actionPhoneEditComplete(args) {
-        var type = args.requestType;
-        if (type === "beginedit" || type === "add") {
-            $("#AgencyPhoneGrid_inlineFormTitle").hide();
-
-            var phoneId = 0;
-            if (!ej.isNullOrUndefined(args.rowIndex))
-                phoneId = this.model.currentViewData[args.rowIndex]["Id"];
-
-            this.element.ejWaitingPopup("show");
-
-            $.ajax
-                ({
-                    url: type === "add" ? "/Administration/Administration/AgencyPhoneAdd?Id=" + $('#AgencyId').val() : "/Administration/Administration/AgencyPhoneEdit?Id=" + phoneId,
-                    type: "GET",
-                    success: ej.proxy(function (data) {
-                        var containerId = $("#" + this._id + "EditForm");
-
-                        containerId.html(data);
-
-                        ej.widget.init(containerId);
-
-                        this.element.ejWaitingPopup("hide");
-                    }, this)
-                });
-        }
-        if (args.requestType === "save")
-            this.element.ejWaitingPopup("hide");
-    }
-
-    function actionNumberEditBegin(args) {
-        if (args.requestType === "save")
-            this.element.ejWaitingPopup("show");
-    }
-
-    function actionNumberEditComplete(args) {
-        var type = args.requestType;
-        if (type === "beginedit" || type === "add") {
-            $('#AgencyNumberGrid_inlineFormTitle').hide();
-
-            if (!ej.isNullOrUndefined(args.rowIndex))
-                var numberId = this.model.currentViewData[args.rowIndex]["Id"];
-
-            this.element.ejWaitingPopup("show");
-
-            $.ajax
-                ({
-                    url: type === "add" ? "/Administration/Administration/AgencyNumberAdd?Id=" + $('#AgencyId').val() : "/Administration/Administration/AgencyNumberEdit?Id=" + numberId,
-                    type: "GET",
-                    success: ej.proxy(function (data) {
-                        var containerId = $("#" + this._id + "EditForm");
-
-                        containerId.html(data);
-
-                        ej.widget.init(containerId);
-
-                        this.element.ejWaitingPopup("hide");
-                    }, this)
-                });
-        }
-        if (args.requestType === "save")
-            this.element.ejWaitingPopup("hide");
     }
 
     //# sourceURL=Agency.cshtml
+
 </script>

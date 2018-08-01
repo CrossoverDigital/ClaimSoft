@@ -1,0 +1,38 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="dConfiguration.04"  minOccurs="1"  maxOccurs="M"  dataTypeName="Medication"  isNillable="Yes">
+<name>Medications Permitted by the State</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>A list of all of the medications permitted by the state to be used by each EMS state certification/licensure level.</definition>
+<v2Number></v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>Response</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>This data element should capture all of the medications permitted by the state for any/all levels of EMS personnel in the state.
+										This should be stored as an RxNorm (RXCUI) Code. This is associated with the EMS Agency State (dAgency.01).
+										<br/><br/>The EMS agency should submit "Not Applicable" and "Nil" to the state system for the demographic export. 
+										The state EMS system does not need to import this information into their database. It is the responsibility of the state to submit this element to the national EMS database (NEMSIS). 
+										Reference the Demographic Dataset Submission Guide for further details.</v3Comment>
+<v3Changes>State EMS systems which have regulatory authority to identify medications to be administered within the state may identify specific RxNorm codes based on medical direction and their own need.
+										<br/><br/>List of medications based on RxNorm (RXCUI) code. 
+										<br/><br/>Reference the NEMSIS Suggested Lists at: http://nemsis.org/v3/resources.html											
+										<br/><br/>RxNorm
+										<br/>Website - http://uts.nlm.nih.gov
+										
+										<br/><br/>Product - UMLS Metathesaurus
+										<br/>Website - http://www.nlm.nih.gov/research/umls/rxnorm/docs/rxnormfiles.html
+										<br/>Product - RxNorm Full Monthly Release</v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <Medication baseType="string">
+    <facet name="minLength" value="2"/>
+    <facet name="maxLength" value="7"/>
+  </Medication>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+</attributes>
+</element>

@@ -1,0 +1,31 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eCad.106"  minOccurs="0"  maxOccurs="M"  dataTypeName="AdditionalTransportModeDescriptors"  isNillable="No">
+<name>Additional Transport Mode Descriptors</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The documentation of transport mode techniques for this EMS response.</definition>
+<v2Number></v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment>Information now split between eDisposition.17 (Transport Mode from Scene) and eDisposition.18 (Additional Transport Mode Descriptors). Element eDisposition.18  (Additional Transport Mode Descriptors) has been added to document the use of lights and sirens or other descriptive information.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <AdditionalTransportModeDescriptors baseType="string">
+    <facet name="enumeration" value="4218001" annotation="Intersection Navigation-Against Normal Light Patterns"/>
+    <facet name="enumeration" value="4218003" annotation="Intersection Navigation-With Automated Light Changing Technology"/>
+    <facet name="enumeration" value="4218005" annotation="Intersection Navigation-With Normal Light Patterns"/>
+    <facet name="enumeration" value="4218007" annotation="Speed-Enhanced per Local Policy"/>
+    <facet name="enumeration" value="4218009" annotation="Speed-Normal Traffic"/>
+    <facet name="enumeration" value="4218011" annotation="Lights and Sirens"/>
+    <facet name="enumeration" value="4218013" annotation="Lights and No Sirens"/>
+    <facet name="enumeration" value="4218015" annotation="No Lights or Sirens"/>
+    <facet name="enumeration" value="4218017" annotation="Initial No Lights or Sirens, Upgraded to Lights and Sirens"/>
+    <facet name="enumeration" value="4218019" annotation="Initial Lights and Sirens, Downgraded to No Lights or Sirens"/>
+  </AdditionalTransportModeDescriptors>
+</restrictions>
+<attributes>
+  <CorrelationID baseType="string"><facet name="minLength" value="0"/><facet name="maxLength" value="255"/></CorrelationID>
+</attributes>
+</element>

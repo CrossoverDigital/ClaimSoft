@@ -22,6 +22,7 @@ namespace CD.ClaimSoft.UI
                 // App init
                 "~/Scripts/app/app.init.js",
                 // Modules
+                "~/Scripts/app/global.js",
                 "~/Scripts/app/modules/bootstrap-start.js",
                 "~/Scripts/app/modules/calendar.js",
                 "~/Scripts/app/modules/easypiechart.js",

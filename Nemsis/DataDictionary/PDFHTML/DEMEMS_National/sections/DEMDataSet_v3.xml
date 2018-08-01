@@ -1,0 +1,7 @@
+<?xml-stylesheet type="text/xsl" href="../xslt/grouping.xslt"?>
+<section name="DEMDataSet">
+  <group number="DemographicReport" minOccurs="1" maxOccurs="M" CorrelationID="" isNillable="No">
+    <group number="dAgency" minOccurs="1" maxOccurs="1" CorrelationID="" isNillable="No"/>
+    <group number="dConfiguration" minOccurs="1" maxOccurs="1" CorrelationID="" isNillable="No"/>
+  </group>
+</section>

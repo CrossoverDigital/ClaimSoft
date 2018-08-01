@@ -1,0 +1,27 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eArrest.06"  minOccurs="0"  maxOccurs="M"  dataTypeName="WhoProvided"  isNillable="No">
+<name>Who Provided CPR Prior to EMS Arrival</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>Documentation of who performed CPR prior to this EMS unit's arrival.</definition>
+<v2Number></v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup><performanceMeasure>Cardiac Arrest</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Associated with eArrest.05 (CPR Care Provided Prior to EMS Arrival) but only required if CPR was provided prior to EMS arrival.<br/><br/>
+This element is a component of the Utstein Cardiac Arrest Criteria as identified in the American Heart Association journal "Resuscitation" from 2004 entitled "Cardiac Arrest and Cardiopulmonary Resuscitation Outcome Reports". http://circ.ahajournals.org/cgi/content/full/110/21/3385</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <WhoProvided baseType="string">
+    <facet name="enumeration" value="3006001" annotation="Family Member"/>
+    <facet name="enumeration" value="3006003" annotation="First Responder (Fire, Law, EMS)"/>
+    <facet name="enumeration" value="3006005" annotation="Healthcare Professional (Non-EMS)"/>
+    <facet name="enumeration" value="3006007" annotation="Lay Person (Non-Family)"/>
+    <facet name="enumeration" value="3006009" annotation="Other EMS Professional (not part of dispatched response)"/>
+  </WhoProvided>
+</restrictions>
+<attributes>
+  <CorrelationID baseType="string"><facet name="minLength" value="0"/><facet name="maxLength" value="255"/></CorrelationID>
+</attributes>
+</element>

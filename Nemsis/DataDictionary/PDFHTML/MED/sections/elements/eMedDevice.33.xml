@@ -1,0 +1,20 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eMedDevice.33"  minOccurs="0"  maxOccurs="1"  dataTypeName="BloodGlucoseLevel"  isNillable="No">
+<name>Blood Glucose Level</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The patient's blood glucose level.</definition>
+<v2Number>E14_14</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>Stroke</performanceMeasure></performanceMeasuresGroup>
+<v3Comment></v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <BloodGlucoseLevel baseType="integer">
+    <facet name="minInclusive" value="0"/>
+    <facet name="maxInclusive" value="2000"/>
+  </BloodGlucoseLevel>
+</restrictions>
+</element>

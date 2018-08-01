@@ -1,0 +1,46 @@
+'Dataset'|'DatasetType'|'ElementNumber'|'ElementName'|'National'|'State'|'Airway'|'CardiacArrest'|'Pediatric'|'ResponseTime'|'STEMI'|'Stroke'|'Trauma'|
+'StateDataSet'|'element'|'dConfiguration.01'|'State Associated with the Certification/Licensure Levels'|'National'|'State'|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dCustomConfiguration.01'|'Custom Data Element Title'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dCustomConfiguration.02'|'Custom Definition'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dCustomConfiguration.03'|'Custom Data Type'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dCustomConfiguration.04'|'Custom Data Element Recurrence'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dCustomConfiguration.05'|'Custom Data Element Usage'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dCustomConfiguration.06'|'Custom Data Element Potential Values'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dCustomConfiguration.07'|'Custom Data Element Potential NOT Values (NV)'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dCustomConfiguration.09'|'Custom Data Element Grouping ID'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'eCustomConfiguration.01'|'Custom Data Element Title'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'eCustomConfiguration.02'|'Custom Definition'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'eCustomConfiguration.03'|'Custom Data Type'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'eCustomConfiguration.04'|'Custom Data Element Recurrence'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'eCustomConfiguration.05'|'Custom Data Element Usage'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'eCustomConfiguration.06'|'Custom Data Element Potential Values'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'eCustomConfiguration.07'|'Custom Data Element Potential NOT Values (NV)'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'eCustomConfiguration.09'|'Custom Data Element Grouping ID'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dState.01'|'State Required Element'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'eState.01'|'State Required Element'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dConfiguration.02'|'State Certification/Licensure Levels'|'National'|'State'|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dConfiguration.06'|'EMS Certification Levels Permitted to Perform Each Procedure'|'National'|'State'|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'StateDataSet'|'element'|'dConfiguration.03'|'Procedures Permitted by the State'|'National'|'State'|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'StateDataSet'|'element'|'dConfiguration.08'|'EMS Certification Levels Permitted to Administer Each Medication'|'National'|'State'|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'StateDataSet'|'element'|'dConfiguration.04'|'Medications Permitted by the State'|'National'|'State'|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'StateDataSet'|'element'|'dConfiguration.05'|'Protocols Permitted by the State'|'National'|'State'|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'StateDataSet'|'element'|'dAgency.01'|'EMS Agency Unique State ID'|'National'|'State'|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'StateDataSet'|'element'|'dAgency.02'|'EMS Agency Number'|'National'|'State'|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'StateDataSet'|'element'|'dAgency.03'|'EMS Agency Name'|''|'State'|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'StateDataSet'|'element'|'dFacility.01'|'Type of Facility'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dFacility.02'|'Facility Name'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dFacility.03'|'Facility Location Code'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dFacility.04'|'Hospital Designations'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dFacility.05'|'Facility National Provider Identifier'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dFacility.06'|'Facility Room, Suite, or Apartment'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dFacility.07'|'Facility Street Address'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dFacility.08'|'Facility City'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dFacility.09'|'Facility State'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dFacility.10'|'Facility ZIP Code'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dFacility.11'|'Facility County'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dFacility.12'|'Facility Country'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dFacility.13'|'Facility GPS Location'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dFacility.14'|'Facility US National Grid Coordinates'|''|''|''|''|''|''|''|''|''|
+'StateDataSet'|'element'|'dFacility.15'|'Facility Phone Number'|''|''|''|''|''|''|''|''|''|

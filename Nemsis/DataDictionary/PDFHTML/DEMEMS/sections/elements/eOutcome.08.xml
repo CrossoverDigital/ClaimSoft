@@ -1,0 +1,25 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eOutcome.08"  minOccurs="0"  maxOccurs="M"  dataTypeName="icd10CodeInjury"  isNillable="No">
+<name>Emergency Department Recorded Cause of Injury</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The documented cause of injury from the emergency department record.</definition>
+<v2Number></v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment>Code list is represented in ICD-10-CM. Reference the NEMSIS Suggested Lists at: http://nemsis.org/v3/resources.html	
+							<br/><br/>ICD-10-CM 
+							<br/>Website - http://uts.nlm.nih.gov  
+							<br/>Product - UMLS Metathesaurus</v3Comment>
+<v3Changes>Added to better evaluate EMS care.</v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <icd10CodeInjury baseType="string">
+    <facet name="pattern" value="([TV-Y][0-9]{2})((\.[0-9A-Z]{1,4})?)"/>
+  </icd10CodeInjury>
+</restrictions>
+<attributes>
+  <CorrelationID baseType="string"><facet name="minLength" value="0"/><facet name="maxLength" value="255"/></CorrelationID>
+</attributes>
+</element>

@@ -176,7 +176,7 @@ if (Settings.IncludeTableValuedFunctions)
 
             // This method will be called after migrating to the latest version.
 
-            // You can use the DbSet<T>.AddOrUpdate() helper extension method
+            // You can use the DbSet<TEntity>.AddOrUpdate() helper extension method
             // to avoid creating duplicate seed data. E.g.
             //
             //   context.People.AddOrUpdate(
@@ -583,7 +583,7 @@ foreach (Table tbl in from t in Settings.Tables.Where(t => !t.IsMapping && t.Has
         public System.Data.Entity.Infrastructure.DbContextConfiguration Configuration { get { return _configuration; } }
         private System.Data.Entity.Database _database;
         public System.Data.Entity.Database Database { get { return _database; } }
-        public System.Data.Entity.Infrastructure.DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class
+        public System.Data.Entity.Infrastructure.DbEntityEntry<TEntity> Entry<TEntity>(T entity) where TEntity : class
         {
             throw new System.NotImplementedException();
         }
@@ -690,7 +690,7 @@ if (Settings.IncludeTableValuedFunctions)
     //      easiest to create a test DbSet for each of the entity types that
     //      need to support find. You can then write logic to find that
     //      particular type of entity, as shown below:
-    //      public class FakeBlogDbSet : FakeDbSet<Blog>
+    //      public class FakeBlogDbSeTEntity : FakeDbSet<Blog>
     //      {
     //          public override Blog Find(params object[] keyValues)
     //          {
@@ -718,7 +718,7 @@ if (Settings.IncludeTableValuedFunctions)
 
         public FakeDbSet(params string[] primaryKeys)
         {
-            _primaryKeys = typeof(TEntity).GetProperties().Where(x => primaryKeys.Contains(x.Name)).ToArray();
+            _primaryKeys = typeof(T).GetProperties().Where(x => primaryKeys.Contains(x.Name)).ToArray();
             _data = new System.Collections.ObjectModel.ObservableCollection<TEntity>();
             _query = _data.AsQueryable();
 <#if(Settings.MakeClassesPartial) {#>
@@ -726,7 +726,7 @@ if (Settings.IncludeTableValuedFunctions)
             InitializePartial();
 <#}#>        }
 
-        public override TEntity Find(params object[] keyValues)
+        public override T Find(params object[] keyValues)
         {
             if (_primaryKeys == null)
                 throw new System.ArgumentException("No primary keys defined");
@@ -766,7 +766,7 @@ if (Settings.IncludeTableValuedFunctions)
             return items;
         }
 
-        public override TEntity Add(TEntity item)
+        public override T Add(T item)
         {
             if (item == null) throw new System.ArgumentNullException("item");
             _data.Add(item);
@@ -899,9 +899,9 @@ if (Settings.IncludeTableValuedFunctions)
 
 <#if(Settings.IncludeCodeGeneratedAttribute){#>    <#=CodeGeneratedAttribute#>
 <#}#>
-    <# if(Settings.MakeClassesInternal) { #>internal<# } else { #>public<# } #> class FakeDbAsyncEnumerable<T> : EnumerableQuery<T>, System.Data.Entity.Infrastructure.IDbAsyncEnumerable<T>, IQueryable<T>
+    <# if(Settings.MakeClassesInternal) { #>internal<# } else { #>public<# } #> class FakeDbAsyncEnumerable<TEntity> : EnumerableQuery<TEntity>, System.Data.Entity.Infrastructure.IDbAsyncEnumerable<TEntity>, IQueryable<TEntity>
     {
-        public FakeDbAsyncEnumerable(System.Collections.Generic.IEnumerable<T> enumerable)
+        public FakeDbAsyncEnumerable(System.Collections.Generic.IEnumerable<TEntity> enumerable)
             : base(enumerable)
         { }
 
@@ -909,9 +909,9 @@ if (Settings.IncludeTableValuedFunctions)
             : base(expression)
         { }
 
-        public System.Data.Entity.Infrastructure.IDbAsyncEnumerator<T> GetAsyncEnumerator()
+        public System.Data.Entity.Infrastructure.IDbAsyncEnumerator<TEntity> GetAsyncEnumerator()
         {
-            return new FakeDbAsyncEnumerator<T>(this.AsEnumerable().GetEnumerator());
+            return new FakeDbAsyncEnumerator<TEntity>(this.AsEnumerable().GetEnumerator());
         }
 
         System.Data.Entity.Infrastructure.IDbAsyncEnumerator System.Data.Entity.Infrastructure.IDbAsyncEnumerable.GetAsyncEnumerator()
@@ -921,17 +921,17 @@ if (Settings.IncludeTableValuedFunctions)
 
         IQueryProvider IQueryable.Provider
         {
-            get { return new FakeDbAsyncQueryProvider<T>(this); }
+            get { return new FakeDbAsyncQueryProvider<TEntity>(this); }
         }
     }
 
 <#if(Settings.IncludeCodeGeneratedAttribute){#>    <#=CodeGeneratedAttribute#>
 <#}#>
-    <# if(Settings.MakeClassesInternal) { #>internal<# } else { #>public<# } #> class FakeDbAsyncEnumerator<T> : System.Data.Entity.Infrastructure.IDbAsyncEnumerator<T>
+    <# if(Settings.MakeClassesInternal) { #>internal<# } else { #>public<# } #> class FakeDbAsyncEnumerator<TEntity> : System.Data.Entity.Infrastructure.IDbAsyncEnumerator<TEntity>
     {
-        private readonly System.Collections.Generic.IEnumerator<T> _inner;
+        private readonly System.Collections.Generic.IEnumerator<TEntity> _inner;
 
-        public FakeDbAsyncEnumerator(System.Collections.Generic.IEnumerator<T> inner)
+        public FakeDbAsyncEnumerator(System.Collections.Generic.IEnumerator<TEntity> inner)
         {
             _inner = inner;
         }

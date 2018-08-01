@@ -11,12 +11,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 using AutoMapper.QueryableExtensions;
-
 using CD.ClaimSoft.Database;
+using CD.ClaimSoft.Database.Model.System;
 using CD.ClaimSoft.Logging;
 using CD.ClaimSoft.Redis;
-
-using Model = CD.ClaimSoft.Application.Models;
 
 namespace CD.ClaimSoft.Application.System
 {
@@ -46,7 +44,7 @@ namespace CD.ClaimSoft.Application.System
                     var cache = new RedisCache();
 
                     cache.Refresh(CacheConstants.ApplicationSettingsListKey, CacheConstants.DefaultLongTimeToLive,
-                        () => dbContext.ApplicationSettings.ProjectTo<Model.System.ApplicationSetting>().ToDictionary(t => t.SettingKey, t => t.SettingValue));
+                        () => dbContext.ApplicationSettings.ProjectTo<ApplicationSetting>().ToDictionary(t => t.SettingKey, t => t.SettingValue));
                 }
             }
             catch (Exception ex)
@@ -70,7 +68,7 @@ namespace CD.ClaimSoft.Application.System
                     var cache = new RedisCache();
 
                     return cache.Get(CacheConstants.ApplicationSettingsListKey, CacheConstants.DefaultLongTimeToLive,
-                        () => dbContext.ApplicationSettings.ProjectTo<Model.System.ApplicationSetting>().ToDictionary(t => t.SettingKey, t => t.SettingValue));
+                        () => dbContext.ApplicationSettings.ProjectTo<ApplicationSetting>().ToDictionary(t => t.SettingKey, t => t.SettingValue));
                 }
             }
             catch (Exception ex)

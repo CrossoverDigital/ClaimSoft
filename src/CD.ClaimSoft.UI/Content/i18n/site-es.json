@@ -1,7 +1,13 @@
 {
+  "administration": {
+    "AGENCYADMINISTRATION": "Agencias Administración"
+  },
   "dashboard": {
     "WELCOME": "¡Bienvenido a ClaimSoft by Crossover Digital!",
     "HEADER": "Tablero de Administración"
+  },
+  "export": {
+    "IMPORTEXPORT": "Importación/Exportación"
   },
   "sidebar": {
     "WELCOME": "Bienvenido",

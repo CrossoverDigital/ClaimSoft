@@ -1,0 +1,693 @@
+<?xml version="1.0"?>
+<v2v3ValueMappingCustomConfiguration xmlns="http://www.nemsis.org">
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>100.200</customValue>
+		<customValueDescription>Extrication</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>100.300</customValue>
+		<customValueDescription>Patient Loaded</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>100.301</customValue>
+		<customValueDescription>Patient Loaded-Helicopter Hot-Load</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>100.302</customValue>
+		<customValueDescription>Patient Off-Loaded</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>100.303</customValue>
+		<customValueDescription>Patient Off-Loaded Helicopter Hot Off-Load</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>101.101</customValue>
+		<customValueDescription>Specialty Center Activation-Adult Trauma</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>101.102</customValue>
+		<customValueDescription>Specialty Center Activation-Pediatric Trauma</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>101.103</customValue>
+		<customValueDescription>Specialty Center Activation-Cardiac Arrest</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>101.104</customValue>
+		<customValueDescription>Specialty Center Activation-STEMI</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>101.105</customValue>
+		<customValueDescription>Specialty Center Activation-Stroke</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>101.201</customValue>
+		<customValueDescription>Activation-Advanced Hazmat Specialty Service/Response Team</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>101.203</customValue>
+		<customValueDescription>Activation-Other Specialty Service/Response Team</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>101.204</customValue>
+		<customValueDescription>Activation-Rescue Specialty Service/Response Team</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>101.206</customValue>
+		<customValueDescription>Activation-Tactical or SWAT Specialty Service/Response Team</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>89.821</customValue>
+		<customValueDescription>12 Lead ECG-Transmitted</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>96.992</customValue>
+		<customValueDescription>Airway-Intubation Confirm Esophageal Bulb</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_04</customElementId>
+		<customValue>99.615</customValue>
+		<customValueDescription>CPR-Stop</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_09</customElementId>
+		<customValue>9917009</customValue>
+		<customValueDescription>First Responder</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_09</customElementId>
+		<customValue>9917011</customValue>
+		<customValueDescription>EMT-Basic</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_09</customElementId>
+		<customValue>9917013</customValue>
+		<customValueDescription>EMT-Intermediate</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_09</customElementId>
+		<customValue>9917015</customValue>
+		<customValueDescription>EMT-Paramedic</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_09</customElementId>
+		<customValue>9917019</customValue>
+		<customValueDescription>Physician</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D04_09</customElementId>
+		<customValue>9917031</customValue>
+		<customValueDescription>Registered Nurse</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D08_16</customElementId>
+		<customValue>9923001</customValue>
+		<customValueDescription>No</customValueDescription>
+	</match>
+	<match>
+		<customElementId>D08_16</customElementId>
+		<customValue>9923003</customValue>
+		<customValueDescription>Yes</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E08_03</customElementId>
+		<customValue>1100</customValue>
+		<customValueDescription>Greater Than 15 minutes</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E08_03</customElementId>
+		<customValue>1105</customValue>
+		<customValueDescription>5 - 15 Minutes</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E08_03</customElementId>
+		<customValue>1110</customValue>
+		<customValueDescription>Less Than 5 Minutes</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E08_03</customElementId>
+		<customValue>1115</customValue>
+		<customValueDescription>After EMS</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>100.200</customValue>
+		<customValueDescription>Extrication</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>100.300</customValue>
+		<customValueDescription>Patient Loaded</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>100.301</customValue>
+		<customValueDescription>Patient Loaded-Helicopter Hot-Load</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>100.302</customValue>
+		<customValueDescription>Patient Off-Loaded</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>100.303</customValue>
+		<customValueDescription>Patient Off-Loaded Helicopter Hot Off-Load</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>101.101</customValue>
+		<customValueDescription>Specialty Center Activation-Adult Trauma</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>101.102</customValue>
+		<customValueDescription>Specialty Center Activation-Pediatric Trauma</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>101.103</customValue>
+		<customValueDescription>Specialty Center Activation-Cardiac Arrest</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>101.104</customValue>
+		<customValueDescription>Specialty Center Activation-STEMI</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>101.105</customValue>
+		<customValueDescription>Specialty Center Activation-Stroke</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>101.201</customValue>
+		<customValueDescription>Activation-Advanced Hazmat Specialty Service/Response Team</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>101.203</customValue>
+		<customValueDescription>Activation-Other Specialty Service/Response Team</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>101.204</customValue>
+		<customValueDescription>Activation-Rescue Specialty Service/Response Team</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>101.206</customValue>
+		<customValueDescription>Activation-Tactical or SWAT Specialty Service/Response Team</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>89.821</customValue>
+		<customValueDescription>12 Lead ECG-Transmitted</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>96.992</customValue>
+		<customValueDescription>Airway-Intubation Confirm Esophageal Bulb</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_01</customElementId>
+		<customValue>99.615</customValue>
+		<customValueDescription>CPR-Stop</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_02</customElementId>
+		<customValue>9905019</customValue>
+		<customValueDescription>Other Healthcare Professional</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_02</customElementId>
+		<customValue>9905019</customValue>
+		<customValueDescription>Other Healthcare Professional</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_02</customElementId>
+		<customValue>9905021</customValue>
+		<customValueDescription>Other Non-Healthcare Professional</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_02</customElementId>
+		<customValue>9905023</customValue>
+		<customValueDescription>Patient/Lay Person</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_02</customElementId>
+		<customValue>9905023</customValue>
+		<customValueDescription>Patient/Lay Person</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_13</customElementId>
+		<customValue>1430</customValue>
+		<customValueDescription>Device/Equipment Problem</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_13</customElementId>
+		<customValue>1440</customValue>
+		<customValueDescription>Drainage/Discharge</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_14</customElementId>
+		<customValue>1535</customValue>
+		<customValueDescription>Device/Equipment Problem</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E09_14</customElementId>
+		<customValue>1545</customValue>
+		<customValueDescription>Drainage/Discharge</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E10_02</customElementId>
+		<customValue>2020</customValue>
+		<customValueDescription>Intentional, Other (Assaulted)</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E10_02</customElementId>
+		<customValue>2025</customValue>
+		<customValueDescription>Intentional, Self</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E10_02</customElementId>
+		<customValue>2030</customValue>
+		<customValueDescription>Unintentional</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E10_04</customElementId>
+		<customValue>2055</customValue>
+		<customValueDescription>Dash Deformity</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E10_04</customElementId>
+		<customValue>2070</customValue>
+		<customValueDescription>Fire</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E10_04</customElementId>
+		<customValue>2090</customValue>
+		<customValueDescription>Steering Wheel Deformity</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E10_04</customElementId>
+		<customValue>2095</customValue>
+		<customValueDescription>Windshield Spider/Star</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E10_05</customElementId>
+		<customValue>2140</customValue>
+		<customValueDescription>Roll Over</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E11_08</customElementId>
+		<customValue>2390</customValue>
+		<customValueDescription>Greater Than 20 Minutes</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E11_08</customElementId>
+		<customValue>2395</customValue>
+		<customValueDescription>15-20 Minutes</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E11_08</customElementId>
+		<customValue>2400</customValue>
+		<customValueDescription>10-15 Minutes</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E11_08</customElementId>
+		<customValue>2405</customValue>
+		<customValueDescription>8-10 Minutes</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E11_08</customElementId>
+		<customValue>2410</customValue>
+		<customValueDescription>6-8 Minutes</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E11_08</customElementId>
+		<customValue>2415</customValue>
+		<customValueDescription>4-6 Minutes</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E11_08</customElementId>
+		<customValue>2420</customValue>
+		<customValueDescription>2-4 Minutes</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E11_08</customElementId>
+		<customValue>2425</customValue>
+		<customValueDescription>0-2 Minutes</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_01</customElementId>
+		<customValue>3320</customValue>
+		<customValueDescription>Amputation</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_01</customElementId>
+		<customValue>3325</customValue>
+		<customValueDescription>Bleeding Controlled</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_01</customElementId>
+		<customValue>3330</customValue>
+		<customValueDescription>Bleeding Uncontrolled</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_01</customElementId>
+		<customValue>3335</customValue>
+		<customValueDescription>Burn</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_01</customElementId>
+		<customValue>3340</customValue>
+		<customValueDescription>Crush</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_01</customElementId>
+		<customValue>3345</customValue>
+		<customValueDescription>Dislocation Fracture</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_01</customElementId>
+		<customValue>3350</customValue>
+		<customValueDescription>Gunshot</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_01</customElementId>
+		<customValue>3355</customValue>
+		<customValueDescription>Laceration</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_01</customElementId>
+		<customValue>3360</customValue>
+		<customValueDescription>Pain without swelling/bruising</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_01</customElementId>
+		<customValue>3365</customValue>
+		<customValueDescription>Puncture/stab</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_01</customElementId>
+		<customValue>3370</customValue>
+		<customValueDescription>Soft Tissue Swelling/bruising</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_11</customElementId>
+		<customValue>3320</customValue>
+		<customValueDescription>Amputation</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_11</customElementId>
+		<customValue>3325</customValue>
+		<customValueDescription>Bleeding Controlled</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_11</customElementId>
+		<customValue>3330</customValue>
+		<customValueDescription>Bleeding Uncontrolled</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_11</customElementId>
+		<customValue>3335</customValue>
+		<customValueDescription>Burn</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_11</customElementId>
+		<customValue>3340</customValue>
+		<customValueDescription>Crush</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_11</customElementId>
+		<customValue>3345</customValue>
+		<customValueDescription>Dislocation Fracture</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_11</customElementId>
+		<customValue>3350</customValue>
+		<customValueDescription>Gunshot</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_11</customElementId>
+		<customValue>3355</customValue>
+		<customValueDescription>Laceration</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_11</customElementId>
+		<customValue>3360</customValue>
+		<customValueDescription>Pain without swelling/bruising</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_11</customElementId>
+		<customValue>3365</customValue>
+		<customValueDescription>Puncture/stab</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E15_11</customElementId>
+		<customValue>3370</customValue>
+		<customValueDescription>Soft Tissue Swelling/bruising</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>100.200</customValue>
+		<customValueDescription>Extrication</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>100.300</customValue>
+		<customValueDescription>Patient Loaded</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>100.301</customValue>
+		<customValueDescription>Patient Loaded-Helicopter Hot-Load</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>100.302</customValue>
+		<customValueDescription>Patient Off-Loaded</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>100.303</customValue>
+		<customValueDescription>Patient Off-Loaded Helicopter Hot Off-Load</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>101.101</customValue>
+		<customValueDescription>Specialty Center Activation-Adult Trauma</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>101.102</customValue>
+		<customValueDescription>Specialty Center Activation-Pediatric Trauma</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>101.103</customValue>
+		<customValueDescription>Specialty Center Activation-Cardiac Arrest</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>101.104</customValue>
+		<customValueDescription>Specialty Center Activation-STEMI</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>101.105</customValue>
+		<customValueDescription>Specialty Center Activation-Stroke</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>101.201</customValue>
+		<customValueDescription>Activation-Advanced Hazmat Specialty Service/Response Team</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>101.203</customValue>
+		<customValueDescription>Activation-Other Specialty Service/Response Team</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>101.204</customValue>
+		<customValueDescription>Activation-Rescue Specialty Service/Response Team</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>101.206</customValue>
+		<customValueDescription>Activation-Tactical or SWAT Specialty Service/Response Team</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>89.821</customValue>
+		<customValueDescription>12 Lead ECG-Transmitted</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>96.992</customValue>
+		<customValueDescription>Airway-Intubation Confirm Esophageal Bulb</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_03</customElementId>
+		<customValue>99.615</customValue>
+		<customValueDescription>CPR-Stop</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4635</customValue>
+		<customValueDescription>Antecubital-Left</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4640</customValue>
+		<customValueDescription>Antecubital-Right</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4645</customValue>
+		<customValueDescription>External Jugular-Left</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4650</customValue>
+		<customValueDescription>External Jugular-Right</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4655</customValue>
+		<customValueDescription>Femoral-Left IV</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4660</customValue>
+		<customValueDescription>Femoral-Left Distal IO</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4665</customValue>
+		<customValueDescription>Femoral-Right IV</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4670</customValue>
+		<customValueDescription>Femoral-Right IO</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4675</customValue>
+		<customValueDescription>Forearm-Left</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4680</customValue>
+		<customValueDescription>Forearm-Right</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4685</customValue>
+		<customValueDescription>Hand-Left</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4690</customValue>
+		<customValueDescription>Hand-Right</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4695</customValue>
+		<customValueDescription>Lower Extremity-Left</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4700</customValue>
+		<customValueDescription>Lower Extremity-Right</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4705</customValue>
+		<customValueDescription>Other</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4710</customValue>
+		<customValueDescription>Scalp</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4715</customValue>
+		<customValueDescription>Sternal IO</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4720</customValue>
+		<customValueDescription>Tibia IO-Left</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4725</customValue>
+		<customValueDescription>Tibia IO-Right</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E19_12</customElementId>
+		<customValue>4730</customValue>
+		<customValueDescription>Umbilical</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E20_15</customElementId>
+		<customValue>4975</customValue>
+		<customValueDescription>Improved</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E20_15</customElementId>
+		<customValue>4980</customValue>
+		<customValueDescription>Unchanged</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E20_15</customElementId>
+		<customValue>4985</customValue>
+		<customValueDescription>Worse</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E23_07</customElementId>
+		<customValue>5590</customValue>
+		<customValueDescription>This EMS Crew</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E23_07</customElementId>
+		<customValue>5595</customValue>
+		<customValueDescription>Non-EMS individual</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E23_07</customElementId>
+		<customValue>5600</customValue>
+		<customValueDescription>Other EMS Personnel</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E23_08</customElementId>
+		<customValue>9923001</customValue>
+		<customValueDescription>No</customValueDescription>
+	</match>
+	<match>
+		<customElementId>E23_08</customElementId>
+		<customValue>9923003</customValue>
+		<customValueDescription>Yes</customValueDescription>
+	</match>
+</v2v3ValueMappingCustomConfiguration>

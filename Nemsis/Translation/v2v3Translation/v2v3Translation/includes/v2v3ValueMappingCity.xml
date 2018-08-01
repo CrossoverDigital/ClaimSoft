@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<v2v3ValueMappingCity xmlns="http://www.nemsis.org">
+	<match>
+		<STATE_NUMERIC>36</STATE_NUMERIC>
+		<CENSUS_CODE>51000</CENSUS_CODE>
+		<CENSUS_CLASS_CODE>C1</CENSUS_CLASS_CODE>
+		<FEATURE_ID>2395220</FEATURE_ID>
+		<FEATURE_NAME>City of New York</FEATURE_NAME>
+	</match>
+</v2v3ValueMappingCity>

@@ -1,0 +1,22 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eMedDevice.34"  minOccurs="0"  maxOccurs="1"  dataTypeName="BodyTemperature"  isNillable="No">
+<name>Temperature</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The patient's body temperature in degrees Celsius/centigrade.</definition>
+<v2Number>E14_20</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup><performanceMeasure>Pediatric</performanceMeasure></performanceMeasuresGroup>
+<v3Comment></v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <BodyTemperature baseType="decimal">
+    <facet name="totalDigits" value="3"/>
+    <facet name="fractionDigits" value="1"/>
+    <facet name="minInclusive" value="0"/>
+    <facet name="maxInclusive" value="50"/>
+  </BodyTemperature>
+</restrictions>
+</element>

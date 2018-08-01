@@ -1,0 +1,31 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eArrest.11"  minOccurs="1"  maxOccurs="1"  dataTypeName="FirstMonitoredRhythm"  isNillable="Yes">
+<name>First Monitored Arrest Rhythm of the Patient</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>Documentation of what the first monitored arrest rhythm which was noted</definition>
+<v2Number>E11_05</v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Cardiac Arrest</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Added term "Arrest" to title to clarify this is the arrest rhythm<br/>Values "Other" and "Normal Sinus Rhythm" removed since they are not Cardiac Arrest Rhythms.<br/>Value "Ventricular Tachycardia" has been changed to "Ventricular Tachycardia-Pulseless".
+							<br/><br/>This element is a component of the Utstein Cardiac Arrest Criteria as identified in the American Heart Association journal "Resuscitation" from 2004 entitled "Cardiac Arrest and Cardiopulmonary Resuscitation Outcome Reports". http://circ.ahajournals.org/cgi/content/full/110/21/3385</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <FirstMonitoredRhythm baseType="string">
+    <facet name="enumeration" value="3011001" annotation="Asystole"/>
+    <facet name="enumeration" value="3011005" annotation="PEA"/>
+    <facet name="enumeration" value="3011007" annotation="Unknown AED Non-Shockable Rhythm"/>
+    <facet name="enumeration" value="3011009" annotation="Unknown AED Shockable Rhythm"/>
+    <facet name="enumeration" value="3011011" annotation="Ventricular Fibrillation"/>
+    <facet name="enumeration" value="3011013" annotation="Ventricular Tachycardia-Pulseless"/>
+  </FirstMonitoredRhythm>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+</attributes>
+</element>

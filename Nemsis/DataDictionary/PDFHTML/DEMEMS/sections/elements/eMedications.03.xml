@@ -1,0 +1,40 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eMedications.03"  minOccurs="1"  maxOccurs="1"  dataTypeName="Medication"  isNillable="Yes">
+<name>Medication Given</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>The medication given to the patient</definition>
+<v2Number>E18_03</v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>List of medications based on RxNorm (RXCUI) code. 
+<br/><br/>Reference the NEMSIS Suggested Lists at: http://nemsis.org/v3/resources.html 
+<br/><br/>RxNorm 
+<br/>Website - http://uts.nlm.nih.gov 
+<br/><br/>Product - UMLS Metathesaurus 
+<br/>Website - http://www.nlm.nih.gov/research/umls/rxnorm/docs/rxnormfiles.html 
+<br/>Product - RxNorm Full Monthly Release</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <Medication baseType="string">
+    <facet name="minLength" value="2"/>
+    <facet name="maxLength" value="7"/>
+  </Medication>
+</restrictions>
+<attributes>
+  <PN>
+    <PN.ContraindicationNoted><facet name="enumeration" value="8801001" annotation="Contraindication Noted"/></PN.ContraindicationNoted>
+    <PN.DeniedByOrder><facet name="enumeration" value="8801003" annotation="Denied By Order"/></PN.DeniedByOrder>
+    <PN.MedicationAllergy><facet name="enumeration" value="8801007" annotation="Medication Allergy"/></PN.MedicationAllergy>
+    <PN.MedicationAlreadyTaken><facet name="enumeration" value="8801009" annotation="Medication Already Taken"/></PN.MedicationAlreadyTaken>
+    <PN.Refused><facet name="enumeration" value="8801019" annotation="Refused"/></PN.Refused>
+    <PN.UnableToComplete><facet name="enumeration" value="8801023" annotation="Unable to Complete"/></PN.UnableToComplete>
+  </PN>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+</attributes>
+</element>

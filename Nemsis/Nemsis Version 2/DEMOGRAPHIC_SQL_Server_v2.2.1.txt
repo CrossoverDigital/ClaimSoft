@@ -1,0 +1,911 @@
+/*
+Created		07/10/2005
+Modified	07/10/2005
+Project		EMS National Dataset (DEMOGRAPHIC)
+Author		WesBowden
+Database	MS SQL 2000 
+
+Description:
+
+This SQL script was created by Wes Bowden for DEMOGRAPHIC in order to
+generate a basic transactional oriented database schema for MS SQL
+that meets the minimum requirements for storing the EMS National
+Dataset Data Elements included in the DEMOGRAPHIC XSDs. This schema is
+relational and built with constraints related to valid data values.
+This script WILL NOT generate an application capable of collecting
+the pre-hospital care ambulance run data although it certainly can
+be used in conjunction with such an application; nor will this
+script be able to import properly formatted XML files into the
+schema. To parse XML into this schema you must use an associated
+XSLT or parser application.
+
+	Naming Convention
+	 * Table Name = Element Group (eg E01)
+	 * Sub Table Name Single Field One to Many Relationship = Column Name (eg E07_37)
+	 * Sub Table Name Multiple Fields = Element Tag (eg E07_03_0)
+	 * Column Name = Element Designation (eg E01_01)
+	 * Constraint Name: Type_Field
+		CMI = Constraint Minimum; CEN = Constraint Entry; CP = Constraint Property;
+		CMM = Constraint Minumum Maximum Range
+	Design
+	 * Designed to support basic mapping of the XSDs into a Microsoft SQL database schema
+	 * In general each E Code Section gets its own table
+	 * Subtables of an E Code Section are created to support 0 to many relationships
+	 * Subtables of an E Code Section are also create to support large optional data groupings
+	 * Subtables of an E Code Section or Data Element requiring excesive 1 to many relationsihps
+	   may be configured in second normal form to prevent excesive subtable creation
+	 * Fields to support table relationships are added, due to the limited hierarchical
+	   relationships and lack of dependence among data elements as strongly defined in the
+	   in the XSDs; most tables link directly to the root record table.
+	 * In accordance with best practices for tables; an arbitrary primary key is added to
+	   those tables which have 0 to many relationships. However, they will likely have a
+	   clustered index in relation to the foreign key rather than the primary key.
+
+		Sample relationship design:
+
+		|>>>>>>	OriginDemographicTable
+		|	  -> ODT_ID (primary key)
+		|	  -> ODT_Info (data)
+		|
+		|>>>>>>>>>>>	MainRecordTable
+			|	  -> MRT_ID (primary key)
+			|	  -> fk_ODT_ID (foreign key)
+			|	  -> MRT_Info (data)
+			|
+			|>>>>>>>>>>>>>	SectionTableSingleInstance
+			|		  -> pk_MRT_ID (primary key - clustered index)
+			|		  -> STSI_Info (data)
+			|
+			|>>>>>>>>>>>>>	SectionTableMultipleInstance
+			|		  -> STMI_ID (primary key)
+			|		  -> fk_MRT_ID (foreign key - clustered index)
+			|		  -> STMI_Info (data)
+			|
+			|>>>>>>>>>>>>>	SectionTableWithSubSection
+				|	  -> STWSS_ID (primary key)
+				|	  -> fk_MRT_ID (foreign key - clustered index)
+				|	  -> STWSS_Info (data)
+				|
+				|>>>>>>>>>>>>	SubSectioTableSingleInstance
+				|		  -> pk_STWSS_ID (primary key - clustered index)
+				|		  -> SSTSI_Info (data)
+				|
+				|>>>>>>>>>>>>	SubSectioTableMultipleInstance
+				|		  -> STWSS_ID (primary key)
+				|		  -> fk_STWSS_ID (foreign key - clustered index)
+				|		  -> SSTSI_Info (data)
+				
+*/
+
+
+CREATE DATABASE DEMOGRAPHIC
+GO
+
+USE DEMOGRAPHIC
+
+/* Agency General Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D01] ( 
+	[pk_D01] int identity (1,1) NOT NULL , -- Primary Key to Agency 
+	[D01_01] varchar (15) NOT NULL , -- Agency Number
+	[D01_02] varchar (50) NOT NULL , -- Agency Name
+	[D01_05] int NULL , -- Primary type of Service
+	[D01_07] varchar (30) NOT NULL , -- Level Of Service
+	[D01_08] int NOT NULL , --Organization Type
+	[D01_09] int NOT NULL , -- Organization Status
+	[D01_19] int NULL , -- Time Zone
+	[D01_20] int NULL , --Day light savings
+	[D01_21] varchar (10) NOT NULL,-- National Provider ID
+	[Created_Date] datetime NOT NULL,
+	[Update_Date] datetime NOT NULL)
+GO
+/* Agency State Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D01_03] ( 
+	[pk_D01_03] int identity (1,1) NOT NULL ,
+	[fk_D01] int NOT NULL, -- Agency Number
+	[D01_03] char (2) NOT NULL, --Agency State
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime NOT NULL,
+	[Update_Date] datetime NOT NULL) 
+GO
+
+/* Agency County Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D01_04] ( 
+	[pk_D01_04] int identity (1,1) NOT NULL ,  
+	[fk_D01] int NOT NULL , -- Primary Key to Agency
+	[D01_04] varchar (5) NOT NULL, -- Agency County
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime NOT NULL,
+	[Update_Date] datetime NOT NULL) 
+GO
+
+/* Agency County Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D01_06] ( 
+	[pk_D01_06] int identity (1,1) NOT NULL , 
+	[fk_D01] int NOT NULL, -- Primary Key to Agency
+	[D01_06] int NOT NULL, -- Other Types of Service
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime  NOT NULL,
+	[Update_Date] datetime  NOT NULL) 
+GO
+
+/* Agency Statistical Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D01_10] ( 
+	[pk_D01_10] int identity (1,1) NOT NULL , 
+	[fk_D01] int NOT NULL,-- Primary Key to Agency
+	[D01_10] int NOT NULL,--year
+	[D01_12] int NOT NULL,--service area size
+	[D01_13] int NOT NULL,--service area population
+	[D01_14] int NOT NULL,--call volume/year
+	[D01_15] int NOT NULL,--dispatch year
+	[D01_16] int NOT NULL,--tansports per year
+	[D01_17] int NOT NULL, -- patient contacts per year
+	[D01_18] int NULL) -- billable calls per year
+GO
+
+/* Other Agency Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D01_11] ( 
+	[pk_D01_11] int identity (1,1) NOT NULL , 
+	[fk_D01] int NOT NULL, -- Primary Key to Agency
+	[D01_11] varchar (50) NOT NULL, --Other agancies
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime  NOT NULL,
+	[Update_Date] datetime  NOT NULL) 
+GO
+
+/* Agency Contact Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D02] ( 
+	[pk_D02] int identity (1,1) NOT NULL , 
+	[fk_D01] int NOT NULL, -- Primary Key to Agency
+	[D02_01] varchar (20) NOT NULL , -- last name
+	[D02_02] varchar (20) NULL , -- middle name
+	[D02_03] varchar (20) NOT NULL , -- first name
+	[D02_04] varchar (30) NULL , -- address
+	[D02_05] varchar (30) NULL,  -- city
+	[D02_06] varchar (3) NULL , -- state
+	[D02_07] varchar (10) NOT NULL , -- zip
+	[D02_08] varchar (10) NULL , -- phone number
+	[D02_09] varchar (10) NULL , -- fax number
+	[D02_10] varchar (100) NULL , -- email address
+	[D02_11] varchar (100) NULL , -- website address
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime  NOT NULL,
+	[Update_Date] datetime NOT NULL)
+GO
+
+/* Agency Medical Director Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D03] ( 
+	[pk_D03] int identity (1,1) NOT NULL , 
+	[fk_D01] int NOT NULL , -- Primary Key to Agency
+	[D03_01] varchar (20) NOT NULL , -- last name
+	[D03_02] varchar (20) NULL , -- Middle Name
+	[D03_03] varchar (20) NOT NULL , -- First Name
+	[D03_04] varchar (30) NULL , -- Address
+	[D03_05] varchar (30) NULL , -- City
+	[D03_06] varchar (3) NULL , -- State
+	[D03_07] varchar (10) NULL , -- Zip
+	[D03_08] varchar (10) NULL , -- Phone Number
+	[D03_09] varchar (10) NULL , -- Fax Number
+	[D03_10] int NULL , -- Speciality
+	[D03_11] varchar (100) NULL , -- email
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime NOT NULL,
+	[Update_Date] datetime NOT NULL)
+GO
+
+
+
+/* Certification Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D04_01] ( 
+	[pk_D04_01] int identity (1,1) NOT NULL, 
+	[fk_D01] int NOT NULL ,-- Primary Key to Agency
+	[D04_01] varchar (30) NOT NULL, -- State Certification levels
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime  NOT NULL,
+	[Update_Date] datetime  NOT NULL) 
+GO
+
+/* Call Sign Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D04_02] ( 
+	[pk_D04_02] int identity (1,1) NOT NULL,
+	[fk_D01] int NOT NULL ,-- Primary Key to Agency
+	[D04_02] varchar (30) NOT NULL, -- Unit Call Sign
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime  NOT NULL,
+	[Update_Date] datetime  NOT NULL) 
+GO
+
+/* Zone Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D04_03] ( 
+	[pk_D04_03] int identity (1,1) NOT NULL,
+	[fk_D01] int NOT NULL ,-- Primary Key to Agency
+	[D04_03] varchar (30) NOT NULL, -- Zones
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime  NOT NULL,
+	[Update_Date] datetime  NOT NULL) 
+GO
+
+/* Procedure Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D04_04] ( 
+	[pk_D04_04] int identity (1,1) NOT NULL,
+	[fk_D01] int NOT NULL ,-- Primary Key to Agency
+	[D04_04] varchar (30) NOT NULL, --Procedures
+	[fk_D04_01] int NULL,  -- State Certification level to perform
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime  NOT NULL,
+	[Update_Date] datetime  NOT NULL) 
+GO
+
+/* Medications Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D04_06] ( 
+	[pk_D04_06] int identity (1,1) NOT NULL,
+	[fk_D01] int NOT NULL ,-- Primary Key to Agency
+	[D04_06] varchar (30) NOT NULL, -- Medication
+	[fk_D04_01] int NULL, -- State Certification level to perform
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime  NOT NULL,
+	[Update_Date] datetime  NOT NULL) 
+GO
+
+/* Protocol Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D04_08] ( 
+	[pk_D04_08] int identity (1,1) NOT NULL,
+	[fk_D01] int NOT NULL ,-- Primary Key to Agency
+	[D04_08] varchar (30) NOT NULL, --Protocols
+	[fk_D04_01] int NULL, -- State Certification level to perform
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime  NOT NULL,
+	[Update_Date] datetime  NOT NULL) 
+GO
+
+/* Billing Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D04_10] ( 
+	[pk_D04_10] int identity (1,1) NOT NULL,
+	[fk_D01] int NOT NULL , -- Primary Key to Agency
+	[D04_10] varchar (30) NOT NULL, -- Billing Status
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime  NOT NULL,
+	[Update_Date] datetime  NOT NULL) 
+GO
+
+/* Hospital Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D04_11] ( 
+	[pk_D04_11] int identity (1,1) NOT NULL,
+	[fk_D01] int NOT NULL , -- Primary Key to Agency
+	[D04_11] varchar (50) NOT NULL, -- Hospital Served
+	[D04_12] varchar (30) NOT NULL, -- Facility Number
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime  NOT NULL,
+	[Update_Date] datetime  NOT NULL) 
+GO
+
+/* Other Destination Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D04_13] ( 
+	[pk_D04_13] int identity (1,1) NOT NULL,
+	[fk_D01] int NOT NULL , -- Primary Key to Agency
+	[D04_13] varchar (50) NOT NULL,-- Other Destination
+	[D04_14] varchar (30) NOT NULL, -- Facility Number
+	[D04_15] int NOT NULL, -- Destination Type
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime  NOT NULL,
+	[Update_Date] datetime  NOT NULL) 
+GO
+
+/* Insurance Company Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D04_16] ( 
+	[pk_D04_16] int identity (1,1) NOT NULL,
+	[fk_D01] int NOT NULL , -- Primary Key to Agency
+	[D04_16] varchar (100) NOT NULL, -- Insurance Company Used 
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime  NOT NULL,
+	[Update_Date] datetime  NOT NULL) 
+GO
+
+/* EMD Vendor Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D04_17] ( 
+	[pk_D04_17] int identity (1,1) NOT NULL,
+	[fk_D01] int NOT NULL , -- Primary Key to Agency
+	[D04_17] varchar (50) NOT NULL, --EMD Vendor
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime  NOT NULL,
+	[Update_Date] datetime  NOT NULL) 
+GO
+
+
+/* Agency Station Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D05] ( 
+	[pk_D05] int identity (1,1) NOT NULL,
+	[fk_D01] int NOT NULL , -- Primary Key to Agency
+	[D05_01] varchar (50) NOT NULL , -- Station Name
+	[D05_02] varchar (50) NOT NULL , -- Station Number
+	[D05_03] varchar (30) NULL , -- Zone
+	[Lat] varchar (10) NULL , 
+	[Long] varchar (10) NULL ,
+	[D05_05] varchar (30) NULL , -- Address
+	[D05_06] varchar (30) NULL , -- City
+	[D05_07] varchar (3) NOT NULL , -- State
+	[D05_08] varchar (10) NULL , -- Zip
+	[D05_09] varchar (10) NULL , -- Phone Number
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime NOT NULL,
+	[Update_Date] datetime NOT NULL)
+GO
+
+/* Vehicle Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D06] ( 
+	[pk_D06_01] varchar (50) NOT NULL , -- Vehicle VIN
+	[fk_D01] int NOT NULL , -- Primary Key to Agency
+	[D06_03] int  NOT NULL , -- Type of Vehicle
+	[D06_06] money NULL , -- Initial Cost
+	[D06_07] int NULL , -- Model Year
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime NOT NULL,
+	[Update_Date] datetime NOT NULL)
+GO
+
+/* Vehicle Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D06_04] ( 
+	[pk_D06_04] int identity (1,1) NOT NULL,
+	[fk_D06_01] varchar (50) NOT NULL , -- Primary Key Vehicle
+	[fk_D04_01] int NOT NULL, --Level of cerification
+	[D06_05] int NOT NULL , -- Number assigned
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime NOT NULL,
+	[Update_Date] datetime NOT NULL)
+GO
+
+
+/* Vehicle Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D06_08] ( 
+	[pk_D06_08] int identity (1,1) NOT NULL,
+	[fk_D06_01] varchar (50) NOT NULL ,-- Primary Key Vehicle
+	[D06_08] int NOT NULL , -- Year
+	[D06_09] int NOT NULL , -- Hours
+	[D06_10] int NOT NULL , -- Miles
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime NOT NULL,
+	[Update_Date] datetime NOT NULL)
+GO
+
+/* Personnel Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D07] ( 
+	[pk_D07_01] int identity (1,1) NOT NULL, -- Id for person
+	[fk_D01] int NOT NULL , -- Primary Key to Agency
+	[D07_02] int NOT NULL , -- State ID
+	[D07_03] int  NOT NULL , -- Employment Status
+	[D07_04] datetime  NULL , -- Status date
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime NOT NULL,
+	[Update_Date] datetime NOT NULL)
+GO
+
+/* Personnel Certification Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D07_05] ( 
+	[pk_D07_05] int identity (1,1) NOT NULL, -- Id for person
+	[fk_D07_01] int NOT NULL , -- Primary Key to Agency
+	[fk_D04_01] int NOT NULL, -- State Certification Level
+	[D07_06] datetime  NULL , -- Date of Certification
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime NOT NULL,
+	[Update_Date] datetime NOT NULL)
+GO
+
+/* General Personnel Information */
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D08] ( 
+	[pk_D08] int identity (1,1) NOT NULL, 
+	[fk_D07_01] int NOT NULL , -- Primary Key to Person
+	[D08_01] varchar (20) NOT NULL , -- Last Name
+	[D08_02] varchar (20) NULL , -- Middle Name
+	[D08_03] varchar (20) NOT NULL , -- First Name
+	[D08_04] varchar (30) NULL , -- Address
+	[D08_05] varchar (30) NULL , -- city
+	[D08_06] varchar (3) NULL , -- State
+	[D08_07] varchar (10) NULL , -- zip
+	[D08_08] varchar (10) NULL , -- Work Phone
+	[D08_09] varchar (10) NULL , -- Home Phone
+	[D08_10] varchar (100) NULL , -- E-mail Address
+	[D08_11] datetime NULL , -- Date of Birth
+	[D08_12] int NOT NULL , -- Gender
+	[D08_13] int NULL , -- Race
+	[D08_14] int NULL , -- Ethnicity
+	[fk_D04_01] int NULL, -- State Certification Level
+	[D08_16] int NULL , -- National Registry
+	[D08_17] datetime NULL , -- Current certification Date
+	[D08_18] datetime NULL , -- Initial State Certification date
+	[D08_19] int NULL , -- Length of service
+	[D08_20] datetime NULL , -- Length of service
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime NOT NULL,
+	[Update_Date] datetime NOT NULL)
+GO
+
+
+/* Medical Device Information*/
+CREATE TABLE [DEMOGRAPHIC].[dbo].[D09] ( 
+	[pk_D09] int identity (1,1) NOT NULL,
+	[fk_D01] int NOT NULL , -- Primary Key to Agency
+	[D09_01] varchar (50) NULL , -- serial Number
+	[D09_02] varchar (50)NOT NULL , -- device name
+	[D09_03] varchar (50) NOT NULL , -- Manufacturer
+	[D09_04] varchar (50)NOT NULL , -- model number
+	[D09_05] datetime NULL , -- purchase date
+	[Status] char (1) NOT NULL,
+	[Created_Date] datetime NOT NULL,
+	[Update_Date] datetime NOT NULL)
+GO
+
+
+
+
+
+
+/*******************************************************************************/
+/**************************** Add Primary Keys *********************************/
+/*******************************************************************************/
+
+ALTER TABLE [dbo].[D01] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D01] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D01]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D01_03] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D01_03] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D01_03]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D01_04] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D01_04] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D01_04]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D01_06] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D01_06] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D01_06]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D01_10] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D01_10] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D01_10]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D01_11] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D01_11] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D01_11]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D02] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D02] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D02]
+	)  ON [PRIMARY] 
+GO
+ALTER TABLE [dbo].[D03] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D03] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D03]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D04_01] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D04_01] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D04_01]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D04_02] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D04_02] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D04_02]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D04_03] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D04_03] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D04_03]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D04_04] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D04_04] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D04_04]
+	)  ON [PRIMARY] 
+GO
+
+
+ALTER TABLE [dbo].[D04_06] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D04_06] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D04_06]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D04_08] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D04_08] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D04_08]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D04_10] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D04_10] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D04_10]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D04_11] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D04_11] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D04_11]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D04_13] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D04_13] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D04_13]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D04_16] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D04_16] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D04_16]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D04_17] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D04_17] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D04_17]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D05] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D05] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D05]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D06] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D06_01] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D06_01]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D06_04] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D06_04] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D06_04]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D06_08] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D06_08] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D06_08]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D07] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D07_01] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D07_01]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D07_05] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D07_05] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D07_05]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D08] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D08] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D08]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[D09] WITH NOCHECK ADD 
+	CONSTRAINT [PK_D09] PRIMARY KEY  CLUSTERED 
+	(
+		[pk_D09]
+	)  ON [PRIMARY] 
+GO
+
+
+
+/*******************************************************************************/
+/*************************** Add Relationships *********************************/
+/*******************************************************************************/
+
+ALTER TABLE [dbo].[D01_03] ADD 
+	CONSTRAINT [FK_D01_03_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+
+ALTER TABLE [dbo].[D01_04] ADD 
+	CONSTRAINT [FK_D01_04_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D01_06] ADD 
+	CONSTRAINT [FK_D01_06_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D01_10] ADD 
+	CONSTRAINT [FK_D01_10_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D01_11] ADD 
+	CONSTRAINT [FK_D01_11_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D02] ADD 
+	CONSTRAINT [FK_D02_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D03] ADD 
+	CONSTRAINT [FK_D03_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D04_01] ADD 
+	CONSTRAINT [FK_D04_01_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D04_02] ADD 
+	CONSTRAINT [FK_D04_02_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D04_03] ADD 
+	CONSTRAINT [FK_D04_03_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D04_04] ADD 
+	CONSTRAINT [FK_D04_04_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D04_04] ADD 
+	CONSTRAINT [FK_D04_04_D04_01] FOREIGN KEY 
+	(
+		[fk_D04_01]
+	) REFERENCES [dbo].[D04_01] (
+		[pk_D04_01]
+	)
+GO
+
+ALTER TABLE [dbo].[D04_06] ADD 
+	CONSTRAINT [FK_D04_06_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D04_06] ADD 
+	CONSTRAINT [FK_D04_06_D04_01] FOREIGN KEY 
+	(
+		[fk_D04_01]
+	) REFERENCES [dbo].[D04_01] (
+		[pk_D04_01]
+	)
+GO
+
+ALTER TABLE [dbo].[D04_08] ADD 
+	CONSTRAINT [FK_D04_08_D04_01] FOREIGN KEY 
+	(
+		[fk_D04_01]
+	) REFERENCES [dbo].[D04_01] (
+		[pk_D04_01]
+	)
+GO
+
+ALTER TABLE [dbo].[D04_08] ADD 
+	CONSTRAINT [FK_D04_08_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D04_10] ADD 
+	CONSTRAINT [FK_D04_10_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D04_11] ADD 
+	CONSTRAINT [FK_D04_11_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D04_13] ADD 
+	CONSTRAINT [FK_D04_13_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D04_16] ADD 
+	CONSTRAINT [FK_D04_16_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D04_17] ADD 
+	CONSTRAINT [FK_D04_17_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D05] ADD 
+	CONSTRAINT [FK_D05_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D06] ADD 
+	CONSTRAINT [FK_D06_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+
+ALTER TABLE [dbo].[D06_04] ADD 
+	CONSTRAINT [FK_D06_04_D04_01] FOREIGN KEY 
+	(
+		[fk_D04_01]
+	) REFERENCES [dbo].[D04_01] (
+		[pk_D04_01]
+	)
+GO
+
+
+ALTER TABLE [dbo].[D06_08] ADD 
+	CONSTRAINT [FK_D06_08_D06_01] FOREIGN KEY 
+	(
+		[fk_D06_01]
+	) REFERENCES [dbo].[D06] (
+		[pk_D06_01]
+	)
+GO
+
+ALTER TABLE [dbo].[D07] ADD 
+	CONSTRAINT [FK_D07_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO
+
+ALTER TABLE [dbo].[D07_05] ADD 
+	CONSTRAINT [FK_D07_05_D07_01] FOREIGN KEY 
+	(
+		[fk_D07_01]
+	) REFERENCES [dbo].[D07] (
+		[pk_D07_01]
+	)
+GO
+
+ALTER TABLE [dbo].[D07_05] ADD 
+	CONSTRAINT [FK_D07_05_D04_01] FOREIGN KEY 
+	(
+		[fk_D04_01]
+	) REFERENCES [dbo].[D04_01] (
+		[pk_D04_01]
+	)
+GO
+
+ALTER TABLE [dbo].[D08] ADD 
+	CONSTRAINT [FK_D08_D07_01] FOREIGN KEY 
+	(
+		[fk_D07_01]
+	) REFERENCES [dbo].[D07] (
+		[pk_D07_01]
+	)
+GO
+
+ALTER TABLE [dbo].[D09] ADD 
+	CONSTRAINT [FK_D09_D01] FOREIGN KEY 
+	(
+		[fk_D01]
+	) REFERENCES [dbo].[D01] (
+		[pk_D01]
+	)
+GO

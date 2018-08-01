@@ -1,0 +1,20 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eMedDevice.30"  minOccurs="0"  maxOccurs="1"  dataTypeName="RespiratoryRate"  isNillable="No">
+<name>Respiratory Rate</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The patient's respiratory rate expressed as a number per minute.</definition>
+<v2Number>E14_11</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment></v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <RespiratoryRate baseType="integer">
+    <facet name="minInclusive" value="0"/>
+    <facet name="maxInclusive" value="300"/>
+  </RespiratoryRate>
+</restrictions>
+</element>

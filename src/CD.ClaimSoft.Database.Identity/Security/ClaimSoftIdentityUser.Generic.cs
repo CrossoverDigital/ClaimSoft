@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using CD.ClaimSoft.Application.Model.Agency;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CD.ClaimSoft.Database.Identity.Security
@@ -25,6 +27,8 @@ namespace CD.ClaimSoft.Database.Identity.Security
         /// </value>
         /// <inheritdoc />
         //public TTenantKey TenantId { get; set; }
+
+        public IEnumerable<Agency> UserAgencies { get; set; }
 
         /// <summary>
         /// Gets or sets the create by.

@@ -1,0 +1,20 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eOutcome.14"  minOccurs="0"  maxOccurs="1"  dataTypeName="LengthOfStay"  isNillable="No">
+<name>Total ICU Length of Stay</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The total number of patient days in any ICU (including all ICU episodes).</definition>
+<v2Number></v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment></v3Comment>
+<v3Changes>Added to better measure patient outcomes.</v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <LengthOfStay baseType="integer">
+    <facet name="minInclusive" value="1"/>
+    <facet name="maxInclusive" value="400"/>
+  </LengthOfStay>
+</restrictions>
+</element>

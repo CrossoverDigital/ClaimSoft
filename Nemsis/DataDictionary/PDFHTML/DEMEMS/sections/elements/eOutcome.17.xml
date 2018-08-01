@@ -1,0 +1,25 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eOutcome.17"  minOccurs="0"  maxOccurs="1"  dataTypeName="OutcomeAtHospitalDischarge"  isNillable="No">
+<name>Outcome at Hospital Discharge</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The patient's functional status at time of hospital discharge.</definition>
+<v2Number></v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment></v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <OutcomeAtHospitalDischarge baseType="string">
+    <facet name="enumeration" value="4317001" annotation="No Symptoms At All"/>
+    <facet name="enumeration" value="4317003" annotation="No significant disability despite symptoms; able to carry out all usual duties and activities"/>
+    <facet name="enumeration" value="4317005" annotation="Slight disability; unable to carry out all previous activities, but able to look after own affairs without assistance"/>
+    <facet name="enumeration" value="4317007" annotation="Moderate disability; requiring some help, but able to walk without assistance"/>
+    <facet name="enumeration" value="4317009" annotation="Moderately severe disability; unable to walk without assistance and unable to attend to own bodily needs without assistance"/>
+    <facet name="enumeration" value="4317011" annotation="Severe disability; bedridden, incontinent and requiring constant nursing care and attention"/>
+    <facet name="enumeration" value="4317013" annotation="Dead"/>
+  </OutcomeAtHospitalDischarge>
+</restrictions>
+</element>

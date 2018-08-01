@@ -1,0 +1,29 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eVitals.05"  minOccurs="1"  maxOccurs="M"  dataTypeName="ECGMethod"  isNillable="Yes">
+<name>Method of ECG Interpretation</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>The method of ECG interpretation.</definition>
+<v2Number></v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>STEMI</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>"Transmission with no interpretation" may be used by EMS Agency Personnel that are not trained to interpret cardiac rhythms.</v3Comment>
+<v3Changes>Added to better document ECG results.</v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <ECGMethod baseType="string">
+    <facet name="enumeration" value="3305001" annotation="Computer Interpretation"/>
+    <facet name="enumeration" value="3305003" annotation="Manual Interpretation"/>
+    <facet name="enumeration" value="3305005" annotation="Transmission with No Interpretation"/>
+    <facet name="enumeration" value="3305007" annotation="Transmission with Remote Interpretation"/>
+  </ECGMethod>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+  <CorrelationID baseType="string"><facet name="minLength" value="0"/><facet name="maxLength" value="255"/></CorrelationID>
+</attributes>
+</element>

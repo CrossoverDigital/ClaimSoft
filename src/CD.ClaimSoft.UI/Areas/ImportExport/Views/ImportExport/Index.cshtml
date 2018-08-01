@@ -1,8 +1,124 @@
-﻿
+﻿@using CD.ClaimSoft.Database.Model.Agency
+@using Syncfusion.JavaScript
+@using Syncfusion.JavaScript.Models
+@using Syncfusion.MVC.EJ
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Import/Export";
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<style>
 
+    .e-btn.e-select {
+        background: #ffffff;
+        color: #333;
+        border: none;
+        font-size: 18px;
+    }
+</style>
+
+<div class="content-heading">
+    <span data-localize="export.IMPORTEXPORT"></span>
+</div>
+
+<div class="frame">
+    <div class="control">
+        @Html.EJ().Uploadbox("DragAndDrop").SaveUrl(@Url.Action("UploadFiles")).RemoveUrl(@Url.Action("DeleteFiles")).AllowDragAndDrop(true).MultipleFilesSelection(false).DropAreaHeight("200px").ClientSideEvents(e => e.Success("FileUploadSuccess"))
+    </div>
+</div>
+
+<div style="margin-top: 20px;">
+    @(Html.EJ().Grid<AgencyFile>("AgencyFileGrid")
+          .Datasource((IEnumerable<object>)ViewBag.DataSource)
+          .EnableRowHover(false)
+          .AllowSelection(false)
+          .Columns(col =>
+          {
+              col.Field("FileType").HeaderText("File Type").Width(50).Add();
+              col.Field("Name").HeaderText("File Name").Width(125).Add();
+              //col.Field("StreamId").IsPrimaryKey(true).HeaderText("Stream Id").Width(125).Add();
+              col.Field("LocalCreateDate").HeaderText("Uploaded Date").Width(75).Format("{0:MM/dd/yyyy hh:mm tt}").Add();
+              col.Field("LocalProcessedDate").HeaderText("Processed Date").Width(75).Format("{0:MM/dd/yyyy hh:mm tt}").Add();
+              col.HeaderText("Actions").Commands(command =>
+              {
+                  command.Type("ProcessFile").ButtonOptions(new ButtonProperties()
+                  {
+                      ContentType = ContentType.ImageOnly,
+                      PrefixIcon = "fa fa-sign-in",
+                      Width = "30px",
+                      Click = "OnProcessFileClick"
+                  }).Add();
+                  command.Type("DeleteFile").ButtonOptions(new ButtonProperties()
+                  {
+                      ContentType = ContentType.ImageOnly,
+                      PrefixIcon = "fa fa-trash",
+                      Width = "30px",
+                      Click = "OnDeleteFileClick"
+                  }).Add();
+              })
+                  .TextAlign(TextAlign.Left)
+                  .Width(150)
+                  .Add();
+          })
+    )
+</div>
+
+<script type="text/javascript">
+
+    function FileUploadSuccess(e) {
+        RefreshGrid();
+    }
+
+    function RefreshGrid() {
+        var gridObj = $("#AgencyFileGrid").ejGrid("instance");
+
+        $.ajax({
+            url: '@Url.Action("DataSource", "ImportExport", new {Area = "ImportExport"})',
+            type: "get",
+        }).done(function (data) {
+            gridObj.dataSource(data);
+        }).fail(function () {
+            alert('error');
+        });
+    }
+
+    function OnProcessFileClick(args)
+    {
+        var gridObj = $("#AgencyFileGrid").ejGrid("instance");
+
+        var index = this.element.closest("tr").index();
+
+        var record = gridObj.getCurrentViewData()[index];
+
+        var token = $("#__AjaxAntiForgeryForm input").val();
+        var dataObject = {
+            __RequestVerificationToken: token,
+            fileName: record["Name"],
+            streamId: record["StreamId"]
+        };
+
+        $.ajax({
+            url: '@Url.Action("ProcessFile", "ImportExport", new {Area = "ImportExport"})',
+            type: "POST",
+            data: dataObject,
+            statusCode: {
+                401: function (data) {
+                    // the user is not authenticated => redirect him to the login page
+                    window.location.href = '@Url.Action("Login", "Account", new { Area = "Account" })';
+                }
+            },
+            success: function (data) {
+                RefreshGrid();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR);
+                alert(textStatus);
+                alert(errorThrown);
+            }
+        });
+    }
+
+    //# sourceURL=ImportExport.js
+</script>

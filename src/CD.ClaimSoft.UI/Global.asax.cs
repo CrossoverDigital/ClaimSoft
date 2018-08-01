@@ -42,14 +42,16 @@ namespace CD.ClaimSoft.UI
             LogService.Info("Logging configuration registered.");
 
             AreaRegistration.RegisterAllAreas();
+
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            // Map Entity to Model / Model to Entity
             AutoMapperConfig.Configure();
-
-            AutofacBootstrapper.Run();
-
+            
             // Cache the application settings
             ApplicationCache.CacheApplicationSettings();
 

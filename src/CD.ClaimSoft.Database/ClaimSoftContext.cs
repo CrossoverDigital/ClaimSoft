@@ -6,6 +6,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Core;
@@ -15,17 +16,26 @@ using System.Data.SqlClient;
 using System.Linq;
 
 using CD.ClaimSoft.Common.EntityFramework;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CD.ClaimSoft.Database
 {
-    /// <inheritdoc />
     /// <summary>
     /// Partial database context to extend the save operations.
     /// </summary>
-    /// <seealso cref="T:System.Data.Entity.DbContext" />
+    /// <seealso cref="T:System.Data..DbContext" />
     /// <seealso cref="T:CD.ClaimSoft.Database.IClaimSoftContext" />
     public partial class ClaimSoftContext
     {
+        /// <summary>
+        /// Creates this instance.
+        /// </summary>
+        /// <returns></returns>
+        public static ClaimSoftContext Create()
+        {
+            return new ClaimSoftContext();
+        }
+
         /// <summary>
         /// Saves all changes made in this context to the underlying database.
         /// </summary>
@@ -33,9 +43,9 @@ namespace CD.ClaimSoft.Database
         /// The number of state entries written to the underlying database. This can include
         /// state entries for entities and/or relationships. Relationship state entries are created for
         /// many-to-many relationships and relationships where there is no foreign key property
-        /// included in the entity class (often referred to as independent associations).
+        /// included in the  class (often referred to as independent associations).
         /// </returns>
-        /// <exception cref="DbEntityValidationException"></exception>
+        /// <exception cref="DbValidationException"></exception>
         public override int SaveChanges()
         {
             try
@@ -55,7 +65,7 @@ namespace CD.ClaimSoft.Database
                 // Combine the original exception message with the new one.
                 var exceptionMessage = string.Concat(ex.Message, "The validation errors are: ", fullErrorMessage);
 
-                // Throw a new DbEntityValidationException with the improved exception message.
+                // Throw a new DbValidationException with the improved exception message.
                 throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
             }
         }
@@ -125,6 +135,11 @@ namespace CD.ClaimSoft.Database
             }
 
             return result.Any() ? result : null;
+        }
+
+        public static explicit operator IdentityDbContext(ClaimSoftContext v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

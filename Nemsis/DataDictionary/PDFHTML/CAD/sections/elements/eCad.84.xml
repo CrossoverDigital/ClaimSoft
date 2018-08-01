@@ -1,0 +1,23 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eCad.84"  minOccurs="0"  maxOccurs="1"  dataTypeName="StreetAddress"  isNillable="No">
+<name>Incident Street Address</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>?The street address where the patient was found, or, if no patient, the address to which the unit responded.?</definition>
+<v2Number>E08_11</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment>This is a CMS standard.  According to the Medicare Claims Processing Manual, Chapter 15 - Ambulance, Ambulance suppliers bill using CMS-1500 form or CMS-1450 form for institution-based ambulance providers.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <StreetAddress baseType="string">
+    <facet name="minLength" value="1"/>
+    <facet name="maxLength" value="255"/>
+  </StreetAddress>
+</restrictions>
+<attributes>
+  <StreetAddress2 baseType="string"><facet name="minLength" value="1"/><facet name="maxLength" value="255"/></StreetAddress2>
+</attributes>
+</element>

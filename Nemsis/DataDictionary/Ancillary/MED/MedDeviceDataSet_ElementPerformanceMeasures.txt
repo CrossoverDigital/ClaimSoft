@@ -1,0 +1,54 @@
+'Dataset'|'DatasetType'|'ElementNumber'|'ElementName'|'National'|'State'|'Airway'|'CardiacArrest'|'Pediatric'|'ResponseTime'|'STEMI'|'Stroke'|'Trauma'|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.01'|'Custom Data Element Title'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.02'|'Custom Definition'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.03'|'Custom Data Type'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.04'|'Custom Data Element Recurrence'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.05'|'Custom Data Element Usage'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.06'|'Custom Data Element Potential Values'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.07'|'Custom Data Element Potential NOT Values (NV)'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.09'|'Custom Data Element Grouping ID'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.10'|'Patient Care Report Number'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'MedDeviceDataSet'|'element'|'eMedDevice.11'|'Last Name'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.12'|'First Name'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.13'|'Middle Initial/Name'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.14'|'Gender'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'MedDeviceDataSet'|'element'|'eMedDevice.15'|'Race'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'MedDeviceDataSet'|'element'|'eMedDevice.16'|'Age'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'MedDeviceDataSet'|'element'|'eMedDevice.17'|'Age Units'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'MedDeviceDataSet'|'element'|'eMedDevice.19'|'Date/Time Vital Signs Taken'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'MedDeviceDataSet'|'element'|'eMedDevice.23'|'SBP (Systolic Blood Pressure)'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'MedDeviceDataSet'|'element'|'eMedDevice.24'|'DBP (Diastolic Blood Pressure)'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.25'|'Method of Blood Pressure Measurement'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.26'|'Mean Arterial Pressure'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.27'|'Heart Rate'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'MedDeviceDataSet'|'element'|'eMedDevice.28'|'Method of Heart Rate Measurement'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.29'|'Pulse Oximetry'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'MedDeviceDataSet'|'element'|'eMedDevice.30'|'Respiratory Rate'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'MedDeviceDataSet'|'element'|'eMedDevice.31'|'End Tidal Carbon Dioxide (ETCO2)'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'MedDeviceDataSet'|'element'|'eMedDevice.32'|'Carbon Monoxide (CO)'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.33'|'Blood Glucose Level'|''|''|''|''|'X'|''|''|'X'|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.34'|'Temperature'|''|''|''|''|'X'|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.35'|'Temperature Method'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.36'|'Date/Time of Laboratory or Imaging Result'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.37'|'Laboratory Result Type'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.38'|'Laboratory Result'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.39'|'Imaging Study Type'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.40'|'Imaging Study Results'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.41'|'Imaging Study File or Waveform Graphic Type'|''|''|'X'|'X'|''|''|'X'|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.42'|'Imaging Study File or Waveform Graphic'|''|''|'X'|'X'|''|''|'X'|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.43'|'Medical Device Serial Number'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.44'|'Date/Time of Event (per Medical Device)'|''|''|'X'|'X'|''|''|'X'|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.45'|'Medical Device Event Type'|''|''|'X'|'X'|''|''|'X'|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.46'|'Medical Device Waveform Graphic Type'|''|''|'X'|'X'|''|''|'X'|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.47'|'Medical Device Waveform Graphic'|''|''|'X'|'X'|''|''|'X'|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.48'|'Medical Device Mode (Manual, AED, Pacing, CO2, O2, etc)'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.49'|'Medical Device ECG Lead'|''|''|'X'|'X'|''|''|'X'|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.50'|'Medical Device ECG Interpretation'|''|''|'X'|'X'|''|''|'X'|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.51'|'Type of Shock'|''|''|''|'X'|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.52'|'Shock or Pacing Energy'|''|''|''|'X'|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.53'|'Total Number of Shocks Delivered'|''|''|''|'X'|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eMedDevice.54'|'Pacing Rate'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eCustomResults.01'|'Custom Data Element Result'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eCustomResults.02'|'Custom Element ID Referenced'|''|''|''|''|''|''|''|''|''|
+'MedDeviceDataSet'|'element'|'eCustomResults.03'|'CorrelationID of PatientCareReport Element or Group'|''|''|''|''|''|''|''|''|''|

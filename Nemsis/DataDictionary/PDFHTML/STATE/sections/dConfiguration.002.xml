@@ -1,0 +1,13 @@
+<?xml-stylesheet type="text/xsl" href="../xslt/grouping.xslt"?>
+<section name="dConfiguration">
+  <element number="dConfiguration.02" minOccurs="0" maxOccurs="M" CorrelationID="" isNillable="No" dataType="LicensureLevels"><name>State Certification/Licensure Levels</name><refNumber></refNumber><national>Yes</national><deprecated></deprecated><state>Yes</state><usage>Mandatory</usage><notValue></notValue><pertinentNegative></pertinentNegative></element>
+  <group number="dConfiguration.ProcedureGroup" minOccurs="0" maxOccurs="M" CorrelationID="" isNillable="No">
+    <element number="dConfiguration.06" minOccurs="0" maxOccurs="1" CorrelationID="" isNillable="No" dataType="StateCertificationLicensureLevels"><name>EMS Certification Levels Permitted to Perform Each Procedure</name><refNumber></refNumber><national>Yes</national><deprecated></deprecated><state>Yes</state><usage>Mandatory</usage><notValue></notValue><pertinentNegative></pertinentNegative></element>
+    <element number="dConfiguration.03" minOccurs="0" maxOccurs="M" CorrelationID="" isNillable="Yes" dataType="snomed"><name>Procedures Permitted by the State</name><refNumber></refNumber><national>Yes</national><deprecated></deprecated><state>Yes</state><usage>Required</usage><notValue>Yes</notValue><pertinentNegative></pertinentNegative></element>
+  </group>
+  <group number="dConfiguration.MedicationGroup" minOccurs="0" maxOccurs="M" CorrelationID="" isNillable="No">
+    <element number="dConfiguration.08" minOccurs="0" maxOccurs="1" CorrelationID="" isNillable="No" dataType="StateCertificationLicensureLevels"><name>EMS Certification Levels Permitted to Administer Each Medication</name><refNumber></refNumber><national>Yes</national><deprecated></deprecated><state>Yes</state><usage>Mandatory</usage><notValue></notValue><pertinentNegative></pertinentNegative></element>
+    <element number="dConfiguration.04" minOccurs="0" maxOccurs="M" CorrelationID="" isNillable="Yes" dataType="Medication"><name>Medications Permitted by the State</name><refNumber></refNumber><national>Yes</national><deprecated></deprecated><state>Yes</state><usage>Required</usage><notValue>Yes</notValue><pertinentNegative></pertinentNegative></element>
+  </group>
+  <element number="dConfiguration.05" minOccurs="0" maxOccurs="M" CorrelationID="" isNillable="Yes" dataType="ProtocolsUsed"><name>Protocols Permitted by the State</name><refNumber></refNumber><national>Yes</national><deprecated></deprecated><state>Yes</state><usage>Required</usage><notValue>Yes</notValue><pertinentNegative></pertinentNegative></element>
+</section>

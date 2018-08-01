@@ -1,0 +1,24 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eOutcome.13"  minOccurs="0"  maxOccurs="M"  dataTypeName="icd10CodeOutcomeDiagnosis"  isNillable="No">
+<name>Hospital Diagnosis</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The hospital diagnosis of the patient associated with the hospital admission.</definition>
+<v2Number></v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment>Code list is represented in ICD-10-CM: Diagnosis Codes.
+								<br/>Website - http://uts.nlm.nih.gov  
+								<br/>Product - UMLS Metathesaurus</v3Comment>
+<v3Changes>Added to better evaluate EMS care.</v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <icd10CodeOutcomeDiagnosis baseType="string">
+    <facet name="pattern" value="[A-Z][0-9][0-9A-Z]((\.[0-9A-Z]{1,4})?)"/>
+  </icd10CodeOutcomeDiagnosis>
+</restrictions>
+<attributes>
+  <CorrelationID baseType="string"><facet name="minLength" value="0"/><facet name="maxLength" value="255"/></CorrelationID>
+</attributes>
+</element>

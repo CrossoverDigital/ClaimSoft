@@ -1,0 +1,26 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eVitals.02"  minOccurs="1"  maxOccurs="1"  dataTypeName="YesNoValues"  isNillable="Yes">
+<name>Obtained Prior to this Unit's EMS Care</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>Indicates that the information which is documented was obtained prior to the documenting EMS units care.</definition>
+<v2Number>E14_02</v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>This is the NEMSIS Version 3 method to document prior aid.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <YesNoValues baseType="string">
+    <facet name="enumeration" value="9923001" annotation="No"/>
+    <facet name="enumeration" value="9923003" annotation="Yes"/>
+  </YesNoValues>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+</attributes>
+</element>

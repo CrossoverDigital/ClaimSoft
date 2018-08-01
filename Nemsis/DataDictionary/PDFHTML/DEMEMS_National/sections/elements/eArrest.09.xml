@@ -1,0 +1,34 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eArrest.09"  minOccurs="1"  maxOccurs="M"  dataTypeName="CPRType"  isNillable="Yes">
+<name>Type of CPR Provided</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>Documentation of the type/technique of CPR used by EMS.</definition>
+<v2Number></v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Cardiac Arrest</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Added to capture special CPR techniques.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <CPRType baseType="string">
+    <facet name="enumeration" value="3009001" annotation="Compressions-Continuous"/>
+    <facet name="enumeration" value="3009003" annotation="Compressions-External Band Type Device"/>
+    <facet name="enumeration" value="3009005" annotation="Compressions-External Plunger Type Device"/>
+    <facet name="enumeration" value="3009007" annotation="Compressions-External Thumper Type Device"/>
+    <facet name="enumeration" value="3009009" annotation="Compressions-Intermittent with Ventilation"/>
+    <facet name="enumeration" value="3009011" annotation="Compressions-Other Device"/>
+    <facet name="enumeration" value="3009013" annotation="Ventilation-Bag Valve Mask"/>
+    <facet name="enumeration" value="3009015" annotation="Ventilation-Impedance Threshold Device"/>
+    <facet name="enumeration" value="3009017" annotation="Ventilation-Mouth to Mouth"/>
+    <facet name="enumeration" value="3009019" annotation="Ventilation-Pocket Mask"/>
+  </CPRType>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+</attributes>
+</element>

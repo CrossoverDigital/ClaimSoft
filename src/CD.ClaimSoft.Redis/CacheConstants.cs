@@ -79,6 +79,11 @@ namespace CD.ClaimSoft.Redis
         public const string EmailTypeDomainListKey = "Cache_Key_EmailType_Domain_List";
 
         /// <summary>
+        /// The file type domain list key.
+        /// </summary>
+        public const string FileTypeDomainListKey = "Cache_Key_FileType_Domain_List";
+
+        /// <summary>
         /// The unit rounding type domain list key.
         /// </summary>
         public const string UnitRoundingTypeDomainListKey = "Cache_Key_UnitRoundingType_Domain_List";
@@ -91,6 +96,25 @@ namespace CD.ClaimSoft.Redis
         /// All agencies key.
         /// </summary>
         public const string AllAgenciesKey = "Cache_Key_All_Agencies_List";
+
+        #endregion
+
+        #region User Keys
+
+        /// <summary>
+        /// User agencies key.
+        /// </summary>
+        public const string UserAgenciesKey = "Cache_Key_User_Agencies_List";
+
+        /// <summary>
+        /// The current user agency key.
+        /// </summary>
+        public const string CurrentUserAgencyKey = "Cache_Key_Current_User_Agency";
+
+        /// <summary>
+        /// The current user claims key.
+        /// </summary>
+        public const string CurrentUserClaimsKey = "Cache_Key_Current_User_Claims";
 
         #endregion
     }

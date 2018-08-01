@@ -16,10 +16,9 @@ using AutoMapper.QueryableExtensions;
 
 using CD.ClaimSoft.Common.EntityFramework;
 using CD.ClaimSoft.Database;
+using CD.ClaimSoft.Database.Model.Agency;
 using CD.ClaimSoft.Logging;
 using CD.ClaimSoft.Redis;
-
-using Model = CD.ClaimSoft.Application.Models;
 
 namespace CD.ClaimSoft.Application.Administration
 {
@@ -70,55 +69,28 @@ namespace CD.ClaimSoft.Application.Administration
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the agencies.
-        /// </summary>
-        /// <returns>
-        /// The colection of agencies in the application.
-        /// </returns>
-        public List<Model.Agencies.Agency> GetAgencies()
-        {
-            try
-            {
-                return _cache.Get(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
-            }
-            catch (Exception ex)
-            {
-                _logService.Error(ex);
-
-                throw;
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
         /// Creates a new agency.
         /// </summary>
         /// <param name="agency">The new agency.</param>
         /// <returns>The Entity Framework status object.</returns>
-        public EfStatus CreateAgency(Model.Agencies.Agency agency)
+        public EfStatus CreateAgency(Agency agency)
         {
             try
             {
-                var agencyTenantId = Guid.NewGuid().ToString().ToUpperInvariant();
+                var agencyEntity = Mapper.Map<AgencyEntity>(agency);
 
-                agency.AgencyTenantId = agencyTenantId;
+                _dbContext.Agencies.Attach(agencyEntity);
 
-                var entity = Mapper.Map<Agency>(agency);
-
-                _dbContext.Agencies.Attach(entity);
-
-                _dbContext.Entry(entity).State = EntityState.Added;
+                _dbContext.Entry(agencyEntity).State = EntityState.Added;
 
                 var returnValue = _dbContext.SaveChangesWithValidation();
 
-                if (returnValue.IsValid)
-                {
-                    var agencyList = _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
+                if (!returnValue.IsValid)
+                    return returnValue;
 
-                    var newAgency = agencyList.First(a => a.AgencyTenantId == agencyTenantId);
+                _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Agency>().ToList());
 
-                    returnValue.SetReturnObject(newAgency);
-                }
+                returnValue.SetReturnObject(agencyEntity);
 
                 return returnValue;
             }
@@ -136,28 +108,24 @@ namespace CD.ClaimSoft.Application.Administration
         /// </summary>
         /// <param name="agency">The agency to update.</param>
         /// <returns>The Entity Framework status object.</returns>
-        public EfStatus UpdateAgency(Model.Agencies.Agency agency)
+        public EfStatus UpdateAgency(Agency agency)
         {
             try
             {
-                var agencyTenantId = agency.AgencyTenantId;
+                var agencyEntity = Mapper.Map<AgencyEntity>(agency);
 
-                var entity = Mapper.Map<Agency>(agency);
+                _dbContext.Agencies.Attach(agencyEntity);
 
-                _dbContext.Agencies.Attach(entity);
-
-                _dbContext.Entry(entity).State = EntityState.Modified;
+                _dbContext.Entry(agencyEntity).State = EntityState.Modified;
 
                 var returnValue = _dbContext.SaveChangesWithValidation();
 
-                if (returnValue.IsValid)
-                {
-                    var agencyList = _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
+                if (!returnValue.IsValid)
+                    return returnValue;
 
-                    var updatedAgency = agencyList.First(a => a.AgencyTenantId == agencyTenantId);
+                _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Agency>().ToList());
 
-                    returnValue.SetReturnObject(updatedAgency);
-                }
+                returnValue.SetReturnObject(agencyEntity);
 
                 return returnValue;
             }
@@ -179,18 +147,18 @@ namespace CD.ClaimSoft.Application.Administration
         /// </summary>
         /// <param name="agencyAddressId">The agency address identifier.</param>
         /// <returns>The specified agency address.</returns>
-        public Model.Agencies.AgencyAddress GetAgencyAddress(int agencyAddressId)
+        public AgencyAddress GetAgencyAddress(int agencyAddressId)
         {
             try
             {
                 if (agencyAddressId == 0)
                 {
-                    return new Model.Agencies.AgencyAddress();
+                    return new AgencyAddress();
                 }
 
                 var agencyAddress = _dbContext.AgencyAddresses.First(a => a.Id == agencyAddressId);
 
-                return Mapper.Map<AgencyAddress, Model.Agencies.AgencyAddress>(agencyAddress);
+                return Mapper.Map<AgencyAddressEntity, AgencyAddress>(agencyAddress);
             }
             catch (Exception ex)
             {
@@ -206,11 +174,11 @@ namespace CD.ClaimSoft.Application.Administration
         /// </summary>
         /// <param name="agencyAddress">The agency address to create.</param>
         /// <returns>The Entity Framework status object.</returns>
-        public EfStatus CreateAgencyAddress(Model.Agencies.AgencyAddress agencyAddress)
+        public EfStatus CreateAgencyAddress(AgencyAddress agencyAddress)
         {
             try
             {
-                var agencyAddressEntity = Mapper.Map<AgencyAddress>(agencyAddress);
+                var agencyAddressEntity = Mapper.Map<AgencyAddressEntity>(agencyAddress);
 
                 _dbContext.AgencyAddresses.Attach(agencyAddressEntity);
 
@@ -220,7 +188,7 @@ namespace CD.ClaimSoft.Application.Administration
 
                 if (returnValue.IsValid)
                 {
-                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
+                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Agency>().ToList());
                 }
 
                 return returnValue;
@@ -239,11 +207,11 @@ namespace CD.ClaimSoft.Application.Administration
         /// </summary>
         /// <param name="agencyAddress">The agency address.</param>
         /// <returns>The Entity Framework status object.</returns>
-        public EfStatus UpdateAgencyAddress(Model.Agencies.AgencyAddress agencyAddress)
+        public EfStatus UpdateAgencyAddress(AgencyAddress agencyAddress)
         {
             try
             {
-                var agencyAddressEntity = Mapper.Map<AgencyAddress>(agencyAddress);
+                var agencyAddressEntity = Mapper.Map<AgencyAddressEntity>(agencyAddress);
 
                 _dbContext.AgencyAddresses.Attach(agencyAddressEntity);
 
@@ -253,7 +221,7 @@ namespace CD.ClaimSoft.Application.Administration
 
                 if (returnValue.IsValid)
                 {
-                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
+                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Agency>().ToList());
                 }
 
                 return returnValue;
@@ -272,11 +240,11 @@ namespace CD.ClaimSoft.Application.Administration
         /// </summary>
         /// <param name="agencyAddress">The agency address to remove.</param>
         /// <returns>The Entity Framework status object.</returns>
-        public EfStatus DeleteAgencyAddress(Model.Agencies.AgencyAddress agencyAddress)
+        public EfStatus DeleteAgencyAddress(AgencyAddress agencyAddress)
         {
             try
             {
-                var agencyAddressEntity = Mapper.Map<AgencyAddress>(agencyAddress);
+                var agencyAddressEntity = Mapper.Map<AgencyAddressEntity>(agencyAddress);
 
                 _dbContext.AgencyAddresses.Attach(agencyAddressEntity);
 
@@ -286,7 +254,7 @@ namespace CD.ClaimSoft.Application.Administration
 
                 if (returnValue.IsValid)
                 {
-                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
+                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Agency>().ToList());
                 }
 
                 return returnValue;
@@ -301,56 +269,34 @@ namespace CD.ClaimSoft.Application.Administration
 
         #endregion
 
-        #region Agency Number Methods
+        #region Agency File Methods
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the agency number.
+        /// Gets the agency files.
         /// </summary>
-        /// <param name="numberId">The number identifier.</param>
-        /// <returns>The agency number for the specified numberId.</returns>
-        public Model.Agencies.AgencyNumber GetAgencyNumber(int numberId)
-        {
-            try
-            {
-                var agencyNumber = _dbContext.AgencyNumbers.FirstOrDefault(an => an.Id == numberId);
-
-                return Mapper.Map<AgencyNumber, Model.Agencies.AgencyNumber>(agencyNumber);
-            }
-            catch (Exception ex)
-            {
-                _logService.Error(ex);
-
-                throw;
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Creates a new agency number.
-        /// </summary>
-        /// <param name="agencyNumber">The agency number.</param>
+        /// <param name="agencyId">The agency identifier.</param>
         /// <returns>
-        /// The Entity Framework status object.
+        /// Collection of agency files. <see cref="T:CD.ClaimSoft.Application.Model.Agency.AgencyFile" />
         /// </returns>
-        public EfStatus CreateAgencyNumber(Model.Agencies.AgencyNumber agencyNumber)
+        public IEnumerable<AgencyFile> GetAgencyFiles(int agencyId)
         {
             try
             {
-                var entity = Mapper.Map<AgencyNumber>(agencyNumber);
-
-                _dbContext.AgencyNumbers.Attach(entity);
-
-                _dbContext.Entry(entity).State = EntityState.Added;
-
-                var returnValue = _dbContext.SaveChangesWithValidation();
-
-                if (returnValue.IsValid)
+                return _dbContext.AgencyFiles.Where(af => af.Agency.Id == agencyId).Select(af => new AgencyFile
                 {
-                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
-                }
-
-                return returnValue;
+                    Id = af.Id,
+                    AgencyId = af.AgencyId,
+                    StreamId = af.StreamId,
+                    Name = af.Name,
+                    FileTypeId = af.FileTypeId,
+                    FileType = af.FileType.Name,
+                    ProcessedDate = af.ProcessedDate,
+                    CreateBy = af.CreateBy,
+                    CreateDate = af.CreateDate,
+                    LastModifyBy = af.LastModifyBy,
+                    LastModifyDate = af.LastModifyDate
+                }).ToList();
             }
             catch (Exception ex)
             {
@@ -360,188 +306,24 @@ namespace CD.ClaimSoft.Application.Administration
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Updates the agency number.
+        /// Inserts the agency file.
         /// </summary>
-        /// <param name="agencyNumber">The agency number.</param>
-        /// <returns>The Entity Framework status object.</returns>
-        public EfStatus UpdateAgencyNumber(Model.Agencies.AgencyNumber agencyNumber)
-        {
-            try
-            {
-                var agencyNumberEntity = Mapper.Map<AgencyNumber>(agencyNumber);
-
-                _dbContext.AgencyNumbers.Attach(agencyNumberEntity);
-
-                _dbContext.Entry(agencyNumberEntity).State = EntityState.Modified;
-
-                var returnValue = _dbContext.SaveChangesWithValidation();
-
-                if (returnValue.IsValid)
-                {
-                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
-                }
-
-                return returnValue;
-            }
-            catch (Exception ex)
-            {
-                _logService.Error(ex);
-
-                throw;
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Deletes the agency number.
-        /// </summary>
-        /// <param name="agencyNumber">The agency number.</param>
-        /// <returns>The Entity Framework status object.</returns>
-        public EfStatus DeleteAgencyNumber(Model.Agencies.AgencyNumber agencyNumber)
-        {
-            try
-            {
-                var agencyNumberEntity = Mapper.Map<AgencyNumber>(agencyNumber);
-
-                _dbContext.AgencyNumbers.Attach(agencyNumberEntity);
-
-                _dbContext.Entry(agencyNumberEntity).State = EntityState.Deleted;
-
-                var returnValue = _dbContext.SaveChangesWithValidation();
-
-                if (returnValue.IsValid)
-                {
-                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
-                }
-
-                return returnValue;
-            }
-            catch (Exception ex)
-            {
-                _logService.Error(ex);
-
-                throw;
-            }
-        }
-
-        #endregion
-
-        #region Agency Phone Methods
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the agency phone.
-        /// </summary>
-        /// <param name="phoneId">The phone identifier.</param>
-        /// <returns>The agency phone for the specified identifier.</returns>
-        public Model.Agencies.AgencyPhone GetAgencyPhone(int phoneId)
-        {
-            try
-            {
-                var agencyPhone = _dbContext.AgencyPhones.FirstOrDefault(an => an.Id == phoneId);
-
-                return Mapper.Map<AgencyPhone, Model.Agencies.AgencyPhone>(agencyPhone);
-            }
-            catch (Exception ex)
-            {
-                _logService.Error(ex);
-
-                throw;
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Creates a new agency phone.
-        /// </summary>
-        /// <param name="agencyPhone">The agency phone.</param>
+        /// <param name="agencyFile">The agency file. <see cref="AgencyFile" /></param>
         /// <returns>
-        /// The Entity Framework status object.
+        /// The Entity Framework status object. <see cref="EfStatus" />
         /// </returns>
-        public EfStatus CreateAgencyPhone(Model.Agencies.AgencyPhone agencyPhone)
+        public EfStatus InsertAgencyFile(AgencyFile agencyFile)
         {
             try
             {
-                var entity = Mapper.Map<AgencyPhone>(agencyPhone);
+                var agencyFileEntity = Mapper.Map<AgencyFileEntity>(agencyFile);
 
-                _dbContext.AgencyPhones.Attach(entity);
+                _dbContext.AgencyFiles.Attach(agencyFileEntity);
 
-                _dbContext.Entry(entity).State = EntityState.Added;
-
-                var returnValue = _dbContext.SaveChangesWithValidation();
-
-                if (returnValue.IsValid)
-                {
-                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
-                }
-
-                return returnValue;
-            }
-            catch (Exception ex)
-            {
-                _logService.Error(ex);
-
-                throw;
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Updates the agency phone.
-        /// </summary>
-        /// <param name="agencyPhone">The agency phone.</param>
-        /// <returns>The Entity Framework status object.</returns>
-        public EfStatus UpdateAgencyPhone(Model.Agencies.AgencyPhone agencyPhone)
-        {
-            try
-            {
-                var agencyPhoneEntity = Mapper.Map<AgencyPhone>(agencyPhone);
-
-                _dbContext.AgencyPhones.Attach(agencyPhoneEntity);
-
-                _dbContext.Entry(agencyPhoneEntity).State = EntityState.Modified;
+                _dbContext.Entry(agencyFileEntity).State = EntityState.Added;
 
                 var returnValue = _dbContext.SaveChangesWithValidation();
-
-                if (returnValue.IsValid)
-                {
-                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
-                }
-
-                return returnValue;
-            }
-            catch (Exception ex)
-            {
-                _logService.Error(ex);
-
-                throw;
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Deletes the agency phone.
-        /// </summary>
-        /// <param name="agencyPhone">The agency phone.</param>
-        /// <returns>The Entity Framework status object.</returns>
-        public EfStatus DeleteAgencyPhone(Model.Agencies.AgencyPhone agencyPhone)
-        {
-            try
-            {
-                var agencyPhoneEntity = Mapper.Map<AgencyPhone>(agencyPhone);
-
-                _dbContext.AgencyPhones.Attach(agencyPhoneEntity);
-
-                _dbContext.Entry(agencyPhoneEntity).State = EntityState.Deleted;
-
-                var returnValue = _dbContext.SaveChangesWithValidation();
-
-                if (returnValue.IsValid)
-                {
-                    _cache.Refresh(CacheConstants.AllAgenciesKey, CacheConstants.DefaultTimeToLive, () => _dbContext.Agencies.ProjectTo<Model.Agencies.Agency>().ToList());
-                }
 
                 return returnValue;
             }

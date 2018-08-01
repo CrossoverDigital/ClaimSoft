@@ -1,0 +1,25 @@
+'Dataset'|'DatasetType'|'ElementNumber'|'ElementName'|'Attribute'|
+'CADDataSet'|'group'|'eCustomConfiguration.CustomGroup'|''|'CustomElementID'|
+'CADDataSet'|'element'|'eCustomConfiguration.01'|'Custom Data Element Title'|'nemsisElement'|
+'CADDataSet'|'element'|'eCustomConfiguration.06'|'Custom Data Element Potential Values'|'nemsisCode'|
+'CADDataSet'|'element'|'eCustomConfiguration.06'|'Custom Data Element Potential Values'|'customValueDescription'|
+'CADDataSet'|'element'|'eCad.14'|'Type of Dispatch Delay'|'CorrelationID'|
+'CADDataSet'|'element'|'eCad.15'|'Type of Response Delay'|'CorrelationID'|
+'CADDataSet'|'element'|'eCad.30'|'Additional Response Mode Descriptors'|'CorrelationID'|
+'CADDataSet'|'element'|'eCad.56'|'Patient's Home Address'|'StreetAddress2'|
+'CADDataSet'|'element'|'eCad.65'|'Race'|'CorrelationID'|
+'CADDataSet'|'element'|'eCad.69'|'Patient's Phone Number'|'PhoneNumberType'|
+'CADDataSet'|'element'|'eCad.69'|'Patient's Phone Number'|'CorrelationID'|
+'CADDataSet'|'group'|'eCad.ResponderGroup'|''|'CorrelationID'|
+'CADDataSet'|'element'|'eCad.84'|'Incident Street Address'|'StreetAddress2'|
+'CADDataSet'|'element'|'eCad.95'|'Destination Street Address'|'StreetAddress2'|
+'CADDataSet'|'element'|'eCad.106'|'Additional Transport Mode Descriptors'|'CorrelationID'|
+'CADDataSet'|'group'|'eCad.HospitalTeamActivationGroup'|''|'CorrelationID'|
+'CADDataSet'|'group'|'eCad.CrewGroup'|''|'CorrelationID'|
+'CADDataSet'|'element'|'eCad.110'|'Crew Member ID'|'NV'|
+'CADDataSet'|'element'|'eCad.111'|'Crew Member Level'|'NV'|
+'CADDataSet'|'element'|'eCad.112'|'Crew Member Response Role'|'NV'|
+'CADDataSet'|'element'|'eCad.112'|'Crew Member Response Role'|'CorrelationID'|
+'CADDataSet'|'group'|'eCustomResults.ResultsGroup'|''|'CorrelationID'|
+'CADDataSet'|'element'|'eCustomResults.01'|'Custom Data Element Result'|'NV'|
+'CADDataSet'|'element'|'eCustomResults.01'|'Custom Data Element Result'|'PN'|

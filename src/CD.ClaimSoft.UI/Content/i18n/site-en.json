@@ -6,6 +6,9 @@
     "WELCOME": "Welcome to ClaimSoft by Crossover Digital!",
     "HEADER": "Administration Dashboard"
   },
+  "export": {
+    "IMPORTEXPORT": "Import/Export"
+  },
   "sidebar": {
     "WELCOME": "Welcome",
     "heading": {
@@ -33,4 +36,3 @@
     }
   }
 }
-

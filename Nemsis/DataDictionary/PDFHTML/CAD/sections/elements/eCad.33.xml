@@ -1,0 +1,20 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eCad.33"  minOccurs="0"  maxOccurs="1"  dataTypeName="EMDCardNumber"  isNillable="No">
+<name>EMD Card Number</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The EMD card number reported by dispatch, consisting of the card number, dispatch level, and dispatch mode</definition>
+<v2Number>E03_03</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>Response</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment></v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <EMDCardNumber baseType="string">
+    <facet name="minLength" value="1"/>
+    <facet name="maxLength" value="10"/>
+  </EMDCardNumber>
+</restrictions>
+</element>

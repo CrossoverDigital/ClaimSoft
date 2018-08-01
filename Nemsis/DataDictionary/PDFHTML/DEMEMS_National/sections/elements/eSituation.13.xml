@@ -1,0 +1,30 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eSituation.13"  minOccurs="1"  maxOccurs="1"  dataTypeName="InitialPatientAcuity"  isNillable="Yes">
+<name>Initial Patient Acuity</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>The acuity of the patient's condition upon EMS arrival at the scene.</definition>
+<v2Number></v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Definitions related to "Critical, Emergent, and Lower Acuity" can be found in the National EMS Core Content document from NHTSA EMS (DOT HS 809-898 July 2005) at 
+							<br/>http://www.nhtsa.gov/people/injury/ems/emscorecontent/images/EMSCoreContent.pdf 
+							<br/><br/>Dead without Resuscitation Efforts would be appropriate if resuscitation was initiated by non-EMS personnel but discontinued immediately upon evaluation by first arriving EMS personnel.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <InitialPatientAcuity baseType="string">
+    <facet name="enumeration" value="2813001" annotation="Critical (Red)"/>
+    <facet name="enumeration" value="2813003" annotation="Emergent (Yellow)"/>
+    <facet name="enumeration" value="2813005" annotation="Lower Acuity (Green)"/>
+    <facet name="enumeration" value="2813007" annotation="Dead without Resuscitation Efforts (Black)"/>
+  </InitialPatientAcuity>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+</attributes>
+</element>

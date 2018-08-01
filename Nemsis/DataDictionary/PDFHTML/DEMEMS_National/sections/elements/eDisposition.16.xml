@@ -1,0 +1,33 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eDisposition.16"  minOccurs="1"  maxOccurs="1"  dataTypeName="EMSTransportMethod"  isNillable="Yes">
+<name>EMS Transport Method</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>Transport method by this EMS Unit.</definition>
+<v2Number></v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>Response</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Required if the patient is transported by EMS.</v3Comment>
+<v3Changes>Added to better describe Air and Ground Transport methods.</v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <EMSTransportMethod baseType="string">
+    <facet name="enumeration" value="4216001" annotation="Air Medical-Fixed Wing"/>
+    <facet name="enumeration" value="4216003" annotation="Air Medical-Rotor Craft"/>
+    <facet name="enumeration" value="4216005" annotation="Ground-Ambulance"/>
+    <facet name="enumeration" value="4216007" annotation="Ground-ATV or Rescue Vehicle"/>
+    <facet name="enumeration" value="4216009" annotation="Ground-Bariatric"/>
+    <facet name="enumeration" value="4216011" annotation="Ground-Other Not Listed"/>
+    <facet name="enumeration" value="4216013" annotation="Ground-Mass Casualty Bus/Vehicle"/>
+    <facet name="enumeration" value="4216015" annotation="Ground-Wheelchair Van"/>
+    <facet name="enumeration" value="4216017" annotation="Water-Boat"/>
+  </EMSTransportMethod>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+</attributes>
+</element>

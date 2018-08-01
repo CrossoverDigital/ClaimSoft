@@ -1,0 +1,28 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eArrest.01"  minOccurs="1"  maxOccurs="1"  dataTypeName="CardiacArrest"  isNillable="Yes">
+<name>Cardiac Arrest</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>Indication of the presence of a cardiac arrest at any time during this EMS event.</definition>
+<v2Number>E11_01</v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Cardiac Arrest</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>This element is a component of the Utstein Cardiac Arrest Criteria. 
+							<br/><br/>If this EMS event is for an interfacility transfer of a patient with a recent history of a cardiac arrest with ROSC, and who does not experience another cardiac arrest during transport, then do not document Cardiac Arrest (eArrest.01) with "Yes, Prior to EMS Arrival".</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <CardiacArrest baseType="string">
+    <facet name="enumeration" value="3001001" annotation="No"/>
+    <facet name="enumeration" value="3001003" annotation="Yes, Prior to EMS Arrival"/>
+    <facet name="enumeration" value="3001005" annotation="Yes, After EMS Arrival"/>
+  </CardiacArrest>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+</attributes>
+</element>

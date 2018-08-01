@@ -1,0 +1,28 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="dConfiguration.15"  minOccurs="1"  maxOccurs="M"  dataTypeName="PatientMonitoringCapability"  isNillable="No">
+<name>Patient Monitoring Capability(ies)</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>The EMS Agency's patient monitoring capability which can be provided to any/all patients presenting to EMS.</definition>
+<v2Number></v2Number>
+<usage>Mandatory</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>Response</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Added to identify the patient monitoring capability of the EMS Agency. Associated with each EMS Agency Number (dAgency.02) since each EMS Agency Number may have a different capability within each EMS Agency. Other patient monitoring capability may exist but NEMSIS Version 3 only includes these specific capabilities.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <PatientMonitoringCapability baseType="string">
+    <facet name="enumeration" value="1215001" annotation="Capnography-Numeric"/>
+    <facet name="enumeration" value="1215003" annotation="Capnography-Waveform"/>
+    <facet name="enumeration" value="1215005" annotation="ECG-12 Lead or Greater"/>
+    <facet name="enumeration" value="1215007" annotation="ECG-Less than 12 Lead (Cardiac Monitor)"/>
+    <facet name="enumeration" value="1215009" annotation="Oximetry-Carbon Monoxide"/>
+    <facet name="enumeration" value="1215011" annotation="Oximetry-Oxygen"/>
+    <facet name="enumeration" value="1215013" annotation="Pressure Measurement-Invasive (Arterial, CVP, Swan, etc.)"/>
+    <facet name="enumeration" value="1215015" annotation="Pressure Measurement-Non-Invasive (Blood Pressure, etc.)"/>
+    <facet name="enumeration" value="1215017" annotation="Ventilator-Transport"/>
+    <facet name="enumeration" value="1215019" annotation="Vital Sign Monitoring"/>
+  </PatientMonitoringCapability>
+</restrictions>
+</element>

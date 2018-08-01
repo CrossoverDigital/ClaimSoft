@@ -1,0 +1,18 @@
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\bin\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.deps.json
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\bin\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.dll
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\bin\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.pdb
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\obj\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.csprojResolveAssemblyReference.cache
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\obj\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.csproj.CoreCompileInputs.cache
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\obj\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.AssemblyInfoInputs.cache
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\obj\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.AssemblyInfo.cs
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\obj\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.dll
+D:\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\obj\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.pdb
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\bin\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.deps.json
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\bin\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.dll
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\bin\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.pdb
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\obj\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.csprojResolveAssemblyReference.cache
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\obj\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.csproj.CoreCompileInputs.cache
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\obj\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.AssemblyInfoInputs.cache
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\obj\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.AssemblyInfo.cs
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\obj\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.dll
+D:\Google Drive\ClaimSoft\Sandbox\Sandbox\ClaimSoft\src\CD.ClaimSoft.Nemsis\obj\Debug\netstandard2.0\CD.ClaimSoft.Nemsis.pdb

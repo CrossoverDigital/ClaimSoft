@@ -1,0 +1,8 @@
+<?xml-stylesheet type="text/xsl" href="../xslt/grouping.xslt"?>
+<section name="dAgency">
+  <group number="dAgencyGroup" minOccurs="0" maxOccurs="M" CorrelationID="" isNillable="No">
+    <element number="dAgency.01" minOccurs="0" maxOccurs="1" CorrelationID="" isNillable="No" dataType="EMSAgencyStateID"><name>EMS Agency Unique State ID</name><refNumber></refNumber><national>Yes</national><deprecated></deprecated><state>Yes</state><usage>Mandatory</usage><notValue></notValue><pertinentNegative></pertinentNegative></element>
+    <element number="dAgency.02" minOccurs="0" maxOccurs="1" CorrelationID="" isNillable="No" dataType="EMSAgencyNumber"><name>EMS Agency Number</name><refNumber></refNumber><national>Yes</national><deprecated></deprecated><state>Yes</state><usage>Mandatory</usage><notValue></notValue><pertinentNegative></pertinentNegative></element>
+    <element number="dAgency.03" minOccurs="0" maxOccurs="1" CorrelationID="" isNillable="Yes" dataType="EMSAgencyName"><name>EMS Agency Name</name><refNumber></refNumber><national>No</national><deprecated></deprecated><state>Yes</state><usage>Recommended</usage><notValue>Yes</notValue><pertinentNegative></pertinentNegative></element>
+  </group>
+</section>

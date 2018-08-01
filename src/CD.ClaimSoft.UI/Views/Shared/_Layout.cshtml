@@ -23,7 +23,7 @@
     @if (IsSectionDefined("Styles"))
     {@RenderSection("Styles", required: false)}
 
-    @Scripts.Render("~/Scripts/jquery-3.2.1.min.js")
+    @Scripts.Render("~/Scripts/jquery-3.3.1.min.js")
     @Scripts.Render("~/Scripts/jquery.validate.min.js")
     @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
 
@@ -41,52 +41,59 @@
 
     <link href="~/Content/qtip/jquery.qtip.css" rel="stylesheet" />
 </head>
-<body class="aside-collapsed-text">
-    <div class="wrapper">
-        <!-- top navbar-->
-        <header class="topnavbar-wrapper">
-            @Html.Partial("_TopNavbar")
-        </header>
-        <!-- sidebar-->
-        <aside class="aside">
-            @Html.Partial("_Sidebar")
-        </aside>
-        <!-- offsidebar-->
-        <aside class="offsidebar hide">
-            @Html.Partial("_Offsidebar")
-        </aside>
-        <!-- Main section-->
-        <section>
-            <!-- Page content-->
-            <div class="content-wrapper">
-                @RenderBody()
-            </div>
-        </section>
-        <!-- Page footer-->
-        <footer>
-            @Html.Partial("_Footer")
-        </footer>
-        @Html.EJ().ScriptManager()
-    </div>
-    @if (IsSectionDefined("BodyArea"))
-    {@RenderSection("BodyArea", required: false)}
-    <!-- =============== VENDOR SCRIPTS ===============-->
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/matchMedia")
-    @*@Scripts.Render("~/bundles/jquery")*@
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/storage")
-    @*@Scripts.Render("~/bundles/jqueryEasing")*@
-    @Scripts.Render("~/bundles/animo")
-    @Scripts.Render("~/bundles/slimscroll")
-    @Scripts.Render("~/bundles/screenfull")
-    @Scripts.Render("~/bundles/localize")
-    @Scripts.Render("~/bundles/demoRTL")
-    <!-- =============== PAGE VENDOR SCRIPTS ===============-->
-    @RenderSection("scripts", required: false)
-    <!-- =============== APP SCRIPTS ===============-->
-    @Scripts.Render("~/bundles/ClaimSoft")
-    
-    <script src="~/Scripts/qtip/jquery.qtip.min.js"></script>
-</body>
+     <body class="aside-collapsed-text">
+     
+     @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+     {
+         @Html.AntiForgeryToken()
+     }
+
+     <div class="wrapper">
+         <!-- top navbar-->
+         <header class="topnavbar-wrapper">
+             @Html.Partial("_TopNavbar")
+         </header>
+         <!-- sidebar-->
+         <aside class="aside">
+             @Html.Partial("_Sidebar")
+         </aside>
+         <!-- offsidebar-->
+         <aside class="offsidebar hide">
+             @Html.Partial("_Offsidebar")
+         </aside>
+         <!-- Main section-->
+         <section>
+             <!-- Page content-->
+             <div class="content-wrapper">
+                 @RenderBody()
+             </div>
+         </section>
+         <!-- Page footer-->
+         <footer>
+             @Html.Partial("_Footer")
+         </footer>
+         @Html.EJ().ScriptManager()
+     </div>
+     @if (IsSectionDefined("BodyArea"))
+     {@RenderSection("BodyArea", required: false)
+     }
+     <!-- =============== VENDOR SCRIPTS ===============-->
+     @Scripts.Render("~/bundles/modernizr")
+     @Scripts.Render("~/bundles/matchMedia")
+     @*@Scripts.Render("~/bundles/jquery")*@
+     @Scripts.Render("~/bundles/bootstrap")
+     @Scripts.Render("~/bundles/storage")
+     @*@Scripts.Render("~/bundles/jqueryEasing")*@
+     @Scripts.Render("~/bundles/animo")
+     @Scripts.Render("~/bundles/slimscroll")
+     @Scripts.Render("~/bundles/screenfull")
+     @Scripts.Render("~/bundles/localize")
+     @Scripts.Render("~/bundles/demoRTL")
+     <!-- =============== PAGE VENDOR SCRIPTS ===============-->
+     @RenderSection("scripts", required: false)
+     <!-- =============== APP SCRIPTS ===============-->
+     @Scripts.Render("~/bundles/ClaimSoft")
+
+     <script src="~/Scripts/qtip/jquery.qtip.min.js"></script>
+     </body>
 </html>

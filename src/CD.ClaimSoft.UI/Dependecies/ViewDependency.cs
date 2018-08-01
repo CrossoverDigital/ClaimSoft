@@ -1,13 +1,16 @@
 ﻿
+using System.Collections.Generic;
 using CD.ClaimSoft.Application.Domain;
+using CD.ClaimSoft.Database.Model.Agency;
 using Syncfusion.JavaScript.Models;
 
 namespace CD.ClaimSoft.UI.Dependecies
 {
+    /// <inheritdoc />
     /// <summary>
     /// Implementation of a simple dependency to inject into a view.
     /// </summary>
-    /// <seealso cref="IViewDependency" />
+    /// <seealso cref="T:CD.ClaimSoft.UI.Dependecies.IViewDependency" />
     public class ViewDependency : IViewDependency
     {
         #region Instance Variables
@@ -19,6 +22,8 @@ namespace CD.ClaimSoft.UI.Dependecies
 
         #endregion
 
+        #region Constructor
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewDependency"/> class.
         /// </summary>
@@ -26,6 +31,10 @@ namespace CD.ClaimSoft.UI.Dependecies
         {
             _domainListManager = domainListManager;
         }
+
+        #endregion
+
+        #region DropDownList Datasources
 
         /// <inheritdoc />
         /// <summary>
@@ -228,9 +237,44 @@ namespace CD.ClaimSoft.UI.Dependecies
             }
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the agencies DDL.
+        /// </summary>
+        /// <value>
+        /// The agencies DDL.
+        /// </value>
+        public DropDownListProperties AgenciesDdl
+        {
+            get
+            {
+                var agenciesDdlProperties = new DropDownListProperties();
+                var agenciesDdlFields = new DropDownListFields();
 
+                agenciesDdlProperties.DataSource = _domainListManager.GetAllAgenciesList();
 
+                agenciesDdlFields.Text = "Name";
+                agenciesDdlFields.Value = "Id";
 
+                agenciesDdlProperties.DropDownListFields = agenciesDdlFields;
 
+                return agenciesDdlProperties;
+            }
+        }
+
+        #endregion
+
+        #region Datasources
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the agencies datasource.
+        /// </summary>
+        /// <returns>
+        /// The agencies datasource.
+        /// </returns>
+        public List<Agency> GetAgenciesDatasource => _domainListManager.GetAllAgenciesList();
+
+        #endregion
     }
 }

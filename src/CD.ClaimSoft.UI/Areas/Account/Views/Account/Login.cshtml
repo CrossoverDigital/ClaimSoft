@@ -1,4 +1,4 @@
-﻿@model CD.ClaimSoft.Application.Models.LoginViewModel
+﻿@model CD.ClaimSoft.Database.Model.Authorization.Account.Login
 @{
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 
@@ -25,7 +25,7 @@
 
                 <div class="form-group has-feedback">
                     @*<input id="Email" type="email" placeholder="Enter email" autocomplete="off" required="required" class="form-control" />*@
-                    @Html.TextBoxFor(m => m.UserName, new {@class = "form-control", placeholder = "Enter email", required = "required"})
+                    @Html.TextBoxFor(m => m.Email, new {@class = "form-control", placeholder = "Enter email", required = "required"})
                     <span class="fa fa-envelope form-control-feedback text-muted"></span>
                 </div>
                 <div class="form-group has-feedback">

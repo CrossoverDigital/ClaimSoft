@@ -1,0 +1,27 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eMedDevice.15"  minOccurs="0"  maxOccurs="M"  dataTypeName="Race"  isNillable="No">
+<name>Race</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The patient's race as defined by the OMB (US Office of Management and Budget)</definition>
+<v2Number>E06_12</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>Response</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>OMB requirements are provided at: http://www.omhrc.gov/templates/browse.aspx?lvl=2&amp;lvlID=172. Using single multiple choice question methodology to improve the completion of ethnicity information.<br/><br/>Ethnicity (Version 2.2.1: E06_13) has been merged with this data element and retired.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <Race baseType="string">
+    <facet name="enumeration" value="2514001" annotation="American Indian or Alaska Native"/>
+    <facet name="enumeration" value="2514003" annotation="Asian"/>
+    <facet name="enumeration" value="2514005" annotation="Black or African American"/>
+    <facet name="enumeration" value="2514007" annotation="Hispanic or Latino"/>
+    <facet name="enumeration" value="2514009" annotation="Native Hawaiian or Other Pacific Islander"/>
+    <facet name="enumeration" value="2514011" annotation="White"/>
+  </Race>
+</restrictions>
+<attributes>
+  <CorrelationID baseType="string"><facet name="minLength" value="0"/><facet name="maxLength" value="255"/></CorrelationID>
+</attributes>
+</element>

@@ -1,0 +1,31 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eVitals.30"  minOccurs="1"  maxOccurs="1"  dataTypeName="TypeOfStrokeScale"  isNillable="Yes">
+<name>Stroke Scale Type</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>The type of stroke scale used.</definition>
+<v2Number></v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Stroke</performanceMeasure></performanceMeasuresGroup>
+<v3Comment></v3Comment>
+<v3Changes>Added to include additional detail on the stroke scale used.</v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <TypeOfStrokeScale baseType="string">
+    <facet name="enumeration" value="3330001" annotation="Cincinnati"/>
+    <facet name="enumeration" value="3330003" annotation="Los Angeles"/>
+    <facet name="enumeration" value="3330005" annotation="Massachusetts"/>
+    <facet name="enumeration" value="3330007" annotation="Miami Emergency Neurologic Deficit (MEND)"/>
+    <facet name="enumeration" value="3330009" annotation="NIH"/>
+    <facet name="enumeration" value="3330011" annotation="Other Stroke Scale Type"/>
+    <facet name="enumeration" value="3330013" annotation="F.A.S.T. Exam"/>
+  </TypeOfStrokeScale>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+</attributes>
+</element>

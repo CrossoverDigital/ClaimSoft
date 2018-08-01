@@ -1,0 +1,283 @@
+NEMSIS Version 2 to Version 3 Translation Change Log
+
+
+
+Version 3.4.0.160713CP2_170120 (NEMSIS version 3.4.0)
+January 20, 2017
+
+
+XSLT Corrections
+
+eAirway.01: Removed (it was incorrectly hard-coded to 4001005 Apnea or Agonal Respirations).
+
+
+Mapping Changes
+
+Mappings using v3 medication type: Updated mappings based on recent changes to RxNorm:
+Glucose (Oral): Changed from v3 value 4850 Glucose to 377980 Glucose Oral Gel
+Oral Glucose: Changed from v3 value 4850 Glucose to 377980 Glucose Oral Gel
+Insulin: Changed from v3 value 5856 Insulin to 1605101 Insulin, Isophane (value 5856 retired)
+Lactated Ringers: Changed from v3 value 35629 Lactated Ringer's Solution to 1008377 Calcium Chloride / Lactate / Potassium Chloride / Sodium Chloride (value 35629 retired)
+Epi-Pen Adult: Changed from v3 value 328316 Epinephrine 1 MG/ML to 727345 0.3 ML Epinephrine 1 MG/ML Auto-Injector
+
+
+Documentation Changes
+
+Updated NEMSIS logo
+Mappings using v3 medication type: Values mapped to v3 value 313002 Sodium Chloride 0.9% Injectable Solution: Replaced reference to "125464 Normal saline" with "373902 Sodium Chloride Irrigation Solution" in note
+
+
+
+Version 3.4.0.160713CP2_160713 (NEMSIS version 3.4.0)
+July 13, 2016
+
+
+XSLT Corrections
+
+D04_04_0 -> dConfiguration.ProcedureGroup: Added case for when D04_05 is not present.
+
+D04_06 -> dConfiguration.09: Corrected current-group to current-group().
+
+D04_06_0 -> dConfiguration.MedicationGroup: Added case for when D04_07 is not present.
+
+Add @CorrelationID to v3 element only if v2 element is present.
+
+
+XSLT Changes
+
+Changed lookup translations to be case-insensitive.
+
+
+Mapping Corrections
+
+DemographicStateCertificationLicensureLevels -> StateCertificationLicensureLevels: Corrected default mapping (when v2 value is not present and v3 element is mandatory) from v3 value 9917001 2009 Advanced Emergency Medical Technician (AEMT) to 9917011 EMT-Basic.
+
+E02_02 Incident Number -> eResponse.03 Incident Number: Corrected v3 value to have minimum length of 3.
+
+Added @CorrelationID to the following v3 element:
+* eHistory.06 Medication Allergies
+
+
+Mapping Changes
+
+Mappings using v3 snomed type: Improved mappings based on recent additions to SNOMED:
+* 99.621 Defibrillation-Automated (AED): Changed from v3 value 426220008 External ventricular defibrillation to 450661000124102 Defibrillation using automated external cardiac defibrillator
+* 96.053 Airway-King LT Blind Insertion Airway Device: Changed from v3 value 427753009 Insertion of esophageal tracheal double lumen supraglottic airway to 450611000124100 Insertion of Single Lumen Supraglottic Airway Device
+
+Added @CorrelationID to the following v3 elements:
+* dFacility.05 Facility National Provider Identifier
+* eAirway.04 Airway Device Placement Confirmed Method
+* eOther.13 Signature Reason
+* eOutcome.08 Emergency Department Recorded Cause of Injury
+
+
+
+Version 3.4.0.150302_150803 (NEMSIS version 3.4.0)
+August 3, 2015
+
+
+XSLT Corrections
+
+E07_36 -> eCustomResults.01: Corrected eCustomResults.02 value.
+
+E19_03 -> eCustomResults.01: Corrected eCustomResults.02 value.
+
+E23_07 -> eCustomResults.01: Corrected eCustomResults.02 value.
+
+
+XSLT Changes
+
+Updated schemaLocation reference to release 3.4.0.
+
+EMSDataSet: Added support for CityGnisCodePayment type.
+
+EMSDataSet: Moved eAirway.08.
+
+EMSDataSet: Removed eArrest.10.
+
+EMSDataSet: Removed mapping from E20_15 Condition of Patient at Destination to eDisposition.19. Added mapping from E20_15 Condition of Patient at Destination to eCustomResults.01 Custom Data Element Result.
+
+
+Mapping Changes
+
+Mappings in ePayment section using v3 CityGnisCode type: Changed v3 type to CityGnisCodePayment.
+
+Mappings using v3 EMSCaregiverLevel type: Removed mapping from v2 value 6111 Nurse to v3 value 9905017 Nurse (v3 value retired). Added mapping from v2 value 6111 Nurse to v3 value 9905041 Registered Nurse.
+
+Mappings using v3 LicensureLevels type: Removed mapping from v2 value 6111 Nurse to v3 value 9911017 Nurse (v3 value retired). Added mapping from v2 value 6111 Nurse to v3 value 9911033 Registered Nurse.
+
+Mappings using v3 MemberLevel type: Removed mapping from v2 value 6111 Nurse to v3 value 9911021 Nurse (v3 value retired). Added mapping from v2 value 6111 Nurse to v3 value 9911043 Registered Nurse.
+
+Mappings using v3 StateCertificationLicensureLevels type: Removed mapping from v2 value 6111 Nurse to v3 value 9917017 Nurse (v3 value retired). Added mapping from v2 value 6111 Nurse to v3 value 9917031 Registered Nurse.
+
+D08_15 State EMS Certification Licensure Level -> dPersonnel.24 EMS Personnel's State EMS Certification Licensure Level: Added v3 Not Value 7701005 Not Reporting.
+
+E08_11 Incident Address -> eScene.15 Incident Street Address: Added v3 Not Value 7701005 Not Reporting.
+
+E11_05 First Monitored Rhythm of the Patient -> eArrest.11 First Monitored Arrest Rhythm of the Patient: Removed mapping from v2 value 2330 Bradycardia to v3 value 3011003 Bradycardia (v3 value retired).
+
+E15_03 NHTSA Injury Matrix Face eExam.06 Face Assessment: Removed mapping from v2 value 3320 Amputation to v3 value 3506019 Decapitation (v3 value retired).
+
+E18_06 Medication Dosage Units -> eMedications.06 Medication Dosage Units: Removed mapping from v2 value 4325 LPM to v3 value 3706011 Liters Per Minute. Added mapping from v2 value 4325 LPM to v3 value 3706035 Liters Per Minute (LPM [gas]).
+
+E18_06 Medication Dosage Units -> eMedications.06 Medication Dosage Units: Removed mapping from v2 value 4370 Puffs to v3 value 3706013 MDI Puffs. Added mapping from v2 value 4370 Puffs to v3 value 3706043 Puffs.
+
+E18_08 Medication Complication -> eMedications.08 Medication Complication: Removed mapping from v2 value 4450 Itching/Urticaria to v3 value 3708027 Itching/Urticaria (v3 value retired). Added mapping from v2 value 4450 Itching/Urticaria to v3 values 3708043 Itching and 3708045 Urticaria.
+
+E19_03 Procedure -> eArrest.10 Therapeutic Hypothermia Initiated: Removed element mapping (v3 element retired).
+
+E19_07 Procedure Complication -> eProcedures.07 Procedure Complication: Removed mapping from v2 value 4570 Itching/Urticaria to v3 value 3907029 Itching/Urticaria (v3 value retired). Added mapping from v2 value 4570 Itching/Urticaria to v3 values 3907049 Itching and 3907051 Urticaria.
+
+E20_15 Condition of Patient at Destination -> eDisposition.19 Condition of Patient at Destination: Removed element mapping (v3 element enumeration list changed, no longer compatible), mapped to v3 eCustomResults.01 Custom Data Element Result.
+
+
+Documentation Changes
+
+Mappings using v3 ANSICountyCode type: Changed mapping to reflect v3 pattern.
+
+Mappings using v3 ANSIStateCode type: Changed mapping to reflect v3 pattern.
+
+Mappings using v3 CardiacRhythm type: Changed v3 label for v3 value 9901031.
+
+Mappings using v3 HowPatientWasMovedToFromAmbulance type: Changed v3 label for v3 value 9909009.
+
+Mappings using v3 ImmunizationType type: Changed v3 label for v3 value 9910005.
+
+Mappings using v3 ProtocolsUsed type: Changed v3 labels for v3 values 9914135 and 9914139.
+
+Mappigns using v3 SocialSecurityNumber: Changed mapping to reflect pattern.
+
+D01_08 Organizational Type -> dAgency.14 EMS Agency Organizational Tax Status: Changed v3 label for v3 value 1018003.
+
+E02_06 Type of Dispatch Delay -> eResponse.08 Type of Dispatch Delay: Changed v3 label for v3 value 2208015.
+
+E02_07 Type of Response Delay -> eResponse.09 Type of Response Delay: Changed v3 label for v3 value 2209013.
+
+E02_08 Type of Scene Delay -> eResponse.10 Type of Scene Delay: Changed v3 label for v3 value 2210019.
+
+E02_09 Type of Transport Delay -> eResponse.11 Type of Transport Delay: Changed v3 label for v3 value 2211013.
+
+E02_10 Type of Turn-Around Delay -> eResponse.12 Type of Turn-Around Delay: Changed v3 label for v3 value 2212017.
+
+E03_03 EMD Card Number -> eDispatch.05 Dispatch Priority (Patient Acuity): Changed v3 labels.
+
+E04_02 Crew Member Role -> eCrew.03 Crew Member Response Role: Changed v3 label for v3 value 2403005.
+
+E05_01 Incident or Onset Date/Time -> eSituation.01 Date/Time of Symptom Onset/Last Normal: Changed v3 name to Date/Time of Symptom Onset.
+
+E06_09 Patient’s Home Country -> ePatient.10 Patient's Home Country: Changed v3 name to Patient's Country of Residence.
+
+E07_09 Insurance Group ID/Name -> ePayment.17 Insurance Group ID/Name: Changed v3 name to Insurance Group ID. Changed spelling of v3 type to InsuranceGroupID.
+
+E10_04 Vehicular Injury Indicators -> eInjury.04 Vehicular, Pedestrian, or Other Injury Risk Factor: Changed v3 label for v3 value 2904009.
+
+E11_02 Cardiac Arrest Etiology -> eArrest.02 Cardiac Arrest Etiology: Changed v3 label for v3 value 3002011.
+
+E11_03 Resuscitation Attempted -> eArrest.03 Resuscitation Attempted By EMS: Changed spelling of v3 type to ResuscitationAttempted.
+
+E12_07 Advanced Directives -> eHistory.05 Advance Directives: Changed v3 label for v3 value 3105007.
+
+E12_13 Immunization Date -> eHistory.11 Immunization Date: Changed v3 name to Immunization Year.
+
+E12_16 Current Medication Dosage Unit -> eHistory.14 Current Medication Dosage Unit: Changed v3 labels.
+
+E14_13 Carbon Dioxide -> eVitals.16 Carbon Dioxide (CO2): Changed v3 name to End Tidal Carbon Dioxide (ETCO2).
+
+E14_19 Total Glasgow Coma Score -> eInjury.03 Trauma Center Criteria: Changed v2 pattern and v3 label for v3 value 2903007.
+
+E15_02 NHTSA Injury Matrix Head -> eExam.05 Head Assessment: Changed v3 label for v3 value 3505045. Removed note.
+
+E15_03 NHTSA Injury Matrix Face -> eExam.06 Face Assessment: Changed v3 label for v3 value 3506047. Removed note.
+
+E15_04 NHTSA Injury Matrix Neck -> eExam.07 Neck Assessment: Changed v3 label for v3 value 3507049. Removed note.
+
+E15_05 NHTSA Injury Matrix Thorax -> eExam.08 Chest/Lungs Assessment: Changed v3 label for v3 value 3508097. Removed note.
+
+E15_06 NHTSA Injury Matrix Abdomen -> eExam.11 Abdomen Assessment: Changed v3 label for v3 value 3511053. Removed note.
+
+E15_07 NHTSA Injury Matrix Spine -> eExam.14 Back and Spine Assessment: Changed v3 label for v3 value 3514047. Removed note.
+
+E15_08 NHTSA Injury Matrix Upper Extremities -> eExam.16 Extremities Assessment: Changed v3 label for v3 value 3516077. Removed note.
+
+E15_09 NHTSA Injury Matrix Pelvis -> eExam.12 Pelvis/Genitourinary Assessment: Changed v3 label for v3 value 3512059. Removed note.
+
+E15_10 NHTSA Injury Matrix Lower Extremities -> eExam.16 Extremities Assessment: Changed v3 label for v3 value 3516077. Removed note.
+
+E18_06 Medication Dosage Units -> eMedications.06 Medication Dosage Units: Changed v3 labels.
+
+E18_08 Medication Complication -> eMedications.08 Medication Complication: Changed v3 label for v3 value 3708033.
+
+E19_03 Procedure eArrest.09 -> Type of CPR Provided: Changed v3 label for v3 value 3009011.
+
+E19_07 Procedure Complication -> eProcedures.07 Procedure Complication: Changed v3 label for v3 value 3907035.
+
+E19_13 Tube Confirmation -> eAirway.04 Airway Device Placement Confirmed Method: Changed v3 label for v3 value 4004015.
+
+E19_14 Destination Confirmation of Tube Placement -> eAirway.04 Airway Device Placement Confirmed Method: Changed v3 label for v3 value 4004015.
+
+E20_12 Position of Patient During Transport -> eDisposition.14 Position of Patient During Transport: Changed v3 label for v3 value 4214009.
+
+E20_16 Reason for Choosing Destination -> eDisposition.20 Reason for Choosing Destination: Changed v3 label for v3 value 4222013.
+
+E20_17 Type of Destination -> eDisposition.21 Type of Destination: Changed v3 label for v3 value 4221013.
+
+E23_02 Potential Registry Candidate -> eOther.02 Potential System of Care/Specialty/Registry Patient: Changed v3 label for v3 value 4502011.
+
+E23_03 Personal Protective Equipment Used -> eOther.03 Personal Protective Equipment Used: Changed v3 label for v3 value 4503019.
+
+E23_06 Type of Suspected Blood/Body Fluid Exposure, Injury, or Death -> eOther.06 The Type of Work-Related Injury, Death or Suspected Exposure: Changed v3 labels for v3 values 4506005 and 4506025.
+
+
+
+Version 1.2 (NEMSIS version 3.3.4)
+June 4, 2014
+
+
+XSLT Changes
+
+Updated schemaLocation reference to release 3.3.4.140328.
+
+
+Mapping Corrections
+
+E09_16 Provider's Secondary Impression -> eSituation.12 Provider's Secondary Impressions: Added mapping from v2 value 1830 Pregnancy / OB Delivery to v3 value P84 Other problems with newborn when E06_15 Age Units is Hours.
+
+E10_01 Cause of Injury -> eInjury.01 Cause of Injury: Added mapping from v2 value 9530 Drug Posoning [sic] to v3 value T50.903A Poisoning by unspecified drugs, medicaments and biological substances, asssault, initial encounter when E10_02 Intent of the Injury is Intentional, Other (Assaulted).
+
+DemographicZip -> ZIP and Zip -> ZIP: Corrected v2 match pattern.
+
+
+Documentation Corrections
+
+E14_04 SBP (Systolic Blood Pressure) -> eInjury.03 Trauma Center Criteria: Corrected v3 label for v3 value 2903019.
+
+NHTSAInjuryMatrix -> ExtremitiesAssessment: Corrected note for v2 value 3345 Dislocation Fracture mapping to v3 value 3516027 Dislocation.
+
+
+
+Version 1.1 (NEMSIS version 3.3.4)
+March 10, 2014
+
+
+New Mapping
+
+E02_20 Response Mode to Scene -> eResponse.24 Additional Response Mode Descriptors
+E20_14 Transport Mode from Scene -> eDisposition.18 Additional Transport Mode Descriptors
+
+
+Mapping Changes
+
+E19_07 Procedure Complication -> eProcedures.07 Procedure Complication: v2 value 4520 Bradycardia mapping was changed from v3 value 3907035 Other (Not Listed) to new v3 value 3907047 Bradycardia.
+
+E07_14 Relationship to the Insured -> ePayment.22 Relationship to the Insured: v2 value 785 Other mapping was changed from deprecated v3 value 2622007 Other to new v3 value 2622019 Other Relationship.
+
+E02_05 Primary Role of the Unit -> eResponse.07 Primary Role of the Unit: v2 value 75 Transport mapping for air ambulance responses was changed from deprecated v3 value 2207001 Air Transport to new v3 values 2207011 Air Transport-Helicopter or 2207013 Air Transport-Fixed Wing, depending on the value of E07_34 CMS Service Level.
+
+
+Mapping Corrections
+
+D04_04 Procedures -> dConfiguration.07 EMS Agency Procedures: v2 value 99.615 CPR-Stop was incorrectly mapped to blank v3 value. Value mapping was moved to element mapping D04_04 Procedures -> dCustomResults.01 Custom Data Element Result.
+
+E09_01 Prior Aid -> eProcedures.03 Procedure: v2 value 99.615 CPR-Stop was incorrectly mapped to blank v3 value. Value mapping was moved to element mapping E09_01 Prior Aid -> eCustomResults.01 Custom Data Element Result.
+
+E19_03 Procedure -> eProcedures.03 Procedure: v2 value 99.615 CPR-Stop was incorrectly mapped to blank v3 value. Value mapping was moved to element mapping E19_03 Procedure -> eCustomResults.01 Custom Data Element Result.

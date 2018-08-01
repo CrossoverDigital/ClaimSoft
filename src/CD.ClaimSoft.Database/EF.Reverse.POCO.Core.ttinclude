@@ -1527,9 +1527,9 @@
 
         private const string TableSQL = @"
 SET NOCOUNT ON;
-IF OBJECT_ID('tempdb..#Columns')     IS NOT NULL DROP TABLE #Columns;
-IF OBJECT_ID('tempdb..#PrimaryKeys') IS NOT NULL DROP TABLE #PrimaryKeys;
-IF OBJECT_ID('tempdb..#ForeignKeys') IS NOT NULL DROP TABLE #ForeignKeys;
+IF OBJECT_ID('tempdb.Entity.#Columns')     IS NOT NULL DROP TABLE #Columns;
+IF OBJECT_ID('tempdb.Entity.#PrimaryKeys') IS NOT NULL DROP TABLE #PrimaryKeys;
+IF OBJECT_ID('tempdb.Entity.#ForeignKeys') IS NOT NULL DROP TABLE #ForeignKeys;
 
 SELECT  C.TABLE_SCHEMA,
     C.TABLE_NAME,
@@ -1621,8 +1621,8 @@ WHERE   c.TABLE_NAME NOT IN ('EdmMetadata', '__MigrationHistory')
 
         private const string SynonymTableSQLSetup = @"
 SET NOCOUNT ON;
-IF OBJECT_ID('tempdb..#SynonymDetails') IS NOT NULL DROP TABLE #SynonymDetails;
-IF OBJECT_ID('tempdb..#SynonymTargets') IS NOT NULL DROP TABLE #SynonymTargets;
+IF OBJECT_ID('tempdb.Entity.#SynonymDetails') IS NOT NULL DROP TABLE #SynonymDetails;
+IF OBJECT_ID('tempdb.Entity.#SynonymTargets') IS NOT NULL DROP TABLE #SynonymTargets;
 
 -- Synonyms
 -- Create the #SynonymDetails temp table structure for later use
@@ -3086,10 +3086,10 @@ SELECT  SERVERPROPERTY('Edition') AS Edition,
                     sysType = "byte[]";
                     break;
                 case "geography":
-                    sysType = Settings.DisableGeographyTypes ? "" : "System.Data.Entity.Spatial.DbGeography";
+                    sysType = Settings.DisableGeographyTypes ? "" : "System.data.entity.spatial.DbGeography";
                     break;
                 case "geometry":
-                    sysType = Settings.DisableGeographyTypes ? "" : "System.Data.Entity.Spatial.DbGeometry";
+                    sysType = Settings.DisableGeographyTypes ? "" : "System.data.entity.spatial.DbGeometry";
                     break;
             }
             return sysType;

@@ -1,0 +1,711 @@
+
+<DEMDataSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.nemsis.org http://nemsis.org/media/nemsis_v3/release-3.4.0/XSDs/NEMSIS_XSDs/DEMDataSet_v3.xsd" xmlns="http://www.nemsis.org">
+    <DemographicReport timeStamp="2015-03-03T13:29:38+07:00">
+        <dAgency>
+            <dAgency.01>0</dAgency.01>
+            <dAgency.02>00</dAgency.02>
+            <dAgency.03>Nf</dAgency.03>
+            <dAgency.04>49</dAgency.04>
+            <dAgency.AgencyServiceGroup>
+                <dAgency.05>49</dAgency.05>
+                <dAgency.06>49049</dAgency.06>
+                <dAgency.06>49049</dAgency.06>
+                <dAgency.06>49049</dAgency.06>
+                <dAgency.07>24243137514</dAgency.07>
+                <dAgency.07>47621276424</dAgency.07>
+                <dAgency.08>84655</dAgency.08>
+                <dAgency.08>84655</dAgency.08>
+                <dAgency.08>84655</dAgency.08></dAgency.AgencyServiceGroup>
+            <dAgency.AgencyServiceGroup>
+                <dAgency.05>49</dAgency.05>
+                <dAgency.06>49049</dAgency.06>
+                <dAgency.06>49049</dAgency.06>
+                <dAgency.06>49049</dAgency.06>
+                <dAgency.07>81561985553</dAgency.07>
+                <dAgency.07>35465773617</dAgency.07>
+                <dAgency.07>74639252438</dAgency.07>
+                <dAgency.08>84655</dAgency.08>
+                <dAgency.08>84655</dAgency.08></dAgency.AgencyServiceGroup>
+            <dAgency.09>9920019</dAgency.09>
+            <dAgency.10>9920019</dAgency.10>
+            <dAgency.10>9920017</dAgency.10>
+            <dAgency.10>9920015</dAgency.10>
+            <dAgency.11>9917031</dAgency.11>
+            <dAgency.12>1016005</dAgency.12>
+            <dAgency.13>9912009</dAgency.13>
+            <dAgency.14>1018005</dAgency.14>
+            <dAgency.AgencyYearGroup>
+                <dAgency.15>2018</dAgency.15>
+                <dAgency.16>2359055</dAgency.16>
+                <dAgency.17>119735</dAgency.17>
+                <dAgency.18>3484400</dAgency.18>
+                <dAgency.19>708830</dAgency.19>
+                <dAgency.20>883689</dAgency.20>
+                <dAgency.21>489685</dAgency.21>
+                <dAgency.22>3597728</dAgency.22></dAgency.AgencyYearGroup>
+            <dAgency.AgencyYearGroup>
+                <dAgency.15>2047</dAgency.15>
+                <dAgency.16>934294</dAgency.16>
+                <dAgency.17>3493882</dAgency.17>
+                <dAgency.18>1641369</dAgency.18>
+                <dAgency.19>596415</dAgency.19>
+                <dAgency.20>2586180</dAgency.20>
+                <dAgency.21>200604</dAgency.21>
+                <dAgency.22>2476720</dAgency.22></dAgency.AgencyYearGroup>
+            <dAgency.23>1027017</dAgency.23>
+            <dAgency.24>9923003</dAgency.24>
+            <dAgency.25>rbow44CJYH</dAgency.25>
+            <dAgency.25>4Yar9BJanI</dAgency.25>
+            <dAgency.26>Y</dAgency.26>
+            <dAgency.26>s</dAgency.26></dAgency>
+        <dContact>
+            <dContact.ContactInfoGroup>
+                <dContact.01>1101017</dContact.01>
+                <dContact.02>Porter</dContact.02>
+                <dContact.03>Celia</dContact.03>
+                <dContact.04>Alonzo</dContact.04>
+                <dContact.05 StreetAddress2="r">P.O. Box 952, 2367 Semper. Ave</dContact.05>
+                <dContact.06>1430626</dContact.06>
+                <dContact.07>49</dContact.07>
+                <dContact.08>84052</dContact.08>
+                <dContact.09>US</dContact.09>
+                <dContact.10 PhoneNumberType="9913009">876-814-7420</dContact.10>
+                <dContact.10 PhoneNumberType="9913009">498-371-7738</dContact.10>
+                <dContact.11 EmailAddressType="9904003">bFfkzAkm@gRm1.com</dContact.11>
+                <dContact.11 EmailAddressType="9904003">YWyS9vLj@NfJH.com</dContact.11>
+                <dContact.11 EmailAddressType="9904003">y8M1dAFK@7v5v.com</dContact.11>
+                <dContact.12>pLP</dContact.12>
+                <dContact.EMSMedicalDirectorGroup>
+                    <dContact.13>1113003</dContact.13>
+                    <dContact.14>1114043</dContact.14>
+                    <dContact.14>1114041</dContact.14>
+                    <dContact.14>1114039</dContact.14>
+                    <dContact.15>1115003</dContact.15>
+                    <dContact.16>9923003</dContact.16></dContact.EMSMedicalDirectorGroup></dContact.ContactInfoGroup>
+            <dContact.ContactInfoGroup>
+                <dContact.01>1101017</dContact.01>
+                <dContact.02>Banks</dContact.02>
+                <dContact.03>Sheryl</dContact.03>
+                <dContact.04>Adams</dContact.04>
+                <dContact.05 StreetAddress2="b">932-2686 Magnis Street</dContact.05>
+                <dContact.06>1442849</dContact.06>
+                <dContact.07>49</dContact.07>
+                <dContact.08>84341</dContact.08>
+                <dContact.09>US</dContact.09>
+                <dContact.10 PhoneNumberType="9913009">311-371-1495</dContact.10>
+                <dContact.10 PhoneNumberType="9913009">825-717-7855</dContact.10>
+                <dContact.11 EmailAddressType="9904003">YrtDGrD5@XAxH.com</dContact.11>
+                <dContact.11 EmailAddressType="9904003">CNJVm9S6@ypM8.com</dContact.11>
+                <dContact.12>g3H</dContact.12>
+                <dContact.EMSMedicalDirectorGroup>
+                    <dContact.13>1113003</dContact.13>
+                    <dContact.14>1114043</dContact.14>
+                    <dContact.14>1114041</dContact.14>
+                    <dContact.14>1114039</dContact.14>
+                    <dContact.15>1115003</dContact.15>
+                    <dContact.16>9923003</dContact.16></dContact.EMSMedicalDirectorGroup></dContact.ContactInfoGroup>
+            <dContact.ContactInfoGroup>
+                <dContact.01>1101017</dContact.01>
+                <dContact.02>Thornton</dContact.02>
+                <dContact.03>Rene</dContact.03>
+                <dContact.04>Anglin</dContact.04>
+                <dContact.05 StreetAddress2="T">Ap #677-1505 Lectus Rd.</dContact.05>
+                <dContact.06>1444661</dContact.06>
+                <dContact.07>49</dContact.07>
+                <dContact.08>84601</dContact.08>
+                <dContact.09>US</dContact.09>
+                <dContact.10 PhoneNumberType="9913009">775-611-1312</dContact.10>
+                <dContact.10 PhoneNumberType="9913009">624-501-7526</dContact.10>
+                <dContact.10 PhoneNumberType="9913009">366-485-2792</dContact.10>
+                <dContact.11 EmailAddressType="9904003">L3ONYg40@R53D.com</dContact.11>
+                <dContact.11 EmailAddressType="9904003">8tqMqYJr@2g1k.com</dContact.11>
+                <dContact.11 EmailAddressType="9904003">UKNTTQDp@Q80I.com</dContact.11>
+                <dContact.12>Yz8</dContact.12>
+                <dContact.EMSMedicalDirectorGroup>
+                    <dContact.13>1113003</dContact.13>
+                    <dContact.14>1114043</dContact.14>
+                    <dContact.14>1114041</dContact.14>
+                    <dContact.14>1114039</dContact.14>
+                    <dContact.15>1115003</dContact.15>
+                    <dContact.16>9923003</dContact.16></dContact.EMSMedicalDirectorGroup></dContact.ContactInfoGroup></dContact>
+        <dConfiguration>
+            <dConfiguration.ConfigurationGroup>
+                <dConfiguration.01>49</dConfiguration.01>
+                <dConfiguration.02>9911033</dConfiguration.02>
+                <dConfiguration.02>9911031</dConfiguration.02>
+                <dConfiguration.02>9911029</dConfiguration.02>
+                <dConfiguration.03>44806002</dConfiguration.03>
+                <dConfiguration.03>2267008</dConfiguration.03>
+                <dConfiguration.04>10454</dConfiguration.04>
+                <dConfiguration.04>107129</dConfiguration.04>
+                <dConfiguration.04>11149</dConfiguration.04>
+                <dConfiguration.05>9914225</dConfiguration.05>
+                <dConfiguration.05>9914223</dConfiguration.05>
+                <dConfiguration.ProcedureGroup>
+                    <dConfiguration.06>9917031</dConfiguration.06>
+                    <dConfiguration.07>44806002</dConfiguration.07>
+                    <dConfiguration.07>2267008</dConfiguration.07>
+                    <dConfiguration.07>425447009</dConfiguration.07></dConfiguration.ProcedureGroup>
+                <dConfiguration.ProcedureGroup>
+                    <dConfiguration.06>9917031</dConfiguration.06>
+                    <dConfiguration.07>429705000</dConfiguration.07>
+                    <dConfiguration.07>47545007</dConfiguration.07></dConfiguration.ProcedureGroup>
+                <dConfiguration.MedicationGroup>
+                    <dConfiguration.08>9917031</dConfiguration.08>
+                    <dConfiguration.09>10454</dConfiguration.09>
+                    <dConfiguration.09>107129</dConfiguration.09>
+                    <dConfiguration.09>11149</dConfiguration.09></dConfiguration.MedicationGroup>
+                <dConfiguration.MedicationGroup>
+                    <dConfiguration.08>9917031</dConfiguration.08>
+                    <dConfiguration.09>11170</dConfiguration.09>
+                    <dConfiguration.09>115698</dConfiguration.09></dConfiguration.MedicationGroup>
+                <dConfiguration.MedicationGroup>
+                    <dConfiguration.08>9917031</dConfiguration.08>
+                    <dConfiguration.09>1191</dConfiguration.09>
+                    <dConfiguration.09>1223</dConfiguration.09></dConfiguration.MedicationGroup>
+                <dConfiguration.10>9914225</dConfiguration.10>
+                <dConfiguration.10>9914223</dConfiguration.10>
+                <dConfiguration.11>1211035</dConfiguration.11>
+                <dConfiguration.11>1211033</dConfiguration.11>
+                <dConfiguration.11>1211031</dConfiguration.11>
+                <dConfiguration.12>9923003</dConfiguration.12>
+                <dConfiguration.13>1213005</dConfiguration.13>
+                <dConfiguration.14>l8</dConfiguration.14>
+                <dConfiguration.14>6N</dConfiguration.14>
+                <dConfiguration.14>Y1</dConfiguration.14>
+                <dConfiguration.15>1215019</dConfiguration.15>
+                <dConfiguration.15>1215017</dConfiguration.15>
+                <dConfiguration.15>1215015</dConfiguration.15>
+                <dConfiguration.16>F</dConfiguration.16>
+                <dConfiguration.16>b</dConfiguration.16>
+                <dConfiguration.16>y</dConfiguration.16>
+                <dConfiguration.17>qd</dConfiguration.17>
+                <dConfiguration.17>xi</dConfiguration.17></dConfiguration.ConfigurationGroup>
+            <dConfiguration.ConfigurationGroup>
+                <dConfiguration.01>49</dConfiguration.01>
+                <dConfiguration.02>9911033</dConfiguration.02>
+                <dConfiguration.02>9911031</dConfiguration.02>
+                <dConfiguration.02>9911029</dConfiguration.02>
+                <dConfiguration.03>425447009</dConfiguration.03>
+                <dConfiguration.03>429705000</dConfiguration.03>
+                <dConfiguration.04>11170</dConfiguration.04>
+                <dConfiguration.04>115698</dConfiguration.04>
+                <dConfiguration.05>9914225</dConfiguration.05>
+                <dConfiguration.05>9914223</dConfiguration.05>
+                <dConfiguration.05>9914221</dConfiguration.05>
+                <dConfiguration.ProcedureGroup>
+                    <dConfiguration.06>9917031</dConfiguration.06>
+                    <dConfiguration.07>173067007</dConfiguration.07>
+                    <dConfiguration.07>232689008</dConfiguration.07>
+                    <dConfiguration.07>232692007</dConfiguration.07></dConfiguration.ProcedureGroup>
+                <dConfiguration.ProcedureGroup>
+                    <dConfiguration.06>9917031</dConfiguration.06>
+                    <dConfiguration.07>232706008</dConfiguration.07>
+                    <dConfiguration.07>23690002</dConfiguration.07>
+                    <dConfiguration.07>386508008</dConfiguration.07></dConfiguration.ProcedureGroup>
+                <dConfiguration.MedicationGroup>
+                    <dConfiguration.08>9917031</dConfiguration.08>
+                    <dConfiguration.09>125464</dConfiguration.09>
+                    <dConfiguration.09>1399</dConfiguration.09></dConfiguration.MedicationGroup>
+                <dConfiguration.MedicationGroup>
+                    <dConfiguration.08>9917031</dConfiguration.08>
+                    <dConfiguration.09>161</dConfiguration.09>
+                    <dConfiguration.09>1808</dConfiguration.09>
+                    <dConfiguration.09>1841</dConfiguration.09></dConfiguration.MedicationGroup>
+                <dConfiguration.MedicationGroup>
+                    <dConfiguration.08>9917031</dConfiguration.08>
+                    <dConfiguration.09>1901</dConfiguration.09>
+                    <dConfiguration.09>1908</dConfiguration.09></dConfiguration.MedicationGroup>
+                <dConfiguration.10>9914225</dConfiguration.10>
+                <dConfiguration.10>9914223</dConfiguration.10>
+                <dConfiguration.10>9914221</dConfiguration.10>
+                <dConfiguration.11>1211035</dConfiguration.11>
+                <dConfiguration.11>1211033</dConfiguration.11>
+                <dConfiguration.11>1211031</dConfiguration.11>
+                <dConfiguration.12>9923003</dConfiguration.12>
+                <dConfiguration.13>1213005</dConfiguration.13>
+                <dConfiguration.14>4g</dConfiguration.14>
+                <dConfiguration.14>p6</dConfiguration.14>
+                <dConfiguration.14>hl</dConfiguration.14>
+                <dConfiguration.15>1215019</dConfiguration.15>
+                <dConfiguration.15>1215017</dConfiguration.15>
+                <dConfiguration.16>W</dConfiguration.16>
+                <dConfiguration.16>G</dConfiguration.16>
+                <dConfiguration.17>f4</dConfiguration.17>
+                <dConfiguration.17>dN</dConfiguration.17></dConfiguration.ConfigurationGroup></dConfiguration>
+        <dLocation>
+            <dLocation.LocationGroup>
+                <dLocation.01>1301007</dLocation.01>
+                <dLocation.02>ps</dLocation.02>
+                <dLocation.03>Q</dLocation.03>
+                <dLocation.04>39.854820,-111.445320</dLocation.04>
+                <dLocation.05>15TEM71170854</dLocation.05>
+                <dLocation.06 StreetAddress2="E">856-8833 Aliquet Rd.</dLocation.06>
+                <dLocation.07>1438817</dLocation.07>
+                <dLocation.08>49</dLocation.08>
+                <dLocation.09>84629</dLocation.09>
+                <dLocation.10>49039</dLocation.10>
+                <dLocation.11>US</dLocation.11>
+                <dLocation.12 PhoneNumberType="9913009">211-862-7332</dLocation.12>
+                <dLocation.12 PhoneNumberType="9913009">610-588-8652</dLocation.12></dLocation.LocationGroup>
+            <dLocation.LocationGroup>
+                <dLocation.01>1301007</dLocation.01>
+                <dLocation.02>Af</dLocation.02>
+                <dLocation.03>8</dLocation.03>
+                <dLocation.04>40.032330,-111.658857</dLocation.04>
+                <dLocation.05>17SLK86314382</dLocation.05>
+                <dLocation.06 StreetAddress2="Z">P.O. Box 683, 641 Aliquam Av.</dLocation.06>
+                <dLocation.07>1445262</dLocation.07>
+                <dLocation.08>49</dLocation.08>
+                <dLocation.09>84653</dLocation.09>
+                <dLocation.10>49049</dLocation.10>
+                <dLocation.11>US</dLocation.11>
+                <dLocation.12 PhoneNumberType="9913009">521-766-8727</dLocation.12>
+                <dLocation.12 PhoneNumberType="9913009">393-761-4641</dLocation.12>
+                <dLocation.12 PhoneNumberType="9913009">698-978-1544</dLocation.12></dLocation.LocationGroup></dLocation>
+        <dVehicle>
+            <dVehicle.VehicleGroup>
+                <dVehicle.01>m</dVehicle.01>
+                <dVehicle.02>VrK1TQqx6HfAUaXqp</dVehicle.02>
+                <dVehicle.03>7</dVehicle.03>
+                <dVehicle.04>1404025</dVehicle.04>
+                <dVehicle.VehicleCertificationLevelsGroup>
+                    <dVehicle.05>9917031</dVehicle.05>
+                    <dVehicle.06>8</dVehicle.06>
+                    <dVehicle.07>6</dVehicle.07>
+                    <dVehicle.08>10</dVehicle.08></dVehicle.VehicleCertificationLevelsGroup>
+                <dVehicle.VehicleCertificationLevelsGroup>
+                    <dVehicle.05>9917031</dVehicle.05>
+                    <dVehicle.06>2</dVehicle.06>
+                    <dVehicle.07>5</dVehicle.07>
+                    <dVehicle.08>11</dVehicle.08></dVehicle.VehicleCertificationLevelsGroup>
+                <dVehicle.VehicleCertificationLevelsGroup>
+                    <dVehicle.05>9917031</dVehicle.05>
+                    <dVehicle.06>7</dVehicle.06>
+                    <dVehicle.07>9</dVehicle.07>
+                    <dVehicle.08>4</dVehicle.08></dVehicle.VehicleCertificationLevelsGroup>
+                <dVehicle.09>9810156</dVehicle.09>
+                <dVehicle.10>2032</dVehicle.10>
+                <dVehicle.YearGroup>
+                    <dVehicle.11>1946</dVehicle.11>
+                    <dVehicle.12>3163</dVehicle.12>
+                    <dVehicle.13 DistanceUnit="9929003">777.0</dVehicle.13></dVehicle.YearGroup>
+                <dVehicle.YearGroup>
+                    <dVehicle.11>1955</dVehicle.11>
+                    <dVehicle.12>6135</dVehicle.12>
+                    <dVehicle.13 DistanceUnit="9929003">219.0</dVehicle.13></dVehicle.YearGroup></dVehicle.VehicleGroup>
+            <dVehicle.VehicleGroup>
+                <dVehicle.01>L</dVehicle.01>
+                <dVehicle.02>EBDukwDjlDJVqLclE</dVehicle.02>
+                <dVehicle.03>u</dVehicle.03>
+                <dVehicle.04>1404025</dVehicle.04>
+                <dVehicle.VehicleCertificationLevelsGroup>
+                    <dVehicle.05>9917031</dVehicle.05>
+                    <dVehicle.06>8</dVehicle.06>
+                    <dVehicle.07>2</dVehicle.07>
+                    <dVehicle.08>4</dVehicle.08></dVehicle.VehicleCertificationLevelsGroup>
+                <dVehicle.VehicleCertificationLevelsGroup>
+                    <dVehicle.05>9917031</dVehicle.05>
+                    <dVehicle.06>4</dVehicle.06>
+                    <dVehicle.07>5</dVehicle.07>
+                    <dVehicle.08>11</dVehicle.08></dVehicle.VehicleCertificationLevelsGroup>
+                <dVehicle.VehicleCertificationLevelsGroup>
+                    <dVehicle.05>9917031</dVehicle.05>
+                    <dVehicle.06>8</dVehicle.06>
+                    <dVehicle.07>8</dVehicle.07>
+                    <dVehicle.08>8</dVehicle.08></dVehicle.VehicleCertificationLevelsGroup>
+                <dVehicle.09>8912092</dVehicle.09>
+                <dVehicle.10>1995</dVehicle.10>
+                <dVehicle.YearGroup>
+                    <dVehicle.11>2012</dVehicle.11>
+                    <dVehicle.12>1167</dVehicle.12>
+                    <dVehicle.13 DistanceUnit="9929003">283.0</dVehicle.13></dVehicle.YearGroup>
+                <dVehicle.YearGroup>
+                    <dVehicle.11>1921</dVehicle.11>
+                    <dVehicle.12>8369</dVehicle.12>
+                    <dVehicle.13 DistanceUnit="9929003">189.0</dVehicle.13></dVehicle.YearGroup>
+                <dVehicle.YearGroup>
+                    <dVehicle.11>2033</dVehicle.11>
+                    <dVehicle.12>8587</dVehicle.12>
+                    <dVehicle.13 DistanceUnit="9929003">989.0</dVehicle.13></dVehicle.YearGroup></dVehicle.VehicleGroup>
+            <dVehicle.VehicleGroup>
+                <dVehicle.01>m</dVehicle.01>
+                <dVehicle.02>e42duTneLc49btiz9</dVehicle.02>
+                <dVehicle.03>z</dVehicle.03>
+                <dVehicle.04>1404025</dVehicle.04>
+                <dVehicle.VehicleCertificationLevelsGroup>
+                    <dVehicle.05>9917031</dVehicle.05>
+                    <dVehicle.06>3</dVehicle.06>
+                    <dVehicle.07>4</dVehicle.07>
+                    <dVehicle.08>4</dVehicle.08></dVehicle.VehicleCertificationLevelsGroup>
+                <dVehicle.VehicleCertificationLevelsGroup>
+                    <dVehicle.05>9917031</dVehicle.05>
+                    <dVehicle.06>9</dVehicle.06>
+                    <dVehicle.07>6</dVehicle.07>
+                    <dVehicle.08>8</dVehicle.08></dVehicle.VehicleCertificationLevelsGroup>
+                <dVehicle.09>5144466</dVehicle.09>
+                <dVehicle.10>1946</dVehicle.10>
+                <dVehicle.YearGroup>
+                    <dVehicle.11>1919</dVehicle.11>
+                    <dVehicle.12>9160</dVehicle.12>
+                    <dVehicle.13 DistanceUnit="9929003">931.0</dVehicle.13></dVehicle.YearGroup>
+                <dVehicle.YearGroup>
+                    <dVehicle.11>1958</dVehicle.11>
+                    <dVehicle.12>5147</dVehicle.12>
+                    <dVehicle.13 DistanceUnit="9929003">948.0</dVehicle.13></dVehicle.YearGroup>
+                <dVehicle.YearGroup>
+                    <dVehicle.11>1985</dVehicle.11>
+                    <dVehicle.12>3017</dVehicle.12>
+                    <dVehicle.13 DistanceUnit="9929003">100.0</dVehicle.13></dVehicle.YearGroup></dVehicle.VehicleGroup></dVehicle>
+        <dPersonnel>
+            <dPersonnel.PersonnelGroup>
+                <dPersonnel.NameGroup>
+                    <dPersonnel.01>Lewis</dPersonnel.01>
+                    <dPersonnel.02>Dewey</dPersonnel.02>
+                    <dPersonnel.03>Anaya</dPersonnel.03></dPersonnel.NameGroup>
+                <dPersonnel.AddressGroup>
+                    <dPersonnel.04 StreetAddress2="n">7563 Molestie Ave</dPersonnel.04>
+                    <dPersonnel.05>1439951</dPersonnel.05>
+                    <dPersonnel.06>49</dPersonnel.06>
+                    <dPersonnel.07>84307</dPersonnel.07>
+                    <dPersonnel.08>US</dPersonnel.08></dPersonnel.AddressGroup>
+                <dPersonnel.09 PhoneNumberType="9913009">468-568-5547</dPersonnel.09>
+                <dPersonnel.09 PhoneNumberType="9913009">861-911-6818</dPersonnel.09>
+                <dPersonnel.09 PhoneNumberType="9913009">830-844-0959</dPersonnel.09>
+                <dPersonnel.10 EmailAddressType="9904003">BQ4NgoBe@Awxx.com</dPersonnel.10>
+                <dPersonnel.10 EmailAddressType="9904003">jRaPEVvq@VSlD.com</dPersonnel.10>
+                <dPersonnel.10 EmailAddressType="9904003">QudzVA3I@ywU5.com</dPersonnel.10>
+                <dPersonnel.11>1989-12-23</dPersonnel.11>
+                <dPersonnel.12>9906005</dPersonnel.12>
+                <dPersonnel.13>1513011</dPersonnel.13>
+                <dPersonnel.13>1513009</dPersonnel.13>
+                <dPersonnel.13>1513007</dPersonnel.13>
+                <dPersonnel.14>FJ</dPersonnel.14>
+                <dPersonnel.15>1515031</dPersonnel.15>
+                <dPersonnel.16>1516071</dPersonnel.16>
+                <dPersonnel.16>1516069</dPersonnel.16>
+                <dPersonnel.17>1517023</dPersonnel.17>
+                <dPersonnel.17>1517021</dPersonnel.17>
+                <dPersonnel.17>1517019</dPersonnel.17>
+                <dPersonnel.ImmunizationsGroup>
+                    <dPersonnel.18>9910051</dPersonnel.18>
+                    <dPersonnel.19>2036</dPersonnel.19></dPersonnel.ImmunizationsGroup>
+                <dPersonnel.ImmunizationsGroup>
+                    <dPersonnel.18>9910051</dPersonnel.18>
+                    <dPersonnel.19>1927</dPersonnel.19></dPersonnel.ImmunizationsGroup>
+                <dPersonnel.ImmunizationsGroup>
+                    <dPersonnel.18>9910051</dPersonnel.18>
+                    <dPersonnel.19>1988</dPersonnel.19></dPersonnel.ImmunizationsGroup>
+                <dPersonnel.20>yid</dPersonnel.20>
+                <dPersonnel.20>vie</dPersonnel.20>
+                <dPersonnel.20>ukr</dPersonnel.20>
+                <dPersonnel.21>MY</dPersonnel.21>
+                <dPersonnel.LicensureGroup>
+                    <dPersonnel.22>49</dPersonnel.22>
+                    <dPersonnel.23>TV</dPersonnel.23>
+                    <dPersonnel.24>9925043</dPersonnel.24>
+                    <dPersonnel.25>2002-08-06</dPersonnel.25>
+                    <dPersonnel.26>1972-07-16</dPersonnel.26>
+                    <dPersonnel.27>1962-02-12</dPersonnel.27></dPersonnel.LicensureGroup>
+                <dPersonnel.LicensureGroup>
+                    <dPersonnel.22>49</dPersonnel.22>
+                    <dPersonnel.23>Mr</dPersonnel.23>
+                    <dPersonnel.24>9925043</dPersonnel.24>
+                    <dPersonnel.25>1967-04-21</dPersonnel.25>
+                    <dPersonnel.26>1993-02-27</dPersonnel.26>
+                    <dPersonnel.27>1987-07-17</dPersonnel.27></dPersonnel.LicensureGroup>
+                <dPersonnel.28>U5557720</dPersonnel.28>
+                <dPersonnel.29>1529015</dPersonnel.29>
+                <dPersonnel.30>2007-01-31</dPersonnel.30>
+                <dPersonnel.31>1531007</dPersonnel.31>
+                <dPersonnel.32>1985-06-23</dPersonnel.32>
+                <dPersonnel.33>2005-03-25</dPersonnel.33>
+                <dPersonnel.34>1534017</dPersonnel.34>
+                <dPersonnel.35>1534017</dPersonnel.35>
+                <dPersonnel.35>1534015</dPersonnel.35>
+                <dPersonnel.36>13</dPersonnel.36>
+                <dPersonnel.37>1961-09-05</dPersonnel.37>
+                <dPersonnel.CertificationLevelGroup>
+                    <dPersonnel.38>9925043</dPersonnel.38>
+                    <dPersonnel.39>2006-07-13</dPersonnel.39></dPersonnel.CertificationLevelGroup>
+                <dPersonnel.CertificationLevelGroup>
+                    <dPersonnel.38>9925043</dPersonnel.38>
+                    <dPersonnel.39>1984-08-05</dPersonnel.39></dPersonnel.CertificationLevelGroup>
+                <dPersonnel.CertificationLevelGroup>
+                    <dPersonnel.38>9925043</dPersonnel.38>
+                    <dPersonnel.39>1995-04-24</dPersonnel.39></dPersonnel.CertificationLevelGroup></dPersonnel.PersonnelGroup>
+            <dPersonnel.PersonnelGroup>
+                <dPersonnel.NameGroup>
+                    <dPersonnel.01>Caldwell</dPersonnel.01>
+                    <dPersonnel.02>Domingo</dPersonnel.02>
+                    <dPersonnel.03>Ainsworth</dPersonnel.03></dPersonnel.NameGroup>
+                <dPersonnel.AddressGroup>
+                    <dPersonnel.04 StreetAddress2="y">P.O. Box 277, 547 Facilisis Rd.</dPersonnel.04>
+                    <dPersonnel.05>1454997</dPersonnel.05>
+                    <dPersonnel.06>49</dPersonnel.06>
+                    <dPersonnel.07>84113</dPersonnel.07>
+                    <dPersonnel.08>US</dPersonnel.08></dPersonnel.AddressGroup>
+                <dPersonnel.09 PhoneNumberType="9913009">589-404-9726</dPersonnel.09>
+                <dPersonnel.09 PhoneNumberType="9913009">433-356-7654</dPersonnel.09>
+                <dPersonnel.09 PhoneNumberType="9913009">323-356-9926</dPersonnel.09>
+                <dPersonnel.10 EmailAddressType="9904003">5Fk9ptmW@zMLc.com</dPersonnel.10>
+                <dPersonnel.10 EmailAddressType="9904003">JoLaV3Qr@fWO0.com</dPersonnel.10>
+                <dPersonnel.10 EmailAddressType="9904003">5bRObif1@mzVx.com</dPersonnel.10>
+                <dPersonnel.11>1968-01-23</dPersonnel.11>
+                <dPersonnel.12>9906005</dPersonnel.12>
+                <dPersonnel.13>1513011</dPersonnel.13>
+                <dPersonnel.13>1513009</dPersonnel.13>
+                <dPersonnel.13>1513007</dPersonnel.13>
+                <dPersonnel.14>gO</dPersonnel.14>
+                <dPersonnel.15>1515031</dPersonnel.15>
+                <dPersonnel.16>1516071</dPersonnel.16>
+                <dPersonnel.16>1516069</dPersonnel.16>
+                <dPersonnel.16>1516067</dPersonnel.16>
+                <dPersonnel.17>1517023</dPersonnel.17>
+                <dPersonnel.17>1517021</dPersonnel.17>
+                <dPersonnel.ImmunizationsGroup>
+                    <dPersonnel.18>9910051</dPersonnel.18>
+                    <dPersonnel.19>1935</dPersonnel.19></dPersonnel.ImmunizationsGroup>
+                <dPersonnel.ImmunizationsGroup>
+                    <dPersonnel.18>9910051</dPersonnel.18>
+                    <dPersonnel.19>2000</dPersonnel.19></dPersonnel.ImmunizationsGroup>
+                <dPersonnel.ImmunizationsGroup>
+                    <dPersonnel.18>9910051</dPersonnel.18>
+                    <dPersonnel.19>1942</dPersonnel.19></dPersonnel.ImmunizationsGroup>
+                <dPersonnel.20>yid</dPersonnel.20>
+                <dPersonnel.20>vie</dPersonnel.20>
+                <dPersonnel.21>c8</dPersonnel.21>
+                <dPersonnel.LicensureGroup>
+                    <dPersonnel.22>49</dPersonnel.22>
+                    <dPersonnel.23>ny</dPersonnel.23>
+                    <dPersonnel.24>9925043</dPersonnel.24>
+                    <dPersonnel.25>1993-08-25</dPersonnel.25>
+                    <dPersonnel.26>1951-06-01</dPersonnel.26>
+                    <dPersonnel.27>2010-03-04</dPersonnel.27></dPersonnel.LicensureGroup>
+                <dPersonnel.LicensureGroup>
+                    <dPersonnel.22>49</dPersonnel.22>
+                    <dPersonnel.23>Yg</dPersonnel.23>
+                    <dPersonnel.24>9925043</dPersonnel.24>
+                    <dPersonnel.25>2003-08-05</dPersonnel.25>
+                    <dPersonnel.26>2004-03-24</dPersonnel.26>
+                    <dPersonnel.27>1957-04-26</dPersonnel.27></dPersonnel.LicensureGroup>
+                <dPersonnel.28>Y3357878</dPersonnel.28>
+                <dPersonnel.29>1529015</dPersonnel.29>
+                <dPersonnel.30>1955-06-11</dPersonnel.30>
+                <dPersonnel.31>1531007</dPersonnel.31>
+                <dPersonnel.32>2003-09-29</dPersonnel.32>
+                <dPersonnel.33>1954-08-01</dPersonnel.33>
+                <dPersonnel.34>1534017</dPersonnel.34>
+                <dPersonnel.35>1534017</dPersonnel.35>
+                <dPersonnel.35>1534015</dPersonnel.35>
+                <dPersonnel.36>65</dPersonnel.36>
+                <dPersonnel.37>1990-05-28</dPersonnel.37>
+                <dPersonnel.CertificationLevelGroup>
+                    <dPersonnel.38>9925043</dPersonnel.38>
+                    <dPersonnel.39>1992-09-21</dPersonnel.39></dPersonnel.CertificationLevelGroup>
+                <dPersonnel.CertificationLevelGroup>
+                    <dPersonnel.38>9925043</dPersonnel.38>
+                    <dPersonnel.39>1975-07-18</dPersonnel.39></dPersonnel.CertificationLevelGroup></dPersonnel.PersonnelGroup>
+            <dPersonnel.PersonnelGroup>
+                <dPersonnel.NameGroup>
+                    <dPersonnel.01>Lyons</dPersonnel.01>
+                    <dPersonnel.02>Raquel</dPersonnel.02>
+                    <dPersonnel.03>Almond</dPersonnel.03></dPersonnel.NameGroup>
+                <dPersonnel.AddressGroup>
+                    <dPersonnel.04 StreetAddress2="R">6661 Laoreet Av.</dPersonnel.04>
+                    <dPersonnel.05>1437575</dPersonnel.05>
+                    <dPersonnel.06>49</dPersonnel.06>
+                    <dPersonnel.07>84773</dPersonnel.07>
+                    <dPersonnel.08>US</dPersonnel.08></dPersonnel.AddressGroup>
+                <dPersonnel.09 PhoneNumberType="9913009">888-316-0222</dPersonnel.09>
+                <dPersonnel.09 PhoneNumberType="9913009">762-888-1137</dPersonnel.09>
+                <dPersonnel.09 PhoneNumberType="9913009">761-480-0315</dPersonnel.09>
+                <dPersonnel.10 EmailAddressType="9904003">RJhEaYtG@FmfV.com</dPersonnel.10>
+                <dPersonnel.10 EmailAddressType="9904003">RIkBECwh@RGEP.com</dPersonnel.10>
+                <dPersonnel.11>1955-04-08</dPersonnel.11>
+                <dPersonnel.12>9906005</dPersonnel.12>
+                <dPersonnel.13>1513011</dPersonnel.13>
+                <dPersonnel.13>1513009</dPersonnel.13>
+                <dPersonnel.14>9H</dPersonnel.14>
+                <dPersonnel.15>1515031</dPersonnel.15>
+                <dPersonnel.16>1516071</dPersonnel.16>
+                <dPersonnel.16>1516069</dPersonnel.16>
+                <dPersonnel.17>1517023</dPersonnel.17>
+                <dPersonnel.17>1517021</dPersonnel.17>
+                <dPersonnel.ImmunizationsGroup>
+                    <dPersonnel.18>9910051</dPersonnel.18>
+                    <dPersonnel.19>1904</dPersonnel.19></dPersonnel.ImmunizationsGroup>
+                <dPersonnel.ImmunizationsGroup>
+                    <dPersonnel.18>9910051</dPersonnel.18>
+                    <dPersonnel.19>1924</dPersonnel.19></dPersonnel.ImmunizationsGroup>
+                <dPersonnel.ImmunizationsGroup>
+                    <dPersonnel.18>9910051</dPersonnel.18>
+                    <dPersonnel.19>1932</dPersonnel.19></dPersonnel.ImmunizationsGroup>
+                <dPersonnel.20>yid</dPersonnel.20>
+                <dPersonnel.20>vie</dPersonnel.20>
+                <dPersonnel.21>6W</dPersonnel.21>
+                <dPersonnel.LicensureGroup>
+                    <dPersonnel.22>49</dPersonnel.22>
+                    <dPersonnel.23>p8</dPersonnel.23>
+                    <dPersonnel.24>9925043</dPersonnel.24>
+                    <dPersonnel.25>2003-07-29</dPersonnel.25>
+                    <dPersonnel.26>2010-07-15</dPersonnel.26>
+                    <dPersonnel.27>2005-06-05</dPersonnel.27></dPersonnel.LicensureGroup>
+                <dPersonnel.LicensureGroup>
+                    <dPersonnel.22>49</dPersonnel.22>
+                    <dPersonnel.23>8Q</dPersonnel.23>
+                    <dPersonnel.24>9925043</dPersonnel.24>
+                    <dPersonnel.25>1953-10-16</dPersonnel.25>
+                    <dPersonnel.26>1966-11-07</dPersonnel.26>
+                    <dPersonnel.27>1973-08-29</dPersonnel.27></dPersonnel.LicensureGroup>
+                <dPersonnel.28>WN547440</dPersonnel.28>
+                <dPersonnel.29>1529015</dPersonnel.29>
+                <dPersonnel.30>1955-02-22</dPersonnel.30>
+                <dPersonnel.31>1531007</dPersonnel.31>
+                <dPersonnel.32>2001-08-29</dPersonnel.32>
+                <dPersonnel.33>1958-07-06</dPersonnel.33>
+                <dPersonnel.34>1534017</dPersonnel.34>
+                <dPersonnel.35>1534017</dPersonnel.35>
+                <dPersonnel.35>1534015</dPersonnel.35>
+                <dPersonnel.35>1534013</dPersonnel.35>
+                <dPersonnel.36>5</dPersonnel.36>
+                <dPersonnel.37>1961-08-10</dPersonnel.37>
+                <dPersonnel.CertificationLevelGroup>
+                    <dPersonnel.38>9925043</dPersonnel.38>
+                    <dPersonnel.39>1952-09-18</dPersonnel.39></dPersonnel.CertificationLevelGroup>
+                <dPersonnel.CertificationLevelGroup>
+                    <dPersonnel.38>9925043</dPersonnel.38>
+                    <dPersonnel.39>1994-07-12</dPersonnel.39></dPersonnel.CertificationLevelGroup></dPersonnel.PersonnelGroup></dPersonnel>
+        <dDevice>
+            <dDevice.DeviceGroup>
+                <dDevice.01>zL</dDevice.01>
+                <dDevice.02>W0</dDevice.02>
+                <dDevice.03>1603039</dDevice.03>
+                <dDevice.03>1603037</dDevice.03>
+                <dDevice.03>1603035</dDevice.03>
+                <dDevice.04>j1</dDevice.04>
+                <dDevice.05>Kg</dDevice.05>
+                <dDevice.06>1990-02-11</dDevice.06></dDevice.DeviceGroup>
+            <dDevice.DeviceGroup>
+                <dDevice.01>wX</dDevice.01>
+                <dDevice.02>iu</dDevice.02>
+                <dDevice.03>1603039</dDevice.03>
+                <dDevice.03>1603037</dDevice.03>
+                <dDevice.04>So</dDevice.04>
+                <dDevice.05>Mp</dDevice.05>
+                <dDevice.06>2002-12-06</dDevice.06></dDevice.DeviceGroup>
+            <dDevice.DeviceGroup>
+                <dDevice.01>kN</dDevice.01>
+                <dDevice.02>QH</dDevice.02>
+                <dDevice.03>1603039</dDevice.03>
+                <dDevice.03>1603037</dDevice.03>
+                <dDevice.04>HB</dDevice.04>
+                <dDevice.05>Ce</dDevice.05>
+                <dDevice.06>1982-08-07</dDevice.06></dDevice.DeviceGroup></dDevice>
+        <dFacility>
+            <dFacilityGroup>
+                <dFacility.01>1701017</dFacility.01>
+                <dFacility.FacilityGroup>
+                    <dFacility.02>sM</dFacility.02>
+                    <dFacility.03>21</dFacility.03>
+                    <dFacility.04>9908035</dFacility.04>
+                    <dFacility.04>9908033</dFacility.04>
+                    <dFacility.04>9908031</dFacility.04>
+                    <dFacility.05>uD2KUkvHBN</dFacility.05>
+                    <dFacility.05>vEYayOpSw9</dFacility.05>
+                    <dFacility.05>Uckxlcq0ms</dFacility.05>
+                    <dFacility.06>E</dFacility.06>
+                    <dFacility.07 StreetAddress2="A">Ap #652-2765 Vestibulum Street</dFacility.07>
+                    <dFacility.08>1444282</dFacility.08>
+                    <dFacility.09>49</dFacility.09>
+                    <dFacility.10>84061</dFacility.10>
+                    <dFacility.11>49043</dFacility.11>
+                    <dFacility.12>US</dFacility.12>
+                    <dFacility.13>40.714412,-111.334069</dFacility.13>
+                    <dFacility.14>12UCF82615533</dFacility.14>
+                    <dFacility.15 PhoneNumberType="9913009">610-416-8373</dFacility.15>
+                    <dFacility.15 PhoneNumberType="9913009">972-627-4143</dFacility.15>
+                    <dFacility.15 PhoneNumberType="9913009">962-420-2834</dFacility.15></dFacility.FacilityGroup>
+                <dFacility.FacilityGroup>
+                    <dFacility.02>ht</dFacility.02>
+                    <dFacility.03>ua</dFacility.03>
+                    <dFacility.04>9908035</dFacility.04>
+                    <dFacility.04>9908033</dFacility.04>
+                    <dFacility.04>9908031</dFacility.04>
+                    <dFacility.05>jANfwHS9sE</dFacility.05>
+                    <dFacility.05>w4PGt4Uji2</dFacility.05>
+                    <dFacility.05>3rZH1IV3lS</dFacility.05>
+                    <dFacility.06>K</dFacility.06>
+                    <dFacility.07 StreetAddress2="R">2879 Orci, Ave</dFacility.07>
+                    <dFacility.08>1444049</dFacility.08>
+                    <dFacility.09>49</dFacility.09>
+                    <dFacility.10>84415</dFacility.10>
+                    <dFacility.11>49057</dFacility.11>
+                    <dFacility.12>US</dFacility.12>
+                    <dFacility.13>41.222904,-111.971747</dFacility.13>
+                    <dFacility.14>10ULJ55954280</dFacility.14>
+                    <dFacility.15 PhoneNumberType="9913009">581-464-8423</dFacility.15>
+                    <dFacility.15 PhoneNumberType="9913009">378-633-0735</dFacility.15>
+                    <dFacility.15 PhoneNumberType="9913009">458-773-2414</dFacility.15></dFacility.FacilityGroup></dFacilityGroup>
+            <dFacilityGroup>
+                <dFacility.01>1701017</dFacility.01>
+                <dFacility.FacilityGroup>
+                    <dFacility.02>na</dFacility.02>
+                    <dFacility.03>2G</dFacility.03>
+                    <dFacility.04>9908035</dFacility.04>
+                    <dFacility.04>9908033</dFacility.04>
+                    <dFacility.05>OoateJjy24</dFacility.05>
+                    <dFacility.05>0tc2Ujkre1</dFacility.05>
+                    <dFacility.05>R5bZm8pliq</dFacility.05>
+                    <dFacility.06>o</dFacility.06>
+                    <dFacility.07 StreetAddress2="0">Ap #253-8128 Id, Avenue</dFacility.07>
+                    <dFacility.08>1954629</dFacility.08>
+                    <dFacility.09>49</dFacility.09>
+                    <dFacility.10>84762</dFacility.10>
+                    <dFacility.11>49025</dFacility.11>
+                    <dFacility.12>US</dFacility.12>
+                    <dFacility.13>37.529935,-112.666908</dFacility.13>
+                    <dFacility.14>13TJM57517783</dFacility.14>
+                    <dFacility.15 PhoneNumberType="9913009">468-701-0448</dFacility.15>
+                    <dFacility.15 PhoneNumberType="9913009">743-775-4827</dFacility.15></dFacility.FacilityGroup>
+                <dFacility.FacilityGroup>
+                    <dFacility.02>gJ</dFacility.02>
+                    <dFacility.03>SY</dFacility.03>
+                    <dFacility.04>9908035</dFacility.04>
+                    <dFacility.04>9908033</dFacility.04>
+                    <dFacility.04>9908031</dFacility.04>
+                    <dFacility.05>CCSc0zJdwo</dFacility.05>
+                    <dFacility.05>x0SJoHeQOQ</dFacility.05>
+                    <dFacility.05>mjntP3E5ZR</dFacility.05>
+                    <dFacility.06>K</dFacility.06>
+                    <dFacility.07 StreetAddress2="y">115-6260 In St.</dFacility.07>
+                    <dFacility.08>1446932</dFacility.08>
+                    <dFacility.09>49</dFacility.09>
+                    <dFacility.10>84080</dFacility.10>
+                    <dFacility.11>49045</dFacility.11>
+                    <dFacility.12>US</dFacility.12>
+                    <dFacility.13>40.036117,-112.388825</dFacility.13>
+                    <dFacility.14>18RMK38882790</dFacility.14>
+                    <dFacility.15 PhoneNumberType="9913009">232-779-1353</dFacility.15>
+                    <dFacility.15 PhoneNumberType="9913009">437-843-5263</dFacility.15></dFacility.FacilityGroup>
+                <dFacility.FacilityGroup>
+                    <dFacility.02>IT</dFacility.02>
+                    <dFacility.03>5k</dFacility.03>
+                    <dFacility.04>9908035</dFacility.04>
+                    <dFacility.04>9908033</dFacility.04>
+                    <dFacility.04>9908031</dFacility.04>
+                    <dFacility.05>vwGuXm3xqA</dFacility.05>
+                    <dFacility.05>4xmM7eF0MY</dFacility.05>
+                    <dFacility.05>xDj1CAKwzM</dFacility.05>
+                    <dFacility.06>I</dFacility.06>
+                    <dFacility.07 StreetAddress2="b">Ap #491-204 Augue Av.</dFacility.07>
+                    <dFacility.08>1444991</dFacility.08>
+                    <dFacility.09>49</dFacility.09>
+                    <dFacility.10>84321</dFacility.10>
+                    <dFacility.11>49005</dFacility.11>
+                    <dFacility.12>US</dFacility.12>
+                    <dFacility.13>41.736480,-111.673800</dFacility.13>
+                    <dFacility.14>18SPF86482806</dFacility.14>
+                    <dFacility.15 PhoneNumberType="9913009">785-428-1072</dFacility.15>
+                    <dFacility.15 PhoneNumberType="9913009">733-368-3165</dFacility.15>
+                    <dFacility.15 PhoneNumberType="9913009">232-841-3317</dFacility.15></dFacility.FacilityGroup></dFacilityGroup></dFacility></DemographicReport></DEMDataSet>

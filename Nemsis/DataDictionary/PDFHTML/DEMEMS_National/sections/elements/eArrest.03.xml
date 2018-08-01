@@ -1,0 +1,30 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eArrest.03"  minOccurs="1"  maxOccurs="M"  dataTypeName="ResuscitationAttempted"  isNillable="Yes">
+<name>Resuscitation Attempted By EMS</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>Indication of an attempt to resuscitate the patient who is in cardiac arrest (attempted, not attempted due to DNR, etc.)</definition>
+<v2Number>E11_03</v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Cardiac Arrest</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>This element is a component of the Utstein Cardiac Arrest Criteria as identified in the American Heart Association journal "Resuscitation" from 2004 entitled "Cardiac Arrest and Cardiopulmonary Resuscitation Outcome Reports". http://circ.ahajournals.org/cgi/content/full/110/21/3385</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <ResuscitationAttempted baseType="string">
+    <facet name="enumeration" value="3003001" annotation="Attempted Defibrillation"/>
+    <facet name="enumeration" value="3003003" annotation="Attempted Ventilation"/>
+    <facet name="enumeration" value="3003005" annotation="Initiated Chest Compressions"/>
+    <facet name="enumeration" value="3003007" annotation="Not Attempted-Considered Futile"/>
+    <facet name="enumeration" value="3003009" annotation="Not Attempted-DNR Orders"/>
+    <facet name="enumeration" value="3003011" annotation="Not Attempted-Signs of Circulation"/>
+  </ResuscitationAttempted>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+</attributes>
+</element>

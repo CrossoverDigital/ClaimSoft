@@ -1,0 +1,278 @@
+'DatasetName'|'ElementNumber'|'ElementName'|'Code'|'CodeDescription'|
+'CADDataSet'|'eCustomConfiguration.03'|'Custom Data Type'|'9902001'|'Binary'|
+'CADDataSet'|'eCustomConfiguration.03'|'Custom Data Type'|'9902003'|'Date/Time'|
+'CADDataSet'|'eCustomConfiguration.03'|'Custom Data Type'|'9902005'|'Integer/Number'|
+'CADDataSet'|'eCustomConfiguration.03'|'Custom Data Type'|'9902007'|'Other'|
+'CADDataSet'|'eCustomConfiguration.03'|'Custom Data Type'|'9902009'|'Text/String'|
+'CADDataSet'|'eCustomConfiguration.03'|'Custom Data Type'|'9902011'|'Boolean'|
+'CADDataSet'|'eCustomConfiguration.04'|'Custom Data Element Recurrence'|'9923001'|'No'|
+'CADDataSet'|'eCustomConfiguration.04'|'Custom Data Element Recurrence'|'9923003'|'Yes'|
+'CADDataSet'|'eCustomConfiguration.05'|'Custom Data Element Usage'|'9903001'|'Mandatory'|
+'CADDataSet'|'eCustomConfiguration.05'|'Custom Data Element Usage'|'9903003'|'Required'|
+'CADDataSet'|'eCustomConfiguration.05'|'Custom Data Element Usage'|'9903005'|'Recommended'|
+'CADDataSet'|'eCustomConfiguration.05'|'Custom Data Element Usage'|'9903007'|'Optional'|
+'CADDataSet'|'eCustomConfiguration.07'|'Custom Data Element Potential NOT Values (NV)'|'7701001'|'Not Applicable'|
+'CADDataSet'|'eCustomConfiguration.07'|'Custom Data Element Potential NOT Values (NV)'|'7701003'|'Not Recorded'|
+'CADDataSet'|'eCustomConfiguration.07'|'Custom Data Element Potential NOT Values (NV)'|'7701005'|'Not Reporting'|
+'CADDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801001'|'Contraindication Noted'|
+'CADDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801003'|'Denied By Order'|
+'CADDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801005'|'Exam Finding Not Present'|
+'CADDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801007'|'Medication Allergy'|
+'CADDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801009'|'Medication Already Taken'|
+'CADDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801013'|'No Known Drug Allergy'|
+'CADDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801015'|'None Reported'|
+'CADDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801017'|'Not Performed by EMS'|
+'CADDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801019'|'Refused'|
+'CADDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801021'|'Unresponsive'|
+'CADDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801023'|'Unable to Complete'|
+'CADDataSet'|'eCad.11'|'Type of Service Requested'|'2205001'|'911 Response (Scene)'|
+'CADDataSet'|'eCad.11'|'Type of Service Requested'|'2205003'|'Intercept'|
+'CADDataSet'|'eCad.11'|'Type of Service Requested'|'2205005'|'Interfacility Transport'|
+'CADDataSet'|'eCad.11'|'Type of Service Requested'|'2205007'|'Medical Transport'|
+'CADDataSet'|'eCad.11'|'Type of Service Requested'|'2205009'|'Mutual Aid'|
+'CADDataSet'|'eCad.11'|'Type of Service Requested'|'2205011'|'Public Assistance/Other Not Listed'|
+'CADDataSet'|'eCad.11'|'Type of Service Requested'|'2205013'|'Standby'|
+'CADDataSet'|'eCad.12'|'Standby Purpose'|'2206001'|'Disaster Event-Drill/Exercise'|
+'CADDataSet'|'eCad.12'|'Standby Purpose'|'2206003'|'Disaster Event-Live Staging'|
+'CADDataSet'|'eCad.12'|'Standby Purpose'|'2206005'|'Education'|
+'CADDataSet'|'eCad.12'|'Standby Purpose'|'2206007'|'EMS Staging-Improve Coverage'|
+'CADDataSet'|'eCad.12'|'Standby Purpose'|'2206009'|'Fire Support-Rehab'|
+'CADDataSet'|'eCad.12'|'Standby Purpose'|'2206011'|'Fire Support-Standby'|
+'CADDataSet'|'eCad.12'|'Standby Purpose'|'2206013'|'Mass Gathering-Concert/Entertainment Event'|
+'CADDataSet'|'eCad.12'|'Standby Purpose'|'2206015'|'Mass Gathering-Fair/Community Event'|
+'CADDataSet'|'eCad.12'|'Standby Purpose'|'2206017'|'Mass Gathering-Sporting Event'|
+'CADDataSet'|'eCad.12'|'Standby Purpose'|'2206019'|'Other'|
+'CADDataSet'|'eCad.12'|'Standby Purpose'|'2206021'|'Public Safety Support'|
+'CADDataSet'|'eCad.13'|'Primary Role of the Unit'|'2207003'|'Ground Transport'|
+'CADDataSet'|'eCad.13'|'Primary Role of the Unit'|'2207005'|'Non-Transport Administrative (e.g., Supervisor)'|
+'CADDataSet'|'eCad.13'|'Primary Role of the Unit'|'2207007'|'Non-Transport Assistance'|
+'CADDataSet'|'eCad.13'|'Primary Role of the Unit'|'2207009'|'Non-Transport Rescue'|
+'CADDataSet'|'eCad.13'|'Primary Role of the Unit'|'2207011'|'Air Transport-Helicopter'|
+'CADDataSet'|'eCad.13'|'Primary Role of the Unit'|'2207013'|'Air Transport-Fixed Wing'|
+'CADDataSet'|'eCad.14'|'Type of Dispatch Delay'|'2208001'|'Caller (Uncooperative)'|
+'CADDataSet'|'eCad.14'|'Type of Dispatch Delay'|'2208003'|'Diversion/Failure (of previous unit)'|
+'CADDataSet'|'eCad.14'|'Type of Dispatch Delay'|'2208005'|'High Call Volume'|
+'CADDataSet'|'eCad.14'|'Type of Dispatch Delay'|'2208007'|'Language Barrier'|
+'CADDataSet'|'eCad.14'|'Type of Dispatch Delay'|'2208009'|'Location (Inability to Obtain)'|
+'CADDataSet'|'eCad.14'|'Type of Dispatch Delay'|'2208011'|'No EMS Vehicles (Units) Available'|
+'CADDataSet'|'eCad.14'|'Type of Dispatch Delay'|'2208013'|'None/No Delay'|
+'CADDataSet'|'eCad.14'|'Type of Dispatch Delay'|'2208015'|'Other'|
+'CADDataSet'|'eCad.14'|'Type of Dispatch Delay'|'2208017'|'Technical Failure (Computer, Phone etc.)'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209001'|'Crowd'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209003'|'Directions/Unable to Locate'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209005'|'Distance'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209007'|'Diversion (Different Incident)'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209009'|'HazMat'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209011'|'None/No Delay'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209013'|'Other'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209015'|'Rendezvous Transport Unavailable'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209017'|'Route Obstruction (e.g., Train)'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209019'|'Scene Safety (Not Secure for EMS)'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209021'|'Staff Delay'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209023'|'Traffic'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209025'|'Vehicle Crash Involving this Unit'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209027'|'Vehicle Failure of this Unit'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209029'|'Weather'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209031'|'Mechanical Issue-Unit, Equipment, etc.'|
+'CADDataSet'|'eCad.15'|'Type of Response Delay'|'2209033'|'Flight Planning'|
+'CADDataSet'|'eCad.21'|'Level of Care of This Unit'|'2215001'|'BLS-First Responder/EMR'|
+'CADDataSet'|'eCad.21'|'Level of Care of This Unit'|'2215003'|'BLS-Basic /EMT'|
+'CADDataSet'|'eCad.21'|'Level of Care of This Unit'|'2215005'|'BLS-AEMT'|
+'CADDataSet'|'eCad.21'|'Level of Care of This Unit'|'2215007'|'BLS-Intermediate'|
+'CADDataSet'|'eCad.21'|'Level of Care of This Unit'|'2215023'|'BLS-Community Paramedicine'|
+'CADDataSet'|'eCad.21'|'Level of Care of This Unit'|'2215009'|'ALS-AEMT'|
+'CADDataSet'|'eCad.21'|'Level of Care of This Unit'|'2215011'|'ALS-Intermediate'|
+'CADDataSet'|'eCad.21'|'Level of Care of This Unit'|'2215013'|'ALS-Paramedic'|
+'CADDataSet'|'eCad.21'|'Level of Care of This Unit'|'2215015'|'ALS-Community Paramedicine'|
+'CADDataSet'|'eCad.21'|'Level of Care of This Unit'|'2215017'|'ALS-Nurse'|
+'CADDataSet'|'eCad.21'|'Level of Care of This Unit'|'2215019'|'ALS-Physician'|
+'CADDataSet'|'eCad.21'|'Level of Care of This Unit'|'2215021'|'Specialty Critical Care'|
+'CADDataSet'|'eCad.29'|'Response Mode to Scene'|'2223001'|'Emergent (Immediate Response)'|
+'CADDataSet'|'eCad.29'|'Response Mode to Scene'|'2223003'|'Emergent Downgraded to Non-Emergent'|
+'CADDataSet'|'eCad.29'|'Response Mode to Scene'|'2223005'|'Non-Emergent'|
+'CADDataSet'|'eCad.29'|'Response Mode to Scene'|'2223007'|'Non-Emergent Upgraded to Emergent'|
+'CADDataSet'|'eCad.30'|'Additional Response Mode Descriptors'|'2224001'|'Intersection Navigation-Against Normal Light  Patterns'|
+'CADDataSet'|'eCad.30'|'Additional Response Mode Descriptors'|'2224003'|'Intersection Navigation-With Automated Light Changing Technology'|
+'CADDataSet'|'eCad.30'|'Additional Response Mode Descriptors'|'2224005'|'Intersection Navigation-With Normal Light Patterns'|
+'CADDataSet'|'eCad.30'|'Additional Response Mode Descriptors'|'2224007'|'Scheduled'|
+'CADDataSet'|'eCad.30'|'Additional Response Mode Descriptors'|'2224009'|'Speed-Enhanced per Local Policy'|
+'CADDataSet'|'eCad.30'|'Additional Response Mode Descriptors'|'2224011'|'Speed-Normal Traffic'|
+'CADDataSet'|'eCad.30'|'Additional Response Mode Descriptors'|'2224013'|'Unscheduled'|
+'CADDataSet'|'eCad.30'|'Additional Response Mode Descriptors'|'2224015'|'Lights and Sirens'|
+'CADDataSet'|'eCad.30'|'Additional Response Mode Descriptors'|'2224017'|'Lights and No Sirens'|
+'CADDataSet'|'eCad.30'|'Additional Response Mode Descriptors'|'2224019'|'No Lights or Sirens'|
+'CADDataSet'|'eCad.30'|'Additional Response Mode Descriptors'|'2224021'|'Initial No Lights or Sirens, Upgraded to Lights and Sirens'|
+'CADDataSet'|'eCad.30'|'Additional Response Mode Descriptors'|'2224023'|'Initial Lights and Sirens, Downgraded to No Lights or Sirens'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301001'|'Abdominal Pain/Problems'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301003'|'Allergic Reaction/Stings'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301005'|'Animal Bite'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301007'|'Assault'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301009'|'Automated Crash Notification'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301011'|'Back Pain (Non-Traumatic)'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301013'|'Breathing Problem'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301015'|'Burns/Explosion'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301017'|'Carbon Monoxide/Hazmat/Inhalation/CBRN'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301019'|'Cardiac Arrest/Death'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301021'|'Chest Pain (Non-Traumatic)'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301023'|'Choking'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301025'|'Convulsions/Seizure'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301027'|'Diabetic Problem'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301029'|'Electrocution/Lightning'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301031'|'Eye Problem/Injury'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301033'|'Falls'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301035'|'Fire'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301037'|'Headache'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301039'|'Healthcare Professional/Admission'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301041'|'Heart Problems/AICD'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301043'|'Heat/Cold Exposure'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301045'|'Hemorrhage/Laceration'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301047'|'Industrial Accident/Inaccessible Incident/Other Entrapments (Non-Vehicle)'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301049'|'Medical Alarm'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301051'|'No Other Appropriate Choice'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301053'|'Overdose/Poisoning/Ingestion'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301055'|'Pandemic/Epidemic/Outbreak'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301057'|'Pregnancy/Childbirth/Miscarriage'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301059'|'Psychiatric Problem/Abnormal Behavior/Suicide Attempt'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301061'|'Sick Person'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301063'|'Stab/Gunshot Wound/Penetrating Trauma'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301065'|'Standby'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301067'|'Stroke/CVA'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301069'|'Traffic/Transportation Incident'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301071'|'Transfer/Interfacility/Palliative Care'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301073'|'Traumatic Injury'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301075'|'Well Person Check'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301077'|'Unconscious/Fainting/Near-Fainting'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301079'|'Unknown Problem/Person Down'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301081'|'Drowning/Diving/SCUBA Accident'|
+'CADDataSet'|'eCad.31'|'Complaint Reported by Dispatch'|'2301083'|'Airmedical Transport'|
+'CADDataSet'|'eCad.32'|'EMD Performed'|'2302001'|'No'|
+'CADDataSet'|'eCad.32'|'EMD Performed'|'2302003'|'Yes, With Pre-Arrival Instructions'|
+'CADDataSet'|'eCad.32'|'EMD Performed'|'2302005'|'Yes, Without Pre-Arrival Instructions'|
+'CADDataSet'|'eCad.32'|'EMD Performed'|'2302007'|'Yes, Unknown if Pre-Arrival Instructions Given'|
+'CADDataSet'|'eCad.35'|'Dispatch Priority (Patient Acuity)'|'2305001'|'Critical'|
+'CADDataSet'|'eCad.35'|'Dispatch Priority (Patient Acuity)'|'2305003'|'Emergent'|
+'CADDataSet'|'eCad.35'|'Dispatch Priority (Patient Acuity)'|'2305005'|'Lower Acuity'|
+'CADDataSet'|'eCad.35'|'Dispatch Priority (Patient Acuity)'|'2305007'|'Non-Acute [e.g., Scheduled Transfer  or Standby]'|
+'CADDataSet'|'eCad.64'|'Gender'|'9906001'|'Female'|
+'CADDataSet'|'eCad.64'|'Gender'|'9906003'|'Male'|
+'CADDataSet'|'eCad.64'|'Gender'|'9906005'|'Unknown (Unable to Determine)'|
+'CADDataSet'|'eCad.65'|'Race'|'2514001'|'American Indian or Alaska Native'|
+'CADDataSet'|'eCad.65'|'Race'|'2514003'|'Asian'|
+'CADDataSet'|'eCad.65'|'Race'|'2514005'|'Black or African American'|
+'CADDataSet'|'eCad.65'|'Race'|'2514007'|'Hispanic or Latino'|
+'CADDataSet'|'eCad.65'|'Race'|'2514009'|'Native Hawaiian or Other Pacific Islander'|
+'CADDataSet'|'eCad.65'|'Race'|'2514011'|'White'|
+'CADDataSet'|'eCad.67'|'Age Units'|'2516001'|'Days'|
+'CADDataSet'|'eCad.67'|'Age Units'|'2516003'|'Hours'|
+'CADDataSet'|'eCad.67'|'Age Units'|'2516005'|'Minutes'|
+'CADDataSet'|'eCad.67'|'Age Units'|'2516007'|'Months'|
+'CADDataSet'|'eCad.67'|'Age Units'|'2516009'|'Years'|
+'CADDataSet'|'eCad.70'|'First EMS Unit on Scene'|'9923001'|'No'|
+'CADDataSet'|'eCad.70'|'First EMS Unit on Scene'|'9923003'|'Yes'|
+'CADDataSet'|'eCad.73'|'Type of Other Service at Scene'|'2704001'|'EMS Mutual Aid'|
+'CADDataSet'|'eCad.73'|'Type of Other Service at Scene'|'2704003'|'Fire'|
+'CADDataSet'|'eCad.73'|'Type of Other Service at Scene'|'2704005'|'First Responder'|
+'CADDataSet'|'eCad.73'|'Type of Other Service at Scene'|'2704007'|'Hazmat'|
+'CADDataSet'|'eCad.73'|'Type of Other Service at Scene'|'2704009'|'Law'|
+'CADDataSet'|'eCad.73'|'Type of Other Service at Scene'|'2704011'|'Other'|
+'CADDataSet'|'eCad.73'|'Type of Other Service at Scene'|'2704013'|'Other EMS Agency'|
+'CADDataSet'|'eCad.73'|'Type of Other Service at Scene'|'2704015'|'Other Health Care Provider'|
+'CADDataSet'|'eCad.73'|'Type of Other Service at Scene'|'2704017'|'Rescue'|
+'CADDataSet'|'eCad.73'|'Type of Other Service at Scene'|'2704019'|'Utilities'|
+'CADDataSet'|'eCad.75'|'Number of Patients at Scene'|'2707001'|'Multiple'|
+'CADDataSet'|'eCad.75'|'Number of Patients at Scene'|'2707003'|'None'|
+'CADDataSet'|'eCad.75'|'Number of Patients at Scene'|'2707005'|'Single'|
+'CADDataSet'|'eCad.76'|'Mass Casualty Incident'|'9923001'|'No'|
+'CADDataSet'|'eCad.76'|'Mass Casualty Incident'|'9923003'|'Yes'|
+'CADDataSet'|'eCad.104'|'EMS Transport Method'|'4216001'|'Air Medical-Fixed Wing'|
+'CADDataSet'|'eCad.104'|'EMS Transport Method'|'4216003'|'Air Medical-Rotor Craft'|
+'CADDataSet'|'eCad.104'|'EMS Transport Method'|'4216005'|'Ground-Ambulance'|
+'CADDataSet'|'eCad.104'|'EMS Transport Method'|'4216007'|'Ground-ATV or Rescue Vehicle'|
+'CADDataSet'|'eCad.104'|'EMS Transport Method'|'4216009'|'Ground-Bariatric'|
+'CADDataSet'|'eCad.104'|'EMS Transport Method'|'4216011'|'Ground-Other Not Listed'|
+'CADDataSet'|'eCad.104'|'EMS Transport Method'|'4216013'|'Ground-Mass Casualty Bus/Vehicle'|
+'CADDataSet'|'eCad.104'|'EMS Transport Method'|'4216015'|'Ground-Wheelchair Van'|
+'CADDataSet'|'eCad.104'|'EMS Transport Method'|'4216017'|'Water-Boat'|
+'CADDataSet'|'eCad.105'|'Transport Mode from Scene'|'4217001'|'Emergent (Immediate Response)'|
+'CADDataSet'|'eCad.105'|'Transport Mode from Scene'|'4217003'|'Emergent Downgraded to Non-Emergent'|
+'CADDataSet'|'eCad.105'|'Transport Mode from Scene'|'4217005'|'Non-Emergent'|
+'CADDataSet'|'eCad.105'|'Transport Mode from Scene'|'4217007'|'Non-Emergent Upgraded to Emergent'|
+'CADDataSet'|'eCad.106'|'Additional Transport Mode Descriptors'|'4218001'|'Intersection Navigation-Against Normal Light Patterns'|
+'CADDataSet'|'eCad.106'|'Additional Transport Mode Descriptors'|'4218003'|'Intersection Navigation-With Automated Light Changing Technology'|
+'CADDataSet'|'eCad.106'|'Additional Transport Mode Descriptors'|'4218005'|'Intersection Navigation-With Normal Light Patterns'|
+'CADDataSet'|'eCad.106'|'Additional Transport Mode Descriptors'|'4218007'|'Speed-Enhanced per Local Policy'|
+'CADDataSet'|'eCad.106'|'Additional Transport Mode Descriptors'|'4218009'|'Speed-Normal Traffic'|
+'CADDataSet'|'eCad.106'|'Additional Transport Mode Descriptors'|'4218011'|'Lights and Sirens'|
+'CADDataSet'|'eCad.106'|'Additional Transport Mode Descriptors'|'4218013'|'Lights and No Sirens'|
+'CADDataSet'|'eCad.106'|'Additional Transport Mode Descriptors'|'4218015'|'No Lights or Sirens'|
+'CADDataSet'|'eCad.106'|'Additional Transport Mode Descriptors'|'4218017'|'Initial No Lights or Sirens, Upgraded to Lights and Sirens'|
+'CADDataSet'|'eCad.106'|'Additional Transport Mode Descriptors'|'4218019'|'Initial Lights and Sirens, Downgraded to No Lights or Sirens'|
+'CADDataSet'|'eCad.107'|'Type of Destination'|'4221001'|'Home'|
+'CADDataSet'|'eCad.107'|'Type of Destination'|'4221003'|'Hospital-Emergency Department'|
+'CADDataSet'|'eCad.107'|'Type of Destination'|'4221005'|'Hospital-Non-Emergency Department Bed'|
+'CADDataSet'|'eCad.107'|'Type of Destination'|'4221007'|'Medical Office/Clinic'|
+'CADDataSet'|'eCad.107'|'Type of Destination'|'4221009'|'Morgue/Mortuary'|
+'CADDataSet'|'eCad.107'|'Type of Destination'|'4221011'|'Nursing Home/Assisted Living Facility'|
+'CADDataSet'|'eCad.107'|'Type of Destination'|'4221013'|'Other'|
+'CADDataSet'|'eCad.107'|'Type of Destination'|'4221015'|'Other EMS Responder (air)'|
+'CADDataSet'|'eCad.107'|'Type of Destination'|'4221017'|'Other EMS Responder (ground)'|
+'CADDataSet'|'eCad.107'|'Type of Destination'|'4221019'|'Police/Jail'|
+'CADDataSet'|'eCad.107'|'Type of Destination'|'4221021'|'Urgent Care'|
+'CADDataSet'|'eCad.107'|'Type of Destination'|'4221023'|'Freestanding Emergency Department'|
+'CADDataSet'|'eCad.108'|'Destination Team Pre-Arrival Activation'|'4224001'|'No'|
+'CADDataSet'|'eCad.108'|'Destination Team Pre-Arrival Activation'|'4224003'|'Yes-Adult Trauma'|
+'CADDataSet'|'eCad.108'|'Destination Team Pre-Arrival Activation'|'4224005'|'Yes-Cardiac Arrest'|
+'CADDataSet'|'eCad.108'|'Destination Team Pre-Arrival Activation'|'4224007'|'Yes-Obstetrics'|
+'CADDataSet'|'eCad.108'|'Destination Team Pre-Arrival Activation'|'4224009'|'Yes-Other'|
+'CADDataSet'|'eCad.108'|'Destination Team Pre-Arrival Activation'|'4224011'|'Yes-Pediatric Trauma'|
+'CADDataSet'|'eCad.108'|'Destination Team Pre-Arrival Activation'|'4224013'|'Yes-STEMI'|
+'CADDataSet'|'eCad.108'|'Destination Team Pre-Arrival Activation'|'4224015'|'Yes-Stroke'|
+'CADDataSet'|'eCad.108'|'Destination Team Pre-Arrival Activation'|'4224017'|'Yes-Trauma (General)'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925001'|'2009 Advanced Emergency Medical Technician (AEMT)'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925003'|'2009 Emergency Medical Responder (EMR)'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925005'|'2009 Emergency Medical Technician (EMT)'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925007'|'2009 Paramedic'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925013'|'First Responder'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925015'|'EMT-Basic'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925017'|'EMT-Intermediate'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925019'|'EMT-Paramedic'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925023'|'Other Healthcare Professional'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925025'|'Other Non-Healthcare Professional'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925027'|'Physician'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925029'|'Respiratory Therapist'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925031'|'Student'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925033'|'Critical Care Paramedic'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925035'|'Community Paramedicine'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925037'|'Nurse Practitioner'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925039'|'Physician Assistant'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925041'|'Licensed Practical Nurse (LPN)'|
+'CADDataSet'|'eCad.111'|'Crew Member Level'|'9925043'|'Registered Nurse'|
+'CADDataSet'|'eCad.112'|'Crew Member Response Role'|'2403001'|'Driver/Pilot-Response'|
+'CADDataSet'|'eCad.112'|'Crew Member Response Role'|'2403003'|'Driver/Pilot-Transport'|
+'CADDataSet'|'eCad.112'|'Crew Member Response Role'|'2403005'|'Other'|
+'CADDataSet'|'eCad.112'|'Crew Member Response Role'|'2403007'|'Other Patient Caregiver-At Scene'|
+'CADDataSet'|'eCad.112'|'Crew Member Response Role'|'2403009'|'Other Patient Caregiver-Transport'|
+'CADDataSet'|'eCad.112'|'Crew Member Response Role'|'2403011'|'Primary Patient Caregiver-At Scene'|
+'CADDataSet'|'eCad.112'|'Crew Member Response Role'|'2403013'|'Primary Patient Caregiver-Transport'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212001'|'Assist, Agency'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212003'|'Assist, Public'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212005'|'Assist, Unit'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212007'|'Canceled (Prior to Arrival At Scene)'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212009'|'Canceled on Scene (No Patient Contact)'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212011'|'Canceled on Scene (No Patient Found)'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212013'|'Patient Dead at Scene-No Resuscitation Attempted (With Transport)'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212015'|'Patient Dead at Scene-No Resuscitation Attempted (Without Transport)'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212017'|'Patient Dead at Scene-Resuscitation Attempted (With Transport)'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212019'|'Patient Dead at Scene-Resuscitation Attempted (Without Transport)'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212021'|'Patient Evaluated, No Treatment/Transport Required'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212023'|'Patient Refused Evaluation/Care (With Transport)'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212025'|'Patient Refused Evaluation/Care (Without Transport)'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212027'|'Patient Treated, Released (AMA)'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212029'|'Patient Treated, Released (per protocol)'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212031'|'Patient Treated, Transferred Care to Another EMS Unit'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212033'|'Patient Treated, Transported by this EMS Unit'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212035'|'Patient Treated, Transported by Law Enforcement'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212037'|'Patient Treated, Transported by Private Vehicle'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212039'|'Standby-No Services or Support Provided'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212041'|'Standby-Public Safety, Fire, or EMS Operational Support Provided'|
+'CADDataSet'|'eCad.113'|'Incident/Patient Disposition'|'4212043'|'Transport Non-Patient, Organs, etc.'|

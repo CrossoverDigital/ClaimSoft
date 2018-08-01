@@ -10,8 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using CD.ClaimSoft.Database;
 using CD.ClaimSoft.Logging;
+using CD.ClaimSoft.Settings;
 
 using StackExchange.Redis;
 
@@ -48,7 +48,7 @@ namespace CD.ClaimSoft.Redis
 
             try
             {
-                using (var dbContext = new ClaimSoftContext())
+                using (var dbContext = new SettingsContext())
                 {
                     _settingsDictionary = dbContext.ApplicationSettings.Where(a => a.SettingTypeId == 1).Select(p => new { p.SettingKey, p.SettingValue })
                         .AsEnumerable().ToDictionary(kvp => kvp.SettingKey, kvp => kvp.SettingValue);

@@ -1,0 +1,5 @@
+<?xml-stylesheet type="text/xsl" href="../xslt/grouping.xslt"?>
+<section name="eOutcome">
+  <element number="eOutcome.01" minOccurs="1" maxOccurs="1" CorrelationID="" isNillable="Yes" dataType="EmergencyDepartmentDisposition"><name>Emergency Department Disposition</name><refNumber></refNumber><national>Yes</national><deprecated></deprecated><state>Yes</state><usage>Required</usage><notValue>Yes</notValue><pertinentNegative></pertinentNegative></element>
+  <element number="eOutcome.02" minOccurs="1" maxOccurs="1" CorrelationID="" isNillable="Yes" dataType="HospitalDisposition"><name>Hospital Disposition</name><refNumber></refNumber><national>Yes</national><deprecated></deprecated><state>Yes</state><usage>Required</usage><notValue>Yes</notValue><pertinentNegative></pertinentNegative></element>
+</section>

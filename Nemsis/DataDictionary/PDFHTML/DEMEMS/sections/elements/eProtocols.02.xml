@@ -1,0 +1,27 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eProtocols.02"  minOccurs="1"  maxOccurs="1"  dataTypeName="ProtocolAgeCategory"  isNillable="Yes">
+<name>Protocol Age Category</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>The age group the protocol is written to address</definition>
+<v2Number></v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>Response</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Protocols are grouped into Airway, Environmental, Exposure, General, Injury, Medical, and OB/GYN.  -There is a new data element to indicate whether the protocol is Adult, Pediatric, or General (both).</v3Comment>
+<v3Changes>Added to better document protocol use.</v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <ProtocolAgeCategory baseType="string">
+    <facet name="enumeration" value="3602001" annotation="Adult Only"/>
+    <facet name="enumeration" value="3602003" annotation="General"/>
+    <facet name="enumeration" value="3602005" annotation="Pediatric Only"/>
+  </ProtocolAgeCategory>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+</attributes>
+</element>

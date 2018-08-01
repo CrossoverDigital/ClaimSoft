@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<v2v3ValueMappingCurrentMedication xmlns="http://www.nemsis.org">
+	<match>
+		<v2Pattern>Oxygen</v2Pattern>
+		<v3Replacement>7806</v3Replacement>
+	</match>
+</v2v3ValueMappingCurrentMedication>

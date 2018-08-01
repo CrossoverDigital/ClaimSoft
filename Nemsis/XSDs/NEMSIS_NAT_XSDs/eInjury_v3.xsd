@@ -1,0 +1,841 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.nemsis.org" targetNamespace="http://www.nemsis.org" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="commonTypes_v3.xsd"></xs:include>
+	<xs:complexType name="eInjury" id="eInjury.SituationTrauma">
+		<xs:sequence>
+			<xs:element name="eInjury.01" nillable="true" id="eInjury.CauseofInjury" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						<nemsisTacDoc>
+							<number>eInjury.01</number>
+							<name>Cause of Injury</name>
+							<national>Yes</national>
+							<state>Yes</state>
+							<definition>The category of the reported/suspected external cause of the injury.</definition>
+							<v2Number>E10_01</v2Number>
+							<usage>Required</usage>
+							<performanceMeasuresGroup>
+								<performanceMeasure>Trauma</performanceMeasure>
+							</performanceMeasuresGroup>
+							<comment>
+							Suggested code list is represented in ICD-10-CM. Reference the NEMSIS Suggested Lists at: http://nemsis.org/v3/resources.html																
+							&lt;br/>&lt;br/>Code list is represented in ICD-10 Codes.
+							&lt;br/>Website - http://uts.nlm.nih.gov  
+							&lt;br/>Product - UMLS Metathesaurus
+							</comment>
+						</nemsisTacDoc>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="icd10CodeInjury">
+							<xs:attribute name="NV" use="optional">
+								<xs:simpleType>
+									<xs:union memberTypes="NV.NotApplicable NV.NotRecorded"></xs:union>
+								</xs:simpleType>
+							</xs:attribute>
+							
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="eInjury.03" nillable="true" id="eInjury.TraumaCenterCriteria" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						<nemsisTacDoc>
+							<number>eInjury.03</number>
+							<name>Trauma Center Criteria</name>
+							<national>Yes</national>
+							<state>Yes</state>
+							<definition>Physiologic and Anatomic Field Trauma Triage Criteria (steps 1 and 2) as defined by the Centers for Disease Control.</definition>
+							<usage>Required</usage>
+							<performanceMeasuresGroup>
+								<performanceMeasure>Trauma</performanceMeasure>
+							</performanceMeasuresGroup>
+							<comment>2011 Guidelines for the Field Triage of Injured Patients - value choices for Steps 1 and 2. For falls, one story is equal to 10 feet.</comment>
+							<v3Changes>Added to better evaluate the CDC-ACS 2011 Guidelines for the Field Triage of Injured Patients. &lt;br/>Website: http://www.cdc.gov/mmwr/pdf/rr/rr6101.pdf</v3Changes>
+						</nemsisTacDoc>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="TraumaCenterCriteria">
+							<xs:attribute name="NV" use="optional">
+								<xs:simpleType>
+									<xs:union memberTypes="NV.NotApplicable NV.NotRecorded"></xs:union>
+								</xs:simpleType>
+							</xs:attribute>
+							
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="eInjury.04" nillable="true" id="eInjury.VehicularPedestrianorOtherInjuryRiskFactor" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						<nemsisTacDoc>
+							<number>eInjury.04</number>
+							<name>Vehicular, Pedestrian, or Other Injury Risk Factor</name>
+							<national>Yes</national>
+							<state>Yes</state>
+							<definition>Mechanism and Special Considerations Field Trauma Triage Criteria (steps 3 and 4) as defined by the Centers for Disease Control.</definition>
+							<v2Number>E10_04</v2Number>
+							<usage>Required</usage>
+							<performanceMeasuresGroup>
+								<performanceMeasure>Trauma</performanceMeasure>
+							</performanceMeasuresGroup>
+							<comment>Assesses mechanism of injury and evidence of high-energy impact (Step 3) AND Assess special patient or system considerations (Step 4) based on CDC 2011 Guidelines for the Field Triage of Injured Patients Step 3 and 4. Website: http://www.cdc.gov/mmwr/pdf/rr/rr6101.pdf</comment>
+							<v3Changes>Added to better evaluate the CDC-ACS 2011 Guidelines for the Field Triage of Injured Patients. 
+							&lt;br/>Website: http://www.cdc.gov/FieldTriage/</v3Changes>
+						</nemsisTacDoc>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="VehicularInjuryIndicators">
+							<xs:attribute name="NV" use="optional">
+								<xs:simpleType>
+									<xs:union memberTypes="NV.NotApplicable NV.NotRecorded"></xs:union>
+								</xs:simpleType>
+							</xs:attribute>
+							
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			
+			
+			
+			
+			
+			
+			
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ACNYesNoType">
+		<xs:annotation>
+			<xs:documentation>IndicationOfAirbagDeployment</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Y">
+				<xs:annotation>
+					<xs:documentation>Yes</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="N">
+				<xs:annotation>
+					<xs:documentation>No</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AirbagDeployment">
+		<xs:annotation>
+			<xs:documentation>IndicationOfAirbagDeployment</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="2908001">
+				<xs:annotation>
+					<xs:documentation>Airbag Deployed Front</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2908003">
+				<xs:annotation>
+					<xs:documentation>Airbag Deployed Side</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2908005">
+				<xs:annotation>
+					<xs:documentation>Airbag Deployed Other (knee, air belt, etc.)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2908007">
+				<xs:annotation>
+					<xs:documentation>No Airbag Deployed</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2908009">
+				<xs:annotation>
+					<xs:documentation>No Airbag Present</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AreaOfVehicleImpact">
+		<xs:annotation>
+			<xs:documentation>The area or location of impact on the vehicle</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"></xs:minInclusive>
+			<xs:maxInclusive value="12"></xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BodyType">
+		<xs:annotation>
+			<xs:documentation>The Automated Collision Notification Vehicle Body Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"></xs:minLength>
+			<xs:maxLength value="100"></xs:maxLength>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CauseOfInjury">
+		<xs:annotation>
+			<xs:documentation>The category of the reported/suspected external cause of the injury.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="2901001">
+				<xs:annotation>
+					<xs:documentation>Accidental drowning and submersion (ICD-10:W65-W74)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901003">
+				<xs:annotation>
+					<xs:documentation>Accidental exposure to other and unspecified factors (ICD-10: X58-X59)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901005">
+				<xs:annotation>
+					<xs:documentation>Accidental poisoning by and exposure to noxious substances (ICD-10: X40-X49)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901007">
+				<xs:annotation>
+					<xs:documentation>Air and space transport accidents (ICD-10: V95-V97)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901009">
+				<xs:annotation>
+					<xs:documentation>Assault (ICD-10: X85-Y09)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901011">
+				<xs:annotation>
+					<xs:documentation>Bus occupant injured in transport accident (ICD-10: V70-V79)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901013">
+				<xs:annotation>
+					<xs:documentation>Car occupant injured in transport accident (ICD-10: V40-V49)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901015">
+				<xs:annotation>
+					<xs:documentation>Complications of medical and surgical care (ICD-10:Y40-Y84)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901017">
+				<xs:annotation>
+					<xs:documentation>Contact with heat and hot substances (ICD-10:X10-X19)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901019">
+				<xs:annotation>
+					<xs:documentation>Contact with venomous animals and plants (ICD-10: X20-X29)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901021">
+				<xs:annotation>
+					<xs:documentation>Event of undetermined intent (ICD-10: Y10-Y34)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901023">
+				<xs:annotation>
+					<xs:documentation>Exposure to animate mechanical forces (ICD-10:W50-W64)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901025">
+				<xs:annotation>
+					<xs:documentation>Exposure to electric current, radiation and extreme ambient air temperature and pressure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901027">
+				<xs:annotation>
+					<xs:documentation>Exposure to forces of nature (ICD-10: X30-X39)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901029">
+				<xs:annotation>
+					<xs:documentation>Exposure to inanimate mechanical forces (ICD-10: W20-W49)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901031">
+				<xs:annotation>
+					<xs:documentation>Exposure to smoke, fire and flames (ICD_10:X00-X09)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901033">
+				<xs:annotation>
+					<xs:documentation>Falls (ICD-10: W00-W19)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901035">
+				<xs:annotation>
+					<xs:documentation>Intentional self-harm (ICD-10: X60-X84)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901037">
+				<xs:annotation>
+					<xs:documentation>Legal intervention and operations of war (ICD-10:Y35-Y36)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901039">
+				<xs:annotation>
+					<xs:documentation>Motorcycle rider injured in transport accident (ICD-10: V20-V29)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901041">
+				<xs:annotation>
+					<xs:documentation>Occupant of heavy transport vehicle injured in transport accident (ICD-10: V60-V69)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901043">
+				<xs:annotation>
+					<xs:documentation>Occupant of pick-up truck or van injured in transport accident (ICD-10: V50-V59)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901045">
+				<xs:annotation>
+					<xs:documentation>Occupant of three-wheeled motor vehicle injured in transport accident (ICD-10: V30-V39)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901047">
+				<xs:annotation>
+					<xs:documentation>Other accidental threats to breathing (ICD-10:W75-W84)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901049">
+				<xs:annotation>
+					<xs:documentation>Other and unspecified transport accidents (ICD-10: V98-V99)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901051">
+				<xs:annotation>
+					<xs:documentation>Other land transport accidents (ICD-10: V80-V89)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901053">
+				<xs:annotation>
+					<xs:documentation>Overexertion, travel and privation (ICD-10: X50-X57)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901055">
+				<xs:annotation>
+					<xs:documentation>Pedal cyclist injured in transport accident (ICD-10: V10-V19)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901057">
+				<xs:annotation>
+					<xs:documentation>Pedestrian injured in transport accident (ICD-10: V01-V09)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901059">
+				<xs:annotation>
+					<xs:documentation>Sequelae (Circumstances) of external causes of morbidity and mortality (ICD-10: Y85-Y89)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2901061">
+				<xs:annotation>
+					<xs:documentation>Water transport accidents (ICD-10: V90-V94)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Company">
+		<xs:annotation>
+			<xs:documentation>The Agency providing the Automated Collision Notification Data.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"></xs:minLength>
+			<xs:maxLength value="30"></xs:maxLength>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DeltaVelocity">
+		<xs:annotation>
+			<xs:documentation>The Automated Collision Notification Delta Velocity (Delta V) force associated with the crash.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"></xs:minInclusive>
+			<xs:maxInclusive value="999"></xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DeltaVelocityOrdinalRanking">
+		<xs:annotation>
+			<xs:documentation>The Automated Collision Notification Delta Velocity (Delta V) force ordinal value. 1 equals first impact, 2 equals second, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"></xs:minInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EquipmentUsed">
+		<xs:annotation>
+			<xs:documentation>Documentation of the use of OSHA required equipment associated with the injury.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="2910001">
+				<xs:annotation>
+					<xs:documentation>Eye and Face Protection</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2910003">
+				<xs:annotation>
+					<xs:documentation>Foot Protection</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2910005">
+				<xs:annotation>
+					<xs:documentation>Head Protection</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2910007">
+				<xs:annotation>
+					<xs:documentation>Hearing Protection</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2910009">
+				<xs:annotation>
+					<xs:documentation>Respiratory Protection</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2910011">
+				<xs:annotation>
+					<xs:documentation>Safety Belts, lifelines, and lanyards</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2910013">
+				<xs:annotation>
+					<xs:documentation>Safety Nets</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="HeightOfFall">
+		<xs:annotation>
+			<xs:documentation>The distance in feet the patient fell, measured from the lowest point of the patient to the ground</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"></xs:minInclusive>
+			<xs:maxInclusive value="10000"></xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IncidentID">
+		<xs:annotation>
+			<xs:documentation>The Automated Collision Notification Incident ID.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"></xs:minLength>
+			<xs:maxLength value="100"></xs:maxLength>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Make">
+		<xs:annotation>
+			<xs:documentation>The Automated Collision Notification Vehicle Make (e.g. Cadillac, Ford, BMW).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"></xs:minLength>
+			<xs:maxLength value="100"></xs:maxLength>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Manufacturer">
+		<xs:annotation>
+			<xs:documentation>The Automated Collision Notification Vehicle Manufacturer (e.g. General Motors, Ford, BMW).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"></xs:minLength>
+			<xs:maxLength value="100"></xs:maxLength>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MechanismOfInjury">
+		<xs:annotation>
+			<xs:documentation>The mechanism of the event which caused the injury</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="2902001">
+				<xs:annotation>
+					<xs:documentation>Blunt</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2902003">
+				<xs:annotation>
+					<xs:documentation>Burn</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2902005">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2902007">
+				<xs:annotation>
+					<xs:documentation>Penetrating</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Model">
+		<xs:annotation>
+			<xs:documentation>The Automated Collision Notification Vehicle Model (e.g. Escalade, Taurus, X6M).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"></xs:minLength>
+			<xs:maxLength value="100"></xs:maxLength>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PDOF">
+		<xs:annotation>
+			<xs:documentation>The Automated Collision Notification Principal Direction of Force (PDOF).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"></xs:minInclusive>
+			<xs:maxInclusive value="12"></xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SeatLocation">
+		<xs:annotation>
+			<xs:documentation>The Automated Collision Notification Indication of the Occupant(s) Seat Location(s) within the vehicle.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="2926001">
+				<xs:annotation>
+					<xs:documentation>Driver Front Seat</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2926003">
+				<xs:annotation>
+					<xs:documentation>Front Row Middle Seat</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2926005">
+				<xs:annotation>
+					<xs:documentation>Passenger Front Seat</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2926007">
+				<xs:annotation>
+					<xs:documentation>Second Row Left Seat</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2926009">
+				<xs:annotation>
+					<xs:documentation>Second Row Middle Seat</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2926011">
+				<xs:annotation>
+					<xs:documentation>Second Row Right Seat</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2926013">
+				<xs:annotation>
+					<xs:documentation>Third Row Left Seat</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2926015">
+				<xs:annotation>
+					<xs:documentation>Third Row Middle Seat</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2926017">
+				<xs:annotation>
+					<xs:documentation>Third Row Right Seat</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SeatRowLocation">
+		<xs:annotation>
+			<xs:documentation>The seat row location of the vehicle at the time of the crash with the front seat numbered as 1</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="2906001">
+				<xs:annotation>
+					<xs:documentation>Front Seat-Left Side (or motorcycle driver)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2906003">
+				<xs:annotation>
+					<xs:documentation>Front Seat-Middle</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2906005">
+				<xs:annotation>
+					<xs:documentation>Front Seat-Right Side</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2906007">
+				<xs:annotation>
+					<xs:documentation>Passenger in other enclosed passenger or cargo area (non-trailing unit such as a bus, etc.)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2906009">
+				<xs:annotation>
+					<xs:documentation>Passenger in unenclosed passenger or cargo area (non-trailing unit such as a pickup, etc.)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2906011">
+				<xs:annotation>
+					<xs:documentation>Riding on Vehicle Exterior (non-trailing unit)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2906013">
+				<xs:annotation>
+					<xs:documentation>Second Seat-Left Side (or motorcycle passenger)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2906015">
+				<xs:annotation>
+					<xs:documentation>Second Seat-Middle</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2906017">
+				<xs:annotation>
+					<xs:documentation>Second Seat-Right Side</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2906019">
+				<xs:annotation>
+					<xs:documentation>Sleeper Section of Cab (truck)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2906021">
+				<xs:annotation>
+					<xs:documentation>Third Row-Left Side (or motorcycle passenger)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2906023">
+				<xs:annotation>
+					<xs:documentation>Third Row-Middle</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2906025">
+				<xs:annotation>
+					<xs:documentation>Third Row-Right Side</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2906027">
+				<xs:annotation>
+					<xs:documentation>Trailing Unit</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2906029">
+				<xs:annotation>
+					<xs:documentation>Unknown</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TraumaCenterCriteria">
+		<xs:annotation>
+			<xs:documentation>Field Triage Criteria for transport to a trauma center as defined by the Centers for Disease Control and Prevention and the American College of Surgeons-Committee on Trauma.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="2903001">
+				<xs:annotation>
+					<xs:documentation>Amputation proximal to wrist or ankle</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2903003">
+				<xs:annotation>
+					<xs:documentation>Crushed, degloved, mangled, or pulseless extremity</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2903005">
+				<xs:annotation>
+					<xs:documentation>Chest wall instability or deformity (e.g., flail chest)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2903007">
+				<xs:annotation>
+					<xs:documentation>Glasgow Coma Score &lt;= 13</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2903009">
+				<xs:annotation>
+					<xs:documentation>Open or depressed skull fracture</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2903011">
+				<xs:annotation>
+					<xs:documentation>Paralysis</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2903013">
+				<xs:annotation>
+					<xs:documentation>Pelvic fractures</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2903015">
+				<xs:annotation>
+					<xs:documentation>All penetrating injuries to  head, neck, torso, and extremities proximal to elbow or knee</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2903017">
+				<xs:annotation>
+					<xs:documentation>Respiratory Rate  &lt;10 or >29 breaths per minute (&lt;20 in infants aged &lt;1 year) or need for ventilatory support</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2903019">
+				<xs:annotation>
+					<xs:documentation>Systolic Blood Pressure &lt;90 mmHg</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2903021">
+				<xs:annotation>
+					<xs:documentation>Two or more proximal long-bone fractures</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UseOfOccupantSafetyEquipment">
+		<xs:annotation>
+			<xs:documentation>Safety equipment in use by the patient at the time of the injury</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="2907001">
+				<xs:annotation>
+					<xs:documentation>Child Booster Seat</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2907003">
+				<xs:annotation>
+					<xs:documentation>Eye Protection</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2907005">
+				<xs:annotation>
+					<xs:documentation>Helmet Worn</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2907007">
+				<xs:annotation>
+					<xs:documentation>Infant Car Seat Forward Facing</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2907009">
+				<xs:annotation>
+					<xs:documentation>Infant Car Seat Rear Facing</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2907015">
+				<xs:annotation>
+					<xs:documentation>None</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2907017">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2907019">
+				<xs:annotation>
+					<xs:documentation>Personal Floatation Device</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2907021">
+				<xs:annotation>
+					<xs:documentation>Protective Clothing</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2907023">
+				<xs:annotation>
+					<xs:documentation>Protective Non-Clothing Gear</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2907027">
+				<xs:annotation>
+					<xs:documentation>Shoulder and Lap Belt Used</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2907029">
+				<xs:annotation>
+					<xs:documentation>Lap Belt Only Used</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2907031">
+				<xs:annotation>
+					<xs:documentation>Shoulder Belt Only Used</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VehicularInjuryIndicators">
+		<xs:annotation>
+			<xs:documentation>The kind of risk factor predictors present at the incident</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="2904001">
+				<xs:annotation>
+					<xs:documentation>Auto v. Pedestrian/Bicyclist Thrown, Run Over, or > 20 MPH Impact</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2904003">
+				<xs:annotation>
+					<xs:documentation>Fall Adults: > 20 ft. (one story is equal to 10 ft.)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2904005">
+				<xs:annotation>
+					<xs:documentation>Fall Children: > 10 ft. or 2-3 times the height of the child</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2904007">
+				<xs:annotation>
+					<xs:documentation>Crash Death in Same Passenger Compartment</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2904009">
+				<xs:annotation>
+					<xs:documentation>Crash Ejection (partial or complete) from automobile</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2904011">
+				<xs:annotation>
+					<xs:documentation>Crash Intrusion, including roof: > 12 in. occupant site; > 18 in. any site</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2904013">
+				<xs:annotation>
+					<xs:documentation>Crash Vehicle Telemetry Data (AACN) Consistent with High Risk of Injury</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2904015">
+				<xs:annotation>
+					<xs:documentation>Motorcycle Crash > 20 MPH</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2904017">
+				<xs:annotation>
+					<xs:documentation>SBP &lt; 110 for age > 65</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2904019">
+				<xs:annotation>
+					<xs:documentation>Anticoagulants and Bleeding Disorders</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2904021">
+				<xs:annotation>
+					<xs:documentation>Pregnancy > 20 weeks</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2904023">
+				<xs:annotation>
+					<xs:documentation>EMS Provider Judgment</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2904025">
+				<xs:annotation>
+					<xs:documentation>Burn, without other trauma</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2904027">
+				<xs:annotation>
+					<xs:documentation>Burn, with trauma mechanism</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,13 @@
+'Dataset'|'DatasetType'|'ElementNumber'|'ElementName'|'Attribute'|
+'MedDeviceDataSet'|'group'|'eCustomConfiguration.CustomGroup'|''|'CustomElementID'|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.01'|'Custom Data Element Title'|'nemsisElement'|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.06'|'Custom Data Element Potential Values'|'nemsisCode'|
+'MedDeviceDataSet'|'element'|'eCustomConfiguration.06'|'Custom Data Element Potential Values'|'customValueDescription'|
+'MedDeviceDataSet'|'element'|'eMedDevice.15'|'Race'|'CorrelationID'|
+'MedDeviceDataSet'|'group'|'eMedDevice.VitalsGroup'|''|'CorrelationID'|
+'MedDeviceDataSet'|'group'|'eMedDevice.LabsGroup'|''|'CorrelationID'|
+'MedDeviceDataSet'|'element'|'eMedDevice.45'|'Medical Device Event Type'|'CorrelationID'|
+'MedDeviceDataSet'|'element'|'eMedDevice.49'|'Medical Device ECG Lead'|'CorrelationID'|
+'MedDeviceDataSet'|'group'|'eCustomResults.ResultsGroup'|''|'CorrelationID'|
+'MedDeviceDataSet'|'element'|'eCustomResults.01'|'Custom Data Element Result'|'NV'|
+'MedDeviceDataSet'|'element'|'eCustomResults.01'|'Custom Data Element Result'|'PN'|

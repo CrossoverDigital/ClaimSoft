@@ -1,0 +1,35 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="dConfiguration.02"  minOccurs="1"  maxOccurs="M"  dataTypeName="LicensureLevels"  isNillable="No">
+<name>State Certification/Licensure Levels</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>All of the potential levels of certification/licensure for EMS personnel recognized by the state.</definition>
+<v2Number>D04_01</v2Number>
+<usage>Mandatory</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment>The new 2009 Education Levels have been added. The category EMT-Intermediate includes EMS professionals with an "85" or "99" certification level.
+										<br/><br/>The state EMS system does not need to import this information into their database.  Reference the Demographic Dataset Submission Guide for further details.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <LicensureLevels baseType="string">
+    <facet name="enumeration" value="9911001" annotation="2009 Advanced Emergency Medical Technician (AEMT)"/>
+    <facet name="enumeration" value="9911003" annotation="2009 Emergency Medical Responder (EMR)"/>
+    <facet name="enumeration" value="9911005" annotation="2009 Emergency Medical Technician (EMT)"/>
+    <facet name="enumeration" value="9911007" annotation="2009 Paramedic"/>
+    <facet name="enumeration" value="9911009" annotation="EMT-Basic"/>
+    <facet name="enumeration" value="9911011" annotation="EMT-Intermediate"/>
+    <facet name="enumeration" value="9911013" annotation="EMT-Paramedic"/>
+    <facet name="enumeration" value="9911015" annotation="First Responder"/>
+    <facet name="enumeration" value="9911019" annotation="Other"/>
+    <facet name="enumeration" value="9911021" annotation="Physician"/>
+    <facet name="enumeration" value="9911023" annotation="Critical Care Paramedic"/>
+    <facet name="enumeration" value="9911025" annotation="Community Paramedicine"/>
+    <facet name="enumeration" value="9911027" annotation="Nurse Practitioner"/>
+    <facet name="enumeration" value="9911029" annotation="Physician Assistant"/>
+    <facet name="enumeration" value="9911031" annotation="Licensed Practical Nurse (LPN)"/>
+    <facet name="enumeration" value="9911033" annotation="Registered Nurse"/>
+  </LicensureLevels>
+</restrictions>
+</element>

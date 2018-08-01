@@ -1,8 +1,119 @@
-﻿
+﻿@using CD.ClaimSoft.Database.Model.Agency
+@using Syncfusion.JavaScript
+@using Syncfusion.JavaScript.Models
+@using Syncfusion.MVC.EJ
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Claims";
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<style>
 
+    .e-btn.e-select {
+        background: #ffffff;
+        color: #333;
+        border: none;
+        font-size: 18px;
+    }
+</style>
+
+<div class="content-heading">
+    <span data-localize="export.CLAIMS"></span>
+</div>
+
+<div style="margin-top: 20px;">
+    @(Html.EJ().Grid<AgencyFile>("ClaimsGrid")
+                  .Datasource((IEnumerable<object>)ViewBag.DataSource)
+                  .EnableRowHover(false)
+                  .AllowSelection(false)
+                  .Columns(col =>
+                  {
+                      col.Field("FileType").HeaderText("File Type").Width(50).Add();
+                      col.Field("Name").HeaderText("File Name").Width(125).Add();
+          //col.Field("StreamId").IsPrimaryKey(true).HeaderText("Stream Id").Width(125).Add();
+          col.Field("LocalCreateDate").HeaderText("Uploaded Date").Width(75).Format("{0:MM/dd/yyyy hh:mm tt}").Add();
+                      col.Field("LocalProcessedDate").HeaderText("Processed Date").Width(75).Format("{0:MM/dd/yyyy hh:mm tt}").Add();
+                      col.HeaderText("Actions").Commands(command =>
+                      {
+                          command.Type("ProcessClaimManually").ButtonOptions(new ButtonProperties()
+                          {
+                              ContentType = ContentType.ImageOnly,
+                              PrefixIcon = "fa fa-sign-in",
+                              Width = "30px",
+                              Click = "OnProcessClaimManuallyClick"
+                          }).Add();
+                          command.Type("DeleteClaim").ButtonOptions(new ButtonProperties()
+                          {
+                              ContentType = ContentType.ImageOnly,
+                              PrefixIcon = "fa fa-trash",
+                              Width = "30px",
+                              Click = "OnDeleteClaimClick"
+                          }).Add();
+                      })
+                          .TextAlign(TextAlign.Left)
+                          .Width(150)
+                          .Add();
+                  })
+    )
+</div>
+
+<script type="text/javascript">
+
+    function RefreshGrid() {
+        var gridObj = $("#ClaimsGrid").ejGrid("instance");
+
+        $.ajax({
+            url: '@Url.Action("DataSource", "Claim", new {Area = "Claim" })',
+            type: "get",
+        }).done(function(data) {
+            gridObj.dataSource(data);
+        }).fail(function() {
+            alert('error');
+        });
+    }
+
+    function OnProcessClaimManuallyClick(args) {
+        alert("OnProcessClaimManuallyClick");
+    }
+
+
+    function OnDeleteClaimClick(args) {
+        alert("OnDeleteClaimClick");
+        @*var gridObj = $("#ClaimsGrid").ejGrid("instance");
+
+        var index = this.element.closest("tr").index();
+
+        var record = gridObj.getCurrentViewData()[index];
+
+        var token = $("#__AjaxAntiForgeryForm input").val();
+        var dataObject = {
+            __RequestVerificationToken: token,
+            fileName: record["Name"],
+            streamId: record["StreamId"]
+        };
+
+        $.ajax({
+            url: '@Url.Action("ProcessFile", "ImportExport", new {Area = "ImportExport"})',
+            type: "POST",
+            data: dataObject,
+            statusCode: {
+                401: function (data) {
+                    // the user is not authenticated => redirect him to the login page
+                    window.location.href = '@Url.Action("Login", "Account", new { Area = "Account" })';
+                }
+            },
+            success: function (data) {
+                RefreshGrid();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR);
+                alert(textStatus);
+                alert(errorThrown);
+            }
+        });*@
+    }
+
+    //# sourceURL=ImportExport.js
+</script>

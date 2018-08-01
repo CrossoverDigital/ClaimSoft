@@ -1,0 +1,4 @@
+<?xml-stylesheet type="text/xsl" href="../xslt/grouping.xslt"?>
+<section name="eState">
+  <element number="eState.01" minOccurs="0" maxOccurs="M" CorrelationID="" isNillable="No" dataType="StateRequiredElement"><name>State Required Element</name><refNumber></refNumber><national>No</national><deprecated></deprecated><state>No</state><usage>Optional</usage><notValue></notValue><pertinentNegative></pertinentNegative></element>
+</section>

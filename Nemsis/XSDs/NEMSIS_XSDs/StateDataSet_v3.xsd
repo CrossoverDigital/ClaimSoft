@@ -1,0 +1,1141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (x64) (http://www.altova.com) by Greg Chandler (University of Utah) -->
+<xs:schema xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.nemsis.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sch="http://www.ascc.net/xml/schematron" targetNamespace="http://www.nemsis.org" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="commonTypes_v3.xsd"/>
+	<xs:element name="StateDataSet">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="dConfiguration.01" type="ANSIStateCode" id="dConfiguration.StateAssociatedwiththeCertificationLicensureLevels">
+					<xs:annotation>
+						<xs:documentation>
+							<nemsisTacDoc>
+								<number>dConfiguration.01</number>
+								<name>State Associated with the Certification/Licensure Levels</name>
+								<national>Yes</national>
+								<state>Yes</state>
+								<definition>The state associated with the state certification/licensure levels.</definition>
+								<usage>Mandatory</usage>
+								<comment>Associated with the state (dAgency.01 - EMS Agency State). 
+										&lt;br/>&lt;br/>GNIS Codes Website: &lt;a>http://geonames.usgs.gov/domestic/download_data.htm&lt;/a>
+										&lt;br/>&lt;br/>The state EMS system does not need to import this information into their database.  Reference the Demographic Dataset Submission Guide for further details.
+										</comment>
+							</nemsisTacDoc>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="dCustomConfiguration" id="dCustomConfigurationSection" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="dCustomConfiguration.CustomGroup" id="dCustomConfiguration.dCustomGroup" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Group Tag to hold custom information</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="dCustomConfiguration.01" id="dCustomConfiguration.dCustomDataElementTitle" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dCustomConfiguration.01</number>
+														<name>Custom Data Element Title</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>This is the title of the custom data element created to collect information that is not defined formally in NEMSIS Version 3.</definition>
+														<usage>Mandatory</usage>
+														<comment>This is grouped with all data elements in this section and can have multiple instances.</comment>
+														<v3Changes>Added to allow customized data elements to be inserted and collected from within the NEMSIS Version 3 standard.</v3Changes>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="CustomTitle">
+														<xs:attribute name="nemsisElement" type="xs:string" use="optional"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="dCustomConfiguration.02" type="CustomDefinition" id="dCustomConfiguration.dCustomDefinition" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dCustomConfiguration.02</number>
+														<name>Custom Definition</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>The definition of the custom element and how it should be used.</definition>
+														<usage>Mandatory</usage>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="dCustomConfiguration.03" type="CustomDataType" id="dCustomConfiguration.dCustomDataType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dCustomConfiguration.03</number>
+														<name>Custom Data Type</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>The data type of the custom element.</definition>
+														<usage>Mandatory</usage>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="dCustomConfiguration.04" type="YesNoValues" id="dCustomConfiguration.dCustomDataElementRecurrence" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dCustomConfiguration.04</number>
+														<name>Custom Data Element Recurrence</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>Indication if the data element will accept multiple values.</definition>
+														<usage>Mandatory</usage>
+														<v3Changes>Added to allow customized data elements to be inserted and collected from within the NEMSIS Version 3 standard.</v3Changes>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="dCustomConfiguration.05" type="ElementUsage" id="dCustomConfiguration.dCustomDataElementUsage" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dCustomConfiguration.05</number>
+														<name>Custom Data Element Usage</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>The Usage (Mandatory, Required, Recommended, or Optional) for the Custom Data Element.</definition>
+														<usage>Mandatory</usage>
+														<comment>Mandatory = Must be completed and will not accept null values
+										&lt;br/>Required = Must be completed but will accept null values
+										&lt;br/>Recommended = Not required but if collected will accept null values
+										&lt;br/>Optional = Not required but if collected, it cannot be a null value.</comment>
+														<v3Changes>Added to allow customized data elements to be inserted and collected from within the NEMSIS Version 3 standard.</v3Changes>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="dCustomConfiguration.06" id="dCustomConfiguration.dCustomDataElementPotentialValues" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dCustomConfiguration.06</number>
+														<name>Custom Data Element Potential Values</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>The values which are associated with the Custom Data Element. Values would be the choices provided to the user when they document the Custom Data Element</definition>
+														<usage>Optional</usage>
+														<v3Changes>Added to allow customized data elements to be inserted and collected from within the NEMSIS Version 3 standard.</v3Changes>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="CustomValue">
+														<xs:attribute name="nemsisCode" type="xs:string" use="optional"/>
+														<xs:attribute name="customValueDescription" type="xs:string" use="optional"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="dCustomConfiguration.07" type="NV" id="dCustomConfiguration.dCustomAcceptableNV" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dCustomConfiguration.07</number>
+														<name>Custom Data Element Potential NOT Values (NV)</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>NOT Values (NV) associated with the custom element</definition>
+														<usage>Optional</usage>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="dCustomConfiguration.08" type="PN" id="dCustomConfiguration.dCustomAcceptablePN" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dCustomConfiguration.08</number>
+														<name>Custom Data Element Potential Pertinent Negative Values (PN)</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>Pertinent Negative Values (PN) associated with the custom element</definition>
+														<usage>Optional</usage>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="dCustomConfiguration.09" type="CorrelationID" id="dCustomConfiguration.CustomDataElementGroupingID" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dCustomConfiguration.09</number>
+														<name>Custom Data Element Grouping ID</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>ID for custom element grouping.</definition>
+														<usage>Optional</usage>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="CustomElementID" type="CorrelationID" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="eCustomConfiguration" id="eCustomConfigurationSection"  minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="eCustomConfiguration.CustomGroup" id="eCustomConfiguration.eCustomGroup" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Group Tag to hold custom information</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="eCustomConfiguration.01" id="eCustomConfiguration.eCustomDataElementTitle" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>eCustomConfiguration.01</number>
+														<name>Custom Data Element Title</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>This is the title of the custom data element created to collect information that is not defined formally in NEMSIS Version 3.</definition>
+														<usage>Mandatory</usage>
+														<comment>This is grouped with all data elements in this section and can have multiple instances.</comment>
+														<v3Changes>Added to allow customized data elements to be inserted and collected from within the NEMSIS Version 3 standard.</v3Changes>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="CustomTitle">
+														<xs:attribute name="nemsisElement" type="xs:string" use="optional"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="eCustomConfiguration.02" type="CustomDefinition" id="eCustomConfiguration.eCustomDefinition" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>eCustomConfiguration.02</number>
+														<name>Custom Definition</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>The definition of the custom element and how it should be used.</definition>
+														<usage>Mandatory</usage>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="eCustomConfiguration.03" type="CustomDataType" id="eCustomConfiguration.eCustomDataType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>eCustomConfiguration.03</number>
+														<name>Custom Data Type</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>The data type of the custom element.</definition>
+														<usage>Mandatory</usage>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="eCustomConfiguration.04" type="YesNoValues" id="eCustomConfiguration.eCustomDataElementRecurrence" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>eCustomConfiguration.04</number>
+														<name>Custom Data Element Recurrence</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>Indication if the data element will accept multiple values.</definition>
+														<usage>Mandatory</usage>
+														<v3Changes>Added to allow customized data elements to be inserted and collected from within the NEMSIS Version 3 standard.</v3Changes>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="eCustomConfiguration.05" type="ElementUsage" id="eCustomConfiguration.eCustomDataElementUsage" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>eCustomConfiguration.05</number>
+														<name>Custom Data Element Usage</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>The Usage (Mandatory, Required, Recommended or Optional) for the Custom Data Element.</definition>
+														<usage>Mandatory</usage>
+														<comment>Mandatory = Must be completed and will not accept null values
+                    &lt;br/>Required = Must be completed but will accept null values
+                    &lt;br/>Recommended = Not required but if collected will accept null values
+                    &lt;br/>Optional = Not required but if collected, it cannot be a null value.</comment>
+														<v3Changes>Added to allow customized data elements to be inserted and collected from within the NEMSIS Version 3 standard.</v3Changes>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="eCustomConfiguration.06" id="eCustomConfiguration.eCustomDataElementPotentialValues" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>eCustomConfiguration.06</number>
+														<name>Custom Data Element Potential Values</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>The values which are associated with the Custom Data Element. Values would be the choices provided to the user when they document the Custom Data Element</definition>
+														<usage>Optional</usage>
+														<v3Changes>Added to allow customized data elements to be inserted and collected from within the NEMSIS Version 3 standard.</v3Changes>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="CustomValue">
+														<xs:attribute name="nemsisCode" type="xs:string" use="optional"/>
+														<xs:attribute name="customValueDescription" type="xs:string" use="optional"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="eCustomConfiguration.07" type="NV" id="eCustomConfiguration.eCustomAcceptableNV" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>eCustomConfiguration.07</number>
+														<name>Custom Data Element Potential NOT Values (NV)</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>NOT Values (NV) associated with the custom element</definition>
+														<usage>Optional</usage>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="eCustomConfiguration.08" type="PN" id="eCustomConfiguration.eCustomAcceptablePN" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>eCustomConfiguration.08</number>
+														<name>Custom Data Element Potential Pertinent Negative Values (PN)</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>Pertinent Negative Values (PN) associated with the custom element</definition>
+														<usage>Optional</usage>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="eCustomConfiguration.09" type="CorrelationID" id="eCustomConfiguration.CustomDataElementGroupingID" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>eCustomConfiguration.09</number>
+														<name>Custom Data Element Grouping ID</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>ID for custom element grouping.</definition>
+														<usage>Optional</usage>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="CustomElementID" type="CorrelationID" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="dState" id="dStateSection" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="dState.01" id="dState.dStateRequiredElement" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>
+										<nemsisTacDoc>
+											<number>dState.01</number>
+											<name>State Required Element</name>
+											<national>No</national>
+											<state>No</state>
+											<definition>Indicates which elements are required by the state.</definition>
+											<usage>Optional</usage>
+											<comment>This element was created to document elements required by the state. The TIMESTAMP attribute describes the active date of the element. </comment>
+										</nemsisTacDoc>
+									</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="StateRequiredElement">
+											<xs:attribute name="TIMESTAMP" type="TimeStampType" use="optional"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="eState" id="eStateSection" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="eState.01" id="eState.StateRequiredElement" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>
+										<nemsisTacDoc>
+											<number>eState.01</number>
+											<name>State Required Element</name>
+											<national>No</national>
+											<state>No</state>
+											<definition>Indicates which elements are required by the state</definition>
+											<v2Number/>
+											<usage>Optional</usage>
+											<comment>This element was created to document elements required by the state. The TIMESTAMP attribute describes the active date of the element. </comment>
+										</nemsisTacDoc>
+									</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="StateRequiredElement">
+											<xs:attribute name="TIMESTAMP" type="TimeStampType" use="optional"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="dConfiguration" id="dConfigurationSection" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="dConfiguration.02" id="dConfiguration.StateCertificationLicensureLevels" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>
+										<nemsisTacDoc>
+											<number>dConfiguration.02</number>
+											<name>State Certification/Licensure Levels</name>
+											<national>Yes</national>
+											<state>Yes</state>
+											<definition>All of the potential levels of certification/licensure for EMS personnel recognized by the state.</definition>
+											<v2Number>D04_01</v2Number>
+											<usage>Mandatory</usage>
+											<comment>The new 2009 Education Levels have been added. The category EMT-Intermediate includes EMS professionals with an "85" or "99" certification level.
+										&lt;br/>&lt;br/>The state EMS system does not need to import this information into their database.  Reference the Demographic Dataset Submission Guide for further details.
+										</comment>
+										</nemsisTacDoc>
+									</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="LicensureLevels"/>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="dConfiguration.ProcedureGroup" id="dConfiguration.AgencyProcedureGroup" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Group Tag to hold info about Procedure information </xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="dConfiguration.06" id="dConfiguration.EMSPersonnelLevelPermittedtoPerformtheProcedure" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dConfiguration.06</number>
+														<name>EMS Certification Levels Permitted to Perform Each Procedure</name>
+														<national>Yes</national>
+														<state>Yes</state>
+														<definition>EMS certification levels which are permitted to perform the procedure listed in dConfiguration.07.</definition>
+														<v2Number>D04_05</v2Number>
+														<usage>Mandatory</usage>
+														<performanceMeasuresGroup>
+															<performanceMeasure>Airway</performanceMeasure>
+															<performanceMeasure>Cardiac Arrest</performanceMeasure>
+															<performanceMeasure>Pediatric</performanceMeasure>
+															<performanceMeasure>Response</performanceMeasure>
+															<performanceMeasure>STEMI</performanceMeasure>
+															<performanceMeasure>Stroke</performanceMeasure>
+															<performanceMeasure>Trauma</performanceMeasure>
+														</performanceMeasuresGroup>
+														<comment>Using each certification level within the agency, indicate the approved procedures allowed utilizing dConfiguration.07 (EMS Agency Procedures).
+													&lt;br/>&lt;br/>The category EMT-Intermediate includes EMS professionals with an "85" or "99" certification level.													
+													</comment>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="StateCertificationLicensureLevels"/>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="dConfiguration.03" nillable="true" id="dConfiguration.ProceduresPermittedbytheState" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dConfiguration.03</number>
+														<name>Procedures Permitted by the State</name>
+														<national>Yes</national>
+														<state>Yes</state>
+														<definition>A list of all of the procedures permitted by the EMS Agency's licensing state.</definition>
+														<usage>Required</usage>
+														<performanceMeasuresGroup>
+															<performanceMeasure>Airway</performanceMeasure>
+															<performanceMeasure>Cardiac Arrest</performanceMeasure>
+															<performanceMeasure>Pediatric</performanceMeasure>
+															<performanceMeasure>Response</performanceMeasure>
+															<performanceMeasure>STEMI</performanceMeasure>
+															<performanceMeasure>Stroke</performanceMeasure>
+															<performanceMeasure>Trauma</performanceMeasure>
+														</performanceMeasuresGroup>
+														<comment>This data element should capture all of the procedures permitted by the state for any/all levels of EMS personnel in the state. This is associated with the EMS Agency State (dAgency.01). This is related to the EMS Agency's procedures (dConfiguration.07) which have been implemented within the EMS System.
+										&lt;br/>&lt;br/>State EMS systems which have regulatory authority to determine the procedures statewide may identify SNOMEDCT procedure codes based on medical direction and their own need.										
+										&lt;br/>&lt;br/>Code list is represented in SNOMEDCT: Reference the NEMSIS Suggested Lists at: http://nemsis.org/v3/resources.html							
+										&lt;br/>&lt;br/>SNOMEDCT
+										&lt;br/>Website: http://www.nlm.nih.gov/research/umls/Snomed/snomed_main.html
+										&lt;br/>Product: Product - UMLS Metathesaurus
+										&lt;br/>&lt;br/>The EMS agency should submit "Not Applicable" and "Nil" to the state system for the demographic export. The state EMS system does not need to import this information into their database.  It is the responsibility of the state to submit this element to the national EMS database (NEMSIS).  Reference the Demographic Dataset Submission Guide for further details.										
+										</comment>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="snomed">
+														<xs:attribute name="NV" use="optional">
+															<xs:simpleType>
+																<xs:union memberTypes="NV.NotApplicable NV.NotRecorded"/>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="dConfiguration.MedicationGroup" id="dConfiguration.AgencyMedicationGroup" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Group Tag to hold info about Medication information </xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="dConfiguration.08" type="StateCertificationLicensureLevels" id="dConfiguration.PersonnelLevelPermittedtoAdministertheMedication" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dConfiguration.08</number>
+														<name>EMS Certification Levels Permitted to Administer Each Medication</name>
+														<national>Yes</national>
+														<state>Yes</state>
+														<definition>All EMS certification levels which are permitted to administer the medications listed in dConfiguration.09 (EMS Agency Medications).</definition>
+														<v2Number>D04_07</v2Number>
+														<usage>Mandatory</usage>
+														<performanceMeasuresGroup>
+															<performanceMeasure>Airway</performanceMeasure>
+															<performanceMeasure>Cardiac Arrest</performanceMeasure>
+															<performanceMeasure>Pediatric</performanceMeasure>
+															<performanceMeasure>Response</performanceMeasure>
+															<performanceMeasure>STEMI</performanceMeasure>
+															<performanceMeasure>Stroke</performanceMeasure>
+															<performanceMeasure>Trauma</performanceMeasure>
+														</performanceMeasuresGroup>
+														<comment>Using each certification level within the agency, indicate the approved medications allowed utilizing dConfiguration.09 (EMS Agency Medications).
+													&lt;br/>&lt;br/>The category EMT-Intermediate includes EMS professionals with an "85" or "99" certification level.
+													</comment>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="dConfiguration.04" nillable="true" id="dConfiguration.MedicationsPermittedbytheState" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dConfiguration.04</number>
+														<name>Medications Permitted by the State</name>
+														<national>Yes</national>
+														<state>Yes</state>
+														<definition>A list of all of the medications permitted by the state to be used by each EMS state certification/licensure level.</definition>
+														<usage>Required</usage>
+														<performanceMeasuresGroup>
+															<performanceMeasure>Airway</performanceMeasure>
+															<performanceMeasure>Cardiac Arrest</performanceMeasure>
+															<performanceMeasure>Pediatric</performanceMeasure>
+															<performanceMeasure>Response</performanceMeasure>
+															<performanceMeasure>STEMI</performanceMeasure>
+															<performanceMeasure>Stroke</performanceMeasure>
+															<performanceMeasure>Trauma</performanceMeasure>
+														</performanceMeasuresGroup>
+														<comment>This data element should capture all of the medications permitted by the state for any/all levels of EMS personnel in the state.
+										This should be stored as an RxNorm (RXCUI) Code. This is associated with the EMS Agency State (dAgency.01).
+										&lt;br/>&lt;br/>The EMS agency should submit "Not Applicable" and "Nil" to the state system for the demographic export. 
+										The state EMS system does not need to import this information into their database. It is the responsibility of the state to submit this element to the national EMS database (NEMSIS). 
+										Reference the Demographic Dataset Submission Guide for further details.										
+										</comment>
+														<v3Changes>State EMS systems which have regulatory authority to identify medications to be administered within the state may identify specific RxNorm codes based on medical direction and their own need.
+										&lt;br/>&lt;br/>List of medications based on RxNorm (RXCUI) code. 
+										&lt;br/>&lt;br/>Reference the NEMSIS Suggested Lists at: http://nemsis.org/v3/resources.html											
+										&lt;br/>&lt;br/>RxNorm
+										&lt;br/>Website - http://uts.nlm.nih.gov
+										
+										&lt;br/>&lt;br/>Product - UMLS Metathesaurus
+										&lt;br/>Website - http://www.nlm.nih.gov/research/umls/rxnorm/docs/rxnormfiles.html
+										&lt;br/>Product - RxNorm Full Monthly Release
+										</v3Changes>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="Medication">
+														<xs:attribute name="NV" use="optional">
+															<xs:simpleType>
+																<xs:union memberTypes="NV.NotApplicable NV.NotRecorded"/>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="dConfiguration.05" nillable="true" id="dConfiguration.ProtocolsPermittedbytheState" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>
+										<nemsisTacDoc>
+											<number>dConfiguration.05</number>
+											<name>Protocols Permitted by the State</name>
+											<national>Yes</national>
+											<state>Yes</state>
+											<definition>A list of all of the protocols permitted by the state.</definition>
+											<usage>Required</usage>
+											<performanceMeasuresGroup>
+												<performanceMeasure>Airway</performanceMeasure>
+												<performanceMeasure>Cardiac Arrest</performanceMeasure>
+												<performanceMeasure>Pediatric</performanceMeasure>
+												<performanceMeasure>Response</performanceMeasure>
+												<performanceMeasure>STEMI</performanceMeasure>
+												<performanceMeasure>Stroke</performanceMeasure>
+												<performanceMeasure>Trauma</performanceMeasure>
+											</performanceMeasuresGroup>
+											<comment>
+										This data element should capture all of the protocols permitted by the state for any/all levels of EMS personnel in the state.  This is associated with the EMS Agency State (dAgency.01).
+										&lt;br/>&lt;br/>States can add additional protocols to the list but the additional state protocols must map to these uniform codes. &lt;br/>&lt;br/>The list is defined by the NASEMSO State Medical Directors.
+										&lt;br/>&lt;br/>The EMS agency should submit "Not Applicable" and "Nil" to the state system for the demographic export.  The state EMS system does not need to import this information into their database.  It is the responsibility of the state to submit this element to the national EMS database (NEMSIS).  Reference the Demographic Dataset Submission Guide for further details.										
+										</comment>
+											<v3Changes>Added to better identify states with statewide protocols and define state EMS capability and care.</v3Changes>
+										</nemsisTacDoc>
+									</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="ProtocolsUsed">
+											<xs:attribute name="NV" use="optional">
+												<xs:simpleType>
+													<xs:union memberTypes="NV.NotApplicable NV.NotRecorded"/>
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="dAgency" id="dAgencySection" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="dAgencyGroup"  id="dAgencyGroup" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="dAgency.01" type="EMSAgencyStateID" id="dAgency.EMSAgencyUniqueStateID" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dAgency.01</number>
+														<name>EMS Agency Unique State ID</name>
+														<national>Yes</national>
+														<state>Yes</state>
+														<definition>The unique ID assigned to the EMS Agency which is associated with all state licensure numbers and information.</definition>
+														<usage>Mandatory</usage>
+														<performanceMeasuresGroup>
+															<performanceMeasure>Airway</performanceMeasure>
+															<performanceMeasure>Cardiac Arrest</performanceMeasure>
+															<performanceMeasure>Pediatric</performanceMeasure>
+															<performanceMeasure>Response</performanceMeasure>
+															<performanceMeasure>STEMI</performanceMeasure>
+															<performanceMeasure>Stroke</performanceMeasure>
+															<performanceMeasure>Trauma</performanceMeasure>
+														</performanceMeasuresGroup>
+														<comment>This may be the EMS Agency Name or a unique number assigned by the state EMS office. This is required to document multiple license types and numbers associated with the same EMS Agency.</comment>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="dAgency.02" id="dAgency.EMSAgencyNumber" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dAgency.02</number>
+														<name>EMS Agency Number</name>
+														<national>Yes</national>
+														<state>Yes</state>
+														<definition>The state-assigned provider number of the responding agency</definition>
+														<v2Number>D01_01</v2Number>
+														<usage>Mandatory</usage>
+														<performanceMeasuresGroup>
+															<performanceMeasure>Airway</performanceMeasure>
+															<performanceMeasure>Cardiac Arrest</performanceMeasure>
+															<performanceMeasure>Pediatric</performanceMeasure>
+															<performanceMeasure>Response</performanceMeasure>
+															<performanceMeasure>STEMI</performanceMeasure>
+															<performanceMeasure>Stroke</performanceMeasure>
+															<performanceMeasure>Trauma</performanceMeasure>
+														</performanceMeasuresGroup>
+														<comment>This is the primary identifier for the entire Demographic Section.  Each of the Demographic sections must be associated with an EMS Agency Number. An EMS Agency can have more than one Agency Number within a state. This reflects the ability for an EMS Agency to have a different number for each service type or location (based on state implementation).
+							The EMS Agency Number in dAgency.02 can be used to auto-populate eResponse.01 EMS Agency Number in the EMS Event section.</comment>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="EMSAgencyNumber"/>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="dAgency.03" nillable="true" id="dAgency.EMSAgencyName" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dAgency.03</number>
+														<name>EMS Agency Name</name>
+														<national>No</national>
+														<state>Yes</state>
+														<definition>The formal name of the agency.</definition>
+														<v2Number>D01_02</v2Number>
+														<usage>Recommended</usage>
+														<performanceMeasuresGroup>
+															<performanceMeasure>Airway</performanceMeasure>
+															<performanceMeasure>Cardiac Arrest</performanceMeasure>
+															<performanceMeasure>Pediatric</performanceMeasure>
+															<performanceMeasure>Response</performanceMeasure>
+															<performanceMeasure>STEMI</performanceMeasure>
+															<performanceMeasure>Stroke</performanceMeasure>
+															<performanceMeasure>Trauma</performanceMeasure>
+														</performanceMeasuresGroup>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="EMSAgencyName">
+														<xs:attribute name="NV" use="optional">
+															<xs:simpleType>
+																<xs:union memberTypes="NV.NotApplicable NV.NotRecorded NV.NotReporting"/>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="dFacility"  id="dFacilitySection" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="dFacilityGroup" id="dFacility.dFacilityGroup" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Group Tag to hold info about Facility Information and Facility Type</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="dFacility.01" id="dFacility.TypeofFacility" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													<nemsisTacDoc>
+														<number>dFacility.01</number>
+														<name>Type of Facility</name>
+														<national>No</national>
+														<state>No</state>
+														<definition>The type of facility (healthcare or other) that the EMS agency transports patients to or from.</definition>
+														<v2Number>D04_15</v2Number>
+														<usage>Optional</usage>
+													</nemsisTacDoc>
+												</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="TypeOfFacility"/>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="dFacility.FacilityGroup" id="dFacility.FacilityGroup" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Group Tag to hold info about the Facility and the Facility details </xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="dFacility.02" type="FacilityName" id="dFacility.FacilityName" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																<nemsisTacDoc>
+																	<number>dFacility.02</number>
+																	<name>Facility Name</name>
+																	<national>No</national>
+																	<state>No</state>
+																	<definition>The name of the facility.</definition>
+																	<v2Number>D04_11</v2Number>
+																	<usage>Optional</usage>
+																</nemsisTacDoc>
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="dFacility.03" type="FacilityCode" id="dFacility.FacilityCode" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																<nemsisTacDoc>
+																	<number>dFacility.03</number>
+																	<name>Facility Location Code</name>
+																	<national>No</national>
+																	<state>No</state>
+																	<definition>The code of the facility as assigned by the state or the EMS agency.</definition>
+																	<v2Number>D04_12</v2Number>v2Number>
+													<usage>Optional</usage>
+																	<comment>The information contained within this element could be used to populate eScene.10
+(Incident Facility Code) or eDisposition.02 (Destination/Transferred To, Code) via a drop down
+list created at either the EMS Agency or State level.</comment>
+																</nemsisTacDoc>
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="dFacility.04" id="dFacility.HospitalDesignation" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>
+																<nemsisTacDoc>
+																	<number>dFacility.04</number>
+																	<name>Hospital Designations</name>
+																	<national>No</national>
+																	<state>No</state>
+																	<definition>The designation(s) associated with the hospital (e.g. Trauma, STEMI, Peds, etc) </definition>
+																	<v2Number/>
+																	<usage>Optional</usage>
+																</nemsisTacDoc>
+															</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="HospitalDesignation"/>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="dFacility.05" type="NationalProviderIdentifier" id="dFacility.FacilityNationalProviderIdentifier" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>
+																<nemsisTacDoc>
+																	<number>dFacility.05</number>
+																	<name>Facility National Provider Identifier</name>
+																	<national>No</national>
+																	<state>No</state>
+																	<definition>The facility National Provider Identifier associated with National Provider System (NPS).</definition>
+																	<usage>Optional</usage>
+																</nemsisTacDoc>
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="dFacility.06" type="FacilityRoom" id="dFacility.FacilityRoomSuiteorApartment" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																<nemsisTacDoc>
+																	<number>dFacility.06</number>
+																	<name>Facility Room, Suite, or Apartment</name>
+																	<national>No</national>
+																	<state>No</state>
+																	<definition>The number of the specific room, suite, or apartment of the facility.</definition>
+																	<usage>Optional</usage>
+																</nemsisTacDoc>
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="dFacility.07" id="dFacility.FacilityStreetAddress" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																<nemsisTacDoc>
+																	<number>dFacility.07</number>
+																	<name>Facility Street Address</name>
+																	<national>No</national>
+																	<state>No</state>
+																	<definition>The address where the facility is located.</definition>
+																	<usage>Optional</usage>
+																	<comment>The information contained within this element could be used to populate the address information within eScene.18 (Incident State) and/or eDisposition.03 (Destination Street Address)  as appropriate.</comment>
+																</nemsisTacDoc>
+															</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="StreetAddress">
+																	<xs:attribute name="StreetAddress2" type="StreetAddress" use="optional"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="dFacility.08" type="CityGnisCode" id="dFacility.FacilityCity" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																<nemsisTacDoc>
+																	<number>dFacility.08</number>
+																	<name>Facility City</name>
+																	<national>No</national>
+																	<state>No</state>
+																	<definition>The city where the facility is located (physical address). </definition>
+																	<usage>Optional</usage>
+																	<comment>
+The information contained within this element could be used to populate the address information within eScene.17 (Incident City) and/or eDisposition.04 (Destination City) as appropriate. 
+&lt;br/>&lt;br/>City codes are based on GNIS Feature Class. The primary Feature Class to use is "Civil" with "Populated Place" and "Military" code as additional options. 
+&lt;br/>&lt;br/>Definitions for each GNIS City Feature Class can be found on the GNIS Codes website. 
+&lt;br/>&lt;br/>GNIS Codes Website: &lt;a>http://geonames.usgs.gov/domestic/download_data.htm&lt;/a>
+													</comment>
+																</nemsisTacDoc>
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="dFacility.09" type="ANSIStateCode" id="dFacility.FacilityState" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																<nemsisTacDoc>
+																	<number>dFacility.09</number>
+																	<name>Facility State</name>
+																	<national>No</national>
+																	<state>No</state>
+																	<definition>The state where the facility is located.</definition>
+																	<usage>Optional</usage>
+																	<comment>Based on the ANSI Code.  The information contained within this element could be used to populate the address information within eScene.18 (Incident State) and/or eDisposition.05 (Destination State) as appropriate.
+								&lt;br/>&lt;br/>GNIS Codes Website: &lt;a>http://geonames.usgs.gov/domestic/download_data.htm&lt;/a>
+										</comment>
+																</nemsisTacDoc>
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="dFacility.10" type="ZIP" id="dFacility.FacilityZIPCode" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																<nemsisTacDoc>
+																	<number>dFacility.10</number>
+																	<name>Facility ZIP Code</name>
+																	<national>No</national>
+																	<state>No</state>
+																	<definition>The zip code where the facility is located.</definition>
+																	<usage>Optional</usage>
+													>
+										<comment>The information contained within this element could be used to populate the address information within eScene.19 (Incident ZIP Code) and/or eDisposition.07 (Destination ZIP Code) as appropriate.
+										&lt;br/>&lt;br/>ZIP Codes Product Website: &lt;a>https://www.zipcodedownload.com/Products/Product/Z5Commercial/Standard/Overview/&lt;/a>
+&lt;br/>Product: USA - 5-digit ZIP Code Database, Commercial Edition</comment>
+																</nemsisTacDoc>
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="dFacility.11" type="ANSICountyCode" id="dFacility.FacilityCounty" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																<nemsisTacDoc>
+																	<number>dFacility.11</number>
+																	<name>Facility County</name>
+																	<national>No</national>
+																	<state>No</state>
+																	<definition>The county where the facility is located.</definition>
+																	<usage>Optional</usage>
+																	<comment>Based on the ANSI Code.  The information contained within this element could be used to populate the address information within eScene.21 (Incident County) and/or eDisposition.06 (Destination County) as appropriate.
+&lt;br/>&lt;br/>GNIS Codes Website: &lt;a>http://geonames.usgs.gov/domestic/download_data.htm&lt;/a>										
+										</comment>
+																</nemsisTacDoc>
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="dFacility.12" type="ANSICountryCodesCAMXUS" id="dFacility.FacilityCountry" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																<nemsisTacDoc>
+																	<number>dFacility.12</number>
+																	<name>Facility Country</name>
+																	<national>No</national>
+																	<state>No</state>
+																	<definition>The country where the facility is located.</definition>
+																	<usage>Optional</usage>
+																	<comment>Based on the ANSI Code.  The information contained within this element could be used to populate the address information within eScene.22 (Incident Country) and/or eDisposition.08 (Destination Country) as appropriate.
+										&lt;br/>&lt;br/>ANSI Country Codes (ISO 3166) Website: &lt;a>http://www.iso.org/iso/country_codes/iso_3166_code_lists.htm &lt;/a>
+										</comment>
+																</nemsisTacDoc>
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="dFacility.13" type="GPSLocation" id="dFacility.FacilityGPSLocation" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																<nemsisTacDoc>
+																	<number>dFacility.13</number>
+																	<name>Facility GPS Location</name>
+																	<national>No</national>
+																	<state>No</state>
+																	<definition>The facility GPS Coordinates.</definition>
+																	<usage>Optional</usage>
+																	<comment>The information contained within this element could be used to populate the address information within eScene.10 (Scene GPS Location) and/or eDisposition.09 (Destination GPS Location) as appropriate.
+                      &lt;br/>&lt;br/>The pattern for GPS location is in the format "&lt;span style="font-style:italic">latitude&lt;/span>,&lt;span style="font-style:italic">longitude&lt;/span>" where:
+										  &lt;br/>- &lt;span style="font-style:italic">latitude&lt;/span> has a minimum of -90 and a maximum of 90 with up to 6 decimal places
+										  &lt;br/>- &lt;span style="font-style:italic">longitude&lt;/span> has a minimum of -180 and a maximum of 180 with up to 6 decimal places
+						        </comment>
+																</nemsisTacDoc>
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="dFacility.14" type="USNG" id="dFacility.FacilityUSNationalGridCoordinates" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																<nemsisTacDoc>
+																	<number>dFacility.14</number>
+																	<name>Facility US National Grid Coordinates</name>
+																	<national>No</national>
+																	<state>No</state>
+																	<definition>Facility US National Grid Coordinates</definition>
+																	<usage>Optional</usage>
+																	<comment>Standard found at www.fgdc.gov/usng. The information contained within this element could be used to populate the address information within eScene.11 (Scene US National Grid Coordinates) and/or eDisposition.10 (Disposition Location US National Grid Coordinates) as appropriate.</comment>
+																</nemsisTacDoc>
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="dFacility.15" id="dPatient.FacilityPhoneNumber" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>
+																<nemsisTacDoc>
+																	<number>dFacility.15</number>
+																	<name>Facility Phone Number</name>
+																	<national>No</national>
+																	<state>No</state>
+																	<definition>Facility phone number.</definition>
+																	<v2Number/>
+																	<usage>Optional</usage>
+																	<comment>This element contains an attribute to define what type of phone number is being documented (e.g., Fax, Home, Mobile, Pager, and Work).</comment>
+																</nemsisTacDoc>
+															</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="PhoneNumber">
+																	<xs:attribute name="PhoneNumberType" type="PhoneNumberType" use="optional"/>
+																	<xs:attribute name="CorrelationID" type="CorrelationID" use="optional"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="timestamp" type="DateTimeType"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="FacilityCode">
+		<xs:annotation>
+			<xs:documentation>The code of the facility as assigned by the state or the EMS agency.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FacilityDepartment">
+		<xs:annotation>
+			<xs:documentation>The name or number of the facility department.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FacilityName">
+		<xs:annotation>
+			<xs:documentation>The name of the facility.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FacilityRoom">
+		<xs:annotation>
+			<xs:documentation>The number of the specific room, suite, or apartment.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TypeOfFacility">
+		<xs:annotation>
+			<xs:documentation>The type of facility.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1701001">
+				<xs:annotation>
+					<xs:documentation>Assisted Living Facility</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1701003">
+				<xs:annotation>
+					<xs:documentation>Clinic</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1701005">
+				<xs:annotation>
+					<xs:documentation>Hospital</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1701007">
+				<xs:annotation>
+					<xs:documentation>Nursing Home</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1701009">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1701011">
+				<xs:annotation>
+					<xs:documentation>Urgent Care</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1701013">
+				<xs:annotation>
+					<xs:documentation>Rehabilitation Facility</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1701015">
+				<xs:annotation>
+					<xs:documentation>Mental Health Facility</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1701017">
+				<xs:annotation>
+					<xs:documentation>Dialysis Center</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

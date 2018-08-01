@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                        xmlns:saxon="http://saxon.sf.net/"
+                        xmlns:schold="http://www.ascc.net/xml/schematron"
+                        xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+                        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                        xmlns:nem="http://www.nemsis.org"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        title="NEMSIS National ISO Schematron file for EMSDataSet"
+                        schemaVersion="3.4.0.170111"><!--   
+		   
+		   
+		 -->
+   <svrl:ns-prefix-in-attribute-values uri="http://www.nemsis.org" prefix="nem"/>
+   <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/2001/XMLSchema-instance" prefix="xsi"/>
+   <svrl:active-pattern document="EMSDataSet-DCB.xml"
+                        id="nemSch_consistency_dAgency.02_eResponse.01"
+                        name="eResponse.01 EMS Agency Number matches dAgency.02 EMS Agency Number."/>
+   <svrl:fired-rule context="nem:eResponse.01"
+                    id="nemSch_consistency_dAgency.02_eResponse.01_eResponse.01"/>
+   <svrl:active-pattern document="EMSDataSet-DCB.xml"
+                        id="nemSch_consistency_eArrest"
+                        name="When eArrest.01 Cardiac Arrest is &#34;Yes...&#34;, other elements in the eArrest section are recorded, and when eArrest.01 Cardiac Arrest is not &#34;Yes...&#34;, other elements in the eArrest section are not recorded."/>
+   <svrl:fired-rule context="nem:eArrest[nem:eArrest.01 = ('3001003', '3001005')]"
+                    id="nemSch_consistency_eArrest_all"/>
+   <svrl:active-pattern document="EMSDataSet-DCB.xml"
+                        id="nemSch_consistency_eArrest.03"
+                        name="eArrest.03 Resuscitation Attempted By EMS does not contain &#34;Attempted/Initiated...&#34; and &#34;Not Attempted...&#34; in the same record."/>
+   <svrl:fired-rule context="nem:eArrest[nem:eArrest.03 != '']"
+                    id="nemSch_consistency_eArrest.03_attempted"/>
+   <svrl:active-pattern document="EMSDataSet-DCB.xml"
+                        id="nemSch_consistency_eArrest.03_eArrest.09"
+                        name="In eArrest.03 Resuscitation Attempted By EMS and eArrest.09 Type of CPR Provided, information is consistent regarding compressions and ventilation."/>
+   <svrl:fired-rule context="nem:eArrest[nem:eArrest.03 !='' or nem:eArrest.09 != '']"
+                    id="nemSch_consistency_eArrest.03_eArrest.09_match"/>
+   <svrl:failed-assert test="nem:eArrest.03 = '3003005' or not(nem:eArrest.09 = ('3009001', '3009003', '3009005', '3009007', '3009009', '3009011'))"
+                       id="nemSch_consistency_eArrest.03_eArrest.09_compressions_2"
+                       role="[WARNING]"
+                       location="/*:EMSDataSet[namespace-uri()='http://www.nemsis.org'][1]/*:Header[namespace-uri()='http://www.nemsis.org'][1]/*:PatientCareReport[namespace-uri()='http://www.nemsis.org'][1]/*:eArrest[namespace-uri()='http://www.nemsis.org'][1]">
+      <svrl:text>
+      When Type of CPR Provided contains "Compressions...", Resuscitation Attempted By EMS should contain "Initiated Chest Compressions".
+    </svrl:text>
+      <svrl:diagnostic-reference diagnostic="nemsisDiagnostic">
+         <nemsisDiagnostic xmlns="http://www.nemsis.org" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+            <record>
+               <dAgency.01>0</dAgency.01>
+               <dAgency.02>A</dAgency.02>
+               <dAgency.04>49</dAgency.04>
+               <eRecord.01>g59</eRecord.01>
+            </record>
+            <elements>
+               <element location="/*:EMSDataSet[namespace-uri()='http://www.nemsis.org'][1]/*:Header[namespace-uri()='http://www.nemsis.org'][1]/*:PatientCareReport[namespace-uri()='http://www.nemsis.org'][1]/*:eArrest[namespace-uri()='http://www.nemsis.org'][1]/*:eArrest.03[namespace-uri()='http://www.nemsis.org'][1]">3003003</element>
+               <element location="/*:EMSDataSet[namespace-uri()='http://www.nemsis.org'][1]/*:Header[namespace-uri()='http://www.nemsis.org'][1]/*:PatientCareReport[namespace-uri()='http://www.nemsis.org'][1]/*:eArrest[namespace-uri()='http://www.nemsis.org'][1]/*:eArrest.09[namespace-uri()='http://www.nemsis.org'][1]">3009001</element>
+               <element location="/*:EMSDataSet[namespace-uri()='http://www.nemsis.org'][1]/*:Header[namespace-uri()='http://www.nemsis.org'][1]/*:PatientCareReport[namespace-uri()='http://www.nemsis.org'][1]/*:eArrest[namespace-uri()='http://www.nemsis.org'][1]/*:eArrest.09[namespace-uri()='http://www.nemsis.org'][2]">3009017</element>
+            </elements>
+            <elementsMissing/>
+         </nemsisDiagnostic>
+      </svrl:diagnostic-reference>
+   </svrl:failed-assert>
+   <svrl:active-pattern document="EMSDataSet-DCB.xml"
+                        id="nemSch_consistency_eDisposition"
+                        name="Elements in the eDisposition section are consistent."/>
+   <svrl:fired-rule context="nem:eDisposition.06[. != '']"
+                    id="nemSch_consistency_eDisposition.06"/>
+   <svrl:fired-rule context="nem:eDisposition.21[. = ('4221003', '4221005', '4221023')]"
+                    id="nemSch_consistency_eDisposition.21_hospital"/>
+   <svrl:active-pattern document="EMSDataSet-DCB.xml"
+                        id="nemSch_consistency_eDisposition.12"
+                        name="Certain elements are recorded, based on eDisposition.12 Incident/Patient Disposition."/>
+   <svrl:fired-rule context="nem:PatientCareReport"
+                    id="nemSch_consistency_eDisposition.12_all"/>
+   <svrl:active-pattern document="EMSDataSet-DCB.xml"
+                        id="nemSch_consistency_eDisposition.HospitalTeamActivationGroup"
+                        name="eDisposition.24 Destination Team Pre-Arrival Alert or Activation and eDisposition.25 Date/Time of Destination Prearrival Alert or Activation are both recorded when either one is recorded."/>
+   <svrl:fired-rule context="nem:eDisposition.HospitalTeamActivationGroup[nem:eDisposition.25 != '']"
+                    id="nemSch_consistency_eDisposition.HospitalTeamActivationGroup_eDisposition.24"/>
+   <svrl:fired-rule context="nem:eDisposition.HospitalTeamActivationGroup[nem:eDisposition.25 != '']"
+                    id="nemSch_consistency_eDisposition.HospitalTeamActivationGroup_eDisposition.24"/>
+   <svrl:fired-rule context="nem:eDisposition.HospitalTeamActivationGroup[nem:eDisposition.25 != '']"
+                    id="nemSch_consistency_eDisposition.HospitalTeamActivationGroup_eDisposition.24"/>
+   <svrl:active-pattern document="EMSDataSet-DCB.xml"
+                        id="nemSch_consistency_eInjury"
+                        name="When eSituation.02 Possible Injury is &#34;Yes&#34; (and eDisposition.12 Incident/Patient Disposition indicates patient contact), elements in the eInjury section are recorded, and when eSituation.02 Possible Injury is not &#34;Yes&#34;, elements in the eInjury section are not recorded."/>
+   <svrl:fired-rule context="nem:eInjury[../nem:eSituation/nem:eSituation.02 = '9922005']"
+                    id="nemSch_consistency_eInjury_all"/>
+   <svrl:active-pattern document="EMSDataSet-DCB.xml"
+                        id="nemSch_consistency_ePatient"
+                        name="Elements in the ePatient section are consistent."/>
+   <svrl:fired-rule context="nem:ePatient.07[. != '']" id="nemSch_consistency_ePatient.07"/>
+   <svrl:fired-rule context="nem:ePatient.15[. != '']" id="nemSch_consistency_ePatient.15"/>
+   <svrl:active-pattern document="EMSDataSet-DCB.xml"
+                        id="nemSch_consistency_eScene"
+                        name="Elements in the eScene section are consistent."/>
+   <svrl:fired-rule context="nem:eScene.07[. = '9923003']"
+                    id="nemSch_consistency_eScene.07_mci"/>
+   <svrl:fired-rule context="nem:eScene.21[. != '']" id="nemSch_consistency_eScene.21"/>
+   <svrl:active-pattern document="EMSDataSet-DCB.xml"
+                        id="nemSch_consistency_eSituation"
+                        name="Elements in the eSituation section are consistent."/>
+   <svrl:active-pattern document="EMSDataSet-DCB.xml"
+                        id="nemSch_consistency_group"
+                        name="Certain elements are recorded in each real medication administration, procedure, or set of vital signs."/>
+   <svrl:fired-rule context="nem:eVitals.VitalGroup[some $element in .//* satisfies normalize-space($element) != '']"
+                    id="nemSch_consistency_eVitals.VitalGroup"/>
+   <svrl:fired-rule context="nem:eVitals.VitalGroup[some $element in .//* satisfies normalize-space($element) != '']"
+                    id="nemSch_consistency_eVitals.VitalGroup"/>
+   <svrl:fired-rule context="nem:eVitals.VitalGroup[some $element in .//* satisfies normalize-space($element) != '']"
+                    id="nemSch_consistency_eVitals.VitalGroup"/>
+   <svrl:fired-rule context="nem:eMedications.MedicationGroup[some $element in .//* satisfies normalize-space($element) != '']"
+                    id="nemSch_consistency_eMedications.MedicationGroup"/>
+   <svrl:fired-rule context="nem:eMedications.05[. != '']"
+                    id="nemSch_consistency_eMedications.DosageGroup"/>
+   <svrl:fired-rule context="nem:eMedications.MedicationGroup[some $element in .//* satisfies normalize-space($element) != '']"
+                    id="nemSch_consistency_eMedications.MedicationGroup"/>
+   <svrl:fired-rule context="nem:eMedications.05[. != '']"
+                    id="nemSch_consistency_eMedications.DosageGroup"/>
+   <svrl:fired-rule context="nem:eMedications.MedicationGroup[some $element in .//* satisfies normalize-space($element) != '']"
+                    id="nemSch_consistency_eMedications.MedicationGroup"/>
+   <svrl:fired-rule context="nem:eMedications.05[. != '']"
+                    id="nemSch_consistency_eMedications.DosageGroup"/>
+   <svrl:fired-rule context="nem:eProcedures.ProcedureGroup[some $element in .//* satisfies normalize-space($element) != '']"
+                    id="nemSch_consistency_eProcedures.ProcedureGroup"/>
+   <svrl:fired-rule context="nem:eProcedures.ProcedureGroup[some $element in .//* satisfies normalize-space($element) != '']"
+                    id="nemSch_consistency_eProcedures.ProcedureGroup"/>
+   <svrl:fired-rule context="nem:eProcedures.ProcedureGroup[some $element in .//* satisfies normalize-space($element) != '']"
+                    id="nemSch_consistency_eProcedures.ProcedureGroup"/>
+   <svrl:active-pattern document="EMSDataSet-DCB.xml"
+                        id="nemSch_consistency_nilNvPn"
+                        name="The combination of nil, Not Value (NV), and Pertinent Negative (PN) attributes for an element is appropriate."/>
+   <svrl:fired-rule context="*[@PN]" id="nemSch_nilNvPn_Pn"/>
+   <svrl:fired-rule context="nem:dCustomResults.01 | nem:eCustomResults.01"
+                    id="nemSch_nilNvPn_customResults"/>
+   <svrl:active-pattern document="EMSDataSet-DCB.xml"
+                        id="nemSch_sequence_time"
+                        name="The sequence of date/time elements is appropriate."/>
+   <svrl:fired-rule context="nem:eTimes" id="nemSch_sequence_time_eTimes"/>
+   <svrl:fired-rule context="nem:eVitals.01[. != '']" id="nemSch_sequence_time_eVitals.01"/>
+   <svrl:fired-rule context="nem:eVitals.01[. != '']" id="nemSch_sequence_time_eVitals.01"/>
+   <svrl:fired-rule context="nem:eVitals.01[. != '']" id="nemSch_sequence_time_eVitals.01"/>
+   <svrl:fired-rule context="nem:eLabs.01[. != '']" id="nemSch_sequence_time_eLabs.01"/>
+   <svrl:fired-rule context="nem:eLabs.01[. != '']" id="nemSch_sequence_time_eLabs.01"/>
+   <svrl:fired-rule context="nem:eExam.03[. != '']" id="nemSch_sequence_time_eExam.03"/>
+   <svrl:fired-rule context="nem:eExam.03[. != '']" id="nemSch_sequence_time_eExam.03"/>
+   <svrl:fired-rule context="nem:eExam.03[. != '']" id="nemSch_sequence_time_eExam.03"/>
+   <svrl:fired-rule context="nem:eMedications.01[. != '']"
+                    id="nemSch_sequence_time_eMedications.01"/>
+   <svrl:fired-rule context="nem:eMedications.01[. != '']"
+                    id="nemSch_sequence_time_eMedications.01"/>
+   <svrl:fired-rule context="nem:eMedications.01[. != '']"
+                    id="nemSch_sequence_time_eMedications.01"/>
+   <svrl:fired-rule context="nem:eProcedures.01[. != '']"
+                    id="nemSch_sequence_time_eProcedures.01"/>
+   <svrl:fired-rule context="nem:eProcedures.01[. != '']"
+                    id="nemSch_sequence_time_eProcedures.01"/>
+   <svrl:fired-rule context="nem:eProcedures.01[. != '']"
+                    id="nemSch_sequence_time_eProcedures.01"/>
+   <svrl:fired-rule context="nem:eDevice.02[. != '']" id="nemSch_sequence_time_eDevice.02"/>
+   <svrl:fired-rule context="nem:eDevice.02[. != '']" id="nemSch_sequence_time_eDevice.02"/>
+   <svrl:fired-rule context="nem:eDisposition.25[. != '']"
+                    id="nemSch_sequence_time_eDisposition.25"/>
+   <svrl:fired-rule context="nem:eDisposition.25[. != '']"
+                    id="nemSch_sequence_time_eDisposition.25"/>
+   <svrl:fired-rule context="nem:eDisposition.25[. != '']"
+                    id="nemSch_sequence_time_eDisposition.25"/>
+   <svrl:active-pattern document="EMSDataSet-DCB.xml"
+                        id="nemSch_uniqueness_EMSDataSet"
+                        name="Certain recurring patient care report data elements are unique within a list."/>
+   <svrl:fired-rule context="nem:eProcedures.07[. = '3907033']"
+                    id="nemSch_uniqueness_EMSDataSet_eProcedures.07"/>
+   <svrl:fired-rule context="nem:eProcedures.07[. = '3907033']"
+                    id="nemSch_uniqueness_EMSDataSet_eProcedures.07"/>
+   <svrl:active-pattern document="EMSDataSet-DCB.xml"
+                        id="nemSch_uniqueness_NvPn"
+                        name="When a Not Value or Pertinent Negative is recorded for a recurring element, it is the only value recorded."/>
+   <svrl:fired-rule context="nem:dCustomResults.01 | nem:eCustomResults.01"
+                    id="nemSch_uniqueness_NvPn_customResults"/>
+</svrl:schematron-output>

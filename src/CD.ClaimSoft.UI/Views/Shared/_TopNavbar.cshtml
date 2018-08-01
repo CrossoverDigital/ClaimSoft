@@ -1,4 +1,7 @@
 @using CD.ClaimSoft.Common.Helpers
+@using CD.ClaimSoft.Database.Model.Agency
+@using CD.ClaimSoft.Redis
+
 <!-- START Top Navbar-->
 <nav class="navbar topnavbar">
     <!-- START navbar header-->
@@ -12,8 +15,27 @@
     <div class="navbar-footer">
         <div class="navbar-footer-row">
             <div class="navbar-footer-cell1">
-                Welcome Chuck Duncan
-                <br />Administrator
+                @User.Identity.Name <br />
+                Administrator<br />
+
+                @{
+                    const string noAgency = "No Agency";
+                    var userAgencies = ((IEnumerable<Agency>) @Session[CacheConstants.UserAgenciesKey]);
+                    var userAgenciesList = (userAgencies != null) ? userAgencies.ToList() : new List<Agency>();
+                    if (userAgenciesList.Count() > 1)
+                    {
+                        @Html.EJ().DropDownList("UserAgencyDdl").Datasource(userAgenciesList).DropDownListFields(df => df.ID("AgencyId")
+                            .Text("AgencyName")).WatermarkText("Select an Agency").Height("22px").Width("255px").ClientSideEvents(e => e.Change("UserAgencyDdlChanged"))
+
+                    } else if (userAgenciesList.Count() == 1)
+                    {
+                        @userAgenciesList[0].AgencyName
+                    }
+                    else
+                    {
+                        @noAgency;
+                    }
+                }
             </div>
             <div class="navbar-footer-cell2">
                 @using (Html.BeginForm("LogOff", "Account", new { area = "Account" }, FormMethod.Post, new { id = "logoutForm" }))
@@ -46,8 +68,8 @@
                 <em class="@Html.IsActiveLocationIcon()"></em>
             </div>
             @*<div class="navbar-location-indicator-text">
-                <span data-localize="@Html.IsActiveLocationText()"></span>
-            </div>*@
+                    <span data-localize="@Html.IsActiveLocationText()"></span>
+                </div>*@
         </div>
     </div>
 

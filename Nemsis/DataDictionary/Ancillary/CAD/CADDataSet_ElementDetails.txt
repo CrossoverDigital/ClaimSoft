@@ -1,0 +1,118 @@
+'DatasetName'|'DatasetType'|'ElementNumber'|'ElementName'|'V2Number'|'National'|'State'|'Usage'|'MinOccurs'|'MaxOccurs'|'IsNillable'|'DataType'|'NV'|'PN'|'PNNill'|'NVList'|'PNList'|'minLength'|'maxLength'|'length'|'minInclusive'|'maxInclusive'|'minExclusive'|'totalDigits'|'fractionDigits'|'pattern'|
+'CADDataSet'|'element'|'eCustomConfiguration.01'|'Custom Data Element Title'|''|''|''|'Mandatory'|'1'|'1'|''|'CustomTitle'|''|''|''|''|''|'2'|'100'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomConfiguration.02'|'Custom Definition'|''|''|''|'Mandatory'|'1'|'1'|''|'CustomDefinition'|''|''|''|''|''|'0'|'255'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomConfiguration.03'|'Custom Data Type'|''|''|''|'Mandatory'|'1'|'1'|''|'CustomDataType'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomConfiguration.04'|'Custom Data Element Recurrence'|''|''|''|'Mandatory'|'1'|'1'|''|'YesNoValues'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomConfiguration.05'|'Custom Data Element Usage'|''|''|''|'Mandatory'|'1'|'1'|''|'ElementUsage'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomConfiguration.06'|'Custom Data Element Potential Values'|''|''|''|'Optional'|'0'|'M'|''|'CustomValue'|''|''|''|''|''|'1'|'100'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomConfiguration.07'|'Custom Data Element Potential NOT Values (NV)'|''|''|''|'Optional'|'0'|'M'|''|'NV'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|''|''|''|'Optional'|'0'|'M'|''|'PN'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomConfiguration.09'|'Custom Data Element Grouping ID'|''|''|''|'Optional'|'0'|'1'|''|'CorrelationID'|''|''|''|''|''|'0'|'255'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.06'|'Patient Care Report Number'|'E01_01'|''|''|'Optional'|'0'|'1'|''|'PatientCareReportNumber'|''|''|''|''|''|'3'|'50'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.07'|'EMS Agency Number'|'E02_01'|''|''|'Optional'|'0'|'1'|''|'EMSAgencyNumber'|''|''|''|''|''|'1'|'15'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.08'|'EMS Agency Name'|''|''|''|'Optional'|'0'|'1'|''|'EMSAgencyName'|''|''|''|''|''|'2'|'100'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.09'|'Incident Number'|'E02_02'|''|''|'Optional'|'0'|'1'|''|'EMSIncidentNumber'|''|''|''|''|''|'3'|'50'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.10'|'EMS Response Number'|'E02_03'|''|''|'Optional'|'0'|'1'|''|'EMSResponseNumber'|''|''|''|''|''|'3'|'50'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.11'|'Type of Service Requested'|'E02_04'|''|''|'Optional'|'0'|'1'|''|'EMSServiceCat'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.12'|'Standby Purpose'|''|''|''|'Optional'|'0'|'1'|''|'EMSStandByReason'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.13'|'Primary Role of the Unit'|'E02_05'|''|''|'Optional'|'0'|'1'|''|'PrimaryRoleOfUnit'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.14'|'Type of Dispatch Delay'|'E02_06'|''|''|'Optional'|'0'|'M'|''|'EMSDispatchDelayReason'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.15'|'Type of Response Delay'|'E02_07'|''|''|'Optional'|'0'|'M'|''|'EMSUnitDelayReason'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.19'|'EMS Vehicle (Unit) Number'|'E02_11'|''|''|'Optional'|'0'|'1'|''|'EMSVehicleNumber'|''|''|''|''|''|'1'|'25'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.20'|'EMS Unit Call Sign'|'E02_12'|''|''|'Optional'|'0'|'1'|''|'EMSUnitCallSign'|''|''|''|''|''|'1'|'50'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.21'|'Level of Care of This Unit'|''|''|''|'Optional'|'0'|'1'|''|'UnitLevelOfCare'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.22'|'Vehicle Dispatch Location'|'E02_13'|''|''|'Optional'|'0'|'1'|''|'VehicleDispatchLocation'|''|''|''|''|''|'2'|'100'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.23'|'Vehicle Dispatch GPS Location'|'E02_15'|''|''|'Optional'|'0'|'1'|''|'GPSLocation'|''|''|''|''|''|''|''|''|''|''|''|''|''|'(\+|-)?(90(\.[0]{1,6})?|([1-8][0-9]|[0-9])(\.[0-9]{1,6})?),(\+|-)?(180(\.[0]{1,6})?|(1[0-7][0-9]|[1-9][0-9]|[0-9])(\.[0-9]{1,6})?)'|
+'CADDataSet'|'element'|'eCad.24'|'Vehicle Dispatch Location US National Grid Coordinates'|''|''|''|'Optional'|'0'|'1'|''|'USNG'|''|''|''|''|''|''|''|''|''|''|''|''|''|'([1-9]|[1-5][0-9]|60)[C-HJ-NP-X][A-HJ-NP-Z][A-HJ-NP-V][0-9]{8}'|
+'CADDataSet'|'element'|'eCad.25'|'Beginning Odometer Reading of Responding Vehicle'|'E02_16'|''|''|'Optional'|'0'|'1'|''|'EMSMileageOdometer'|''|''|''|''|''|''|''|''|''|''|''|'8'|'2'|''|
+'CADDataSet'|'element'|'eCad.26'|'On-Scene Odometer Reading of Responding Vehicle'|'E02_17'|''|''|'Optional'|'0'|'1'|''|'EMSMileageOdometer'|''|''|''|''|''|''|''|''|''|''|''|'8'|'2'|''|
+'CADDataSet'|'element'|'eCad.27'|'Patient Destination Odometer Reading of Responding Vehicle'|'E02_18'|''|''|'Optional'|'0'|'1'|''|'EMSMileageOdometer'|''|''|''|''|''|''|''|''|''|''|''|'8'|'2'|''|
+'CADDataSet'|'element'|'eCad.28'|'Ending Odometer Reading of Responding Vehicle'|'E02_19'|''|''|'Optional'|'0'|'1'|''|'EMSMileageOdometer'|''|''|''|''|''|''|''|''|''|''|''|'8'|'2'|''|
+'CADDataSet'|'element'|'eCad.29'|'Response Mode to Scene'|'E02_20'|''|''|'Optional'|'0'|'1'|''|'EMSResponseMode'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.30'|'Additional Response Mode Descriptors'|''|''|''|'Optional'|'0'|'M'|''|'EMSAdditionalResponseMode'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.31'|'Complaint Reported by Dispatch'|'E03_01'|''|''|'Optional'|'0'|'1'|''|'ComplaintReportedByDispatch'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.32'|'EMD Performed'|'E03_02'|''|''|'Optional'|'0'|'1'|''|'EMDPerformed'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.33'|'EMD Card Number'|'E03_03'|''|''|'Optional'|'0'|'1'|''|'EMDCardNumber'|''|''|''|''|''|'1'|'10'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.34'|'Dispatch Center Name or ID'|''|''|''|'Optional'|'0'|'1'|''|'ComputerAidedDispatchCADNameorID'|''|''|''|''|''|'2'|'100'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.35'|'Dispatch Priority (Patient Acuity)'|''|''|''|'Optional'|'0'|'1'|''|'DispatchPriority'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.114'|'Unit Dispatched CAD Record ID'|''|''|''|'Optional'|'0'|'1'|''|'UnitDispatchedCADRecordID'|''|''|''|''|''|'3'|'50'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.36'|'PSAP Call Date/Time'|'E05_02'|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.37'|'Dispatch Notified Date/Time'|'E05_03'|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.38'|'Unit Notified by Dispatch Date/Time'|'E05_04'|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.39'|'Dispatch Acknowledged Date/Time'|''|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.40'|'Unit En Route Date/Time'|'E05_05'|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.41'|'Unit Arrived on Scene Date/Time'|'E05_06'|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.42'|'Arrived at Patient Date/Time'|'E05_07'|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.43'|'Transfer of EMS Patient Care Date/Time'|'E05_08'|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.44'|'Unit Left Scene Date/Time'|'E05_09'|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.45'|'Arrival at Destination Landing Area Date/Time'|''|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.46'|'Patient Arrived at Destination Date/Time'|'E05_10'|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.47'|'Destination Patient Transfer of Care Date/Time'|''|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.48'|'Unit Back in Service Date/Time'|'E05_11'|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.49'|'Unit Canceled Date/Time'|'E05_12'|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.50'|'Unit Back at Home Location Date/Time'|'E05_13'|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.51'|'EMS Call Completed Date/Time'|''|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.52'|'EMS Patient ID'|''|''|''|'Optional'|'0'|'1'|''|'PatientID'|''|''|''|''|''|'2'|'100'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.53'|'Last Name'|'E06_01'|''|''|'Optional'|'0'|'1'|''|'PersonLastName'|''|''|''|''|''|'1'|'60'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.54'|'First Name'|'E06_02'|''|''|'Optional'|'0'|'1'|''|'PersonFirstName'|''|''|''|''|''|'1'|'50'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.55'|'Middle Initial/Name'|'E06_03'|''|''|'Optional'|'0'|'1'|''|'PersonMiddleName'|''|''|''|''|''|'1'|'50'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.56'|'Patient's Home Address'|'E06_04'|''|''|'Optional'|'0'|'1'|''|'StreetAddress'|''|''|''|''|''|'1'|'255'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.57'|'Patient's Home City'|'E06_05'|''|''|'Optional'|'0'|'1'|''|'CityGnisCode'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.58'|'Patient's Home County'|'E06_06'|''|''|'Optional'|'0'|'1'|''|'ANSICountyCode'|''|''|''|''|''|''|''|''|''|''|''|''|''|'[0-9]{5}'|
+'CADDataSet'|'element'|'eCad.59'|'Patient's Home State'|'E06_07'|''|''|'Optional'|'0'|'1'|''|'ANSIStateCode'|''|''|''|''|''|''|''|''|''|''|''|''|''|'[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.60'|'Patient's Home ZIP Code'|'E06_08'|''|''|'Optional'|'0'|'1'|''|'ZIP'|''|''|''|''|''|''|''|''|''|''|''|''|''|'[0-9]{5}|[0-9]{5}-[0-9]{4}|[0-9]{5}-[0-9]{5}|[A-Z][0-9][A-Z] [0-9][A-Z][0-9]'|
+'CADDataSet'|'element'|'eCad.61'|'Patient's Home Country'|'E06_09'|''|''|'Optional'|'0'|'1'|''|'ANSICountryCode'|''|''|''|''|''|''|''|'2'|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.62'|'Patient Home Census Tract'|''|''|''|'Optional'|'0'|'1'|''|'CensusTracts'|''|''|''|''|''|''|''|''|''|''|''|''|''|'[0-9]{11}'|
+'CADDataSet'|'element'|'eCad.63'|'Social Security Number'|'E06_10'|''|''|'Optional'|'0'|'1'|''|'SocialSecurityNumber'|''|''|''|''|''|''|''|''|''|''|''|''|''|'[0-9]{9}'|
+'CADDataSet'|'element'|'eCad.64'|'Gender'|'E06_11'|''|''|'Optional'|'0'|'1'|''|'Gender'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.65'|'Race'|'E06_12'|''|''|'Optional'|'0'|'M'|''|'Race'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.66'|'Age'|'E06_14'|''|''|'Optional'|'0'|'1'|''|'Age'|''|''|''|''|''|''|''|''|'1'|'120'|''|''|''|''|
+'CADDataSet'|'element'|'eCad.67'|'Age Units'|'E06_15'|''|''|'Optional'|'0'|'1'|''|'AgeUnits'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.68'|'Date of Birth'|'E06_16'|''|''|'Optional'|'0'|'1'|''|'DateOfBirth'|''|''|''|''|''|''|''|''|'1890-01-01'|'2050-01-01'|''|''|''|''|
+'CADDataSet'|'element'|'eCad.69'|'Patient's Phone Number'|'E06_17'|''|''|'Optional'|'0'|'M'|''|'PhoneNumber'|''|''|''|''|''|''|''|''|''|''|''|''|''|'[2-9][0-9][0-9]-[2-9][0-9][0-9]-[0-9][0-9][0-9][0-9]'|
+'CADDataSet'|'element'|'eCad.70'|'First EMS Unit on Scene'|''|''|''|'Optional'|'0'|'1'|''|'YesNoValues'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.71'|'Other EMS or Public Safety Agencies at Scene'|'E08_01'|''|''|'Optional'|'0'|'1'|''|'OtherEMSAgenciesAtScene'|''|''|''|''|''|'2'|'100'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.72'|'Other EMS or Public Safety Agency ID Number'|''|''|''|'Optional'|'0'|'1'|''|'EMSAgencyID'|''|''|''|''|''|'1'|'25'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.73'|'Type of Other Service at Scene'|'E08_02'|''|''|'Optional'|'0'|'1'|''|'OtherServicesAtScene'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.74'|'Date/Time Initial Responder Arrived on Scene'|'E08_04'|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.75'|'Number of Patients at Scene'|'E08_05'|''|''|'Optional'|'0'|'1'|''|'NumberOfPatientsAtScene'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.76'|'Mass Casualty Incident'|'E08_06'|''|''|'Optional'|'0'|'1'|''|'YesNoValues'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.78'|'Incident Location Type'|'E08_07'|''|''|'Optional'|'0'|'1'|''|'IncidentLocationType'|''|''|''|''|''|''|''|''|''|''|''|''|''|'Y92\.[0-9]{1,3}'|
+'CADDataSet'|'element'|'eCad.79'|'Incident Facility Code'|'E08_08'|''|''|'Optional'|'0'|'1'|''|'IncidentFacilityCode'|''|''|''|''|''|'2'|'50'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.80'|'Scene GPS Location'|'E08_10'|''|''|'Optional'|'0'|'1'|''|'GPSLocation'|''|''|''|''|''|''|''|''|''|''|''|''|''|'(\+|-)?(90(\.[0]{1,6})?|([1-8][0-9]|[0-9])(\.[0-9]{1,6})?),(\+|-)?(180(\.[0]{1,6})?|(1[0-7][0-9]|[1-9][0-9]|[0-9])(\.[0-9]{1,6})?)'|
+'CADDataSet'|'element'|'eCad.81'|'Scene US National Grid Coordinates'|''|''|''|'Optional'|'0'|'1'|''|'USNG'|''|''|''|''|''|''|''|''|''|''|''|''|''|'([1-9]|[1-5][0-9]|60)[C-HJ-NP-X][A-HJ-NP-Z][A-HJ-NP-V][0-9]{8}'|
+'CADDataSet'|'element'|'eCad.82'|'Incident Facility or Location Name'|''|''|''|'Optional'|'0'|'1'|''|'IncidentFacilityName'|''|''|''|''|''|'2'|'100'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.83'|'Mile Post or Major Roadway'|''|''|''|'Optional'|'0'|'1'|''|'MilePostOrMajorRoadway'|''|''|''|''|''|'1'|'35'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.84'|'Incident Street Address'|'E08_11'|''|''|'Optional'|'0'|'1'|''|'StreetAddress'|''|''|''|''|''|'1'|'255'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.85'|'Incident Apartment, Suite, or Room'|''|''|''|'Optional'|'0'|'1'|''|'SceneApartment'|''|''|''|''|''|'1'|'15'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.86'|'Incident City'|'E08_12'|''|''|'Optional'|'0'|'1'|''|'CityGnisCode'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.87'|'Incident State'|'E08_14'|''|''|'Optional'|'0'|'1'|''|'ANSIStateCode'|''|''|''|''|''|''|''|''|''|''|''|''|''|'[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.88'|'Incident ZIP Code'|'E08_15'|''|''|'Optional'|'0'|'1'|''|'ZIP'|''|''|''|''|''|''|''|''|''|''|''|''|''|'[0-9]{5}|[0-9]{5}-[0-9]{4}|[0-9]{5}-[0-9]{5}|[A-Z][0-9][A-Z] [0-9][A-Z][0-9]'|
+'CADDataSet'|'element'|'eCad.89'|'Scene Cross Street or Directions'|''|''|''|'Optional'|'0'|'1'|''|'SceneCrossStreet'|''|''|''|''|''|'2'|'50'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.90'|'Incident County'|'E08_13'|''|''|'Optional'|'0'|'1'|''|'ANSICountyCode'|''|''|''|''|''|''|''|''|''|''|''|''|''|'[0-9]{5}'|
+'CADDataSet'|'element'|'eCad.91'|'Incident Country'|''|''|''|'Optional'|'0'|'1'|''|'ANSICountryCode'|''|''|''|''|''|''|''|'2'|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.92'|'Incident Census Tract'|''|''|''|'Optional'|'0'|'1'|''|'CensusTracts'|''|''|''|''|''|''|''|''|''|''|''|''|''|'[0-9]{11}'|
+'CADDataSet'|'element'|'eCad.93'|'Destination/Transferred To, Name'|'E20_01'|''|''|'Optional'|'0'|'1'|''|'DestinationTransferredToName'|''|''|''|''|''|'2'|'100'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.94'|'Destination/Transferred To, Code'|'E20_02'|''|''|'Optional'|'0'|'1'|''|'DestinationTransferredToCode'|''|''|''|''|''|'2'|'50'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.95'|'Destination Street Address'|'E20_03'|''|''|'Optional'|'0'|'1'|''|'StreetAddress'|''|''|''|''|''|'1'|'255'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.96'|'Destination City'|'E20_04'|''|''|'Optional'|'0'|'1'|''|'CityGnisCode'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.97'|'Destination State'|'E20_05'|''|''|'Optional'|'0'|'1'|''|'ANSIStateCode'|''|''|''|''|''|''|''|''|''|''|''|''|''|'[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.98'|'Destination County'|'E20_06'|''|''|'Optional'|'0'|'1'|''|'ANSICountyCode'|''|''|''|''|''|''|''|''|''|''|''|''|''|'[0-9]{5}'|
+'CADDataSet'|'element'|'eCad.99'|'Destination ZIP Code'|'E20_07'|''|''|'Optional'|'0'|'1'|''|'ZIP'|''|''|''|''|''|''|''|''|''|''|''|''|''|'[0-9]{5}|[0-9]{5}-[0-9]{4}|[0-9]{5}-[0-9]{5}|[A-Z][0-9][A-Z] [0-9][A-Z][0-9]'|
+'CADDataSet'|'element'|'eCad.100'|'Destination Country'|''|''|''|'Optional'|'0'|'1'|''|'ANSICountryCode'|''|''|''|''|''|''|''|'2'|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.101'|'Destination GPS Location'|'E20_08'|''|''|'Optional'|'0'|'1'|''|'GPSLocation'|''|''|''|''|''|''|''|''|''|''|''|''|''|'(\+|-)?(90(\.[0]{1,6})?|([1-8][0-9]|[0-9])(\.[0-9]{1,6})?),(\+|-)?(180(\.[0]{1,6})?|(1[0-7][0-9]|[1-9][0-9]|[0-9])(\.[0-9]{1,6})?)'|
+'CADDataSet'|'element'|'eCad.102'|'Destination Location US National Grid Coordinates'|''|''|''|'Optional'|'0'|'1'|''|'USNG'|''|''|''|''|''|''|''|''|''|''|''|''|''|'([1-9]|[1-5][0-9]|60)[C-HJ-NP-X][A-HJ-NP-Z][A-HJ-NP-V][0-9]{8}'|
+'CADDataSet'|'element'|'eCad.103'|'Number of Patients Transported in this EMS Unit'|''|''|''|'Optional'|'0'|'1'|''|'NumberOfPatients'|''|''|''|''|''|''|''|''|'1'|'100'|''|''|''|''|
+'CADDataSet'|'element'|'eCad.104'|'EMS Transport Method'|''|''|''|'Optional'|'0'|'1'|''|'EMSTransportMethod'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.105'|'Transport Mode from Scene'|'E20_14'|''|''|'Optional'|'0'|'1'|''|'TransportModeFromScene'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.106'|'Additional Transport Mode Descriptors'|''|''|''|'Optional'|'0'|'M'|''|'AdditionalTransportModeDescriptors'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.107'|'Type of Destination'|'E20_17'|''|''|'Optional'|'0'|'1'|''|'TypeOfDestination'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.108'|'Destination Team Pre-Arrival Activation'|''|''|''|'Optional'|'0'|'1'|''|'DestinationPrearrivalActivation'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.109'|'Date/Time of Destination Prearrival Activation'|''|''|''|'Optional'|'0'|'1'|''|'DateTimeType'|''|''|''|''|''|''|''|''|'1950-01-01T00:00:00-00:00'|'2050-01-01T00:00:00-00:00'|''|''|''|'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.\d+)?(\+|-)[0-9]{2}:[0-9]{2}'|
+'CADDataSet'|'element'|'eCad.110'|'Crew Member ID'|'E04_01'|''|''|'Optional'|'1'|'1'|'Nillable'|'CrewMemberID'|'NV'|''|''|'NV.NotReporting; NV.NotRecorded; NV.NotApplicable; '|''|'2'|'50'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.111'|'Crew Member Level'|'E04_03'|''|''|'Optional'|'0'|'1'|'Nillable'|'MemberLevel'|'NV'|''|''|'NV.NotReporting; NV.NotRecorded; NV.NotApplicable; '|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.112'|'Crew Member Response Role'|'E04_02'|''|''|'Optional'|'0'|'M'|'Nillable'|'CrewMemberRoles'|'NV'|''|''|'NV.NotReporting; NV.NotRecorded; NV.NotApplicable; '|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.113'|'Incident/Patient Disposition'|'E20_10'|''|''|'Optional'|'0'|'1'|''|'IncidentPatientDisposition'|''|''|''|''|''|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomResults.01'|'Custom Data Element Result'|''|''|''|'Mandatory'|'1'|'M'|'Nillable'|'CustomResults'|'NV'|'PN'|''|''|''|'1'|'100000'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomResults.02'|'Custom Element ID Referenced'|''|''|''|'Mandatory'|'1'|'1'|''|'CorrelationID'|''|''|''|''|''|'0'|'255'|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomResults.03'|'CorrelationID of PatientCareReport Element or Group'|''|''|''|'Optional'|'0'|'1'|''|'CorrelationID'|''|''|''|''|''|'0'|'255'|''|''|''|''|''|''|''|

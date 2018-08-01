@@ -1,0 +1,20 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eMedDevice.27"  minOccurs="0"  maxOccurs="1"  dataTypeName="HeartRate"  isNillable="No">
+<name>Heart Rate</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The patient's heart rate expressed as a number per minute.</definition>
+<v2Number>E14_07</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Pulse Rate and Electronic Monitor Rate have been merged with an additional data element for Method of Heart Rate Measurement.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <HeartRate baseType="integer">
+    <facet name="minInclusive" value="0"/>
+    <facet name="maxInclusive" value="500"/>
+  </HeartRate>
+</restrictions>
+</element>

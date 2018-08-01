@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (x64) (http://www.altova.com) by Greg Chandler (University of Utah) -->
+<xs:schema xmlns="http://www.nemsis.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.nemsis.org" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="eCAD_v3.xsd"/>
+	<xs:include schemaLocation="eCustom_v3.xsd"/>
+	<xs:element name="CADDataSet">
+		<xs:annotation>
+			<xs:documentation>Root Tag For Demographic DataSet</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="eCustomConfiguration" type="eCustomConfiguration" id="eCustomConfigurationSection" minOccurs="0"/>
+				<xs:element name="eCAD" type="eCAD" id="eCadSection" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>State Required Demographic Data Elements</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eCustomResults" type="eCustomResults" id="eCustomResultsSection" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Custom Data Elements Results</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

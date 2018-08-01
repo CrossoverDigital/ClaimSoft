@@ -1,0 +1,35 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eInjury.03"  minOccurs="1"  maxOccurs="M"  dataTypeName="TraumaCenterCriteria"  isNillable="Yes">
+<name>Trauma Center Criteria</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>Physiologic and Anatomic Field Trauma Triage Criteria (steps 1 and 2) as defined by the Centers for Disease Control.</definition>
+<v2Number></v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>2011 Guidelines for the Field Triage of Injured Patients - value choices for Steps 1 and 2. For falls, one story is equal to 10 feet.</v3Comment>
+<v3Changes>Added to better evaluate the CDC-ACS 2011 Guidelines for the Field Triage of Injured Patients. <br/>Website: http://www.cdc.gov/mmwr/pdf/rr/rr6101.pdf</v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <TraumaCenterCriteria baseType="string">
+    <facet name="enumeration" value="2903001" annotation="Amputation proximal to wrist or ankle"/>
+    <facet name="enumeration" value="2903003" annotation="Crushed, degloved, mangled, or pulseless extremity"/>
+    <facet name="enumeration" value="2903005" annotation="Chest wall instability or deformity (e.g., flail chest)"/>
+    <facet name="enumeration" value="2903007" annotation="Glasgow Coma Score &lt;= 13"/>
+    <facet name="enumeration" value="2903009" annotation="Open or depressed skull fracture"/>
+    <facet name="enumeration" value="2903011" annotation="Paralysis"/>
+    <facet name="enumeration" value="2903013" annotation="Pelvic fractures"/>
+    <facet name="enumeration" value="2903015" annotation="All penetrating injuries to  head, neck, torso, and extremities proximal to elbow or knee"/>
+    <facet name="enumeration" value="2903017" annotation="Respiratory Rate  &lt;10 or &gt;29 breaths per minute (&lt;20 in infants aged &lt;1 year) or need for ventilatory support"/>
+    <facet name="enumeration" value="2903019" annotation="Systolic Blood Pressure &lt;90 mmHg"/>
+    <facet name="enumeration" value="2903021" annotation="Two or more proximal long-bone fractures"/>
+  </TraumaCenterCriteria>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+</attributes>
+</element>

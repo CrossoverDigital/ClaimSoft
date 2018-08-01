@@ -1,4 +1,6 @@
-﻿using Syncfusion.JavaScript.Models;
+﻿using System.Collections.Generic;
+using CD.ClaimSoft.Database.Model.Agency;
+using Syncfusion.JavaScript.Models;
 
 namespace CD.ClaimSoft.UI.Dependecies
 {
@@ -70,5 +72,21 @@ namespace CD.ClaimSoft.UI.Dependecies
         /// The country DDL.
         /// </value>
         DropDownListProperties CountryDdl { get; }
+
+        /// <summary>
+        /// Gets the agencies DDL.
+        /// </summary>
+        /// <value>
+        /// The agencies DDL.
+        /// </value>
+        DropDownListProperties AgenciesDdl { get; }
+
+        /// <summary>
+        /// Gets the agencies datasource.
+        /// </summary>
+        /// <returns>
+        /// The agencies datasource.
+        /// </returns>
+        List<Agency> GetAgenciesDatasource { get; }
     }
 }

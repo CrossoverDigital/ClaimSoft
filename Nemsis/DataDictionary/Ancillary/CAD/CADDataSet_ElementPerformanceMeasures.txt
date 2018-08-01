@@ -1,0 +1,118 @@
+'Dataset'|'DatasetType'|'ElementNumber'|'ElementName'|'National'|'State'|'Airway'|'CardiacArrest'|'Pediatric'|'ResponseTime'|'STEMI'|'Stroke'|'Trauma'|
+'CADDataSet'|'element'|'eCustomConfiguration.01'|'Custom Data Element Title'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomConfiguration.02'|'Custom Definition'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomConfiguration.03'|'Custom Data Type'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomConfiguration.04'|'Custom Data Element Recurrence'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomConfiguration.05'|'Custom Data Element Usage'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomConfiguration.06'|'Custom Data Element Potential Values'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomConfiguration.07'|'Custom Data Element Potential NOT Values (NV)'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomConfiguration.09'|'Custom Data Element Grouping ID'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.06'|'Patient Care Report Number'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.07'|'EMS Agency Number'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.08'|'EMS Agency Name'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.09'|'Incident Number'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.10'|'EMS Response Number'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.11'|'Type of Service Requested'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.12'|'Standby Purpose'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.13'|'Primary Role of the Unit'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.14'|'Type of Dispatch Delay'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.15'|'Type of Response Delay'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.19'|'EMS Vehicle (Unit) Number'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.20'|'EMS Unit Call Sign'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.21'|'Level of Care of This Unit'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.22'|'Vehicle Dispatch Location'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.23'|'Vehicle Dispatch GPS Location'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.24'|'Vehicle Dispatch Location US National Grid Coordinates'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.25'|'Beginning Odometer Reading of Responding Vehicle'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.26'|'On-Scene Odometer Reading of Responding Vehicle'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.27'|'Patient Destination Odometer Reading of Responding Vehicle'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.28'|'Ending Odometer Reading of Responding Vehicle'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.29'|'Response Mode to Scene'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.30'|'Additional Response Mode Descriptors'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.31'|'Complaint Reported by Dispatch'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.32'|'EMD Performed'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.33'|'EMD Card Number'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.34'|'Dispatch Center Name or ID'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.35'|'Dispatch Priority (Patient Acuity)'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.114'|'Unit Dispatched CAD Record ID'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.36'|'PSAP Call Date/Time'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.37'|'Dispatch Notified Date/Time'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.38'|'Unit Notified by Dispatch Date/Time'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.39'|'Dispatch Acknowledged Date/Time'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.40'|'Unit En Route Date/Time'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.41'|'Unit Arrived on Scene Date/Time'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.42'|'Arrived at Patient Date/Time'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.43'|'Transfer of EMS Patient Care Date/Time'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.44'|'Unit Left Scene Date/Time'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.45'|'Arrival at Destination Landing Area Date/Time'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.46'|'Patient Arrived at Destination Date/Time'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.47'|'Destination Patient Transfer of Care Date/Time'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.48'|'Unit Back in Service Date/Time'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.49'|'Unit Canceled Date/Time'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.50'|'Unit Back at Home Location Date/Time'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.51'|'EMS Call Completed Date/Time'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.52'|'EMS Patient ID'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.53'|'Last Name'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.54'|'First Name'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.55'|'Middle Initial/Name'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.56'|'Patient's Home Address'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.57'|'Patient's Home City'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.58'|'Patient's Home County'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.59'|'Patient's Home State'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.60'|'Patient's Home ZIP Code'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.61'|'Patient's Home Country'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.62'|'Patient Home Census Tract'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.63'|'Social Security Number'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.64'|'Gender'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.65'|'Race'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.66'|'Age'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.67'|'Age Units'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.68'|'Date of Birth'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.69'|'Patient's Phone Number'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.70'|'First EMS Unit on Scene'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.71'|'Other EMS or Public Safety Agencies at Scene'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.72'|'Other EMS or Public Safety Agency ID Number'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.73'|'Type of Other Service at Scene'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.74'|'Date/Time Initial Responder Arrived on Scene'|''|''|'X'|'X'|''|''|'X'|''|'X'|
+'CADDataSet'|'element'|'eCad.75'|'Number of Patients at Scene'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.76'|'Mass Casualty Incident'|''|''|''|''|''|''|''|''|'X'|
+'CADDataSet'|'element'|'eCad.78'|'Incident Location Type'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.79'|'Incident Facility Code'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.80'|'Scene GPS Location'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.81'|'Scene US National Grid Coordinates'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.82'|'Incident Facility or Location Name'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.83'|'Mile Post or Major Roadway'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.84'|'Incident Street Address'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.85'|'Incident Apartment, Suite, or Room'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.86'|'Incident City'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.87'|'Incident State'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.88'|'Incident ZIP Code'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.89'|'Scene Cross Street or Directions'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.90'|'Incident County'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.91'|'Incident Country'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.92'|'Incident Census Tract'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.93'|'Destination/Transferred To, Name'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.94'|'Destination/Transferred To, Code'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.95'|'Destination Street Address'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.96'|'Destination City'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.97'|'Destination State'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.98'|'Destination County'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.99'|'Destination ZIP Code'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.100'|'Destination Country'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.101'|'Destination GPS Location'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.102'|'Destination Location US National Grid Coordinates'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.103'|'Number of Patients Transported in this EMS Unit'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.104'|'EMS Transport Method'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.105'|'Transport Mode from Scene'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.106'|'Additional Transport Mode Descriptors'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCad.107'|'Type of Destination'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.108'|'Destination Team Pre-Arrival Activation'|''|''|''|'X'|''|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.109'|'Date/Time of Destination Prearrival Activation'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.110'|'Crew Member ID'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.111'|'Crew Member Level'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.112'|'Crew Member Response Role'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCad.113'|'Incident/Patient Disposition'|''|''|'X'|'X'|'X'|''|'X'|'X'|'X'|
+'CADDataSet'|'element'|'eCustomResults.01'|'Custom Data Element Result'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomResults.02'|'Custom Element ID Referenced'|''|''|''|''|''|''|''|''|''|
+'CADDataSet'|'element'|'eCustomResults.03'|'CorrelationID of PatientCareReport Element or Group'|''|''|''|''|''|''|''|''|''|

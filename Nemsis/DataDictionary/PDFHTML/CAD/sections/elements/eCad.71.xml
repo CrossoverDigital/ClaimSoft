@@ -1,0 +1,20 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eCad.71"  minOccurs="0"  maxOccurs="1"  dataTypeName="OtherEMSAgenciesAtScene"  isNillable="No">
+<name>Other EMS or Public Safety Agencies at Scene</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>Other EMS agency names that were at the scene, if any</definition>
+<v2Number>E08_01</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment></v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <OtherEMSAgenciesAtScene baseType="string">
+    <facet name="minLength" value="2"/>
+    <facet name="maxLength" value="100"/>
+  </OtherEMSAgenciesAtScene>
+</restrictions>
+</element>

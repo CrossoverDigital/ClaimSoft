@@ -1,0 +1,20 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eCad.07"  minOccurs="0"  maxOccurs="1"  dataTypeName="EMSAgencyNumber"  isNillable="No">
+<name>EMS Agency Number</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The state-assigned provider number of the responding agency</definition>
+<v2Number>E02_01</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>Response</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>The EMS Agency Number in eResponse.01 can auto-populate from dAgency.02 EMS Agency Number in the demographic section.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <EMSAgencyNumber baseType="string">
+    <facet name="minLength" value="1"/>
+    <facet name="maxLength" value="15"/>
+  </EMSAgencyNumber>
+</restrictions>
+</element>

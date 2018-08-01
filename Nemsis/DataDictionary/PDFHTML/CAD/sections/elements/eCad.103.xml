@@ -1,0 +1,20 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eCad.103"  minOccurs="0"  maxOccurs="1"  dataTypeName="NumberOfPatients"  isNillable="No">
+<name>Number of Patients Transported in this EMS Unit</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The number of patients transported by this EMS crew and unit.</definition>
+<v2Number></v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment>Added to document multiple patients being transported with the same vehicle and crew.</v3Comment>
+<v3Changes>Added to document multiple patients being transported with the same vehicle and crew.</v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <NumberOfPatients baseType="positiveInteger">
+    <facet name="minInclusive" value="1"/>
+    <facet name="maxInclusive" value="100"/>
+  </NumberOfPatients>
+</restrictions>
+</element>

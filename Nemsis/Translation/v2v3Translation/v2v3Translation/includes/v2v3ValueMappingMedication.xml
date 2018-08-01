@@ -1,0 +1,606 @@
+<?xml version="1.0"?>
+<v2v3ValueMappingMedication xmlns="http://www.nemsis.org">
+	<match>
+		<v3Replacement>7806</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>50% Dextrose</v2Pattern>
+		<v3Replacement>237653</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>9% NSS</v2Pattern>
+		<v3Replacement>313002</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Acetaminophen</v2Pattern>
+		<v3Replacement>161</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Adenosine</v2Pattern>
+		<v3Replacement>296</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Albuterol</v2Pattern>
+		<v3Replacement>435</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Albuterol 2.5/ Atrovent 0.5</v2Pattern>
+		<v3Replacement>214199</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Albuterol Sulfate</v2Pattern>
+		<v3Replacement>435</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Amiodarone</v2Pattern>
+		<v3Replacement>703</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Amiodarone (Cordarone)</v2Pattern>
+		<v3Replacement>703</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Amiodorone (Cordarone)</v2Pattern>
+		<v3Replacement>703</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>ASA</v2Pattern>
+		<v3Replacement>1191</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Aspirin</v2Pattern>
+		<v3Replacement>1191</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Aspirin (ASA)</v2Pattern>
+		<v3Replacement>1191</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Aspirin 81-325 mg</v2Pattern>
+		<v3Replacement>1191</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Ativan</v2Pattern>
+		<v3Replacement>6470</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Atropine</v2Pattern>
+		<v3Replacement>1223</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Atropine Sulfate</v2Pattern>
+		<v3Replacement>1223</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Atrovent</v2Pattern>
+		<v3Replacement>7213</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Atrovent (Ipratropium Bromide)</v2Pattern>
+		<v3Replacement>7213</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Atrovent 0.5mg /Albuterol 3.0m</v2Pattern>
+		<v3Replacement>214199</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Atrovent 0.5mg/Albuterol 3.0mg</v2Pattern>
+		<v3Replacement>214199</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Baby Aspirin</v2Pattern>
+		<v3Replacement>1191</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Benadryl</v2Pattern>
+		<v3Replacement>3498</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Calcium Chloride</v2Pattern>
+		<v3Replacement>1901</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Cardizem</v2Pattern>
+		<v3Replacement>3443</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>D50</v2Pattern>
+		<v3Replacement>237653</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>D5W (Dextrose 5% in Water)</v2Pattern>
+		<v3Replacement>309778</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>D5W w/ 1/2 Normal Saline</v2Pattern>
+		<v3Replacement>309806</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Dexamethasone (Decadron)</v2Pattern>
+		<v3Replacement>3264</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Dextrose</v2Pattern>
+		<v3Replacement>4850</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>DEXTROSE 50 %</v2Pattern>
+		<v3Replacement>237653</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Dextrose 50%</v2Pattern>
+		<v3Replacement>237653</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Dextrose 50% (D50)</v2Pattern>
+		<v3Replacement>237653</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Diazepam</v2Pattern>
+		<v3Replacement>3322</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Diazepam (Valium)</v2Pattern>
+		<v3Replacement>3322</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Dilaudid</v2Pattern>
+		<v3Replacement>3423</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Diltiazem</v2Pattern>
+		<v3Replacement>3443</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Diltiazem (Cardizem)</v2Pattern>
+		<v3Replacement>3443</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Diphenhydramine</v2Pattern>
+		<v3Replacement>3498</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>DIPHENHYDRAMINE (BENADRYL)</v2Pattern>
+		<v3Replacement>3498</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Diphenhydramine (Benedryl)</v2Pattern>
+		<v3Replacement>3498</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Dopamine</v2Pattern>
+		<v3Replacement>3628</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>DuoNeb</v2Pattern>
+		<v3Replacement>204199</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>DuoNeb (0.5 Atrovent/3.0 Albut</v2Pattern>
+		<v3Replacement>204199</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>EPI 1:10,000</v2Pattern>
+		<v3Replacement>317361</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>EPI 1:10000</v2Pattern>
+		<v3Replacement>317361</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Epinephrine</v2Pattern>
+		<v3Replacement>3992</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Epinephrine (1:10,000)</v2Pattern>
+		<v3Replacement>317361</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Epinephrine 1:1,000</v2Pattern>
+		<v3Replacement>328316</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Epinephrine 1:10</v2Pattern>
+		<v3Replacement>317361</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Epinephrine 1:10,000</v2Pattern>
+		<v3Replacement>317361</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Epinephrine 1:1000</v2Pattern>
+		<v3Replacement>328316</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Epi-Pen Adult</v2Pattern>
+		<v3Replacement>727345</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Etomidate</v2Pattern>
+		<v3Replacement>4177</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Fentanyl</v2Pattern>
+		<v3Replacement>4337</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Fentanyl (Sublimaze)</v2Pattern>
+		<v3Replacement>4337</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Furosemide</v2Pattern>
+		<v3Replacement>4603</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Furosemide (Lasix)</v2Pattern>
+		<v3Replacement>4603</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Glucagon</v2Pattern>
+		<v3Replacement>4832</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Glucose (Oral)</v2Pattern>
+		<v3Replacement>377980</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Haloperidol (Haldol)</v2Pattern>
+		<v3Replacement>5093</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Heparin</v2Pattern>
+		<v3Replacement>5224</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Hydromorphone (Dilaudid)</v2Pattern>
+		<v3Replacement>3423</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>IBUPROFEN</v2Pattern>
+		<v3Replacement>5640</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>insulin</v2Pattern>
+		<v3Replacement>1605101</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Ipratropium</v2Pattern>
+		<v3Replacement>7213</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Ipratropium (Atrovent)</v2Pattern>
+		<v3Replacement>7213</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Ketorolac (Toradol)</v2Pattern>
+		<v3Replacement>35827</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Labetalol</v2Pattern>
+		<v3Replacement>6185</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Lactated Ringers</v2Pattern>
+		<v3Replacement>1008377</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Lasix</v2Pattern>
+		<v3Replacement>4603</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Levalbuterol HCL (Xopenex)</v2Pattern>
+		<v3Replacement>237159</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Lidocaine</v2Pattern>
+		<v3Replacement>6387</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Lopressor</v2Pattern>
+		<v3Replacement>6918</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Lorazepam</v2Pattern>
+		<v3Replacement>6470</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Lorazepam (Ativan)</v2Pattern>
+		<v3Replacement>6470</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>LOVENOX</v2Pattern>
+		<v3Replacement>67108</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Magnesium Sulfate</v2Pattern>
+		<v3Replacement>6585</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Meperidine (Demerol)</v2Pattern>
+		<v3Replacement>6754</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Methylprednisolone</v2Pattern>
+		<v3Replacement>6902</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Methylprednisolone (Solu-Medro</v2Pattern>
+		<v3Replacement>6902</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Methylprednisolone/Solu-Medrol</v2Pattern>
+		<v3Replacement>6902</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Metoprolol (Lopressor)</v2Pattern>
+		<v3Replacement>6918</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Midazolam</v2Pattern>
+		<v3Replacement>6960</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Midazolam (Versed)</v2Pattern>
+		<v3Replacement>6960</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Morphine</v2Pattern>
+		<v3Replacement>7052</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Morphine Sulfate</v2Pattern>
+		<v3Replacement>7052</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Naloxone</v2Pattern>
+		<v3Replacement>7242</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Naloxone (Narcan)</v2Pattern>
+		<v3Replacement>7242</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Narcan</v2Pattern>
+		<v3Replacement>7242</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Nitro Spray</v2Pattern>
+		<v3Replacement>4917</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Nitroglycerin</v2Pattern>
+		<v3Replacement>4917</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Nitroglycerin Infusion</v2Pattern>
+		<v3Replacement>4917</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Nitroglycerin Paste</v2Pattern>
+		<v3Replacement>4917</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Nitroglycerin SL</v2Pattern>
+		<v3Replacement>4917</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Nitroglycerin Spray</v2Pattern>
+		<v3Replacement>4917</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Nitroglycerin, (spray or tabs)</v2Pattern>
+		<v3Replacement>4917</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Nitroglycerine</v2Pattern>
+		<v3Replacement>4917</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Nitroglycerine (0.4 mg)</v2Pattern>
+		<v3Replacement>4917</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Nitroglycerine SL</v2Pattern>
+		<v3Replacement>4917</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Nitroglycerine Spray</v2Pattern>
+		<v3Replacement>4917</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Nitroglycerine Tabs</v2Pattern>
+		<v3Replacement>4917</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Nitrostat</v2Pattern>
+		<v3Replacement>4917</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Norepinephrine</v2Pattern>
+		<v3Replacement>7512</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Normal Saline</v2Pattern>
+		<v3Replacement>313002</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Normal Saline (Respiratory Use</v2Pattern>
+		<v3Replacement>379454</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Normal Saline IV Solution</v2Pattern>
+		<v3Replacement>313002</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Normal Saline Solution</v2Pattern>
+		<v3Replacement>313002</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Ondansetron</v2Pattern>
+		<v3Replacement>26225</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Ondansetron (Zofran)</v2Pattern>
+		<v3Replacement>26225</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Ondensatron</v2Pattern>
+		<v3Replacement>26225</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Oral Glucose</v2Pattern>
+		<v3Replacement>377980</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Oxygen</v2Pattern>
+		<v3Replacement>7806</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Oxygen (non-rebreather mask)</v2Pattern>
+		<v3Replacement>7806</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>OXYGEN (O2)</v2Pattern>
+		<v3Replacement>7806</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>OXYGEN ADMINISTRATION</v2Pattern>
+		<v3Replacement>7806</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Oxygen by Blow By</v2Pattern>
+		<v3Replacement>7806</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Oxygen by BVM</v2Pattern>
+		<v3Replacement>7806</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Oxygen by Mask</v2Pattern>
+		<v3Replacement>7806</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Oxygen by Nasal Cannula</v2Pattern>
+		<v3Replacement>7806</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Oxygen by Nebulizer</v2Pattern>
+		<v3Replacement>7806</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Oxygen by Non-Rebreather Mask</v2Pattern>
+		<v3Replacement>7806</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Oxygen by Positive Pressure De</v2Pattern>
+		<v3Replacement>7806</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>PHENERGAN</v2Pattern>
+		<v3Replacement>8745</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>plavix</v2Pattern>
+		<v3Replacement>32968</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>PROMETHAZINE</v2Pattern>
+		<v3Replacement>8745</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Promethazine HCl (Phenergan)</v2Pattern>
+		<v3Replacement>8745</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Promethazine HCL (Phenergran)</v2Pattern>
+		<v3Replacement>8745</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>PROPOFOL</v2Pattern>
+		<v3Replacement>8782</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Rocephin</v2Pattern>
+		<v3Replacement>2193</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Rocuronium Bromide (Zemuron)</v2Pattern>
+		<v3Replacement>68139</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Saline</v2Pattern>
+		<v3Replacement>313002</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Sodium Bicarbonate</v2Pattern>
+		<v3Replacement>36676</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>SODIUM CHLORIDE 0.9%</v2Pattern>
+		<v3Replacement>313002</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Solu-Medro (Methylprednisone S</v2Pattern>
+		<v3Replacement>6902</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Solumedrol</v2Pattern>
+		<v3Replacement>6902</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Solu-Medrol</v2Pattern>
+		<v3Replacement>6902</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Succinylcholine</v2Pattern>
+		<v3Replacement>10154</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Succinylcholine (Anectine)</v2Pattern>
+		<v3Replacement>10154</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Thiamine</v2Pattern>
+		<v3Replacement>10454</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>TORADOL</v2Pattern>
+		<v3Replacement>35827</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Tylenol</v2Pattern>
+		<v3Replacement>5640</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>VALIUM</v2Pattern>
+		<v3Replacement>3322</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Vancomycin</v2Pattern>
+		<v3Replacement>11124</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Vasopressin</v2Pattern>
+		<v3Replacement>11149</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Vecuronium</v2Pattern>
+		<v3Replacement>71535</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Vecuronium (Norcuron)</v2Pattern>
+		<v3Replacement>71535</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Versed</v2Pattern>
+		<v3Replacement>6960</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>XOPENEX</v2Pattern>
+		<v3Replacement>237159</v3Replacement>
+	</match>
+	<match>
+		<v2Pattern>Zofran</v2Pattern>
+		<v3Replacement>26225</v3Replacement>
+	</match>
+</v2v3ValueMappingMedication>

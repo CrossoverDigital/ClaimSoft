@@ -1,0 +1,30 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eCad.107"  minOccurs="0"  maxOccurs="1"  dataTypeName="TypeOfDestination"  isNillable="No">
+<name>Type of Destination</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The type of destination the patient was delivered or transferred to</definition>
+<v2Number>E20_17</v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>Response</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Required if Patient Transported by EMS.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <TypeOfDestination baseType="string">
+    <facet name="enumeration" value="4221001" annotation="Home"/>
+    <facet name="enumeration" value="4221003" annotation="Hospital-Emergency Department"/>
+    <facet name="enumeration" value="4221005" annotation="Hospital-Non-Emergency Department Bed"/>
+    <facet name="enumeration" value="4221007" annotation="Medical Office/Clinic"/>
+    <facet name="enumeration" value="4221009" annotation="Morgue/Mortuary"/>
+    <facet name="enumeration" value="4221011" annotation="Nursing Home/Assisted Living Facility"/>
+    <facet name="enumeration" value="4221013" annotation="Other"/>
+    <facet name="enumeration" value="4221015" annotation="Other EMS Responder (air)"/>
+    <facet name="enumeration" value="4221017" annotation="Other EMS Responder (ground)"/>
+    <facet name="enumeration" value="4221019" annotation="Police/Jail"/>
+    <facet name="enumeration" value="4221021" annotation="Urgent Care"/>
+    <facet name="enumeration" value="4221023" annotation="Freestanding Emergency Department"/>
+  </TypeOfDestination>
+</restrictions>
+</element>

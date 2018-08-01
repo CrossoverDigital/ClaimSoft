@@ -71,7 +71,7 @@ namespace CD.ClaimSoft.Database.Identity.Security
 
             return base.ValidateEntity(entityEntry, items);
         }
-
+        
         ///// <summary>
         ///// Applies custom model definitions for multi-tenancy.
         ///// </summary>

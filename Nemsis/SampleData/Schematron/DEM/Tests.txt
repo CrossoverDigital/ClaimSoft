@@ -1,0 +1,71 @@
+NEMSIS V3 Schematron Test Cases for DEMDataSet
+
+File:             DEMDataSet--Base.xml
+ID:               DEMDataSet--Base
+Description:      This test case should pass validation while firing as many rules as possible.
+Expected Result:  [PASS]
+      
+File:             DEMDataSet-14CD.xml
+ID:               nemSch_consistency_dAgency.13_dAgency.26_nonfire_A
+Description:      When Organizational Type is not "Fire Department", Fire Department ID Number should not be recorded.
+Expected Result:  [WARNING]
+
+File:             DEMDataSet-1F56.xml
+ID:               nemSch_uniqueness_DEMDataSet_dConfiguration.11_none_A
+Description:      When EMS Agency Specialty Service Capability is "None", no other values should be recorded.
+Expected Result:  [WARNING]
+
+File:             DEMDataSet-2DEF.xml
+ID:               nemSch_nilNvPn_nil_Nv_A
+Description:      When (Element) is empty, it should have a Not Value (Not Applicable, Not Recorded, or Not Reporting, if allowed for the element) or a Pertinent Negative (if allowed for the element), or it should be omitted (if the element is optional).
+Expected Result:  [ERROR]
+
+File:             DEMDataSet-31A7.xml
+ID:               nemSch_consistency_dAgency.ServiceGroup_dAgency.06_dAgency.05_A
+Description:      EMS Agency Service Area County(ies) should belong to the state with which it is grouped.
+Expected Result:  [ERROR]
+
+File:             DEMDataSet-32CF.xml
+ID:               nemSch_nilNvPn_Nv_Nil_A
+Description:      When (Element) has a Not Value (Not Applicable, Not Recorded, or Not Reporting), it should be empty.
+Expected Result:  [ERROR]
+
+File:             DEMDataSet-42A9.xml
+ID:               nemSch_consistency_dAgency.ServiceGroup_dAgency.07_dAgency.06_A
+Description:      EMS Agency Census Tracts should belong to a county recorded in EMS Agency Service Area County(ies) in the state with which it is grouped.
+Expected Result:  [ERROR]
+
+File:             DEMDataSet-43AA.xml
+ID:               nemSch_consistency_dAgency.ServiceGroup_dAgency.07_dAgency.06_B
+Description:      EMS Agency Census Tracts should belong to a county recorded in EMS Agency Service Area County(ies) in the state with which it is grouped. * Blank Census Tract should be allowed.
+Expected Result:  [PASS]
+
+File:             DEMDataSet-681.xml
+ID:               nemSch_consistency_dAgency.13_dAgency.26_fire_A
+Description:      When Organizational Type is "Fire Department", Fire Department ID Number should be recorded.
+Expected Result:  [WARNING]
+
+File:             DEMDataSet-91A.xml
+ID:               nemSch_nilNvPn_customResults_A
+Description:      The combination of nil, Not Value (NV), and Pertinent Negative (PN) attributes for an element is appropriate. * Not checked on dCustomResults.01.
+Expected Result:  [PASS]
+
+File:             DEMDataSet-98CD.xml
+ID:               nemSch_sequence_dAgency.AgencyYearGroup_dAgency.15_past_A
+Description:      Statistical Calendar Year should be in the past. * This test should generate a warning until the year 2050.
+Expected Result:  [WARNING]
+
+File:             DEMDataSet-B53E.xml
+ID:               nemSch_uniqueness_DEMDataSet_dConfiguration.16_assert_A
+Description:      Each Crew Call Sign should be unique.
+Expected Result:  [ERROR]
+
+File:             DEMDataSet-CADE.xml
+ID:               nemSch_uniqueness_NvPn_Nv_only_A
+Description:      When (Element) has a Not Value, no other (Element) should be recorded.
+Expected Result:  [WARNING]
+
+File:             DEMDataSet-CB45.xml
+ID:               nemSch_uniqueness_DEMDataSet_dAgency.15_A
+Description:      Agency statistics for a particular Statistical Calendar Year should only be recorded once.
+Expected Result:  [ERROR]

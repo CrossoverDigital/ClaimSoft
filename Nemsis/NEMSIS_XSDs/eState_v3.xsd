@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.nemsis.org" targetNamespace="http://www.nemsis.org" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="commonTypes_v3.xsd"/>
+	<xs:complexType name="eState">
+		<xs:sequence>
+			<xs:element name="eState.01" id="eState.StateRequiredElement" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						<nemsisTacDoc>
+							<number>eState.01</number>
+							<name>State Required Element</name>
+							<national>No</national>
+							<state>No</state>
+							<definition>Indicates which elements are required by the state</definition>
+							<v2Number/>
+							<usage>Optional</usage>
+							<comment>This element was created to document elements required by the state. The TIMESTAMP attribute describes the active date of the element.</comment>
+						</nemsisTacDoc>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="StateRequiredElement">
+							<xs:attribute name="TIMESTAMP" type="TimeStampType" use="optional"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

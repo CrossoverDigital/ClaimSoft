@@ -1,0 +1,407 @@
+<?xml version="1.0"?>
+<xsl:transform version="2.0" exclude-result-prefixes="n xs xsl" xpath-default-namespace="http://www.nemsis.org" xmlns="http://www.nemsis.org" xmlns:n="http://www.nemsis.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:function name="n:mapExpression">
+		<xsl:param name="v2Element"/>
+		<xsl:param name="elementMapping"/>
+		<xsl:variable name="result">
+			<!--The calling function will only send one instance of v2Element to this function, but the for-each allows us to change the context node so we can use "." notation to refer to v2Element.-->
+			<xsl:for-each select="$v2Element">
+				<xsl:element name="v3Replacement">
+					<xsl:choose>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='AgencyCounty' and normalize-space($elementMapping/v3TypeName)='ANSICountyCode'">
+							<xsl:choose>
+								<xsl:when test="matches(normalize-space(.),'^[0-9]{5}$')">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='AnnualOdometerReading' and normalize-space($elementMapping/v3TypeName)='AnnualOdometerReading'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='CallVolumeYear911' and normalize-space($elementMapping/v3TypeName)='AnnualAgencyStatistics'">
+							<xsl:choose>
+								<xsl:when test="number(.)&lt;=4000000">
+									<xsl:value-of select="."/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:attribute name="otherwise">true</xsl:attribute>
+									<xsl:value-of select="4000000"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='Date' and normalize-space($elementMapping/v3TypeName)='DateType'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='DateOfBirth' and normalize-space($elementMapping/v3TypeName)='DateType'">
+							<xsl:choose>
+								<xsl:when test="xs:date(.)&gt;=xs:date('1900-01-01')">
+									<xsl:value-of select="xs:date(.)"/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='DemographicLastName' and normalize-space($elementMapping/v3TypeName)='PersonLastName'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='DemographicZip' and normalize-space($elementMapping/v3TypeName)='ZIP'">
+							<xsl:choose>
+								<xsl:when test="matches(normalize-space(.),'^([0-9]{5}|[0-9]{5}-[0-9]{4}|[0-9]{5}-[0-9]{5}|[A-Z][0-9][A-Z] [0-9][A-Z][0-9])$')">
+									<xsl:value-of select="normalize-space(.)"/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='DemographicZoneNumber' and normalize-space($elementMapping/v3TypeName)='CustomResults'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='DeviceManufacturer' and normalize-space($elementMapping/v3TypeName)='DeviceManufacturer'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='DeviceNameOrID' and normalize-space($elementMapping/v3TypeName)='DeviceNameorID'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='DeviceSerialNumber' and normalize-space($elementMapping/v3TypeName)='DeviceSerialNumber'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='EmailAddress' and normalize-space($elementMapping/v3TypeName)='EmailAddress'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='EMDVendor' and normalize-space($elementMapping/v3TypeName)='EMDVendorType'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='EMSAgencyName' and normalize-space($elementMapping/v3TypeName)='EMSAgencyName'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='EMSAgencyNumber' and normalize-space($elementMapping/v3TypeName)='EMSAgencyNumber'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='EMSAgencyNumber' and normalize-space($elementMapping/v3TypeName)='EMSAgencyStateID'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='EMSBillableCallsYear' and normalize-space($elementMapping/v3TypeName)='AnnualAgencyStatistics'">
+							<xsl:choose>
+								<xsl:when test="number(.)&lt;=4000000">
+									<xsl:value-of select="."/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:attribute name="otherwise">true</xsl:attribute>
+									<xsl:value-of select="4000000"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='EMSDispatchVolumeYear' and normalize-space($elementMapping/v3TypeName)='AnnualAgencyStatistics'">
+							<xsl:choose>
+								<xsl:when test="number(.)&lt;=4000000">
+									<xsl:value-of select="."/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:attribute name="otherwise">true</xsl:attribute>
+									<xsl:value-of select="4000000"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='EMSPatientContactVolumeYear' and normalize-space($elementMapping/v3TypeName)='AnnualAgencyStatistics'">
+							<xsl:choose>
+								<xsl:when test="number(.)&lt;=4000000">
+									<xsl:value-of select="."/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:attribute name="otherwise">true</xsl:attribute>
+									<xsl:value-of select="4000000"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='EMSTransportVolumeYear' and normalize-space($elementMapping/v3TypeName)='AnnualAgencyStatistics'">
+							<xsl:choose>
+								<xsl:when test="number(.)&lt;=4000000">
+									<xsl:value-of select="."/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:attribute name="otherwise">true</xsl:attribute>
+									<xsl:value-of select="4000000"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='EMSUnitNumber' and normalize-space($elementMapping/v3TypeName)='AgencyCallSign'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='FacilityName' and normalize-space($elementMapping/v3TypeName)='FacilityName'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='FacilityNumber' and normalize-space($elementMapping/v3TypeName)='FacilityCode'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='FirstName' and normalize-space($elementMapping/v3TypeName)='PersonFirstName'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='GPSLocation' and normalize-space($elementMapping/v3TypeName)='GPSLocation'">
+							<xsl:choose>
+								<xsl:when test="matches(concat(xs:decimal(@Lat),',',xs:decimal(@Long)),'^(\+|-)?(90(\.[0]{1,6})?|([1-8][0-9]|[0-9])(\.[0-9]{1,6})?),(\+|-)?(180(\.[0]{1,6})?|(1[0-7][0-9]|[1-9][0-9]|[0-9])(\.[0-9]{1,6})?)$')">
+									<xsl:value-of select="concat(xs:decimal(@Lat),',',xs:decimal(@Long))"/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='InsuranceCompanyName' and normalize-space($elementMapping/v3TypeName)='CustomResults'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='LastName' and normalize-space($elementMapping/v3TypeName)='PersonLastName'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='MiddleInitialName' and normalize-space($elementMapping/v3TypeName)='PersonMiddleName'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='ModelNumber' and normalize-space($elementMapping/v3TypeName)='ModelNumber'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='NationalProviderIdentifier' and normalize-space($elementMapping/v3TypeName)='NationalProviderIdentifier'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="substring(concat('0000000000', .), string-length(.)+1, 10)"/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='NumberOfPersonnel' and normalize-space($elementMapping/v3TypeName)='NumberofPersonnel'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='OtherAgenciesInArea' and normalize-space($elementMapping/v3TypeName)='CustomResults'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='PersonnelsAgencyIDNumber' and normalize-space($elementMapping/v3TypeName)='PersonnelAgencyIDNumber'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='State' and normalize-space($elementMapping/v3TypeName)='ANSIStateCode'">
+							<xsl:choose>
+								<xsl:when test="matches(normalize-space(.),'^[0-9]{2}$')">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='StateLicensureID' and normalize-space($elementMapping/v3TypeName)='StateLicensureID'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='StationName' and normalize-space($elementMapping/v3TypeName)='StationName'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='StationNumber' and normalize-space($elementMapping/v3TypeName)='StationNumber'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='StatisticalYear' and normalize-space($elementMapping/v3TypeName)='Year'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='StreetAddress' and normalize-space($elementMapping/v3TypeName)='StreetAddress'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='TelephoneNumber' and normalize-space($elementMapping/v3TypeName)='PhoneNumber'">
+							<xsl:choose>
+								<xsl:when test="matches(normalize-space(.),'^[2-9][0-9][0-9]-[2-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$')">
+									<xsl:value-of select="normalize-space(.)"/>
+								</xsl:when>
+								<xsl:when test="matches(normalize-space(.),'^[2-9][0-9][0-9][2-9][0-9][0-9][0-9][0-9][0-9][0-9]$')">
+									<xsl:value-of select="replace(normalize-space(.),'([2-9][0-9][0-9])([2-9][0-9][0-9])([0-9][0-9][0-9][0-9])','$1-$2-$3')"/>
+								</xsl:when>
+								<xsl:when test="matches(normalize-space(.),'^\([2-9][0-9][0-9]\) [2-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$')">
+									<xsl:value-of select="replace(normalize-space(.),'\(([2-9][0-9][0-9])\) ([2-9][0-9][0-9]-[0-9][0-9][0-9][0-9])','$1-$2')"/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='TotalService' and normalize-space($elementMapping/v3TypeName)='TotalService'">
+							<xsl:choose>
+								<xsl:when test=".&lt;=80">
+									<xsl:value-of select="."/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:attribute name="otherwise">true</xsl:attribute>
+									<xsl:value-of select="80"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='TotalServiceAreaPopulation' and normalize-space($elementMapping/v3TypeName)='AnnualAgencyStatistics'">
+							<xsl:choose>
+								<xsl:when test="number(.)&lt;=4000000">
+									<xsl:value-of select="."/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:attribute name="otherwise">true</xsl:attribute>
+									<xsl:value-of select="4000000"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='TotalServiceSizeArea' and normalize-space($elementMapping/v3TypeName)='AnnualAgencyStatistics'">
+							<xsl:choose>
+								<xsl:when test="number(.)&lt;=4000000">
+									<xsl:value-of select="."/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:attribute name="otherwise">true</xsl:attribute>
+									<xsl:value-of select="4000000"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='VehicleHours' and normalize-space($elementMapping/v3TypeName)='VehicleHours'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='VehicleInitialCost' and normalize-space($elementMapping/v3TypeName)='VehicleInitialCost'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='VehicleNumber' and normalize-space($elementMapping/v3TypeName)='VehicleNumber'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="substring(.,1,25)"/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='VehicleYear' and normalize-space($elementMapping/v3TypeName)='Year'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='WebAddress' and normalize-space($elementMapping/v3TypeName)='WebAddress'">
+							<xsl:choose>
+								<xsl:when test="string-length(.)&gt;=3">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='Zip' and normalize-space($elementMapping/v3TypeName)='ZIP'">
+							<xsl:choose>
+								<xsl:when test="matches(normalize-space(.),'^([0-9]{5}|[0-9]{5}-[0-9]{4}|[0-9]{5}-[0-9]{5}|[A-Z][0-9][A-Z] [0-9][A-Z][0-9])$')">
+									<xsl:value-of select="normalize-space(.)"/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:when test="normalize-space($elementMapping/v2TypeName)='ZoneNumber' and normalize-space($elementMapping/v3TypeName)='CustomResults'">
+							<xsl:choose>
+								<xsl:when test=".">
+									<xsl:value-of select="."/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:when>
+					</xsl:choose>
+				</xsl:element>
+			</xsl:for-each>
+		</xsl:variable>
+		<xsl:if test="$result/v3Replacement!=''">
+			<xsl:sequence select="$result"/>
+		</xsl:if>
+	</xsl:function>
+</xsl:transform>

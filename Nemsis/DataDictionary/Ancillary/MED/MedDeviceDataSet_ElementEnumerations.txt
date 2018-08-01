@@ -1,0 +1,178 @@
+'DatasetName'|'ElementNumber'|'ElementName'|'Code'|'CodeDescription'|
+'MedDeviceDataSet'|'eCustomConfiguration.03'|'Custom Data Type'|'9902001'|'Binary'|
+'MedDeviceDataSet'|'eCustomConfiguration.03'|'Custom Data Type'|'9902003'|'Date/Time'|
+'MedDeviceDataSet'|'eCustomConfiguration.03'|'Custom Data Type'|'9902005'|'Integer/Number'|
+'MedDeviceDataSet'|'eCustomConfiguration.03'|'Custom Data Type'|'9902007'|'Other'|
+'MedDeviceDataSet'|'eCustomConfiguration.03'|'Custom Data Type'|'9902009'|'Text/String'|
+'MedDeviceDataSet'|'eCustomConfiguration.03'|'Custom Data Type'|'9902011'|'Boolean'|
+'MedDeviceDataSet'|'eCustomConfiguration.04'|'Custom Data Element Recurrence'|'9923001'|'No'|
+'MedDeviceDataSet'|'eCustomConfiguration.04'|'Custom Data Element Recurrence'|'9923003'|'Yes'|
+'MedDeviceDataSet'|'eCustomConfiguration.05'|'Custom Data Element Usage'|'9903001'|'Mandatory'|
+'MedDeviceDataSet'|'eCustomConfiguration.05'|'Custom Data Element Usage'|'9903003'|'Required'|
+'MedDeviceDataSet'|'eCustomConfiguration.05'|'Custom Data Element Usage'|'9903005'|'Recommended'|
+'MedDeviceDataSet'|'eCustomConfiguration.05'|'Custom Data Element Usage'|'9903007'|'Optional'|
+'MedDeviceDataSet'|'eCustomConfiguration.07'|'Custom Data Element Potential NOT Values (NV)'|'7701001'|'Not Applicable'|
+'MedDeviceDataSet'|'eCustomConfiguration.07'|'Custom Data Element Potential NOT Values (NV)'|'7701003'|'Not Recorded'|
+'MedDeviceDataSet'|'eCustomConfiguration.07'|'Custom Data Element Potential NOT Values (NV)'|'7701005'|'Not Reporting'|
+'MedDeviceDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801001'|'Contraindication Noted'|
+'MedDeviceDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801003'|'Denied By Order'|
+'MedDeviceDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801005'|'Exam Finding Not Present'|
+'MedDeviceDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801007'|'Medication Allergy'|
+'MedDeviceDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801009'|'Medication Already Taken'|
+'MedDeviceDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801013'|'No Known Drug Allergy'|
+'MedDeviceDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801015'|'None Reported'|
+'MedDeviceDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801017'|'Not Performed by EMS'|
+'MedDeviceDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801019'|'Refused'|
+'MedDeviceDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801021'|'Unresponsive'|
+'MedDeviceDataSet'|'eCustomConfiguration.08'|'Custom Data Element Potential Pertinent Negative Values (PN)'|'8801023'|'Unable to Complete'|
+'MedDeviceDataSet'|'eMedDevice.14'|'Gender'|'9906001'|'Female'|
+'MedDeviceDataSet'|'eMedDevice.14'|'Gender'|'9906003'|'Male'|
+'MedDeviceDataSet'|'eMedDevice.14'|'Gender'|'9906005'|'Unknown (Unable to Determine)'|
+'MedDeviceDataSet'|'eMedDevice.15'|'Race'|'2514001'|'American Indian or Alaska Native'|
+'MedDeviceDataSet'|'eMedDevice.15'|'Race'|'2514003'|'Asian'|
+'MedDeviceDataSet'|'eMedDevice.15'|'Race'|'2514005'|'Black or African American'|
+'MedDeviceDataSet'|'eMedDevice.15'|'Race'|'2514007'|'Hispanic or Latino'|
+'MedDeviceDataSet'|'eMedDevice.15'|'Race'|'2514009'|'Native Hawaiian or Other Pacific Islander'|
+'MedDeviceDataSet'|'eMedDevice.15'|'Race'|'2514011'|'White'|
+'MedDeviceDataSet'|'eMedDevice.17'|'Age Units'|'2516001'|'Days'|
+'MedDeviceDataSet'|'eMedDevice.17'|'Age Units'|'2516003'|'Hours'|
+'MedDeviceDataSet'|'eMedDevice.17'|'Age Units'|'2516005'|'Minutes'|
+'MedDeviceDataSet'|'eMedDevice.17'|'Age Units'|'2516007'|'Months'|
+'MedDeviceDataSet'|'eMedDevice.17'|'Age Units'|'2516009'|'Years'|
+'MedDeviceDataSet'|'eMedDevice.25'|'Method of Blood Pressure Measurement'|'3308001'|'Arterial Line'|
+'MedDeviceDataSet'|'eMedDevice.25'|'Method of Blood Pressure Measurement'|'3308003'|'Doppler'|
+'MedDeviceDataSet'|'eMedDevice.25'|'Method of Blood Pressure Measurement'|'3308005'|'Cuff-Automated'|
+'MedDeviceDataSet'|'eMedDevice.25'|'Method of Blood Pressure Measurement'|'3308007'|'Cuff-Manual Auscultated'|
+'MedDeviceDataSet'|'eMedDevice.25'|'Method of Blood Pressure Measurement'|'3308009'|'Cuff-Manual Palpated Only'|
+'MedDeviceDataSet'|'eMedDevice.25'|'Method of Blood Pressure Measurement'|'3308011'|'Venous Line'|
+'MedDeviceDataSet'|'eMedDevice.28'|'Method of Heart Rate Measurement'|'3311001'|'Auscultated'|
+'MedDeviceDataSet'|'eMedDevice.28'|'Method of Heart Rate Measurement'|'3311003'|'Doppler'|
+'MedDeviceDataSet'|'eMedDevice.28'|'Method of Heart Rate Measurement'|'3311005'|'Electronic Monitor - Cardiac'|
+'MedDeviceDataSet'|'eMedDevice.28'|'Method of Heart Rate Measurement'|'3311007'|'Electronic Monitor - Pulse Oximeter'|
+'MedDeviceDataSet'|'eMedDevice.28'|'Method of Heart Rate Measurement'|'3311009'|'Electronic Monitor (Other)'|
+'MedDeviceDataSet'|'eMedDevice.28'|'Method of Heart Rate Measurement'|'3311011'|'Palpated'|
+'MedDeviceDataSet'|'eMedDevice.35'|'Temperature Method'|'3325001'|'Axillary'|
+'MedDeviceDataSet'|'eMedDevice.35'|'Temperature Method'|'3325003'|'Central (Venous or Arterial)'|
+'MedDeviceDataSet'|'eMedDevice.35'|'Temperature Method'|'3325005'|'Esophageal'|
+'MedDeviceDataSet'|'eMedDevice.35'|'Temperature Method'|'3325007'|'Oral'|
+'MedDeviceDataSet'|'eMedDevice.35'|'Temperature Method'|'3325009'|'Rectal'|
+'MedDeviceDataSet'|'eMedDevice.35'|'Temperature Method'|'3325011'|'Temporal Artery'|
+'MedDeviceDataSet'|'eMedDevice.35'|'Temperature Method'|'3325013'|'Tympanic'|
+'MedDeviceDataSet'|'eMedDevice.35'|'Temperature Method'|'3325015'|'Urinary Catheter'|
+'MedDeviceDataSet'|'eMedDevice.35'|'Temperature Method'|'3325017'|'Skin Probe'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403001'|'Alanine Transaminase'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403003'|'Alcohol-Blood'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403005'|'Alcohol-Breath'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403007'|'Alkaline Phosphatase'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403009'|'Amylase'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403013'|'Aspartate Transaminase'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403015'|'B-Type Natriuretic Peptide (BNP)'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403017'|'Base Excess'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403019'|'Bilirubin-Direct'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403021'|'Bilirubin-Total'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403023'|'BUN'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403025'|'Calcium-Ionized'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403027'|'Calcium-Serum'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403029'|'Carbon Dioxide-Partial Pressure'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403033'|'Chloride'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403035'|'Creatine Kinase'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403037'|'Creatine Kinase-MB'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403039'|'Creatinine'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403041'|'Gamma Glutamyl Transpeptidase'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403043'|'Glucose'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403045'|'Hematocrit'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403047'|'Hemoglobin'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403049'|'Human Chorionic Gonadotropin-Serum'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403051'|'Human Chorionic Gonadotropin-Urine'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403053'|'International Normalized Ratio (INR)'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403055'|'Lactate Dehydrogenase'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403057'|'Lactate-Arterial'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403059'|'Lactate-Venous'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403061'|'Lipase'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403063'|'Magnesium'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403065'|'Oxygen-Partial Pressure'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403067'|'Partial Thromboplastin Time'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403071'|'pH-ABG'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403073'|'pH-Venous'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403075'|'Platelets'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403077'|'Potassium'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403079'|'Prothrombin Time'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403081'|'Red Blood Cells'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403083'|'Sodium'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403085'|'Troponin'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403087'|'White Blood Cells'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403089'|'Ammonia'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403091'|'Bicarbonate (HCO3)'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403093'|'Carboxyhemoglobin'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403095'|'CO2, Total (Bicarbonate)'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403097'|'CRP (C-Reactive Protein)'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403099'|'Dilantin'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403101'|'Leukocytes'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403103'|'Nitrates'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403105'|'Phenobarbital'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403107'|'Protein'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403109'|'Salicylate'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403111'|'Specific Gravity'|
+'MedDeviceDataSet'|'eMedDevice.37'|'Laboratory Result Type'|'3403113'|'Tylenol'|
+'MedDeviceDataSet'|'eMedDevice.39'|'Imaging Study Type'|'3405001'|'CAT Scan'|
+'MedDeviceDataSet'|'eMedDevice.39'|'Imaging Study Type'|'3405003'|'Magnetic Resonance Imaging (MRI)'|
+'MedDeviceDataSet'|'eMedDevice.39'|'Imaging Study Type'|'3405005'|'Other'|
+'MedDeviceDataSet'|'eMedDevice.39'|'Imaging Study Type'|'3405007'|'PET Scan'|
+'MedDeviceDataSet'|'eMedDevice.39'|'Imaging Study Type'|'3405009'|'Ultrasound'|
+'MedDeviceDataSet'|'eMedDevice.39'|'Imaging Study Type'|'3405011'|'X-ray'|
+'MedDeviceDataSet'|'eMedDevice.39'|'Imaging Study Type'|'3405013'|'Angiography'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103001'|'12-Lead ECG'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103003'|'Analysis (Button Pressed)'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103005'|'CO2'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103007'|'Date Transmitted'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103009'|'Defibrillation'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103011'|'ECG-Monitor'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103013'|'Heart Rate'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103015'|'Invasive Pressure 1'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103017'|'Invasive Pressure 2'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103019'|'No Shock Advised'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103021'|'Non-Invasive BP'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103023'|'Other'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103025'|'Pacing Electrical Capture'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103027'|'Pacing Started'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103029'|'Pacing Stopped'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103031'|'Patient Connected'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103033'|'Power On'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103035'|'Pulse Oximetry'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103037'|'Pulse Rate'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103039'|'Respiratory Rate'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103041'|'Shock Advised'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103043'|'Sync Off'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103045'|'Sync On'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103047'|'Temperature 1'|
+'MedDeviceDataSet'|'eMedDevice.45'|'Medical Device Event Type'|'4103049'|'Temperature 2'|
+'MedDeviceDataSet'|'eMedDevice.48'|'Medical Device Mode (Manual, AED, Pacing, CO2, O2, etc)'|'4106001'|'Advisory'|
+'MedDeviceDataSet'|'eMedDevice.48'|'Medical Device Mode (Manual, AED, Pacing, CO2, O2, etc)'|'4106003'|'Automated'|
+'MedDeviceDataSet'|'eMedDevice.48'|'Medical Device Mode (Manual, AED, Pacing, CO2, O2, etc)'|'4106005'|'Demand'|
+'MedDeviceDataSet'|'eMedDevice.48'|'Medical Device Mode (Manual, AED, Pacing, CO2, O2, etc)'|'4106007'|'Manual'|
+'MedDeviceDataSet'|'eMedDevice.48'|'Medical Device Mode (Manual, AED, Pacing, CO2, O2, etc)'|'4106009'|'Mid-Stream'|
+'MedDeviceDataSet'|'eMedDevice.48'|'Medical Device Mode (Manual, AED, Pacing, CO2, O2, etc)'|'4106011'|'Sensing'|
+'MedDeviceDataSet'|'eMedDevice.48'|'Medical Device Mode (Manual, AED, Pacing, CO2, O2, etc)'|'4106013'|'Side-Stream'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107001'|'I'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107003'|'II'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107005'|'III'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107007'|'AVR'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107009'|'AVL'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107011'|'AVF'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107013'|'Paddle'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107015'|'Pads'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107017'|'V1'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107019'|'V2'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107021'|'V3'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107023'|'V3r'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107025'|'V4'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107027'|'V4r'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107029'|'V5'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107031'|'V5r'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107033'|'V6'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107035'|'V6r'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107037'|'V7'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107039'|'V8'|
+'MedDeviceDataSet'|'eMedDevice.49'|'Medical Device ECG Lead'|'4107041'|'V9'|
+'MedDeviceDataSet'|'eMedDevice.51'|'Type of Shock'|'4109001'|'Biphasic'|
+'MedDeviceDataSet'|'eMedDevice.51'|'Type of Shock'|'4109003'|'Monophasic'|

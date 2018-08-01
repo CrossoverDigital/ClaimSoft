@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<v2v3ValueMappingNullNot xmlns="http://www.nemsis.org">
+	<match>
+		<v2Pattern>-10</v2Pattern>
+		<v3Replacement>7701003</v3Replacement>
+		<v3NotValueMemberTypes>NV</v3NotValueMemberTypes>
+	</match>
+	<match>
+		<v2Pattern>-10</v2Pattern>
+		<v3Replacement>7701003</v3Replacement>
+		<v3NotValueMemberTypes>NV.NotApplicable NV.NotRecorded</v3NotValueMemberTypes>
+	</match>
+	<match>
+		<v2Pattern>-10</v2Pattern>
+		<v3Replacement>7701003</v3Replacement>
+		<v3NotValueMemberTypes>NV.NotApplicable NV.NotRecorded NV.NotReporting</v3NotValueMemberTypes>
+	</match>
+	<match>
+		<v2Pattern>-15</v2Pattern>
+		<v3Replacement>7701003</v3Replacement>
+		<v3NotValueMemberTypes>NV.NotApplicable NV.NotRecorded</v3NotValueMemberTypes>
+	</match>
+	<match>
+		<v2Pattern>-15</v2Pattern>
+		<v3Replacement>7701005</v3Replacement>
+		<v3NotValueMemberTypes>NV</v3NotValueMemberTypes>
+	</match>
+	<match>
+		<v2Pattern>-15</v2Pattern>
+		<v3Replacement>7701005</v3Replacement>
+		<v3NotValueMemberTypes>NV.NotApplicable NV.NotRecorded NV.NotReporting</v3NotValueMemberTypes>
+	</match>
+	<match>
+		<v2Pattern>-20</v2Pattern>
+		<v3Replacement>7701003</v3Replacement>
+		<v3NotValueMemberTypes>NV</v3NotValueMemberTypes>
+	</match>
+	<match>
+		<v2Pattern>-20</v2Pattern>
+		<v3Replacement>7701003</v3Replacement>
+		<v3NotValueMemberTypes>NV.NotApplicable NV.NotRecorded</v3NotValueMemberTypes>
+	</match>
+	<match>
+		<v2Pattern>-20</v2Pattern>
+		<v3Replacement>7701003</v3Replacement>
+		<v3NotValueMemberTypes>NV.NotApplicable NV.NotRecorded NV.NotReporting</v3NotValueMemberTypes>
+	</match>
+	<match>
+		<v2Pattern>-25</v2Pattern>
+		<v3Replacement>7701001</v3Replacement>
+		<v3NotValueMemberTypes>NV</v3NotValueMemberTypes>
+	</match>
+	<match>
+		<v2Pattern>-25</v2Pattern>
+		<v3Replacement>7701001</v3Replacement>
+		<v3NotValueMemberTypes>NV.NotApplicable NV.NotRecorded</v3NotValueMemberTypes>
+	</match>
+	<match>
+		<v2Pattern>-25</v2Pattern>
+		<v3Replacement>7701001</v3Replacement>
+		<v3NotValueMemberTypes>NV.NotApplicable NV.NotRecorded NV.NotReporting</v3NotValueMemberTypes>
+	</match>
+	<match>
+		<v2Pattern>-5</v2Pattern>
+		<v3Replacement>7701003</v3Replacement>
+		<v3NotValueMemberTypes>NV</v3NotValueMemberTypes>
+	</match>
+	<match>
+		<v2Pattern>-5</v2Pattern>
+		<v3Replacement>7701003</v3Replacement>
+		<v3NotValueMemberTypes>NV.NotApplicable NV.NotRecorded</v3NotValueMemberTypes>
+	</match>
+	<match>
+		<v2Pattern>-5</v2Pattern>
+		<v3Replacement>7701003</v3Replacement>
+		<v3NotValueMemberTypes>NV.NotApplicable NV.NotRecorded NV.NotReporting</v3NotValueMemberTypes>
+	</match>
+</v2v3ValueMappingNullNot>

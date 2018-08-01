@@ -9,7 +9,7 @@
 // The following connection settings were used to generate this file:
 //     Configuration file:     "CD.ClaimSoft.Database\App.config"
 //     Connection String Name: "ClaimSoftContext"
-//     Connection String:      "data source=.;initial catalog=cdTestDB;user id=cdServiceAccount;password=**zapped**;;MultipleActiveResultSets=True;App=EntityFramework"
+//     Connection String:      "data source=.;initial catalog=cdTestDB;user id=cdServiceAccount;password=**zapped**;;MultipleActiveResultSets=True;App=Framework"
 // ------------------------------------------------------------------------------------------------
 // Database Edition       : Enterprise Edition (64-bit)
 // Database Engine Edition: Enterprise
@@ -30,34 +30,124 @@
 
 namespace CD.ClaimSoft.Database
 {
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using System.Linq;
 
     #region Unit of work
 
     public partial interface IClaimSoftContext : System.IDisposable
     {
-        System.Data.Entity.DbSet<AddressType> AddressTypes { get; set; } // AddressType
-        System.Data.Entity.DbSet<Agency> Agencies { get; set; } // Agency
-        System.Data.Entity.DbSet<AgencyAddress> AgencyAddresses { get; set; } // AgencyAddress
-        System.Data.Entity.DbSet<AgencyAttachment> AgencyAttachments { get; set; } // AgencyAttachments
-        System.Data.Entity.DbSet<AgencyEmail> AgencyEmails { get; set; } // AgencyEmail
-        System.Data.Entity.DbSet<AgencyNote> AgencyNotes { get; set; } // AgencyNotes
-        System.Data.Entity.DbSet<AgencyNumber> AgencyNumbers { get; set; } // AgencyNumber
-        System.Data.Entity.DbSet<AgencyPhone> AgencyPhones { get; set; } // AgencyPhone
-        System.Data.Entity.DbSet<AgencyUser> AgencyUsers { get; set; } // AgencyUser
-        System.Data.Entity.DbSet<ApplicationLog> ApplicationLogs { get; set; } // ApplicationLog
-        System.Data.Entity.DbSet<ApplicationSetting> ApplicationSettings { get; set; } // ApplicationSettings
-        System.Data.Entity.DbSet<AspNetRole> AspNetRoles { get; set; } // AspNetRoles
-        System.Data.Entity.DbSet<AspNetUser> AspNetUsers { get; set; } // AspNetUsers
-        System.Data.Entity.DbSet<AspNetUserClaim> AspNetUserClaims { get; set; } // AspNetUserClaims
-        System.Data.Entity.DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } // AspNetUserLogins
-        System.Data.Entity.DbSet<AspNetUserRole> AspNetUserRoles { get; set; } // AspNetUserRoles
-        System.Data.Entity.DbSet<Country> Countries { get; set; } // Country
-        System.Data.Entity.DbSet<County> Counties { get; set; } // County
-        System.Data.Entity.DbSet<EmailType> EmailTypes { get; set; } // EmailType
-        System.Data.Entity.DbSet<PhoneType> PhoneTypes { get; set; } // PhoneType
-        System.Data.Entity.DbSet<SettingType> SettingTypes { get; set; } // SettingType
-        System.Data.Entity.DbSet<State> States { get; set; } // State
-        System.Data.Entity.DbSet<UnitRoundingType> UnitRoundingTypes { get; set; } // UnitRoundingType
+        System.Data.Entity.DbSet<AddressTypeEntity> AddressTypes { get; set; } // AddressType
+        System.Data.Entity.DbSet<AgencyEntity> Agencies { get; set; } // Agency
+        System.Data.Entity.DbSet<AgencyAddressEntity> AgencyAddresses { get; set; } // AgencyAddress
+        System.Data.Entity.DbSet<AgencyAttachmentEntity> AgencyAttachments { get; set; } // AgencyAttachments
+        System.Data.Entity.DbSet<AgencyBillingStatuEntity> AgencyBillingStatus { get; set; } // AgencyBillingStatus
+        System.Data.Entity.DbSet<AgencyCallSignEntity> AgencyCallSigns { get; set; } // AgencyCallSign
+        System.Data.Entity.DbSet<AgencyCertificationLicensureLevelEntity> AgencyCertificationLicensureLevels { get; set; } // AgencyCertificationLicensureLevels
+        System.Data.Entity.DbSet<AgencyContactEntity> AgencyContacts { get; set; } // AgencyContact
+        System.Data.Entity.DbSet<AgencyCountyEntity> AgencyCounties { get; set; } // AgencyCounty
+        System.Data.Entity.DbSet<AgencyEmdVendorEntity> AgencyEmdVendors { get; set; } // AgencyEMDVendor
+        System.Data.Entity.DbSet<AgencyFileEntity> AgencyFiles { get; set; } // AgencyFiles
+        System.Data.Entity.DbSet<AgencyHospitalEntity> AgencyHospitals { get; set; } // AgencyHospital
+        System.Data.Entity.DbSet<AgencyInsuranceCompanyEntity> AgencyInsuranceCompanies { get; set; } // AgencyInsuranceCompany
+        System.Data.Entity.DbSet<AgencyMedicalDeviceEntity> AgencyMedicalDevices { get; set; } // AgencyMedicalDevice
+        System.Data.Entity.DbSet<AgencyMedicalDirectorEntity> AgencyMedicalDirectors { get; set; } // AgencyMedicalDirector
+        System.Data.Entity.DbSet<AgencyMedicationsGivenEntity> AgencyMedicationsGivens { get; set; } // AgencyMedicationsGiven
+        System.Data.Entity.DbSet<AgencyNoteEntity> AgencyNotes { get; set; } // AgencyNotes
+        System.Data.Entity.DbSet<AgencyOtherDestinationEntity> AgencyOtherDestinations { get; set; } // AgencyOtherDestinations
+        System.Data.Entity.DbSet<AgencyOtherInformationEntity> AgencyOtherInformations { get; set; } // AgencyOtherInformation
+        System.Data.Entity.DbSet<AgencyOtherTypesServiceEntity> AgencyOtherTypesServices { get; set; } // AgencyOtherTypesService
+        System.Data.Entity.DbSet<AgencyPersonnelEntity> AgencyPersonnels { get; set; } // AgencyPersonnel
+        System.Data.Entity.DbSet<AgencyPersonnelCertificationLevelEntity> AgencyPersonnelCertificationLevels { get; set; } // AgencyPersonnelCertificationLevel
+        System.Data.Entity.DbSet<AgencyPersonnelGeneralEntity> AgencyPersonnelGenerals { get; set; } // AgencyPersonnelGeneral
+        System.Data.Entity.DbSet<AgencyProcedureEntity> AgencyProcedures { get; set; } // AgencyProcedures
+        System.Data.Entity.DbSet<AgencyProtocolEntity> AgencyProtocols { get; set; } // AgencyProtocol
+        System.Data.Entity.DbSet<AgencyStateEntity> AgencyStates { get; set; } // AgencyState
+        System.Data.Entity.DbSet<AgencyStationEntity> AgencyStations { get; set; } // AgencyStation
+        System.Data.Entity.DbSet<AgencyStatisticEntity> AgencyStatistics { get; set; } // AgencyStatistics
+        System.Data.Entity.DbSet<AgencyUserEntity> AgencyUsers { get; set; } // AgencyUser
+        System.Data.Entity.DbSet<AgencyVehicleEntity> AgencyVehicles { get; set; } // AgencyVehicle
+        System.Data.Entity.DbSet<AgencyVehicleCertificationEntity> AgencyVehicleCertifications { get; set; } // AgencyVehicleCertification
+        System.Data.Entity.DbSet<AgencyVehicleMilesHoursLogEntity> AgencyVehicleMilesHoursLogs { get; set; } // AgencyVehicleMilesHoursLog
+        System.Data.Entity.DbSet<AgencyZoneEntity> AgencyZones { get; set; } // AgencyZones
+        System.Data.Entity.DbSet<ApplicationLogEntity> ApplicationLogs { get; set; } // ApplicationLog
+        System.Data.Entity.DbSet<ApplicationSettingEntity> ApplicationSettings { get; set; } // ApplicationSettings
+        System.Data.Entity.DbSet<CountryEntity> Countries { get; set; } // Country
+        System.Data.Entity.DbSet<CountyEntity> Counties { get; set; } // County
+        System.Data.Entity.DbSet<ElementToVariableEntity> ElementToVariables { get; set; } // Element_to_Variables
+        System.Data.Entity.DbSet<EmailTypeEntity> EmailTypes { get; set; } // EmailType
+        System.Data.Entity.DbSet<FileImportEntity> FileImports { get; set; } // FileImport
+        System.Data.Entity.DbSet<FileImportRecordEntity> FileImportRecords { get; set; } // FileImportRecords
+        System.Data.Entity.DbSet<FileTypeEntity> FileTypes { get; set; } // FileType
+        System.Data.Entity.DbSet<PatientCareReportEntity> PatientCareReports { get; set; } // PatientCareReport
+        System.Data.Entity.DbSet<PcrAssessmentExamEntity> PcrAssessmentExams { get; set; } // PCRAssessmentExam
+        System.Data.Entity.DbSet<PcrAssessmentExamsDifferentEntity> PcrAssessmentExamsDifferents { get; set; } // PCRAssessmentExamsDifferent
+        System.Data.Entity.DbSet<PcrAssessmentInjuryEntity> PcrAssessmentInjuries { get; set; } // PCRAssessmentInjury
+        System.Data.Entity.DbSet<PcrBillingEntity> PcrBillings { get; set; } // PCRBilling
+        System.Data.Entity.DbSet<PcrBillingConditionCodeEntity> PcrBillingConditionCodes { get; set; } // PCRBillingConditionCodes
+        System.Data.Entity.DbSet<PcrBillingConditionCodesModifierEntity> PcrBillingConditionCodesModifiers { get; set; } // PCRBillingConditionCodesModifier
+        System.Data.Entity.DbSet<PcrBillingInsuranceEntity> PcrBillingInsurances { get; set; } // PCRBillingInsurance
+        System.Data.Entity.DbSet<PcrcprEntity> Pcrcprs { get; set; } // PCRCPR
+        System.Data.Entity.DbSet<PcrcprCardiacRhythmDeliveryEntity> PcrcprCardiacRhythmDeliveries { get; set; } // PCRCPRCardiacRhythmDelivery
+        System.Data.Entity.DbSet<PcrcprIndicationAttemptResuscitateEntity> PcrcprIndicationAttemptResuscitates { get; set; } // PCRCPRIndicationAttemptResuscitate
+        System.Data.Entity.DbSet<PcrDispositionEntity> PcrDispositions { get; set; } // PCRDisposition
+        System.Data.Entity.DbSet<PcrHeaderEntity> PcrHeaders { get; set; } // PCRHeader
+        System.Data.Entity.DbSet<PcrInterventionEntity> PcrInterventions { get; set; } // PCRIntervention
+        System.Data.Entity.DbSet<PcrInterventionMedicationEntity> PcrInterventionMedications { get; set; } // PCRInterventionMedications
+        System.Data.Entity.DbSet<PcrInterventionMedicationComplicationEntity> PcrInterventionMedicationComplications { get; set; } // PCRInterventionMedicationComplications
+        System.Data.Entity.DbSet<PcrInterventionProceduresPerformedEntity> PcrInterventionProceduresPerformeds { get; set; } // PCRInterventionProceduresPerformed
+        System.Data.Entity.DbSet<PcrInterventionProceduresPerformedComplicationEntity> PcrInterventionProceduresPerformedComplications { get; set; } // PCRInterventionProceduresPerformedComplications
+        System.Data.Entity.DbSet<PcrInterventionProceduresPerformedSuccessfulIvSiteEntity> PcrInterventionProceduresPerformedSuccessfulIvSites { get; set; } // PCRInterventionProceduresPerformedSuccessfulIVSite
+        System.Data.Entity.DbSet<PcrInterventionProceduresPerformedTubeConfirmationEntity> PcrInterventionProceduresPerformedTubeConfirmations { get; set; } // PCRInterventionProceduresPerformedTubeConfirmation
+        System.Data.Entity.DbSet<PcrInterventionProceduresPerformedTubePlacementEntity> PcrInterventionProceduresPerformedTubePlacements { get; set; } // PCRInterventionProceduresPerformedTubePlacement
+        System.Data.Entity.DbSet<PcrMedicalDeviceDataEntity> PcrMedicalDeviceDatas { get; set; } // PCRMedicalDeviceData
+        System.Data.Entity.DbSet<PcrMedicalHistoryEntity> PcrMedicalHistories { get; set; } // PCRMedicalHistory
+        System.Data.Entity.DbSet<PcrMedicalHistoryAlcoholDrugIndicatorEntity> PcrMedicalHistoryAlcoholDrugIndicators { get; set; } // PCRMedicalHistoryAlcoholDrugIndicators
+        System.Data.Entity.DbSet<PcrMedicalHistoryAllergyEntity> PcrMedicalHistoryAllergies { get; set; } // PCRMedicalHistoryAllergies
+        System.Data.Entity.DbSet<PcrMedicalHistoryCurrentMedicationEntity> PcrMedicalHistoryCurrentMedications { get; set; } // PCRMedicalHistoryCurrentMedication
+        System.Data.Entity.DbSet<PcrMedicalHistoryImmunizationDetailEntity> PcrMedicalHistoryImmunizationDetails { get; set; } // PCRMedicalHistoryImmunizationDetails
+        System.Data.Entity.DbSet<PcrMedicalHistoryLivingWillEntity> PcrMedicalHistoryLivingWills { get; set; } // PCRMedicalHistoryLivingWill
+        System.Data.Entity.DbSet<PcrMedicalHistoryMedicationAllergyEntity> PcrMedicalHistoryMedicationAllergies { get; set; } // PCRMedicalHistoryMedicationAllergies
+        System.Data.Entity.DbSet<PcrMedicalHistoryPatientBarrierEntity> PcrMedicalHistoryPatientBarriers { get; set; } // PCRMedicalHistoryPatientBarriers
+        System.Data.Entity.DbSet<PcrMedicalHistoryPreexistingMedicalSurgeryEntity> PcrMedicalHistoryPreexistingMedicalSurgeries { get; set; } // PCRMedicalHistoryPreexistingMedicalSurgery
+        System.Data.Entity.DbSet<PcrMiscellaneouEntity> PcrMiscellaneous { get; set; } // PCRMiscellaneous
+        System.Data.Entity.DbSet<PcrMiscellaneousLocalAgencyResearchFieldEntity> PcrMiscellaneousLocalAgencyResearchFields { get; set; } // PCRMiscellaneousLocalAgencyResearchField
+        System.Data.Entity.DbSet<PcrMiscellaneousPatientIndicationCriteriaRegistryEntity> PcrMiscellaneousPatientIndicationCriteriaRegistries { get; set; } // PCRMiscellaneousPatientIndicationCriteriaRegistry
+        System.Data.Entity.DbSet<PcrMiscellaneousPersonnelExposedFluidEntity> PcrMiscellaneousPersonnelExposedFluids { get; set; } // PCRMiscellaneousPersonnelExposedFluids
+        System.Data.Entity.DbSet<PcrMiscellaneousProtectiveEquipmentUsedEntity> PcrMiscellaneousProtectiveEquipmentUseds { get; set; } // PCRMiscellaneousProtectiveEquipmentUsed
+        System.Data.Entity.DbSet<PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorismEntity> PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorism { get; set; } // PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism
+        System.Data.Entity.DbSet<PcrMiscellaneousTypeExposureBodilyFluidEntity> PcrMiscellaneousTypeExposureBodilyFluids { get; set; } // PCRMiscellaneousTypeExposureBodilyFluids
+        System.Data.Entity.DbSet<PcrNarrativeEntity> PcrNarratives { get; set; } // PCRNarrative
+        System.Data.Entity.DbSet<PcrOutcomeLinkageEntity> PcrOutcomeLinkages { get; set; } // PCROutcomeLinkage
+        System.Data.Entity.DbSet<PcrPatientEntity> PcrPatients { get; set; } // PCRPatient
+        System.Data.Entity.DbSet<PcrSceneEntity> PcrScenes { get; set; } // PCRScene
+        System.Data.Entity.DbSet<PcrSceneOtherEmsAgencyEntity> PcrSceneOtherEmsAgencies { get; set; } // PCRSceneOtherEMSAgencies
+        System.Data.Entity.DbSet<PcrSceneOtherServiceEntity> PcrSceneOtherServices { get; set; } // PCRSceneOtherServices
+        System.Data.Entity.DbSet<PcrSituationEntity> PcrSituations { get; set; } // PCRSituation
+        System.Data.Entity.DbSet<PcrSituationOtherSymptomEntity> PcrSituationOtherSymptoms { get; set; } // PCRSituationOtherSymptoms
+        System.Data.Entity.DbSet<PcrSituationPriorAidEntity> PcrSituationPriorAids { get; set; } // PCRSituationPriorAid
+        System.Data.Entity.DbSet<PcrSituationPriorAidPerformedByEntity> PcrSituationPriorAidPerformedBies { get; set; } // PCRSituationPriorAidPerformedBy
+        System.Data.Entity.DbSet<PcrTimeEntity> PcrTimes { get; set; } // PCRTimes
+        System.Data.Entity.DbSet<PcrTraumaEntity> PcrTraumas { get; set; } // PCRTrauma
+        System.Data.Entity.DbSet<PcrTraumaAirbagDeploymentEntity> PcrTraumaAirbagDeployments { get; set; } // PCRTraumaAirbagDeployment
+        System.Data.Entity.DbSet<PcrTraumaInjuryMechanismEntity> PcrTraumaInjuryMechanism { get; set; } // PCRTraumaInjuryMechanism
+        System.Data.Entity.DbSet<PcrTraumaOccupantSafetyEquipmentEntity> PcrTraumaOccupantSafetyEquipments { get; set; } // PCRTraumaOccupantSafetyEquipment
+        System.Data.Entity.DbSet<PcrTraumaRiskFactorPredictorEntity> PcrTraumaRiskFactorPredictors { get; set; } // PCRTraumaRiskFactorPredictors
+        System.Data.Entity.DbSet<PcrTraumaVehicleImpactLocationEntity> PcrTraumaVehicleImpactLocations { get; set; } // PCRTraumaVehicleImpactLocation
+        System.Data.Entity.DbSet<PcrUnitAgencyEntity> PcrUnitAgencies { get; set; } // PCRUnitAgency
+        System.Data.Entity.DbSet<PcrUnitAgencyDispatchDelayEntity> PcrUnitAgencyDispatchDelays { get; set; } // PCRUnitAgencyDispatchDelays
+        System.Data.Entity.DbSet<PcrUnitAgencyResponseDelayEntity> PcrUnitAgencyResponseDelays { get; set; } // PCRUnitAgencyResponseDelays
+        System.Data.Entity.DbSet<PcrUnitAgencySceneDelayEntity> PcrUnitAgencySceneDelays { get; set; } // PCRUnitAgencySceneDelays
+        System.Data.Entity.DbSet<PcrUnitAgencyTransportDelayEntity> PcrUnitAgencyTransportDelays { get; set; } // PCRUnitAgencyTransportDelays
+        System.Data.Entity.DbSet<PcrUnitAgencyTurnAroundDelayEntity> PcrUnitAgencyTurnAroundDelays { get; set; } // PCRUnitAgencyTurnAroundDelays
+        System.Data.Entity.DbSet<PcrUnitCallEntity> PcrUnitCalls { get; set; } // PCRUnitCall
+        System.Data.Entity.DbSet<PcrUnitPersonnelEntity> PcrUnitPersonnels { get; set; } // PCRUnitPersonnel
+        System.Data.Entity.DbSet<PcrVitalSignsAssessmentEntity> PcrVitalSignsAssessments { get; set; } // PCRVitalSignsAssessment
+        System.Data.Entity.DbSet<PcrVitalSignsAssessmentInitialCardiacRhythmEntity> PcrVitalSignsAssessmentInitialCardiacRhythms { get; set; } // PCRVitalSignsAssessmentInitialCardiacRhythm
+        System.Data.Entity.DbSet<PhoneTypeEntity> PhoneTypes { get; set; } // PhoneType
+        System.Data.Entity.DbSet<SettingTypeEntity> SettingTypes { get; set; } // SettingType
+        System.Data.Entity.DbSet<StateEntity> States { get; set; } // State
+        System.Data.Entity.DbSet<UnitRoundingTypeEntity> UnitRoundingTypes { get; set; } // UnitRoundingType
 
         int SaveChanges();
         System.Threading.Tasks.Task<int> SaveChangesAsync();
@@ -71,6 +161,81 @@ namespace CD.ClaimSoft.Database
         System.Data.Entity.DbSet Set(System.Type entityType);
         System.Data.Entity.DbSet<TEntity> Set<TEntity>() where TEntity : class;
         string ToString();
+
+        // Stored Procedures
+        int ProcessNemsisFile(string fileName, string streamId, string userId, int? agencyId);
+        // ProcessNemsisFileAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePatientCareReport(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePatientCareReportAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrBilling(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrBillingAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrcpr(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrcprAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrDisposition(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrDispositionAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrHeader(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrHeaderAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrIntervention(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrInterventionAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrInterventionMedications(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrInterventionMedicationsAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrInterventionProceduresPerformed(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrInterventionProceduresPerformedAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrMedicalDeviceData(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrMedicalDeviceDataAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrMedicalHistory(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrMedicalHistoryAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrMiscellaneous(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrMiscellaneousAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrNarrative(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrNarrativeAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrOutcomeLinkage(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrOutcomeLinkageAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrPatient(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrPatientAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrScene(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrSceneAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrSituation(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrSituationAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrTimes(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrTimesAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrTrauma(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrTraumaAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrUnitAgency(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrUnitAgencyAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrUnitCall(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrUnitCallAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrUnitPersonnel(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrUnitPersonnelAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        int ProcessNemsisFilePcrVitalSignsAssessment(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate);
+        // ProcessNemsisFilePcrVitalSignsAssessmentAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
+
+        System.Collections.Generic.List<UspGetErrorInfoReturnModel> UspGetErrorInfo();
+        System.Collections.Generic.List<UspGetErrorInfoReturnModel> UspGetErrorInfo(out int procResult);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<UspGetErrorInfoReturnModel>> UspGetErrorInfoAsync();
+
     }
 
     #endregion
@@ -78,31 +243,119 @@ namespace CD.ClaimSoft.Database
     #region Database context
 
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class ClaimSoftContext : System.Data.Entity.DbContext, IClaimSoftContext
+    public partial class ClaimSoftContext : IdentityDbContext<CD.ClaimSoft.Database.Identity.ApplicationUser>, IClaimSoftContext
     {
-        public System.Data.Entity.DbSet<AddressType> AddressTypes { get; set; } // AddressType
-        public System.Data.Entity.DbSet<Agency> Agencies { get; set; } // Agency
-        public System.Data.Entity.DbSet<AgencyAddress> AgencyAddresses { get; set; } // AgencyAddress
-        public System.Data.Entity.DbSet<AgencyAttachment> AgencyAttachments { get; set; } // AgencyAttachments
-        public System.Data.Entity.DbSet<AgencyEmail> AgencyEmails { get; set; } // AgencyEmail
-        public System.Data.Entity.DbSet<AgencyNote> AgencyNotes { get; set; } // AgencyNotes
-        public System.Data.Entity.DbSet<AgencyNumber> AgencyNumbers { get; set; } // AgencyNumber
-        public System.Data.Entity.DbSet<AgencyPhone> AgencyPhones { get; set; } // AgencyPhone
-        public System.Data.Entity.DbSet<AgencyUser> AgencyUsers { get; set; } // AgencyUser
-        public System.Data.Entity.DbSet<ApplicationLog> ApplicationLogs { get; set; } // ApplicationLog
-        public System.Data.Entity.DbSet<ApplicationSetting> ApplicationSettings { get; set; } // ApplicationSettings
-        public System.Data.Entity.DbSet<AspNetRole> AspNetRoles { get; set; } // AspNetRoles
-        public System.Data.Entity.DbSet<AspNetUser> AspNetUsers { get; set; } // AspNetUsers
-        public System.Data.Entity.DbSet<AspNetUserClaim> AspNetUserClaims { get; set; } // AspNetUserClaims
-        public System.Data.Entity.DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } // AspNetUserLogins
-        public System.Data.Entity.DbSet<AspNetUserRole> AspNetUserRoles { get; set; } // AspNetUserRoles
-        public System.Data.Entity.DbSet<Country> Countries { get; set; } // Country
-        public System.Data.Entity.DbSet<County> Counties { get; set; } // County
-        public System.Data.Entity.DbSet<EmailType> EmailTypes { get; set; } // EmailType
-        public System.Data.Entity.DbSet<PhoneType> PhoneTypes { get; set; } // PhoneType
-        public System.Data.Entity.DbSet<SettingType> SettingTypes { get; set; } // SettingType
-        public System.Data.Entity.DbSet<State> States { get; set; } // State
-        public System.Data.Entity.DbSet<UnitRoundingType> UnitRoundingTypes { get; set; } // UnitRoundingType
+        public System.Data.Entity.DbSet<AddressTypeEntity> AddressTypes { get; set; } // AddressType
+        public System.Data.Entity.DbSet<AgencyEntity> Agencies { get; set; } // Agency
+        public System.Data.Entity.DbSet<AgencyAddressEntity> AgencyAddresses { get; set; } // AgencyAddress
+        public System.Data.Entity.DbSet<AgencyAttachmentEntity> AgencyAttachments { get; set; } // AgencyAttachments
+        public System.Data.Entity.DbSet<AgencyBillingStatuEntity> AgencyBillingStatus { get; set; } // AgencyBillingStatus
+        public System.Data.Entity.DbSet<AgencyCallSignEntity> AgencyCallSigns { get; set; } // AgencyCallSign
+        public System.Data.Entity.DbSet<AgencyCertificationLicensureLevelEntity> AgencyCertificationLicensureLevels { get; set; } // AgencyCertificationLicensureLevels
+        public System.Data.Entity.DbSet<AgencyContactEntity> AgencyContacts { get; set; } // AgencyContact
+        public System.Data.Entity.DbSet<AgencyCountyEntity> AgencyCounties { get; set; } // AgencyCounty
+        public System.Data.Entity.DbSet<AgencyEmdVendorEntity> AgencyEmdVendors { get; set; } // AgencyEMDVendor
+        public System.Data.Entity.DbSet<AgencyFileEntity> AgencyFiles { get; set; } // AgencyFiles
+        public System.Data.Entity.DbSet<AgencyHospitalEntity> AgencyHospitals { get; set; } // AgencyHospital
+        public System.Data.Entity.DbSet<AgencyInsuranceCompanyEntity> AgencyInsuranceCompanies { get; set; } // AgencyInsuranceCompany
+        public System.Data.Entity.DbSet<AgencyMedicalDeviceEntity> AgencyMedicalDevices { get; set; } // AgencyMedicalDevice
+        public System.Data.Entity.DbSet<AgencyMedicalDirectorEntity> AgencyMedicalDirectors { get; set; } // AgencyMedicalDirector
+        public System.Data.Entity.DbSet<AgencyMedicationsGivenEntity> AgencyMedicationsGivens { get; set; } // AgencyMedicationsGiven
+        public System.Data.Entity.DbSet<AgencyNoteEntity> AgencyNotes { get; set; } // AgencyNotes
+        public System.Data.Entity.DbSet<AgencyOtherDestinationEntity> AgencyOtherDestinations { get; set; } // AgencyOtherDestinations
+        public System.Data.Entity.DbSet<AgencyOtherInformationEntity> AgencyOtherInformations { get; set; } // AgencyOtherInformation
+        public System.Data.Entity.DbSet<AgencyOtherTypesServiceEntity> AgencyOtherTypesServices { get; set; } // AgencyOtherTypesService
+        public System.Data.Entity.DbSet<AgencyPersonnelEntity> AgencyPersonnels { get; set; } // AgencyPersonnel
+        public System.Data.Entity.DbSet<AgencyPersonnelCertificationLevelEntity> AgencyPersonnelCertificationLevels { get; set; } // AgencyPersonnelCertificationLevel
+        public System.Data.Entity.DbSet<AgencyPersonnelGeneralEntity> AgencyPersonnelGenerals { get; set; } // AgencyPersonnelGeneral
+        public System.Data.Entity.DbSet<AgencyProcedureEntity> AgencyProcedures { get; set; } // AgencyProcedures
+        public System.Data.Entity.DbSet<AgencyProtocolEntity> AgencyProtocols { get; set; } // AgencyProtocol
+        public System.Data.Entity.DbSet<AgencyStateEntity> AgencyStates { get; set; } // AgencyState
+        public System.Data.Entity.DbSet<AgencyStationEntity> AgencyStations { get; set; } // AgencyStation
+        public System.Data.Entity.DbSet<AgencyStatisticEntity> AgencyStatistics { get; set; } // AgencyStatistics
+        public System.Data.Entity.DbSet<AgencyUserEntity> AgencyUsers { get; set; } // AgencyUser
+        public System.Data.Entity.DbSet<AgencyVehicleEntity> AgencyVehicles { get; set; } // AgencyVehicle
+        public System.Data.Entity.DbSet<AgencyVehicleCertificationEntity> AgencyVehicleCertifications { get; set; } // AgencyVehicleCertification
+        public System.Data.Entity.DbSet<AgencyVehicleMilesHoursLogEntity> AgencyVehicleMilesHoursLogs { get; set; } // AgencyVehicleMilesHoursLog
+        public System.Data.Entity.DbSet<AgencyZoneEntity> AgencyZones { get; set; } // AgencyZones
+        public System.Data.Entity.DbSet<ApplicationLogEntity> ApplicationLogs { get; set; } // ApplicationLog
+        public System.Data.Entity.DbSet<ApplicationSettingEntity> ApplicationSettings { get; set; } // ApplicationSettings
+        public System.Data.Entity.DbSet<CountryEntity> Countries { get; set; } // Country
+        public System.Data.Entity.DbSet<CountyEntity> Counties { get; set; } // County
+        public System.Data.Entity.DbSet<ElementToVariableEntity> ElementToVariables { get; set; } // Element_to_Variables
+        public System.Data.Entity.DbSet<EmailTypeEntity> EmailTypes { get; set; } // EmailType
+        public System.Data.Entity.DbSet<FileImportEntity> FileImports { get; set; } // FileImport
+        public System.Data.Entity.DbSet<FileImportRecordEntity> FileImportRecords { get; set; } // FileImportRecords
+        public System.Data.Entity.DbSet<FileTypeEntity> FileTypes { get; set; } // FileType
+        public System.Data.Entity.DbSet<PatientCareReportEntity> PatientCareReports { get; set; } // PatientCareReport
+        public System.Data.Entity.DbSet<PcrAssessmentExamEntity> PcrAssessmentExams { get; set; } // PCRAssessmentExam
+        public System.Data.Entity.DbSet<PcrAssessmentExamsDifferentEntity> PcrAssessmentExamsDifferents { get; set; } // PCRAssessmentExamsDifferent
+        public System.Data.Entity.DbSet<PcrAssessmentInjuryEntity> PcrAssessmentInjuries { get; set; } // PCRAssessmentInjury
+        public System.Data.Entity.DbSet<PcrBillingEntity> PcrBillings { get; set; } // PCRBilling
+        public System.Data.Entity.DbSet<PcrBillingConditionCodeEntity> PcrBillingConditionCodes { get; set; } // PCRBillingConditionCodes
+        public System.Data.Entity.DbSet<PcrBillingConditionCodesModifierEntity> PcrBillingConditionCodesModifiers { get; set; } // PCRBillingConditionCodesModifier
+        public System.Data.Entity.DbSet<PcrBillingInsuranceEntity> PcrBillingInsurances { get; set; } // PCRBillingInsurance
+        public System.Data.Entity.DbSet<PcrcprEntity> Pcrcprs { get; set; } // PCRCPR
+        public System.Data.Entity.DbSet<PcrcprCardiacRhythmDeliveryEntity> PcrcprCardiacRhythmDeliveries { get; set; } // PCRCPRCardiacRhythmDelivery
+        public System.Data.Entity.DbSet<PcrcprIndicationAttemptResuscitateEntity> PcrcprIndicationAttemptResuscitates { get; set; } // PCRCPRIndicationAttemptResuscitate
+        public System.Data.Entity.DbSet<PcrDispositionEntity> PcrDispositions { get; set; } // PCRDisposition
+        public System.Data.Entity.DbSet<PcrHeaderEntity> PcrHeaders { get; set; } // PCRHeader
+        public System.Data.Entity.DbSet<PcrInterventionEntity> PcrInterventions { get; set; } // PCRIntervention
+        public System.Data.Entity.DbSet<PcrInterventionMedicationEntity> PcrInterventionMedications { get; set; } // PCRInterventionMedications
+        public System.Data.Entity.DbSet<PcrInterventionMedicationComplicationEntity> PcrInterventionMedicationComplications { get; set; } // PCRInterventionMedicationComplications
+        public System.Data.Entity.DbSet<PcrInterventionProceduresPerformedEntity> PcrInterventionProceduresPerformeds { get; set; } // PCRInterventionProceduresPerformed
+        public System.Data.Entity.DbSet<PcrInterventionProceduresPerformedComplicationEntity> PcrInterventionProceduresPerformedComplications { get; set; } // PCRInterventionProceduresPerformedComplications
+        public System.Data.Entity.DbSet<PcrInterventionProceduresPerformedSuccessfulIvSiteEntity> PcrInterventionProceduresPerformedSuccessfulIvSites { get; set; } // PCRInterventionProceduresPerformedSuccessfulIVSite
+        public System.Data.Entity.DbSet<PcrInterventionProceduresPerformedTubeConfirmationEntity> PcrInterventionProceduresPerformedTubeConfirmations { get; set; } // PCRInterventionProceduresPerformedTubeConfirmation
+        public System.Data.Entity.DbSet<PcrInterventionProceduresPerformedTubePlacementEntity> PcrInterventionProceduresPerformedTubePlacements { get; set; } // PCRInterventionProceduresPerformedTubePlacement
+        public System.Data.Entity.DbSet<PcrMedicalDeviceDataEntity> PcrMedicalDeviceDatas { get; set; } // PCRMedicalDeviceData
+        public System.Data.Entity.DbSet<PcrMedicalHistoryEntity> PcrMedicalHistories { get; set; } // PCRMedicalHistory
+        public System.Data.Entity.DbSet<PcrMedicalHistoryAlcoholDrugIndicatorEntity> PcrMedicalHistoryAlcoholDrugIndicators { get; set; } // PCRMedicalHistoryAlcoholDrugIndicators
+        public System.Data.Entity.DbSet<PcrMedicalHistoryAllergyEntity> PcrMedicalHistoryAllergies { get; set; } // PCRMedicalHistoryAllergies
+        public System.Data.Entity.DbSet<PcrMedicalHistoryCurrentMedicationEntity> PcrMedicalHistoryCurrentMedications { get; set; } // PCRMedicalHistoryCurrentMedication
+        public System.Data.Entity.DbSet<PcrMedicalHistoryImmunizationDetailEntity> PcrMedicalHistoryImmunizationDetails { get; set; } // PCRMedicalHistoryImmunizationDetails
+        public System.Data.Entity.DbSet<PcrMedicalHistoryLivingWillEntity> PcrMedicalHistoryLivingWills { get; set; } // PCRMedicalHistoryLivingWill
+        public System.Data.Entity.DbSet<PcrMedicalHistoryMedicationAllergyEntity> PcrMedicalHistoryMedicationAllergies { get; set; } // PCRMedicalHistoryMedicationAllergies
+        public System.Data.Entity.DbSet<PcrMedicalHistoryPatientBarrierEntity> PcrMedicalHistoryPatientBarriers { get; set; } // PCRMedicalHistoryPatientBarriers
+        public System.Data.Entity.DbSet<PcrMedicalHistoryPreexistingMedicalSurgeryEntity> PcrMedicalHistoryPreexistingMedicalSurgeries { get; set; } // PCRMedicalHistoryPreexistingMedicalSurgery
+        public System.Data.Entity.DbSet<PcrMiscellaneouEntity> PcrMiscellaneous { get; set; } // PCRMiscellaneous
+        public System.Data.Entity.DbSet<PcrMiscellaneousLocalAgencyResearchFieldEntity> PcrMiscellaneousLocalAgencyResearchFields { get; set; } // PCRMiscellaneousLocalAgencyResearchField
+        public System.Data.Entity.DbSet<PcrMiscellaneousPatientIndicationCriteriaRegistryEntity> PcrMiscellaneousPatientIndicationCriteriaRegistries { get; set; } // PCRMiscellaneousPatientIndicationCriteriaRegistry
+        public System.Data.Entity.DbSet<PcrMiscellaneousPersonnelExposedFluidEntity> PcrMiscellaneousPersonnelExposedFluids { get; set; } // PCRMiscellaneousPersonnelExposedFluids
+        public System.Data.Entity.DbSet<PcrMiscellaneousProtectiveEquipmentUsedEntity> PcrMiscellaneousProtectiveEquipmentUseds { get; set; } // PCRMiscellaneousProtectiveEquipmentUsed
+        public System.Data.Entity.DbSet<PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorismEntity> PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorism { get; set; } // PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism
+        public System.Data.Entity.DbSet<PcrMiscellaneousTypeExposureBodilyFluidEntity> PcrMiscellaneousTypeExposureBodilyFluids { get; set; } // PCRMiscellaneousTypeExposureBodilyFluids
+        public System.Data.Entity.DbSet<PcrNarrativeEntity> PcrNarratives { get; set; } // PCRNarrative
+        public System.Data.Entity.DbSet<PcrOutcomeLinkageEntity> PcrOutcomeLinkages { get; set; } // PCROutcomeLinkage
+        public System.Data.Entity.DbSet<PcrPatientEntity> PcrPatients { get; set; } // PCRPatient
+        public System.Data.Entity.DbSet<PcrSceneEntity> PcrScenes { get; set; } // PCRScene
+        public System.Data.Entity.DbSet<PcrSceneOtherEmsAgencyEntity> PcrSceneOtherEmsAgencies { get; set; } // PCRSceneOtherEMSAgencies
+        public System.Data.Entity.DbSet<PcrSceneOtherServiceEntity> PcrSceneOtherServices { get; set; } // PCRSceneOtherServices
+        public System.Data.Entity.DbSet<PcrSituationEntity> PcrSituations { get; set; } // PCRSituation
+        public System.Data.Entity.DbSet<PcrSituationOtherSymptomEntity> PcrSituationOtherSymptoms { get; set; } // PCRSituationOtherSymptoms
+        public System.Data.Entity.DbSet<PcrSituationPriorAidEntity> PcrSituationPriorAids { get; set; } // PCRSituationPriorAid
+        public System.Data.Entity.DbSet<PcrSituationPriorAidPerformedByEntity> PcrSituationPriorAidPerformedBies { get; set; } // PCRSituationPriorAidPerformedBy
+        public System.Data.Entity.DbSet<PcrTimeEntity> PcrTimes { get; set; } // PCRTimes
+        public System.Data.Entity.DbSet<PcrTraumaEntity> PcrTraumas { get; set; } // PCRTrauma
+        public System.Data.Entity.DbSet<PcrTraumaAirbagDeploymentEntity> PcrTraumaAirbagDeployments { get; set; } // PCRTraumaAirbagDeployment
+        public System.Data.Entity.DbSet<PcrTraumaInjuryMechanismEntity> PcrTraumaInjuryMechanism { get; set; } // PCRTraumaInjuryMechanism
+        public System.Data.Entity.DbSet<PcrTraumaOccupantSafetyEquipmentEntity> PcrTraumaOccupantSafetyEquipments { get; set; } // PCRTraumaOccupantSafetyEquipment
+        public System.Data.Entity.DbSet<PcrTraumaRiskFactorPredictorEntity> PcrTraumaRiskFactorPredictors { get; set; } // PCRTraumaRiskFactorPredictors
+        public System.Data.Entity.DbSet<PcrTraumaVehicleImpactLocationEntity> PcrTraumaVehicleImpactLocations { get; set; } // PCRTraumaVehicleImpactLocation
+        public System.Data.Entity.DbSet<PcrUnitAgencyEntity> PcrUnitAgencies { get; set; } // PCRUnitAgency
+        public System.Data.Entity.DbSet<PcrUnitAgencyDispatchDelayEntity> PcrUnitAgencyDispatchDelays { get; set; } // PCRUnitAgencyDispatchDelays
+        public System.Data.Entity.DbSet<PcrUnitAgencyResponseDelayEntity> PcrUnitAgencyResponseDelays { get; set; } // PCRUnitAgencyResponseDelays
+        public System.Data.Entity.DbSet<PcrUnitAgencySceneDelayEntity> PcrUnitAgencySceneDelays { get; set; } // PCRUnitAgencySceneDelays
+        public System.Data.Entity.DbSet<PcrUnitAgencyTransportDelayEntity> PcrUnitAgencyTransportDelays { get; set; } // PCRUnitAgencyTransportDelays
+        public System.Data.Entity.DbSet<PcrUnitAgencyTurnAroundDelayEntity> PcrUnitAgencyTurnAroundDelays { get; set; } // PCRUnitAgencyTurnAroundDelays
+        public System.Data.Entity.DbSet<PcrUnitCallEntity> PcrUnitCalls { get; set; } // PCRUnitCall
+        public System.Data.Entity.DbSet<PcrUnitPersonnelEntity> PcrUnitPersonnels { get; set; } // PCRUnitPersonnel
+        public System.Data.Entity.DbSet<PcrVitalSignsAssessmentEntity> PcrVitalSignsAssessments { get; set; } // PCRVitalSignsAssessment
+        public System.Data.Entity.DbSet<PcrVitalSignsAssessmentInitialCardiacRhythmEntity> PcrVitalSignsAssessmentInitialCardiacRhythms { get; set; } // PCRVitalSignsAssessmentInitialCardiacRhythm
+        public System.Data.Entity.DbSet<PhoneTypeEntity> PhoneTypes { get; set; } // PhoneType
+        public System.Data.Entity.DbSet<SettingTypeEntity> SettingTypes { get; set; } // SettingType
+        public System.Data.Entity.DbSet<StateEntity> States { get; set; } // State
+        public System.Data.Entity.DbSet<UnitRoundingTypeEntity> UnitRoundingTypes { get; set; } // UnitRoundingType
 
         static ClaimSoftContext()
         {
@@ -157,63 +410,926 @@ namespace CD.ClaimSoft.Database
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Configurations.Add(new AddressTypeConfiguration());
-            modelBuilder.Configurations.Add(new AgencyConfiguration());
-            modelBuilder.Configurations.Add(new AgencyAddressConfiguration());
-            modelBuilder.Configurations.Add(new AgencyAttachmentConfiguration());
-            modelBuilder.Configurations.Add(new AgencyEmailConfiguration());
-            modelBuilder.Configurations.Add(new AgencyNoteConfiguration());
-            modelBuilder.Configurations.Add(new AgencyNumberConfiguration());
-            modelBuilder.Configurations.Add(new AgencyPhoneConfiguration());
-            modelBuilder.Configurations.Add(new AgencyUserConfiguration());
-            modelBuilder.Configurations.Add(new ApplicationLogConfiguration());
-            modelBuilder.Configurations.Add(new ApplicationSettingConfiguration());
-            modelBuilder.Configurations.Add(new AspNetRoleConfiguration());
-            modelBuilder.Configurations.Add(new AspNetUserConfiguration());
-            modelBuilder.Configurations.Add(new AspNetUserClaimConfiguration());
-            modelBuilder.Configurations.Add(new AspNetUserLoginConfiguration());
-            modelBuilder.Configurations.Add(new AspNetUserRoleConfiguration());
-            modelBuilder.Configurations.Add(new CountryConfiguration());
-            modelBuilder.Configurations.Add(new CountyConfiguration());
-            modelBuilder.Configurations.Add(new EmailTypeConfiguration());
-            modelBuilder.Configurations.Add(new PhoneTypeConfiguration());
-            modelBuilder.Configurations.Add(new SettingTypeConfiguration());
-            modelBuilder.Configurations.Add(new StateConfiguration());
-            modelBuilder.Configurations.Add(new UnitRoundingTypeConfiguration());
+            modelBuilder.Configurations.Add(new AddressTypeEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyAddressEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyAttachmentEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyBillingStatuEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyCallSignEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyCertificationLicensureLevelEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyContactEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyCountyEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyEmdVendorEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyFileEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyHospitalEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyInsuranceCompanyEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyMedicalDeviceEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyMedicalDirectorEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyMedicationsGivenEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyNoteEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyOtherDestinationEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyOtherInformationEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyOtherTypesServiceEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyPersonnelEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyPersonnelCertificationLevelEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyPersonnelGeneralEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyProcedureEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyProtocolEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyStateEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyStationEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyStatisticEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyUserEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyVehicleEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyVehicleCertificationEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyVehicleMilesHoursLogEntityConfiguration());
+            modelBuilder.Configurations.Add(new AgencyZoneEntityConfiguration());
+            modelBuilder.Configurations.Add(new ApplicationLogEntityConfiguration());
+            modelBuilder.Configurations.Add(new ApplicationSettingEntityConfiguration());
+            modelBuilder.Configurations.Add(new CountryEntityConfiguration());
+            modelBuilder.Configurations.Add(new CountyEntityConfiguration());
+            modelBuilder.Configurations.Add(new ElementToVariableEntityConfiguration());
+            modelBuilder.Configurations.Add(new EmailTypeEntityConfiguration());
+            modelBuilder.Configurations.Add(new FileImportEntityConfiguration());
+            modelBuilder.Configurations.Add(new FileImportRecordEntityConfiguration());
+            modelBuilder.Configurations.Add(new FileTypeEntityConfiguration());
+            modelBuilder.Configurations.Add(new PatientCareReportEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrAssessmentExamEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrAssessmentExamsDifferentEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrAssessmentInjuryEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrBillingEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrBillingConditionCodeEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrBillingConditionCodesModifierEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrBillingInsuranceEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrcprEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrcprCardiacRhythmDeliveryEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrcprIndicationAttemptResuscitateEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrDispositionEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrHeaderEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrInterventionEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrInterventionMedicationEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrInterventionMedicationComplicationEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrInterventionProceduresPerformedEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrInterventionProceduresPerformedComplicationEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrInterventionProceduresPerformedSuccessfulIvSiteEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrInterventionProceduresPerformedTubeConfirmationEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrInterventionProceduresPerformedTubePlacementEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMedicalDeviceDataEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryAlcoholDrugIndicatorEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryAllergyEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryCurrentMedicationEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryImmunizationDetailEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryLivingWillEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryMedicationAllergyEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryPatientBarrierEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryPreexistingMedicalSurgeryEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMiscellaneouEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMiscellaneousLocalAgencyResearchFieldEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMiscellaneousPatientIndicationCriteriaRegistryEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMiscellaneousPersonnelExposedFluidEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMiscellaneousProtectiveEquipmentUsedEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorismEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrMiscellaneousTypeExposureBodilyFluidEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrNarrativeEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrOutcomeLinkageEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrPatientEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrSceneEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrSceneOtherEmsAgencyEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrSceneOtherServiceEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrSituationEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrSituationOtherSymptomEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrSituationPriorAidEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrSituationPriorAidPerformedByEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrTimeEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrTraumaEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrTraumaAirbagDeploymentEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrTraumaInjuryMechanismEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrTraumaOccupantSafetyEquipmentEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrTraumaRiskFactorPredictorEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrTraumaVehicleImpactLocationEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrUnitAgencyEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrUnitAgencyDispatchDelayEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrUnitAgencyResponseDelayEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrUnitAgencySceneDelayEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrUnitAgencyTransportDelayEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrUnitAgencyTurnAroundDelayEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrUnitCallEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrUnitPersonnelEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrVitalSignsAssessmentEntityConfiguration());
+            modelBuilder.Configurations.Add(new PcrVitalSignsAssessmentInitialCardiacRhythmEntityConfiguration());
+            modelBuilder.Configurations.Add(new PhoneTypeEntityConfiguration());
+            modelBuilder.Configurations.Add(new SettingTypeEntityConfiguration());
+            modelBuilder.Configurations.Add(new StateEntityConfiguration());
+            modelBuilder.Configurations.Add(new UnitRoundingTypeEntityConfiguration());
 
             OnModelCreatingPartial(modelBuilder);
         }
 
         public static System.Data.Entity.DbModelBuilder CreateModel(System.Data.Entity.DbModelBuilder modelBuilder, string schema)
         {
-            modelBuilder.Configurations.Add(new AddressTypeConfiguration(schema));
-            modelBuilder.Configurations.Add(new AgencyConfiguration(schema));
-            modelBuilder.Configurations.Add(new AgencyAddressConfiguration(schema));
-            modelBuilder.Configurations.Add(new AgencyAttachmentConfiguration(schema));
-            modelBuilder.Configurations.Add(new AgencyEmailConfiguration(schema));
-            modelBuilder.Configurations.Add(new AgencyNoteConfiguration(schema));
-            modelBuilder.Configurations.Add(new AgencyNumberConfiguration(schema));
-            modelBuilder.Configurations.Add(new AgencyPhoneConfiguration(schema));
-            modelBuilder.Configurations.Add(new AgencyUserConfiguration(schema));
-            modelBuilder.Configurations.Add(new ApplicationLogConfiguration(schema));
-            modelBuilder.Configurations.Add(new ApplicationSettingConfiguration(schema));
-            modelBuilder.Configurations.Add(new AspNetRoleConfiguration(schema));
-            modelBuilder.Configurations.Add(new AspNetUserConfiguration(schema));
-            modelBuilder.Configurations.Add(new AspNetUserClaimConfiguration(schema));
-            modelBuilder.Configurations.Add(new AspNetUserLoginConfiguration(schema));
-            modelBuilder.Configurations.Add(new AspNetUserRoleConfiguration(schema));
-            modelBuilder.Configurations.Add(new CountryConfiguration(schema));
-            modelBuilder.Configurations.Add(new CountyConfiguration(schema));
-            modelBuilder.Configurations.Add(new EmailTypeConfiguration(schema));
-            modelBuilder.Configurations.Add(new PhoneTypeConfiguration(schema));
-            modelBuilder.Configurations.Add(new SettingTypeConfiguration(schema));
-            modelBuilder.Configurations.Add(new StateConfiguration(schema));
-            modelBuilder.Configurations.Add(new UnitRoundingTypeConfiguration(schema));
+            modelBuilder.Configurations.Add(new AddressTypeEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyAddressEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyAttachmentEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyBillingStatuEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyCallSignEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyCertificationLicensureLevelEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyContactEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyCountyEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyEmdVendorEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyFileEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyHospitalEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyInsuranceCompanyEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyMedicalDeviceEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyMedicalDirectorEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyMedicationsGivenEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyNoteEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyOtherDestinationEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyOtherInformationEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyOtherTypesServiceEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyPersonnelEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyPersonnelCertificationLevelEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyPersonnelGeneralEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyProcedureEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyProtocolEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyStateEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyStationEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyStatisticEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyUserEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyVehicleEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyVehicleCertificationEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyVehicleMilesHoursLogEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new AgencyZoneEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new ApplicationLogEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new ApplicationSettingEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new CountryEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new CountyEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new ElementToVariableEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new EmailTypeEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new FileImportEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new FileImportRecordEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new FileTypeEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PatientCareReportEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrAssessmentExamEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrAssessmentExamsDifferentEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrAssessmentInjuryEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrBillingEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrBillingConditionCodeEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrBillingConditionCodesModifierEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrBillingInsuranceEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrcprEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrcprCardiacRhythmDeliveryEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrcprIndicationAttemptResuscitateEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrDispositionEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrHeaderEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrInterventionEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrInterventionMedicationEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrInterventionMedicationComplicationEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrInterventionProceduresPerformedEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrInterventionProceduresPerformedComplicationEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrInterventionProceduresPerformedSuccessfulIvSiteEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrInterventionProceduresPerformedTubeConfirmationEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrInterventionProceduresPerformedTubePlacementEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMedicalDeviceDataEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryAlcoholDrugIndicatorEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryAllergyEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryCurrentMedicationEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryImmunizationDetailEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryLivingWillEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryMedicationAllergyEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryPatientBarrierEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMedicalHistoryPreexistingMedicalSurgeryEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMiscellaneouEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMiscellaneousLocalAgencyResearchFieldEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMiscellaneousPatientIndicationCriteriaRegistryEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMiscellaneousPersonnelExposedFluidEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMiscellaneousProtectiveEquipmentUsedEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorismEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrMiscellaneousTypeExposureBodilyFluidEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrNarrativeEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrOutcomeLinkageEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrPatientEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrSceneEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrSceneOtherEmsAgencyEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrSceneOtherServiceEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrSituationEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrSituationOtherSymptomEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrSituationPriorAidEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrSituationPriorAidPerformedByEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrTimeEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrTraumaEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrTraumaAirbagDeploymentEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrTraumaInjuryMechanismEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrTraumaOccupantSafetyEquipmentEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrTraumaRiskFactorPredictorEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrTraumaVehicleImpactLocationEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrUnitAgencyEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrUnitAgencyDispatchDelayEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrUnitAgencyResponseDelayEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrUnitAgencySceneDelayEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrUnitAgencyTransportDelayEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrUnitAgencyTurnAroundDelayEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrUnitCallEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrUnitPersonnelEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrVitalSignsAssessmentEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PcrVitalSignsAssessmentInitialCardiacRhythmEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new PhoneTypeEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new SettingTypeEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new StateEntityConfiguration(schema));
+            modelBuilder.Configurations.Add(new UnitRoundingTypeEntityConfiguration(schema));
             return modelBuilder;
         }
 
         partial void InitializePartial();
         partial void OnModelCreatingPartial(System.Data.Entity.DbModelBuilder modelBuilder);
+
+        // Stored Procedures
+        public int ProcessNemsisFile(string fileName, string streamId, string userId, int? agencyId)
+        {
+            var fileNameParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileName", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = fileName, Size = 255 };
+            if (fileNameParam.Value == null)
+                fileNameParam.Value = System.DBNull.Value;
+
+            var streamIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@StreamId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = streamId, Size = 128 };
+            if (streamIdParam.Value == null)
+                streamIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFile] @FileName, @StreamId, @UserId, @AgencyId", fileNameParam, streamIdParam, userIdParam, agencyIdParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePatientCareReport(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePatientCareReport] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrBilling(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRBilling] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrcpr(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRCPR] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrDisposition(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRDisposition] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrHeader(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRHeader] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrIntervention(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRIntervention] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrInterventionMedications(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRInterventionMedications] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrInterventionProceduresPerformed(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRInterventionProceduresPerformed] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrMedicalDeviceData(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRMedicalDeviceData] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrMedicalHistory(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRMedicalHistory] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrMiscellaneous(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRMiscellaneous] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrNarrative(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRNarrative] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrOutcomeLinkage(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCROutcomeLinkage] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrPatient(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRPatient] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrScene(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRScene] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrSituation(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRSituation] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrTimes(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRTimes] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrTrauma(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRTrauma] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrUnitAgency(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRUnitAgency] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrUnitCall(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRUnitCall] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrUnitPersonnel(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRUnitPersonnel] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public int ProcessNemsisFilePcrVitalSignsAssessment(int? xmlDocumentHandle, int? fileImportId, int? agencyId, string userId, System.DateTime? loadDate)
+        {
+            var xmlDocumentHandleParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@XmlDocumentHandle", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = xmlDocumentHandle.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!xmlDocumentHandle.HasValue)
+                xmlDocumentHandleParam.Value = System.DBNull.Value;
+
+            var fileImportIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@FileImportId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = fileImportId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!fileImportId.HasValue)
+                fileImportIdParam.Value = System.DBNull.Value;
+
+            var agencyIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@AgencyId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = agencyId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!agencyId.HasValue)
+                agencyIdParam.Value = System.DBNull.Value;
+
+            var userIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@UserId", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = userId, Size = 128 };
+            if (userIdParam.Value == null)
+                userIdParam.Value = System.DBNull.Value;
+
+            var loadDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@LoadDate", SqlDbType = System.Data.SqlDbType.DateTime, Direction = System.Data.ParameterDirection.Input, Value = loadDate.GetValueOrDefault() };
+            if (!loadDate.HasValue)
+                loadDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+
+            Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, "EXEC @procResult = [dbo].[ProcessNemsisFilePCRVitalSignsAssessment] @XmlDocumentHandle, @FileImportId, @AgencyId, @UserId, @LoadDate", xmlDocumentHandleParam, fileImportIdParam, agencyIdParam, userIdParam, loadDateParam, procResultParam);
+
+            return (int) procResultParam.Value;
+        }
+
+        public System.Collections.Generic.List<UspGetErrorInfoReturnModel> UspGetErrorInfo()
+        {
+            int procResult;
+            return UspGetErrorInfo(out procResult);
+        }
+
+        public System.Collections.Generic.List<UspGetErrorInfoReturnModel> UspGetErrorInfo(out int procResult)
+        {
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+            var procResultData = Database.SqlQuery<UspGetErrorInfoReturnModel>("EXEC @procResult = [dbo].[usp_GetErrorInfo] ", procResultParam).ToList();
+
+            procResult = (int) procResultParam.Value;
+            return procResultData;
+        }
+
+        public async System.Threading.Tasks.Task<System.Collections.Generic.List<UspGetErrorInfoReturnModel>> UspGetErrorInfoAsync()
+        {
+            var procResultData = await Database.SqlQuery<UspGetErrorInfoReturnModel>("EXEC [dbo].[usp_GetErrorInfo] ").ToListAsync();
+
+            return procResultData;
+        }
+
     }
     #endregion
 
@@ -233,7 +1349,7 @@ namespace CD.ClaimSoft.Database
 
     // AddressType
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AddressType
+    public partial class AddressTypeEntity
     {
         public int Id { get; set; } // Id (Primary key)
         public string Name { get; set; } // Name (length: 50)
@@ -242,20 +1358,12 @@ namespace CD.ClaimSoft.Database
         public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
         public System.DateTime LastModifyDate { get; set; } // LastModifyDate
 
-        // Reverse navigation
-
-        /// <summary>
-        /// Child AgencyAddresses where [AgencyAddress].[AddressTypeId] point to this entity (FK_AgencyAddress_AddressType)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<AgencyAddress> AgencyAddresses { get; set; } // AgencyAddress.FK_AgencyAddress_AddressType
-
-        public AddressType()
+        public AddressTypeEntity()
         {
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
             LastModifyBy = "CDUNCAN";
             LastModifyDate = System.DateTime.Now;
-            AgencyAddresses = new System.Collections.Generic.List<AgencyAddress>();
             InitializePartial();
         }
 
@@ -263,73 +1371,458 @@ namespace CD.ClaimSoft.Database
     }
 
     // Agency
+    ///<summary>
+    /// NEMSIS V2 - D01 - Agency General Information
+    ///</summary>
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class Agency
+    public partial class AgencyEntity
     {
+
+        ///<summary>
+        /// Agency Primary Key.
+        ///</summary>
         public int Id { get; set; } // Id (Primary key)
-        public string AgencyTenantId { get; set; } // AgencyTenantId (length: 128)
-        public string Code { get; set; } // Code (length: 50)
-        public string Name { get; set; } // Name (length: 100)
+
+        ///<summary>
+        /// NEMSIS V2 - D01_01 Element - The state-assigned provider number of the agency
+        ///</summary>
+        public string AgencyNumber { get; set; } // AgencyNumber (length: 15)
+
+        ///<summary>
+        /// NEMSIS V2 - D01_02 Element - The name of the agency
+        ///</summary>
+        public string AgencyName { get; set; } // AgencyName (length: 100)
+
+        ///<summary>
+        /// NEMSIS V2 - D01_05 Element - The agency primary service type
+        ///</summary>
+        public int? PrimaryServiceType { get; set; } // PrimaryServiceType
+
+        ///<summary>
+        /// NEMSIS V2 - D01_07 Element - The agency level of service
+        ///</summary>
+        public string LevelOfService { get; set; } // LevelOfService (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - D01_08 Element - The agency organization type
+        ///</summary>
+        public int OrganizationType { get; set; } // OrganizationType
+
+        ///<summary>
+        /// NEMSIS V2 - D01_09 Element - The agency organization status
+        ///</summary>
+        public int OrganizationStatus { get; set; } // OrganizationStatus
+
+        ///<summary>
+        /// NEMSIS V2 - D01_19 Element - The agency time zone
+        ///</summary>
+        public int? TimeZone { get; set; } // TimeZone
+
+        ///<summary>
+        /// NEMSIS V2 - D01_20 Element - The agency daylight savings setting
+        ///</summary>
+        public int? DaylightSavings { get; set; } // DaylightSavings
+
+        ///<summary>
+        /// NEMSIS V2 - D01_21 Element - The agency national provider ID
+        ///</summary>
+        public string NationalProviderId { get; set; } // NationalProviderId (length: 10)
         public bool IsActive { get; set; } // IsActive
         public System.DateTime? InactiveDate { get; set; } // InactiveDate
         public int? ParentAgencyId { get; set; } // ParentAgencyId
         public string WebSite { get; set; } // WebSite (length: 250)
         public string ContactName { get; set; } // ContactName (length: 250)
-        public int NpiNumber { get; set; } // NpiNumber
         public int? TaxIdNumber { get; set; } // TaxIdNumber
         public string Taxonomy { get; set; } // Taxonomy (length: 50)
         public bool DisableLifetimeSignature { get; set; } // DisableLifetimeSignature
-        public string LogoFileName { get; set; } // LogoFileName (length: 50)
-        public System.Guid? LogoStreamId { get; set; } // LogoStreamId
+        public string LogoFileName { get; set; } // LogoFileName (length: 255)
+        public string LogoStreamId { get; set; } // LogoStreamId (length: 128)
         public bool? UseImageOnStatement { get; set; } // UseImageOnStatement
-        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
         public System.DateTime CreateDate { get; set; } // CreateDate
-        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
-        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime? LastModifyDate { get; set; } // LastModifyDate
 
         // Reverse navigation
 
         /// <summary>
-        /// Child Agencies where [Agency].[ParentAgencyId] point to this entity (FK_Agency_Agency)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<Agency> Agencies { get; set; } // Agency.FK_Agency_Agency
-        /// <summary>
         /// Child AgencyAddresses where [AgencyAddress].[AgencyId] point to this entity (FK_AgencyAddress_Agency)
         /// </summary>
-        public virtual System.Collections.Generic.ICollection<AgencyAddress> AgencyAddresses { get; set; } // AgencyAddress.FK_AgencyAddress_Agency
+        public virtual System.Collections.Generic.ICollection<AgencyAddressEntity> AgencyAddresses { get; set; } // AgencyAddress.FK_AgencyAddress_Agency
         /// <summary>
-        /// Child AgencyAttachments where [AgencyAttachments].[AgencyId] point to this entity (FK_AgencyAttachments_Agency)
+        /// Child AgencyBillingStatus where [AgencyBillingStatus].[AgencyId] point to this entity (FK_AgencyBillingStatus_Agency)
         /// </summary>
-        public virtual System.Collections.Generic.ICollection<AgencyAttachment> AgencyAttachments { get; set; } // AgencyAttachments.FK_AgencyAttachments_Agency
+        public virtual System.Collections.Generic.ICollection<AgencyBillingStatuEntity> AgencyBillingStatus { get; set; } // AgencyBillingStatus.FK_AgencyBillingStatus_Agency
         /// <summary>
-        /// Child AgencyEmails where [AgencyEmail].[AgencyId] point to this entity (FK_AgencyEmail_Agency)
+        /// Child AgencyCallSigns where [AgencyCallSign].[AgencyId] point to this entity (FK_AgencyCallSign_Agency)
         /// </summary>
-        public virtual System.Collections.Generic.ICollection<AgencyEmail> AgencyEmails { get; set; } // AgencyEmail.FK_AgencyEmail_Agency
+        public virtual System.Collections.Generic.ICollection<AgencyCallSignEntity> AgencyCallSigns { get; set; } // AgencyCallSign.FK_AgencyCallSign_Agency
+        /// <summary>
+        /// Child AgencyContacts where [AgencyContact].[AgencyId] point to this entity (FK_AgencyContact_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyContactEntity> AgencyContacts { get; set; } // AgencyContact.FK_AgencyContact_Agency
+        /// <summary>
+        /// Child AgencyCounties where [AgencyCounty].[AgencyId] point to this entity (FK_AgencyCounty_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyCountyEntity> AgencyCounties { get; set; } // AgencyCounty.FK_AgencyCounty_Agency
+        /// <summary>
+        /// Child AgencyEmdVendors where [AgencyEMDVendor].[AgencyId] point to this entity (FK_AgencyEMDVendor_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyEmdVendorEntity> AgencyEmdVendors { get; set; } // AgencyEMDVendor.FK_AgencyEMDVendor_Agency
+        /// <summary>
+        /// Child AgencyFiles where [AgencyFiles].[AgencyId] point to this entity (FK_AgencyFiles_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyFileEntity> AgencyFiles { get; set; } // AgencyFiles.FK_AgencyFiles_Agency
+        /// <summary>
+        /// Child AgencyHospitals where [AgencyHospital].[AgencyId] point to this entity (FK_AgencyHospital_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyHospitalEntity> AgencyHospitals { get; set; } // AgencyHospital.FK_AgencyHospital_Agency
+        /// <summary>
+        /// Child AgencyInsuranceCompanies where [AgencyInsuranceCompany].[AgencyId] point to this entity (FK_AgencyInsuranceCompany_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyInsuranceCompanyEntity> AgencyInsuranceCompanies { get; set; } // AgencyInsuranceCompany.FK_AgencyInsuranceCompany_Agency
+        /// <summary>
+        /// Child AgencyMedicalDevices where [AgencyMedicalDevice].[AgencyId] point to this entity (FK_AgencyMedicalDevice_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyMedicalDeviceEntity> AgencyMedicalDevices { get; set; } // AgencyMedicalDevice.FK_AgencyMedicalDevice_Agency
+        /// <summary>
+        /// Child AgencyMedicalDirectors where [AgencyMedicalDirector].[AgencyId] point to this entity (FK_AgencyMedicalDirector_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyMedicalDirectorEntity> AgencyMedicalDirectors { get; set; } // AgencyMedicalDirector.FK_AgencyMedicalDirector_Agency
+        /// <summary>
+        /// Child AgencyMedicationsGivens where [AgencyMedicationsGiven].[AgencyId] point to this entity (FK_AgencyMedicationsGiven_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyMedicationsGivenEntity> AgencyMedicationsGivens { get; set; } // AgencyMedicationsGiven.FK_AgencyMedicationsGiven_Agency
         /// <summary>
         /// Child AgencyNotes where [AgencyNotes].[AgencyId] point to this entity (FK_AgencyNotes_Agency)
         /// </summary>
-        public virtual System.Collections.Generic.ICollection<AgencyNote> AgencyNotes { get; set; } // AgencyNotes.FK_AgencyNotes_Agency
+        public virtual System.Collections.Generic.ICollection<AgencyNoteEntity> AgencyNotes { get; set; } // AgencyNotes.FK_AgencyNotes_Agency
         /// <summary>
-        /// Child AgencyNumbers where [AgencyNumber].[AgencyId] point to this entity (FK_AgencyNumber_Agency)
+        /// Child AgencyOtherDestinations where [AgencyOtherDestinations].[AgencyId] point to this entity (FK_AgencyOtherDestinations_Agency)
         /// </summary>
-        public virtual System.Collections.Generic.ICollection<AgencyNumber> AgencyNumbers { get; set; } // AgencyNumber.FK_AgencyNumber_Agency
+        public virtual System.Collections.Generic.ICollection<AgencyOtherDestinationEntity> AgencyOtherDestinations { get; set; } // AgencyOtherDestinations.FK_AgencyOtherDestinations_Agency
         /// <summary>
-        /// Child AgencyPhones where [AgencyPhone].[AgencyId] point to this entity (FK_AgencyPhone_Agency)
+        /// Child AgencyOtherInformations where [AgencyOtherInformation].[AgencyId] point to this entity (FK_AgencyOtherInformation_Agency)
         /// </summary>
-        public virtual System.Collections.Generic.ICollection<AgencyPhone> AgencyPhones { get; set; } // AgencyPhone.FK_AgencyPhone_Agency
+        public virtual System.Collections.Generic.ICollection<AgencyOtherInformationEntity> AgencyOtherInformations { get; set; } // AgencyOtherInformation.FK_AgencyOtherInformation_Agency
+        /// <summary>
+        /// Child AgencyOtherTypesServices where [AgencyOtherTypesService].[AgencyId] point to this entity (FK_AgencyOtherTypesService_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyOtherTypesServiceEntity> AgencyOtherTypesServices { get; set; } // AgencyOtherTypesService.FK_AgencyOtherTypesService_Agency
+        /// <summary>
+        /// Child AgencyPersonnels where [AgencyPersonnel].[AgencyId] point to this entity (FK_AgencyPersonnel_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyPersonnelEntity> AgencyPersonnels { get; set; } // AgencyPersonnel.FK_AgencyPersonnel_Agency
+        /// <summary>
+        /// Child AgencyProcedures where [AgencyProcedures].[AgencyId] point to this entity (FK_AgencyProcedures_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyProcedureEntity> AgencyProcedures { get; set; } // AgencyProcedures.FK_AgencyProcedures_Agency
+        /// <summary>
+        /// Child AgencyProtocols where [AgencyProtocol].[AgencyId] point to this entity (FK_AgencyProtocol_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyProtocolEntity> AgencyProtocols { get; set; } // AgencyProtocol.FK_AgencyProtocol_Agency
+        /// <summary>
+        /// Child AgencyStates where [AgencyState].[AgencyId] point to this entity (FK_AgencyState_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyStateEntity> AgencyStates { get; set; } // AgencyState.FK_AgencyState_Agency
+        /// <summary>
+        /// Child AgencyStations where [AgencyStation].[AgencyId] point to this entity (FK_AgencyStation_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyStationEntity> AgencyStations { get; set; } // AgencyStation.FK_AgencyStation_Agency
+        /// <summary>
+        /// Child AgencyStatistics where [AgencyStatistics].[AgencyId] point to this entity (FK_AgencyStatistics_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyStatisticEntity> AgencyStatistics { get; set; } // AgencyStatistics.FK_AgencyStatistics_Agency
         /// <summary>
         /// Child AgencyUsers where [AgencyUser].[AgencyId] point to this entity (FK_AgencyUser_Agency)
         /// </summary>
-        public virtual System.Collections.Generic.ICollection<AgencyUser> AgencyUsers { get; set; } // AgencyUser.FK_AgencyUser_Agency
-
-        // Foreign keys
-
+        public virtual System.Collections.Generic.ICollection<AgencyUserEntity> AgencyUsers { get; set; } // AgencyUser.FK_AgencyUser_Agency
         /// <summary>
-        /// Parent Agency pointed by [Agency].([ParentAgencyId]) (FK_Agency_Agency)
+        /// Child AgencyVehicles where [AgencyVehicle].[AgencyId] point to this entity (FK_AgencyVehicle_Agency)
         /// </summary>
-        public virtual Agency ParentAgency { get; set; } // FK_Agency_Agency
+        public virtual System.Collections.Generic.ICollection<AgencyVehicleEntity> AgencyVehicles { get; set; } // AgencyVehicle.FK_AgencyVehicle_Agency
+        /// <summary>
+        /// Child AgencyZones where [AgencyZones].[AgencyId] point to this entity (FK_AgencyZones_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyZoneEntity> AgencyZones { get; set; } // AgencyZones.FK_AgencyZones_Agency
+        /// <summary>
+        /// Child ApplicationLogs where [ApplicationLog].[AgencyId] point to this entity (FK_ApplicationLog_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<ApplicationLogEntity> ApplicationLogs { get; set; } // ApplicationLog.FK_ApplicationLog_Agency
+        /// <summary>
+        /// Child ApplicationSettings where [ApplicationSettings].[AgencyId] point to this entity (FK_ApplicationSettings_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<ApplicationSettingEntity> ApplicationSettings { get; set; } // ApplicationSettings.FK_ApplicationSettings_Agency
+        /// <summary>
+        /// Child FileImports where [FileImport].[AgencyId] point to this entity (FK_FileImport_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<FileImportEntity> FileImports { get; set; } // FileImport.FK_FileImport_Agency
+        /// <summary>
+        /// Child FileImportRecords where [FileImportRecords].[AgencyId] point to this entity (FK_FileImportRecords_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<FileImportRecordEntity> FileImportRecords { get; set; } // FileImportRecords.FK_FileImportRecords_Agency
+        /// <summary>
+        /// Child PatientCareReports where [PatientCareReport].[AgencyId] point to this entity (FK_PatientCareReport_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PatientCareReportEntity> PatientCareReports { get; set; } // PatientCareReport.FK_PatientCareReport_Agency
+        /// <summary>
+        /// Child PcrAssessmentExams where [PCRAssessmentExam].[AgencyId] point to this entity (FK_PCRAssessmentExam_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrAssessmentExamEntity> PcrAssessmentExams { get; set; } // PCRAssessmentExam.FK_PCRAssessmentExam_Agency
+        /// <summary>
+        /// Child PcrAssessmentExamsDifferents where [PCRAssessmentExamsDifferent].[AgencyId] point to this entity (FK_PCRAssessmentExamsDifferent_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrAssessmentExamsDifferentEntity> PcrAssessmentExamsDifferents { get; set; } // PCRAssessmentExamsDifferent.FK_PCRAssessmentExamsDifferent_Agency
+        /// <summary>
+        /// Child PcrAssessmentInjuries where [PCRAssessmentInjury].[AgencyId] point to this entity (FK_PCRAssessmentInjury_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrAssessmentInjuryEntity> PcrAssessmentInjuries { get; set; } // PCRAssessmentInjury.FK_PCRAssessmentInjury_Agency
+        /// <summary>
+        /// Child PcrBillingConditionCodes where [PCRBillingConditionCodes].[AgencyId] point to this entity (FK_PCRBillingConditionCodes_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrBillingConditionCodeEntity> PcrBillingConditionCodes { get; set; } // PCRBillingConditionCodes.FK_PCRBillingConditionCodes_Agency
+        /// <summary>
+        /// Child PcrBillingConditionCodesModifiers where [PCRBillingConditionCodesModifier].[AgencyId] point to this entity (FK_PCRBillingConditionCodesModifier_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrBillingConditionCodesModifierEntity> PcrBillingConditionCodesModifiers { get; set; } // PCRBillingConditionCodesModifier.FK_PCRBillingConditionCodesModifier_Agency
+        /// <summary>
+        /// Child PcrBillings where [PCRBilling].[AgencyId] point to this entity (FK_PCRBilling_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrBillingEntity> PcrBillings { get; set; } // PCRBilling.FK_PCRBilling_Agency
+        /// <summary>
+        /// Child PcrBillingInsurances where [PCRBillingInsurance].[AgencyId] point to this entity (FK_PCRBillingInsurance_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrBillingInsuranceEntity> PcrBillingInsurances { get; set; } // PCRBillingInsurance.FK_PCRBillingInsurance_Agency
+        /// <summary>
+        /// Child PcrcprCardiacRhythmDeliveries where [PCRCPRCardiacRhythmDelivery].[AgencyId] point to this entity (FK_PCRCPRCardiacRhythmDelivery_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrcprCardiacRhythmDeliveryEntity> PcrcprCardiacRhythmDeliveries { get; set; } // PCRCPRCardiacRhythmDelivery.FK_PCRCPRCardiacRhythmDelivery_Agency
+        /// <summary>
+        /// Child Pcrcprs where [PCRCPR].[AgencyId] point to this entity (FK_PCRCPR_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrcprEntity> Pcrcprs { get; set; } // PCRCPR.FK_PCRCPR_Agency
+        /// <summary>
+        /// Child PcrcprIndicationAttemptResuscitates where [PCRCPRIndicationAttemptResuscitate].[AgencyId] point to this entity (FK_PCRCPRIndicationAttemptResuscitate_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrcprIndicationAttemptResuscitateEntity> PcrcprIndicationAttemptResuscitates { get; set; } // PCRCPRIndicationAttemptResuscitate.FK_PCRCPRIndicationAttemptResuscitate_Agency
+        /// <summary>
+        /// Child PcrDispositions where [PCRDisposition].[AgencyId] point to this entity (FK_PCRDisposition_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrDispositionEntity> PcrDispositions { get; set; } // PCRDisposition.FK_PCRDisposition_Agency
+        /// <summary>
+        /// Child PcrHeaders where [PCRHeader].[AgencyId] point to this entity (FK_PCRHeader_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrHeaderEntity> PcrHeaders { get; set; } // PCRHeader.FK_PCRHeader_Agency
+        /// <summary>
+        /// Child PcrInterventions where [PCRIntervention].[AgencyId] point to this entity (FK_PCRIntervention_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrInterventionEntity> PcrInterventions { get; set; } // PCRIntervention.FK_PCRIntervention_Agency
+        /// <summary>
+        /// Child PcrInterventionMedicationComplications where [PCRInterventionMedicationComplications].[AgencyId] point to this entity (FK_PCRInterventionMedicationComplications_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrInterventionMedicationComplicationEntity> PcrInterventionMedicationComplications { get; set; } // PCRInterventionMedicationComplications.FK_PCRInterventionMedicationComplications_Agency
+        /// <summary>
+        /// Child PcrInterventionMedications where [PCRInterventionMedications].[AgencyId] point to this entity (FK_PCRInterventionMedications_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrInterventionMedicationEntity> PcrInterventionMedications { get; set; } // PCRInterventionMedications.FK_PCRInterventionMedications_Agency
+        /// <summary>
+        /// Child PcrInterventionProceduresPerformedComplications where [PCRInterventionProceduresPerformedComplications].[AgencyId] point to this entity (FK_PCRInterventionProceduresPerformedComplications_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrInterventionProceduresPerformedComplicationEntity> PcrInterventionProceduresPerformedComplications { get; set; } // PCRInterventionProceduresPerformedComplications.FK_PCRInterventionProceduresPerformedComplications_Agency
+        /// <summary>
+        /// Child PcrInterventionProceduresPerformeds where [PCRInterventionProceduresPerformed].[AgencyId] point to this entity (FK_PCRInterventionProceduresPerformed_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrInterventionProceduresPerformedEntity> PcrInterventionProceduresPerformeds { get; set; } // PCRInterventionProceduresPerformed.FK_PCRInterventionProceduresPerformed_Agency
+        /// <summary>
+        /// Child PcrInterventionProceduresPerformedSuccessfulIvSites where [PCRInterventionProceduresPerformedSuccessfulIVSite].[AgencyId] point to this entity (FK_PCRInterventionProceduresPerformedSuccessfulIVSite_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrInterventionProceduresPerformedSuccessfulIvSiteEntity> PcrInterventionProceduresPerformedSuccessfulIvSites { get; set; } // PCRInterventionProceduresPerformedSuccessfulIVSite.FK_PCRInterventionProceduresPerformedSuccessfulIVSite_Agency
+        /// <summary>
+        /// Child PcrInterventionProceduresPerformedTubeConfirmations where [PCRInterventionProceduresPerformedTubeConfirmation].[AgencyId] point to this entity (FK_PCRInterventionProceduresPerformedTubeConfirmation_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrInterventionProceduresPerformedTubeConfirmationEntity> PcrInterventionProceduresPerformedTubeConfirmations { get; set; } // PCRInterventionProceduresPerformedTubeConfirmation.FK_PCRInterventionProceduresPerformedTubeConfirmation_Agency
+        /// <summary>
+        /// Child PcrInterventionProceduresPerformedTubePlacements where [PCRInterventionProceduresPerformedTubePlacement].[AgencyId] point to this entity (FK_PCRInterventionProceduresPerformedTubePlacement_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrInterventionProceduresPerformedTubePlacementEntity> PcrInterventionProceduresPerformedTubePlacements { get; set; } // PCRInterventionProceduresPerformedTubePlacement.FK_PCRInterventionProceduresPerformedTubePlacement_Agency
+        /// <summary>
+        /// Child PcrMedicalDeviceDatas where [PCRMedicalDeviceData].[AgencyId] point to this entity (FK_PCRMedicalDeviceData_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalDeviceDataEntity> PcrMedicalDeviceDatas { get; set; } // PCRMedicalDeviceData.FK_PCRMedicalDeviceData_Agency
+        /// <summary>
+        /// Child PcrMedicalHistoryAlcoholDrugIndicators where [PCRMedicalHistoryAlcoholDrugIndicators].[AgencyId] point to this entity (FK_PCRMedicalHistoryAlcoholDrugIndicators_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryAlcoholDrugIndicatorEntity> PcrMedicalHistoryAlcoholDrugIndicators { get; set; } // PCRMedicalHistoryAlcoholDrugIndicators.FK_PCRMedicalHistoryAlcoholDrugIndicators_Agency
+        /// <summary>
+        /// Child PcrMedicalHistoryAllergies where [PCRMedicalHistoryAllergies].[AgencyId] point to this entity (FK_PCRMedicalHistoryAllergies_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryAllergyEntity> PcrMedicalHistoryAllergies { get; set; } // PCRMedicalHistoryAllergies.FK_PCRMedicalHistoryAllergies_Agency
+        /// <summary>
+        /// Child PcrMedicalHistoryCurrentMedications where [PCRMedicalHistoryCurrentMedication].[AgencyId] point to this entity (FK_PCRMedicalHistoryCurrentMedication_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryCurrentMedicationEntity> PcrMedicalHistoryCurrentMedications { get; set; } // PCRMedicalHistoryCurrentMedication.FK_PCRMedicalHistoryCurrentMedication_Agency
+        /// <summary>
+        /// Child PcrMedicalHistories where [PCRMedicalHistory].[AgencyId] point to this entity (FK_PCRMedicalHistory_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryEntity> PcrMedicalHistories { get; set; } // PCRMedicalHistory.FK_PCRMedicalHistory_Agency
+        /// <summary>
+        /// Child PcrMedicalHistoryImmunizationDetails where [PCRMedicalHistoryImmunizationDetails].[AgencyId] point to this entity (FK_PCRMedicalHistoryImmunizationDetails_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryImmunizationDetailEntity> PcrMedicalHistoryImmunizationDetails { get; set; } // PCRMedicalHistoryImmunizationDetails.FK_PCRMedicalHistoryImmunizationDetails_Agency
+        /// <summary>
+        /// Child PcrMedicalHistoryLivingWills where [PCRMedicalHistoryLivingWill].[AgencyId] point to this entity (FK_PCRMedicalHistoryLivingWill_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryLivingWillEntity> PcrMedicalHistoryLivingWills { get; set; } // PCRMedicalHistoryLivingWill.FK_PCRMedicalHistoryLivingWill_Agency
+        /// <summary>
+        /// Child PcrMedicalHistoryMedicationAllergies where [PCRMedicalHistoryMedicationAllergies].[AgencyId] point to this entity (FK_PCRMedicalHistoryMedicationAllergies_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryMedicationAllergyEntity> PcrMedicalHistoryMedicationAllergies { get; set; } // PCRMedicalHistoryMedicationAllergies.FK_PCRMedicalHistoryMedicationAllergies_Agency
+        /// <summary>
+        /// Child PcrMedicalHistoryPatientBarriers where [PCRMedicalHistoryPatientBarriers].[AgencyId] point to this entity (FK_PCRMedicalHistoryPatientBarriers_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryPatientBarrierEntity> PcrMedicalHistoryPatientBarriers { get; set; } // PCRMedicalHistoryPatientBarriers.FK_PCRMedicalHistoryPatientBarriers_Agency
+        /// <summary>
+        /// Child PcrMedicalHistoryPreexistingMedicalSurgeries where [PCRMedicalHistoryPreexistingMedicalSurgery].[AgencyId] point to this entity (FK_MedicalHistoryPreexistingMedicalSurgery_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryPreexistingMedicalSurgeryEntity> PcrMedicalHistoryPreexistingMedicalSurgeries { get; set; } // PCRMedicalHistoryPreexistingMedicalSurgery.FK_MedicalHistoryPreexistingMedicalSurgery_Agency
+        /// <summary>
+        /// Child PcrMiscellaneous where [PCRMiscellaneous].[AgencyId] point to this entity (FK_PCRMiscellaneous_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMiscellaneouEntity> PcrMiscellaneous { get; set; } // PCRMiscellaneous.FK_PCRMiscellaneous_Agency
+        /// <summary>
+        /// Child PcrMiscellaneousLocalAgencyResearchFields where [PCRMiscellaneousLocalAgencyResearchField].[AgencyId] point to this entity (FK_PCRMiscellaneousLocalAgencyResearchField_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMiscellaneousLocalAgencyResearchFieldEntity> PcrMiscellaneousLocalAgencyResearchFields { get; set; } // PCRMiscellaneousLocalAgencyResearchField.FK_PCRMiscellaneousLocalAgencyResearchField_Agency
+        /// <summary>
+        /// Child PcrMiscellaneousPatientIndicationCriteriaRegistries where [PCRMiscellaneousPatientIndicationCriteriaRegistry].[AgencyId] point to this entity (FK_PCRMiscellaneousPatientIndicationCriteriaRegistry_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMiscellaneousPatientIndicationCriteriaRegistryEntity> PcrMiscellaneousPatientIndicationCriteriaRegistries { get; set; } // PCRMiscellaneousPatientIndicationCriteriaRegistry.FK_PCRMiscellaneousPatientIndicationCriteriaRegistry_Agency
+        /// <summary>
+        /// Child PcrMiscellaneousPersonnelExposedFluids where [PCRMiscellaneousPersonnelExposedFluids].[AgencyId] point to this entity (FK_PCRMiscellaneousPersonnelExposedFluids_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMiscellaneousPersonnelExposedFluidEntity> PcrMiscellaneousPersonnelExposedFluids { get; set; } // PCRMiscellaneousPersonnelExposedFluids.FK_PCRMiscellaneousPersonnelExposedFluids_Agency
+        /// <summary>
+        /// Child PcrMiscellaneousProtectiveEquipmentUseds where [PCRMiscellaneousProtectiveEquipmentUsed].[AgencyId] point to this entity (FK_PCRMiscellaneousProtectiveEquipmentUsed_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMiscellaneousProtectiveEquipmentUsedEntity> PcrMiscellaneousProtectiveEquipmentUseds { get; set; } // PCRMiscellaneousProtectiveEquipmentUsed.FK_PCRMiscellaneousProtectiveEquipmentUsed_Agency
+        /// <summary>
+        /// Child PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorism where [PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism].[AgencyId] point to this entity (FK_PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorismEntity> PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorism { get; set; } // PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism.FK_PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism_Agency
+        /// <summary>
+        /// Child PcrMiscellaneousTypeExposureBodilyFluids where [PCRMiscellaneousTypeExposureBodilyFluids].[AgencyId] point to this entity (FK_PCRMiscellaneousTypeExposureBodilyFluids_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMiscellaneousTypeExposureBodilyFluidEntity> PcrMiscellaneousTypeExposureBodilyFluids { get; set; } // PCRMiscellaneousTypeExposureBodilyFluids.FK_PCRMiscellaneousTypeExposureBodilyFluids_Agency
+        /// <summary>
+        /// Child PcrNarratives where [PCRNarrative].[AgencyId] point to this entity (FK_PCRNarrative_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrNarrativeEntity> PcrNarratives { get; set; } // PCRNarrative.FK_PCRNarrative_Agency
+        /// <summary>
+        /// Child PcrOutcomeLinkages where [PCROutcomeLinkage].[AgencyId] point to this entity (FK_PCROutcomeLinkage_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrOutcomeLinkageEntity> PcrOutcomeLinkages { get; set; } // PCROutcomeLinkage.FK_PCROutcomeLinkage_Agency
+        /// <summary>
+        /// Child PcrPatients where [PCRPatient].[AgencyId] point to this entity (FK_PCRPatient_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrPatientEntity> PcrPatients { get; set; } // PCRPatient.FK_PCRPatient_Agency
+        /// <summary>
+        /// Child PcrScenes where [PCRScene].[AgencyId] point to this entity (FK_PCRScene_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrSceneEntity> PcrScenes { get; set; } // PCRScene.FK_PCRScene_Agency
+        /// <summary>
+        /// Child PcrSceneOtherEmsAgencies where [PCRSceneOtherEMSAgencies].[AgencyId] point to this entity (FK_PCRSceneOtherEMSAgencies_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrSceneOtherEmsAgencyEntity> PcrSceneOtherEmsAgencies { get; set; } // PCRSceneOtherEMSAgencies.FK_PCRSceneOtherEMSAgencies_Agency
+        /// <summary>
+        /// Child PcrSceneOtherServices where [PCRSceneOtherServices].[AgencyId] point to this entity (FK_PCRSceneOtherServices_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrSceneOtherServiceEntity> PcrSceneOtherServices { get; set; } // PCRSceneOtherServices.FK_PCRSceneOtherServices_Agency
+        /// <summary>
+        /// Child PcrSituations where [PCRSituation].[AgencyId] point to this entity (FK_PCRSituation_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrSituationEntity> PcrSituations { get; set; } // PCRSituation.FK_PCRSituation_Agency
+        /// <summary>
+        /// Child PcrSituationOtherSymptoms where [PCRSituationOtherSymptoms].[AgencyId] point to this entity (FK_PCRSituationOtherSymptoms_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrSituationOtherSymptomEntity> PcrSituationOtherSymptoms { get; set; } // PCRSituationOtherSymptoms.FK_PCRSituationOtherSymptoms_Agency
+        /// <summary>
+        /// Child PcrSituationPriorAids where [PCRSituationPriorAid].[AgencyId] point to this entity (FK_PCRSituationPriorAid_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrSituationPriorAidEntity> PcrSituationPriorAids { get; set; } // PCRSituationPriorAid.FK_PCRSituationPriorAid_Agency
+        /// <summary>
+        /// Child PcrSituationPriorAidPerformedBies where [PCRSituationPriorAidPerformedBy].[AgencyId] point to this entity (FK_PCRSituationPriorAidPerformedBy_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrSituationPriorAidPerformedByEntity> PcrSituationPriorAidPerformedBies { get; set; } // PCRSituationPriorAidPerformedBy.FK_PCRSituationPriorAidPerformedBy_Agency
+        /// <summary>
+        /// Child PcrTimes where [PCRTimes].[AgencyId] point to this entity (FK_PCRTimes_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrTimeEntity> PcrTimes { get; set; } // PCRTimes.FK_PCRTimes_Agency
+        /// <summary>
+        /// Child PcrTraumaAirbagDeployments where [PCRTraumaAirbagDeployment].[AgencyId] point to this entity (FK_PCRTraumaAirbagDeployment_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrTraumaAirbagDeploymentEntity> PcrTraumaAirbagDeployments { get; set; } // PCRTraumaAirbagDeployment.FK_PCRTraumaAirbagDeployment_Agency
+        /// <summary>
+        /// Child PcrTraumas where [PCRTrauma].[AgencyId] point to this entity (FK_PCRTrauma_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrTraumaEntity> PcrTraumas { get; set; } // PCRTrauma.FK_PCRTrauma_Agency
+        /// <summary>
+        /// Child PcrTraumaInjuryMechanism where [PCRTraumaInjuryMechanism].[AgencyId] point to this entity (FK_PCRTraumaInjuryMechanism_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrTraumaInjuryMechanismEntity> PcrTraumaInjuryMechanism { get; set; } // PCRTraumaInjuryMechanism.FK_PCRTraumaInjuryMechanism_Agency
+        /// <summary>
+        /// Child PcrTraumaOccupantSafetyEquipments where [PCRTraumaOccupantSafetyEquipment].[AgencyId] point to this entity (FK_PCRTraumaOccupantSafetyEquipment_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrTraumaOccupantSafetyEquipmentEntity> PcrTraumaOccupantSafetyEquipments { get; set; } // PCRTraumaOccupantSafetyEquipment.FK_PCRTraumaOccupantSafetyEquipment_Agency
+        /// <summary>
+        /// Child PcrTraumaRiskFactorPredictors where [PCRTraumaRiskFactorPredictors].[AgencyId] point to this entity (FK_PCRTraumaRiskFactorPredictors_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrTraumaRiskFactorPredictorEntity> PcrTraumaRiskFactorPredictors { get; set; } // PCRTraumaRiskFactorPredictors.FK_PCRTraumaRiskFactorPredictors_Agency
+        /// <summary>
+        /// Child PcrTraumaVehicleImpactLocations where [PCRTraumaVehicleImpactLocation].[AgencyId] point to this entity (FK_PCRTraumaVehicleImpactLocation_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrTraumaVehicleImpactLocationEntity> PcrTraumaVehicleImpactLocations { get; set; } // PCRTraumaVehicleImpactLocation.FK_PCRTraumaVehicleImpactLocation_Agency
+        /// <summary>
+        /// Child PcrUnitAgencyDispatchDelays where [PCRUnitAgencyDispatchDelays].[AgencyId] point to this entity (FK_PCRUnitAgencyDispatchDelays_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrUnitAgencyDispatchDelayEntity> PcrUnitAgencyDispatchDelays { get; set; } // PCRUnitAgencyDispatchDelays.FK_PCRUnitAgencyDispatchDelays_Agency
+        /// <summary>
+        /// Child PcrUnitAgencies where [PCRUnitAgency].[AgencyId] point to this entity (FK_PCRUnitAgency_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrUnitAgencyEntity> PcrUnitAgencies { get; set; } // PCRUnitAgency.FK_PCRUnitAgency_Agency
+        /// <summary>
+        /// Child PcrUnitAgencyResponseDelays where [PCRUnitAgencyResponseDelays].[AgencyId] point to this entity (FK_PCRUnitAgencyResponseDelays_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrUnitAgencyResponseDelayEntity> PcrUnitAgencyResponseDelays { get; set; } // PCRUnitAgencyResponseDelays.FK_PCRUnitAgencyResponseDelays_Agency
+        /// <summary>
+        /// Child PcrUnitAgencySceneDelays where [PCRUnitAgencySceneDelays].[AgencyId] point to this entity (FK_PCRUnitAgencySceneDelays_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrUnitAgencySceneDelayEntity> PcrUnitAgencySceneDelays { get; set; } // PCRUnitAgencySceneDelays.FK_PCRUnitAgencySceneDelays_Agency
+        /// <summary>
+        /// Child PcrUnitAgencyTransportDelays where [PCRUnitAgencyTransportDelays].[AgencyId] point to this entity (FK_PCRUnitAgencyTransportDelays_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrUnitAgencyTransportDelayEntity> PcrUnitAgencyTransportDelays { get; set; } // PCRUnitAgencyTransportDelays.FK_PCRUnitAgencyTransportDelays_Agency
+        /// <summary>
+        /// Child PcrUnitAgencyTurnAroundDelays where [PCRUnitAgencyTurnAroundDelays].[AgencyId] point to this entity (FK_PCRUnitAgencyTurnAroundDelays_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrUnitAgencyTurnAroundDelayEntity> PcrUnitAgencyTurnAroundDelays { get; set; } // PCRUnitAgencyTurnAroundDelays.FK_PCRUnitAgencyTurnAroundDelays_Agency
+        /// <summary>
+        /// Child PcrUnitCalls where [PCRUnitCall].[AgencyId] point to this entity (FK_PCRUnitCall_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrUnitCallEntity> PcrUnitCalls { get; set; } // PCRUnitCall.FK_PCRUnitCall_Agency
+        /// <summary>
+        /// Child PcrUnitPersonnels where [PCRUnitPersonnel].[AgencyId] point to this entity (FK_PCRUnitPersonnel_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrUnitPersonnelEntity> PcrUnitPersonnels { get; set; } // PCRUnitPersonnel.FK_PCRUnitPersonnel_Agency
+        /// <summary>
+        /// Child PcrVitalSignsAssessments where [PCRVitalSignsAssessment].[AgencyId] point to this entity (FK_PCRVitalSignsAssessment_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrVitalSignsAssessmentEntity> PcrVitalSignsAssessments { get; set; } // PCRVitalSignsAssessment.FK_PCRVitalSignsAssessment_Agency
+        /// <summary>
+        /// Child PcrVitalSignsAssessmentInitialCardiacRhythms where [PCRVitalSignsAssessmentInitialCardiacRhythm].[AgencyId] point to this entity (FK_PCRVitalSignsAssessmentInitialCardiacRhythm_Agency)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrVitalSignsAssessmentInitialCardiacRhythmEntity> PcrVitalSignsAssessmentInitialCardiacRhythms { get; set; } // PCRVitalSignsAssessmentInitialCardiacRhythm.FK_PCRVitalSignsAssessmentInitialCardiacRhythm_Agency
 
-        public Agency()
+        public AgencyEntity()
         {
             IsActive = true;
             DisableLifetimeSignature = false;
@@ -338,14 +1831,100 @@ namespace CD.ClaimSoft.Database
             CreateDate = System.DateTime.Now;
             LastModifyBy = "CDUNCAN";
             LastModifyDate = System.DateTime.Now;
-            Agencies = new System.Collections.Generic.List<Agency>();
-            AgencyAddresses = new System.Collections.Generic.List<AgencyAddress>();
-            AgencyAttachments = new System.Collections.Generic.List<AgencyAttachment>();
-            AgencyEmails = new System.Collections.Generic.List<AgencyEmail>();
-            AgencyNotes = new System.Collections.Generic.List<AgencyNote>();
-            AgencyNumbers = new System.Collections.Generic.List<AgencyNumber>();
-            AgencyPhones = new System.Collections.Generic.List<AgencyPhone>();
-            AgencyUsers = new System.Collections.Generic.List<AgencyUser>();
+            AgencyAddresses = new System.Collections.Generic.List<AgencyAddressEntity>();
+            AgencyBillingStatus = new System.Collections.Generic.List<AgencyBillingStatuEntity>();
+            AgencyCallSigns = new System.Collections.Generic.List<AgencyCallSignEntity>();
+            AgencyContacts = new System.Collections.Generic.List<AgencyContactEntity>();
+            AgencyCounties = new System.Collections.Generic.List<AgencyCountyEntity>();
+            AgencyEmdVendors = new System.Collections.Generic.List<AgencyEmdVendorEntity>();
+            AgencyFiles = new System.Collections.Generic.List<AgencyFileEntity>();
+            AgencyHospitals = new System.Collections.Generic.List<AgencyHospitalEntity>();
+            AgencyInsuranceCompanies = new System.Collections.Generic.List<AgencyInsuranceCompanyEntity>();
+            AgencyMedicalDevices = new System.Collections.Generic.List<AgencyMedicalDeviceEntity>();
+            AgencyMedicalDirectors = new System.Collections.Generic.List<AgencyMedicalDirectorEntity>();
+            AgencyMedicationsGivens = new System.Collections.Generic.List<AgencyMedicationsGivenEntity>();
+            AgencyNotes = new System.Collections.Generic.List<AgencyNoteEntity>();
+            AgencyOtherDestinations = new System.Collections.Generic.List<AgencyOtherDestinationEntity>();
+            AgencyOtherInformations = new System.Collections.Generic.List<AgencyOtherInformationEntity>();
+            AgencyOtherTypesServices = new System.Collections.Generic.List<AgencyOtherTypesServiceEntity>();
+            AgencyPersonnels = new System.Collections.Generic.List<AgencyPersonnelEntity>();
+            AgencyProcedures = new System.Collections.Generic.List<AgencyProcedureEntity>();
+            AgencyProtocols = new System.Collections.Generic.List<AgencyProtocolEntity>();
+            AgencyStates = new System.Collections.Generic.List<AgencyStateEntity>();
+            AgencyStations = new System.Collections.Generic.List<AgencyStationEntity>();
+            AgencyStatistics = new System.Collections.Generic.List<AgencyStatisticEntity>();
+            AgencyUsers = new System.Collections.Generic.List<AgencyUserEntity>();
+            AgencyVehicles = new System.Collections.Generic.List<AgencyVehicleEntity>();
+            AgencyZones = new System.Collections.Generic.List<AgencyZoneEntity>();
+            ApplicationLogs = new System.Collections.Generic.List<ApplicationLogEntity>();
+            ApplicationSettings = new System.Collections.Generic.List<ApplicationSettingEntity>();
+            FileImports = new System.Collections.Generic.List<FileImportEntity>();
+            FileImportRecords = new System.Collections.Generic.List<FileImportRecordEntity>();
+            PatientCareReports = new System.Collections.Generic.List<PatientCareReportEntity>();
+            PcrAssessmentExams = new System.Collections.Generic.List<PcrAssessmentExamEntity>();
+            PcrAssessmentExamsDifferents = new System.Collections.Generic.List<PcrAssessmentExamsDifferentEntity>();
+            PcrAssessmentInjuries = new System.Collections.Generic.List<PcrAssessmentInjuryEntity>();
+            PcrBillings = new System.Collections.Generic.List<PcrBillingEntity>();
+            PcrBillingConditionCodes = new System.Collections.Generic.List<PcrBillingConditionCodeEntity>();
+            PcrBillingConditionCodesModifiers = new System.Collections.Generic.List<PcrBillingConditionCodesModifierEntity>();
+            PcrBillingInsurances = new System.Collections.Generic.List<PcrBillingInsuranceEntity>();
+            Pcrcprs = new System.Collections.Generic.List<PcrcprEntity>();
+            PcrcprCardiacRhythmDeliveries = new System.Collections.Generic.List<PcrcprCardiacRhythmDeliveryEntity>();
+            PcrcprIndicationAttemptResuscitates = new System.Collections.Generic.List<PcrcprIndicationAttemptResuscitateEntity>();
+            PcrDispositions = new System.Collections.Generic.List<PcrDispositionEntity>();
+            PcrHeaders = new System.Collections.Generic.List<PcrHeaderEntity>();
+            PcrInterventions = new System.Collections.Generic.List<PcrInterventionEntity>();
+            PcrInterventionMedicationComplications = new System.Collections.Generic.List<PcrInterventionMedicationComplicationEntity>();
+            PcrInterventionMedications = new System.Collections.Generic.List<PcrInterventionMedicationEntity>();
+            PcrInterventionProceduresPerformeds = new System.Collections.Generic.List<PcrInterventionProceduresPerformedEntity>();
+            PcrInterventionProceduresPerformedComplications = new System.Collections.Generic.List<PcrInterventionProceduresPerformedComplicationEntity>();
+            PcrInterventionProceduresPerformedSuccessfulIvSites = new System.Collections.Generic.List<PcrInterventionProceduresPerformedSuccessfulIvSiteEntity>();
+            PcrInterventionProceduresPerformedTubeConfirmations = new System.Collections.Generic.List<PcrInterventionProceduresPerformedTubeConfirmationEntity>();
+            PcrInterventionProceduresPerformedTubePlacements = new System.Collections.Generic.List<PcrInterventionProceduresPerformedTubePlacementEntity>();
+            PcrMedicalDeviceDatas = new System.Collections.Generic.List<PcrMedicalDeviceDataEntity>();
+            PcrMedicalHistories = new System.Collections.Generic.List<PcrMedicalHistoryEntity>();
+            PcrMedicalHistoryAlcoholDrugIndicators = new System.Collections.Generic.List<PcrMedicalHistoryAlcoholDrugIndicatorEntity>();
+            PcrMedicalHistoryAllergies = new System.Collections.Generic.List<PcrMedicalHistoryAllergyEntity>();
+            PcrMedicalHistoryCurrentMedications = new System.Collections.Generic.List<PcrMedicalHistoryCurrentMedicationEntity>();
+            PcrMedicalHistoryImmunizationDetails = new System.Collections.Generic.List<PcrMedicalHistoryImmunizationDetailEntity>();
+            PcrMedicalHistoryLivingWills = new System.Collections.Generic.List<PcrMedicalHistoryLivingWillEntity>();
+            PcrMedicalHistoryMedicationAllergies = new System.Collections.Generic.List<PcrMedicalHistoryMedicationAllergyEntity>();
+            PcrMedicalHistoryPatientBarriers = new System.Collections.Generic.List<PcrMedicalHistoryPatientBarrierEntity>();
+            PcrMedicalHistoryPreexistingMedicalSurgeries = new System.Collections.Generic.List<PcrMedicalHistoryPreexistingMedicalSurgeryEntity>();
+            PcrMiscellaneous = new System.Collections.Generic.List<PcrMiscellaneouEntity>();
+            PcrMiscellaneousLocalAgencyResearchFields = new System.Collections.Generic.List<PcrMiscellaneousLocalAgencyResearchFieldEntity>();
+            PcrMiscellaneousPatientIndicationCriteriaRegistries = new System.Collections.Generic.List<PcrMiscellaneousPatientIndicationCriteriaRegistryEntity>();
+            PcrMiscellaneousPersonnelExposedFluids = new System.Collections.Generic.List<PcrMiscellaneousPersonnelExposedFluidEntity>();
+            PcrMiscellaneousProtectiveEquipmentUseds = new System.Collections.Generic.List<PcrMiscellaneousProtectiveEquipmentUsedEntity>();
+            PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorism = new System.Collections.Generic.List<PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorismEntity>();
+            PcrMiscellaneousTypeExposureBodilyFluids = new System.Collections.Generic.List<PcrMiscellaneousTypeExposureBodilyFluidEntity>();
+            PcrNarratives = new System.Collections.Generic.List<PcrNarrativeEntity>();
+            PcrOutcomeLinkages = new System.Collections.Generic.List<PcrOutcomeLinkageEntity>();
+            PcrPatients = new System.Collections.Generic.List<PcrPatientEntity>();
+            PcrScenes = new System.Collections.Generic.List<PcrSceneEntity>();
+            PcrSceneOtherEmsAgencies = new System.Collections.Generic.List<PcrSceneOtherEmsAgencyEntity>();
+            PcrSceneOtherServices = new System.Collections.Generic.List<PcrSceneOtherServiceEntity>();
+            PcrSituations = new System.Collections.Generic.List<PcrSituationEntity>();
+            PcrSituationOtherSymptoms = new System.Collections.Generic.List<PcrSituationOtherSymptomEntity>();
+            PcrSituationPriorAids = new System.Collections.Generic.List<PcrSituationPriorAidEntity>();
+            PcrSituationPriorAidPerformedBies = new System.Collections.Generic.List<PcrSituationPriorAidPerformedByEntity>();
+            PcrTimes = new System.Collections.Generic.List<PcrTimeEntity>();
+            PcrTraumas = new System.Collections.Generic.List<PcrTraumaEntity>();
+            PcrTraumaAirbagDeployments = new System.Collections.Generic.List<PcrTraumaAirbagDeploymentEntity>();
+            PcrTraumaInjuryMechanism = new System.Collections.Generic.List<PcrTraumaInjuryMechanismEntity>();
+            PcrTraumaOccupantSafetyEquipments = new System.Collections.Generic.List<PcrTraumaOccupantSafetyEquipmentEntity>();
+            PcrTraumaRiskFactorPredictors = new System.Collections.Generic.List<PcrTraumaRiskFactorPredictorEntity>();
+            PcrTraumaVehicleImpactLocations = new System.Collections.Generic.List<PcrTraumaVehicleImpactLocationEntity>();
+            PcrUnitAgencies = new System.Collections.Generic.List<PcrUnitAgencyEntity>();
+            PcrUnitAgencyDispatchDelays = new System.Collections.Generic.List<PcrUnitAgencyDispatchDelayEntity>();
+            PcrUnitAgencyResponseDelays = new System.Collections.Generic.List<PcrUnitAgencyResponseDelayEntity>();
+            PcrUnitAgencySceneDelays = new System.Collections.Generic.List<PcrUnitAgencySceneDelayEntity>();
+            PcrUnitAgencyTransportDelays = new System.Collections.Generic.List<PcrUnitAgencyTransportDelayEntity>();
+            PcrUnitAgencyTurnAroundDelays = new System.Collections.Generic.List<PcrUnitAgencyTurnAroundDelayEntity>();
+            PcrUnitCalls = new System.Collections.Generic.List<PcrUnitCallEntity>();
+            PcrUnitPersonnels = new System.Collections.Generic.List<PcrUnitPersonnelEntity>();
+            PcrVitalSignsAssessments = new System.Collections.Generic.List<PcrVitalSignsAssessmentEntity>();
+            PcrVitalSignsAssessmentInitialCardiacRhythms = new System.Collections.Generic.List<PcrVitalSignsAssessmentInitialCardiacRhythmEntity>();
             InitializePartial();
         }
 
@@ -354,7 +1933,7 @@ namespace CD.ClaimSoft.Database
 
     // AgencyAddress
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AgencyAddress
+    public partial class AgencyAddressEntity
     {
         public int Id { get; set; } // Id (Primary key)
         public int AgencyId { get; set; } // AgencyId
@@ -377,39 +1956,12 @@ namespace CD.ClaimSoft.Database
         // Foreign keys
 
         /// <summary>
-        /// Parent AddressType pointed by [AgencyAddress].([AddressTypeId]) (FK_AgencyAddress_AddressType)
-        /// </summary>
-        public virtual AddressType AddressType { get; set; } // FK_AgencyAddress_AddressType
-
-        /// <summary>
         /// Parent Agency pointed by [AgencyAddress].([AgencyId]) (FK_AgencyAddress_Agency)
         /// </summary>
-        public virtual Agency Agency { get; set; } // FK_AgencyAddress_Agency
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyAddress_Agency
 
-        /// <summary>
-        /// Parent Country pointed by [AgencyAddress].([CountyId]) (FK_AgencyAddress_Country)
-        /// </summary>
-        public virtual Country Country { get; set; } // FK_AgencyAddress_Country
-
-        /// <summary>
-        /// Parent County pointed by [AgencyAddress].([CountyId]) (FK_AgencyAddress_County)
-        /// </summary>
-        public virtual County County { get; set; } // FK_AgencyAddress_County
-
-        /// <summary>
-        /// Parent State pointed by [AgencyAddress].([StateId]) (FK_AgencyAddress_State)
-        /// </summary>
-        public virtual State State { get; set; } // FK_AgencyAddress_State
-
-        public AgencyAddress()
+        public AgencyAddressEntity()
         {
-            IsPayToAddress = false;
-            IsReturnAddress = false;
-            IsDefault = false;
-            CreateBy = "CDUNCAN";
-            CreateDate = System.DateTime.Now;
-            LastModifyBy = "CDUNCAN";
-            LastModifyDate = System.DateTime.Now;
             InitializePartial();
         }
 
@@ -418,7 +1970,7 @@ namespace CD.ClaimSoft.Database
 
     // AgencyAttachments
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AgencyAttachment
+    public partial class AgencyAttachmentEntity
     {
         public int Id { get; set; } // Id (Primary key)
         public int AgencyId { get; set; } // AgencyId
@@ -433,16 +1985,11 @@ namespace CD.ClaimSoft.Database
         // Foreign keys
 
         /// <summary>
-        /// Parent Agency pointed by [AgencyAttachments].([AgencyId]) (FK_AgencyAttachments_Agency)
-        /// </summary>
-        public virtual Agency Agency { get; set; } // FK_AgencyAttachments_Agency
-
-        /// <summary>
         /// Parent AgencyNote pointed by [AgencyAttachments].([AgencyNoteId]) (FK_AgencyAttachments_AgencyNotes)
         /// </summary>
-        public virtual AgencyNote AgencyNote { get; set; } // FK_AgencyAttachments_AgencyNotes
+        public virtual AgencyNoteEntity AgencyNote { get; set; } // FK_AgencyAttachments_AgencyNotes
 
-        public AgencyAttachment()
+        public AgencyAttachmentEntity()
         {
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
@@ -454,15 +2001,21 @@ namespace CD.ClaimSoft.Database
         partial void InitializePartial();
     }
 
-    // AgencyEmail
+    // AgencyBillingStatus
+    ///<summary>
+    /// NEMSIS V2 - D04	- Agency Configuration Information: Billing Status
+    ///</summary>
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AgencyEmail
+    public partial class AgencyBillingStatuEntity
     {
         public int Id { get; set; } // Id (Primary key)
         public int AgencyId { get; set; } // AgencyId
-        public int EmailTypeId { get; set; } // EmailTypeId
-        public string EmailAddress { get; set; } // EmailAddress (length: 255)
-        public bool IsDefault { get; set; } // IsDefault
+
+        ///<summary>
+        /// NEMSIS V2 - D04_10 Element - Billing Status
+        ///</summary>
+        public string BillingStatus { get; set; } // BillingStatus (length: 30)
+        public string Status { get; set; } // Status (length: 1)
         public string CreateBy { get; set; } // CreateBy (length: 50)
         public System.DateTime CreateDate { get; set; } // CreateDate
         public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
@@ -471,18 +2024,298 @@ namespace CD.ClaimSoft.Database
         // Foreign keys
 
         /// <summary>
-        /// Parent Agency pointed by [AgencyEmail].([AgencyId]) (FK_AgencyEmail_Agency)
+        /// Parent Agency pointed by [AgencyBillingStatus].([AgencyId]) (FK_AgencyBillingStatus_Agency)
         /// </summary>
-        public virtual Agency Agency { get; set; } // FK_AgencyEmail_Agency
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyBillingStatus_Agency
+
+        public AgencyBillingStatuEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyCallSign
+    ///<summary>
+    /// NEMSIS V2 - D04 - Agency Configuration Information: Call Sign Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyCallSignEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D04_02 Element - EMS Unit Call Sign
+        ///</summary>
+        public string UnitCallSign { get; set; } // UnitCallSign (length: 30)
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
 
         /// <summary>
-        /// Parent EmailType pointed by [AgencyEmail].([EmailTypeId]) (FK_AgencyEmail_EmailType)
+        /// Parent Agency pointed by [AgencyCallSign].([AgencyId]) (FK_AgencyCallSign_Agency)
         /// </summary>
-        public virtual EmailType EmailType { get; set; } // FK_AgencyEmail_EmailType
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyCallSign_Agency
 
-        public AgencyEmail()
+        public AgencyCallSignEntity()
         {
-            IsDefault = false;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyCertificationLicensureLevels
+    ///<summary>
+    /// NEMSIS V2 - D04 - Agency Certification Information: State Certification Licensure Levels
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyCertificationLicensureLevelEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D04_01 Element -  State Certification Level
+        ///</summary>
+        public string StateCertificationLevel { get; set; } // StateCertificationLevel (length: 30)
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child AgencyMedicationsGivens where [AgencyMedicationsGiven].[AgencyCertificationLicensureLevelId] point to this entity (FK_AgencyMedicationsGiven_AgencyCertificationLicensureLevels)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyMedicationsGivenEntity> AgencyMedicationsGivens { get; set; } // AgencyMedicationsGiven.FK_AgencyMedicationsGiven_AgencyCertificationLicensureLevels
+        /// <summary>
+        /// Child AgencyPersonnelCertificationLevels where [AgencyPersonnelCertificationLevel].[AgencyCertificationLicensureLevelId] point to this entity (FK_AgencyPersonnelCertificationLevel_AgencyCertificationLicensureLevels)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyPersonnelCertificationLevelEntity> AgencyPersonnelCertificationLevels { get; set; } // AgencyPersonnelCertificationLevel.FK_AgencyPersonnelCertificationLevel_AgencyCertificationLicensureLevels
+        /// <summary>
+        /// Child AgencyPersonnelGenerals where [AgencyPersonnelGeneral].[AgencyCertificationLicensureLevelId] point to this entity (FK_AgencyPersonnelGeneral_AgencyCertificationLicensureLevels)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyPersonnelGeneralEntity> AgencyPersonnelGenerals { get; set; } // AgencyPersonnelGeneral.FK_AgencyPersonnelGeneral_AgencyCertificationLicensureLevels
+        /// <summary>
+        /// Child AgencyProcedures where [AgencyProcedures].[AgencyCertificationLicensureLevelId] point to this entity (FK_AgencyProcedures_AgencyCertificationLicensureLevels)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyProcedureEntity> AgencyProcedures { get; set; } // AgencyProcedures.FK_AgencyProcedures_AgencyCertificationLicensureLevels
+        /// <summary>
+        /// Child AgencyProtocols where [AgencyProtocol].[AgencyCertificationLicensureLevelId] point to this entity (FK_AgencyProtocol_AgencyCertificationLicensureLevels)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyProtocolEntity> AgencyProtocols { get; set; } // AgencyProtocol.FK_AgencyProtocol_AgencyCertificationLicensureLevels
+        /// <summary>
+        /// Child AgencyVehicleCertifications where [AgencyVehicleCertification].[AgencyCertificationLicensureLevelId] point to this entity (FK_AgencyVehicleCertification_AgencyCertificationLicensureLevels)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyVehicleCertificationEntity> AgencyVehicleCertifications { get; set; } // AgencyVehicleCertification.FK_AgencyVehicleCertification_AgencyCertificationLicensureLevels
+
+        public AgencyCertificationLicensureLevelEntity()
+        {
+            AgencyMedicationsGivens = new System.Collections.Generic.List<AgencyMedicationsGivenEntity>();
+            AgencyPersonnelCertificationLevels = new System.Collections.Generic.List<AgencyPersonnelCertificationLevelEntity>();
+            AgencyPersonnelGenerals = new System.Collections.Generic.List<AgencyPersonnelGeneralEntity>();
+            AgencyProcedures = new System.Collections.Generic.List<AgencyProcedureEntity>();
+            AgencyProtocols = new System.Collections.Generic.List<AgencyProtocolEntity>();
+            AgencyVehicleCertifications = new System.Collections.Generic.List<AgencyVehicleCertificationEntity>();
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyContact
+    ///<summary>
+    /// NEMSIS V2 - D02 - Agency Contact Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyContactEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D02_01 Element - Last Name
+        ///</summary>
+        public string LastName { get; set; } // LastName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - D02_02 Element - Middle Name/Initial
+        ///</summary>
+        public string MiddleName { get; set; } // MiddleName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - D02_03 Element - First Name
+        ///</summary>
+        public string FirstName { get; set; } // FirstName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - D02_04 Element - Address
+        ///</summary>
+        public string Address { get; set; } // Address (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - D02_05 Element - City
+        ///</summary>
+        public string City { get; set; } // City (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - D02_06 Element - State
+        ///</summary>
+        public string State { get; set; } // State (length: 3)
+
+        ///<summary>
+        /// NEMSIS V2 - D02_07 Element - Zip Code
+        ///</summary>
+        public string ZipCode { get; set; } // ZipCode (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - D02_08 Element - Telephone Number
+        ///</summary>
+        public string TelephoneNumber { get; set; } // TelephoneNumber (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - D02_09 Element - Fax Number
+        ///</summary>
+        public string FaxNumber { get; set; } // FaxNumber (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - D02_10 Element - Email Address
+        ///</summary>
+        public string EmailAddress { get; set; } // EmailAddress (length: 100)
+
+        ///<summary>
+        /// NEMSIS V2 - D02_11 Element - Web Address
+        ///</summary>
+        public string WebAddress { get; set; } // WebAddress (length: 100)
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyContact].([AgencyId]) (FK_AgencyContact_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyContact_Agency
+
+        public AgencyContactEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyCounty
+    ///<summary>
+    /// NEMSIS V2 - D01_04 - Agency County Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyCountyEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D01_04 Element - The agency county
+        ///</summary>
+        public string County { get; set; } // County (length: 5)
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyCounty].([AgencyId]) (FK_AgencyCounty_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyCounty_Agency
+
+        public AgencyCountyEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyEMDVendor
+    ///<summary>
+    /// NEMSIS V2 - D04 - Agency Configuration Information: EMD Vendor Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyEmdVendorEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D04_17 Element - EMD Vendor
+        ///</summary>
+        public string EmdVendor { get; set; } // EMDVendor (length: 50)
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyEMDVendor].([AgencyId]) (FK_AgencyEMDVendor_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyEMDVendor_Agency
+
+        public AgencyEmdVendorEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyFiles
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyFileEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+        public string StreamId { get; set; } // stream_id (length: 128)
+        public string Name { get; set; } // Name (length: 255)
+        public int FileTypeId { get; set; } // FileTypeId
+        public System.DateTime? ProcessedDate { get; set; } // ProcessedDate
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyFiles].([AgencyId]) (FK_AgencyFiles_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyFiles_Agency
+
+        /// <summary>
+        /// Parent FileType pointed by [AgencyFiles].([FileTypeId]) (FK_AgencyFiles_FileType)
+        /// </summary>
+        public virtual FileTypeEntity FileType { get; set; } // FK_AgencyFiles_FileType
+
+        public AgencyFileEntity()
+        {
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
             LastModifyBy = "CDUNCAN";
@@ -493,9 +2326,265 @@ namespace CD.ClaimSoft.Database
         partial void InitializePartial();
     }
 
+    // AgencyHospital
+    ///<summary>
+    /// NEMSIS V2 - D04 - Agency Configuration Information: Hospital Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyHospitalEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D04_11 Element - Hospitals Served
+        ///</summary>
+        public string HospitalsServed { get; set; } // HospitalsServed (length: 50)
+
+        ///<summary>
+        /// NEMSIS V2 - D04_12 Element - Hospital Facility Number
+        ///</summary>
+        public string FacilityNumber { get; set; } // FacilityNumber (length: 30)
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyHospital].([AgencyId]) (FK_AgencyHospital_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyHospital_Agency
+
+        public AgencyHospitalEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyInsuranceCompany
+    ///<summary>
+    /// NEMSIS V2 - D04 - Agency Configuration Information: Insurance Company Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyInsuranceCompanyEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D04_16 Element - Insurance Company Used
+        ///</summary>
+        public string InsuranceCompanyUsed { get; set; } // InsuranceCompanyUsed (length: 100)
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyInsuranceCompany].([AgencyId]) (FK_AgencyInsuranceCompany_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyInsuranceCompany_Agency
+
+        public AgencyInsuranceCompanyEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyMedicalDevice
+    ///<summary>
+    /// NEMSIS V2 - D09 - Agency Medical Device Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyMedicalDeviceEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D09_01 Element - Device Serial Number
+        ///</summary>
+        public string SerialNumber { get; set; } // SerialNumber (length: 50)
+
+        ///<summary>
+        /// NEMSIS V2 - D09_02 Element - Device Name or ID
+        ///</summary>
+        public string NameOrId { get; set; } // NameOrId (length: 50)
+
+        ///<summary>
+        /// NEMSIS V2 - D09_03 Element - Device Manufacturer
+        ///</summary>
+        public string Manufacturer { get; set; } // Manufacturer (length: 50)
+
+        ///<summary>
+        /// NEMSIS V2 - D09_04 Element - Model Number
+        ///</summary>
+        public string ModelNumber { get; set; } // ModelNumber (length: 50)
+
+        ///<summary>
+        /// NEMSIS V2 - D09_05 Element - Device Purchase Date
+        ///</summary>
+        public System.DateTime? PurchaseDate { get; set; } // PurchaseDate
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyMedicalDevice].([AgencyId]) (FK_AgencyMedicalDevice_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyMedicalDevice_Agency
+
+        public AgencyMedicalDeviceEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyMedicalDirector
+    ///<summary>
+    /// NEMSIS V2 - D03 - Agency Medical Director Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyMedicalDirectorEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D03_01 Element - Last Name
+        ///</summary>
+        public string LastName { get; set; } // LastName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - D03_02 Element - Middle Name/Initial
+        ///</summary>
+        public string MiddleName { get; set; } // MiddleName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - D03_03 Element - First Name
+        ///</summary>
+        public string FirstName { get; set; } // FirstName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - D03_04 Element - Address
+        ///</summary>
+        public string Address { get; set; } // Address (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - D03_05 Element - City
+        ///</summary>
+        public string City { get; set; } // City (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - D03_06 Element - State
+        ///</summary>
+        public string State { get; set; } // State (length: 3)
+
+        ///<summary>
+        /// NEMSIS V2 - D03_07 Element - Zip Code
+        ///</summary>
+        public string ZipCode { get; set; } // ZipCode (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - D03_08 Element - Telephone Number
+        ///</summary>
+        public string TelephoneNumber { get; set; } // TelephoneNumber (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - D03_09 Element - Fax Number
+        ///</summary>
+        public string FaxNumber { get; set; } // FaxNumber (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - D03_10 Element - Medical Specialty
+        ///</summary>
+        public int? MedicalSpecialty { get; set; } // MedicalSpecialty
+
+        ///<summary>
+        /// NEMSIS V2 - D03_11 Element - Email Address
+        ///</summary>
+        public string EmailAddress { get; set; } // EmailAddress (length: 100)
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyMedicalDirector].([AgencyId]) (FK_AgencyMedicalDirector_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyMedicalDirector_Agency
+
+        public AgencyMedicalDirectorEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyMedicationsGiven
+    ///<summary>
+    /// NEMSIS V2 - D04 - Agency Configuration Information: Medications
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyMedicationsGivenEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D04_06 Element - Medication
+        ///</summary>
+        public string Medication { get; set; } // Medication (length: 30)
+        public int? AgencyCertificationLicensureLevelId { get; set; } // AgencyCertificationLicensureLevelId
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent AgencyCertificationLicensureLevel pointed by [AgencyMedicationsGiven].([AgencyCertificationLicensureLevelId]) (FK_AgencyMedicationsGiven_AgencyCertificationLicensureLevels)
+        /// </summary>
+        public virtual AgencyCertificationLicensureLevelEntity AgencyCertificationLicensureLevel { get; set; } // FK_AgencyMedicationsGiven_AgencyCertificationLicensureLevels
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyMedicationsGiven].([AgencyId]) (FK_AgencyMedicationsGiven_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyMedicationsGiven_Agency
+
+        public AgencyMedicationsGivenEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
     // AgencyNotes
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AgencyNote
+    public partial class AgencyNoteEntity
     {
         public int Id { get; set; } // Id (Primary key)
         public int AgencyId { get; set; } // AgencyId
@@ -510,36 +2599,53 @@ namespace CD.ClaimSoft.Database
         /// <summary>
         /// Child AgencyAttachments where [AgencyAttachments].[AgencyNoteId] point to this entity (FK_AgencyAttachments_AgencyNotes)
         /// </summary>
-        public virtual System.Collections.Generic.ICollection<AgencyAttachment> AgencyAttachments { get; set; } // AgencyAttachments.FK_AgencyAttachments_AgencyNotes
+        public virtual System.Collections.Generic.ICollection<AgencyAttachmentEntity> AgencyAttachments { get; set; } // AgencyAttachments.FK_AgencyAttachments_AgencyNotes
 
         // Foreign keys
 
         /// <summary>
         /// Parent Agency pointed by [AgencyNotes].([AgencyId]) (FK_AgencyNotes_Agency)
         /// </summary>
-        public virtual Agency Agency { get; set; } // FK_AgencyNotes_Agency
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyNotes_Agency
 
-        public AgencyNote()
+        public AgencyNoteEntity()
         {
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
             LastModifyBy = "CDUNCAN";
             LastModifyDate = System.DateTime.Now;
-            AgencyAttachments = new System.Collections.Generic.List<AgencyAttachment>();
+            AgencyAttachments = new System.Collections.Generic.List<AgencyAttachmentEntity>();
             InitializePartial();
         }
 
         partial void InitializePartial();
     }
 
-    // AgencyNumber
+    // AgencyOtherDestinations
+    ///<summary>
+    /// NEMSIS V2 - D04 - Agency Configuration Information: Other Destinations
+    ///</summary>
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AgencyNumber
+    public partial class AgencyOtherDestinationEntity
     {
         public int Id { get; set; } // Id (Primary key)
         public int AgencyId { get; set; } // AgencyId
-        public string Number { get; set; } // Number (length: 50)
-        public bool IgnoreTimeStamps { get; set; } // IgnoreTimeStamps
+
+        ///<summary>
+        /// NEMSIS V2 - D04_13 Element - Other Destinations
+        ///</summary>
+        public string OtherDestination { get; set; } // OtherDestination (length: 50)
+
+        ///<summary>
+        /// NEMSIS V2 - D04_14 Element - Destination Facility Number
+        ///</summary>
+        public string DestinationFacilityNumber { get; set; } // DestinationFacilityNumber (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - D04_15 Element - Destination Type
+        ///</summary>
+        public int DestinationType { get; set; } // DestinationType
+        public string Status { get; set; } // Status (length: 1)
         public string CreateBy { get; set; } // CreateBy (length: 50)
         public System.DateTime CreateDate { get; set; } // CreateDate
         public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
@@ -548,32 +2654,33 @@ namespace CD.ClaimSoft.Database
         // Foreign keys
 
         /// <summary>
-        /// Parent Agency pointed by [AgencyNumber].([AgencyId]) (FK_AgencyNumber_Agency)
+        /// Parent Agency pointed by [AgencyOtherDestinations].([AgencyId]) (FK_AgencyOtherDestinations_Agency)
         /// </summary>
-        public virtual Agency Agency { get; set; } // FK_AgencyNumber_Agency
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyOtherDestinations_Agency
 
-        public AgencyNumber()
+        public AgencyOtherDestinationEntity()
         {
-            IgnoreTimeStamps = false;
-            CreateBy = "CDUNCAN";
-            CreateDate = System.DateTime.Now;
-            LastModifyBy = "CDUNCAN";
-            LastModifyDate = System.DateTime.Now;
             InitializePartial();
         }
 
         partial void InitializePartial();
     }
 
-    // AgencyPhone
+    // AgencyOtherInformation
+    ///<summary>
+    /// NEMSIS V2 - D01_11 - Other Agency Information
+    ///</summary>
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AgencyPhone
+    public partial class AgencyOtherInformationEntity
     {
         public int Id { get; set; } // Id (Primary key)
         public int AgencyId { get; set; } // AgencyId
-        public int PhoneTypeId { get; set; } // PhoneTypeId
-        public string PhoneNumber { get; set; } // PhoneNumber (length: 25)
-        public bool IsDefault { get; set; } // IsDefault
+
+        ///<summary>
+        /// NEMSIS V2 - D01_11 Element - Other Agencies In Area
+        ///</summary>
+        public string OtherAgenciesInArea { get; set; } // OtherAgenciesInArea (length: 50)
+        public string Status { get; set; } // Status (length: 1)
         public string CreateBy { get; set; } // CreateBy (length: 50)
         public System.DateTime CreateDate { get; set; } // CreateDate
         public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
@@ -582,22 +2689,555 @@ namespace CD.ClaimSoft.Database
         // Foreign keys
 
         /// <summary>
-        /// Parent Agency pointed by [AgencyPhone].([AgencyId]) (FK_AgencyPhone_Agency)
+        /// Parent Agency pointed by [AgencyOtherInformation].([AgencyId]) (FK_AgencyOtherInformation_Agency)
         /// </summary>
-        public virtual Agency Agency { get; set; } // FK_AgencyPhone_Agency
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyOtherInformation_Agency
+
+        public AgencyOtherInformationEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyOtherTypesService
+    ///<summary>
+    /// NEMSIS V2 - D01_06 - Agency Other Types of Service Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyOtherTypesServiceEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D01_06 Element - Agency Other Types of Service Information
+        ///</summary>
+        public int OtherServiceType { get; set; } // OtherServiceType
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
 
         /// <summary>
-        /// Parent PhoneType pointed by [AgencyPhone].([PhoneTypeId]) (FK_AgencyPhone_PhoneType)
+        /// Parent Agency pointed by [AgencyOtherTypesService].([AgencyId]) (FK_AgencyOtherTypesService_Agency)
         /// </summary>
-        public virtual PhoneType PhoneType { get; set; } // FK_AgencyPhone_PhoneType
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyOtherTypesService_Agency
 
-        public AgencyPhone()
+        public AgencyOtherTypesServiceEntity()
         {
-            IsDefault = false;
-            CreateBy = "CDUNCAN";
-            CreateDate = System.DateTime.Now;
-            LastModifyBy = "CDUNCAN";
-            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyPersonnel
+    ///<summary>
+    /// NEMSIS V2 - D07 - Agency Personnel Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyPersonnelEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - D07_01 Element - Personnel&apos;s Agency ID Number
+        ///</summary>
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D07_02 Element - State/Licensure ID Number
+        ///</summary>
+        public int StateLicensureId { get; set; } // StateLicensureId
+
+        ///<summary>
+        /// NEMSIS V2 - D07_03 Element - Personnel&apos;s Employment Status
+        ///</summary>
+        public int EmploymentStatus { get; set; } // EmploymentStatus
+
+        ///<summary>
+        /// NEMSIS V2 - D07_04 Element - Employment Status Date
+        ///</summary>
+        public System.DateTime? StatusDate { get; set; } // StatusDate
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child AgencyPersonnelCertificationLevels where [AgencyPersonnelCertificationLevel].[AgencyPersonnelId] point to this entity (FK_AgencyPersonnelCertificationLevel_AgencyPersonnel)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyPersonnelCertificationLevelEntity> AgencyPersonnelCertificationLevels { get; set; } // AgencyPersonnelCertificationLevel.FK_AgencyPersonnelCertificationLevel_AgencyPersonnel
+        /// <summary>
+        /// Child AgencyPersonnelGenerals where [AgencyPersonnelGeneral].[AgencyPersonnelId] point to this entity (FK_AgencyPersonnelGeneral_AgencyPersonnel)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyPersonnelGeneralEntity> AgencyPersonnelGenerals { get; set; } // AgencyPersonnelGeneral.FK_AgencyPersonnelGeneral_AgencyPersonnel
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyPersonnel].([AgencyId]) (FK_AgencyPersonnel_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyPersonnel_Agency
+
+        public AgencyPersonnelEntity()
+        {
+            AgencyPersonnelCertificationLevels = new System.Collections.Generic.List<AgencyPersonnelCertificationLevelEntity>();
+            AgencyPersonnelGenerals = new System.Collections.Generic.List<AgencyPersonnelGeneralEntity>();
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyPersonnelCertificationLevel
+    ///<summary>
+    /// NEMSIS V2 - D07 - Agency Personnel Information: Personnel&apos;s Level of Certification/Licensure for Agency
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyPersonnelCertificationLevelEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - D07_05 Element - Personnel&apos;s Level of Certification/Licensure for Agency
+        ///</summary>
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyPersonnelId { get; set; } // AgencyPersonnelId
+        public int AgencyCertificationLicensureLevelId { get; set; } // AgencyCertificationLicensureLevelId
+
+        ///<summary>
+        /// NEMSIS V2 - D07_06 Element - Date of Personnel&apos;s Certification or Licensure for Agency
+        ///</summary>
+        public System.DateTime? CertificationDate { get; set; } // CertificationDate
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent AgencyCertificationLicensureLevel pointed by [AgencyPersonnelCertificationLevel].([AgencyCertificationLicensureLevelId]) (FK_AgencyPersonnelCertificationLevel_AgencyCertificationLicensureLevels)
+        /// </summary>
+        public virtual AgencyCertificationLicensureLevelEntity AgencyCertificationLicensureLevel { get; set; } // FK_AgencyPersonnelCertificationLevel_AgencyCertificationLicensureLevels
+
+        /// <summary>
+        /// Parent AgencyPersonnel pointed by [AgencyPersonnelCertificationLevel].([AgencyPersonnelId]) (FK_AgencyPersonnelCertificationLevel_AgencyPersonnel)
+        /// </summary>
+        public virtual AgencyPersonnelEntity AgencyPersonnel { get; set; } // FK_AgencyPersonnelCertificationLevel_AgencyPersonnel
+
+        public AgencyPersonnelCertificationLevelEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyPersonnelGeneral
+    ///<summary>
+    /// NEMSIS V2 - D08 - Agency General Personnel Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyPersonnelGeneralEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyPersonnelId { get; set; } // AgencyPersonnelId
+
+        ///<summary>
+        /// NEMSIS V2 - D08_01 Element - EMS Personnel&apos;s Last Name
+        ///</summary>
+        public string LastName { get; set; } // LastName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - D08_02 Element - EMS Personnel&apos;s Middle Name/Initial
+        ///</summary>
+        public string MiddleName { get; set; } // MiddleName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - D08_03 Element - EMS Personnel&apos;s First Name
+        ///</summary>
+        public string FirstName { get; set; } // FirstName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - D08_04 Element - EMS Personnel&apos;s Mailing Address
+        ///</summary>
+        public string Address { get; set; } // Address (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - D08_05 Element - EMS Personnel&apos;s City of Residence
+        ///</summary>
+        public string City { get; set; } // City (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - D08_06 Element - EMS Personnel&apos;s State
+        ///</summary>
+        public string State { get; set; } // State (length: 3)
+
+        ///<summary>
+        /// NEMSIS V2 - D08_07 Element - EMS Personnel&apos;s Zip Code
+        ///</summary>
+        public string ZipCode { get; set; } // ZipCode (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - D08_08 Element - EMS Personnel&apos;s Work Telephone
+        ///</summary>
+        public string WorkTelephone { get; set; } // WorkTelephone (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - D08_09 Element - EMS Personnel&apos;s Home Telephone
+        ///</summary>
+        public string HomeTelephone { get; set; } // HomeTelephone (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - D08_10 Element - EMS Personnel&apos;s Email Address
+        ///</summary>
+        public string EmailAddress { get; set; } // EmailAddress (length: 100)
+
+        ///<summary>
+        /// NEMSIS V2 - D08_11 Element - EMS Personnel&apos;s Date Of Birth
+        ///</summary>
+        public System.DateTime? DateOfBirth { get; set; } // DateOfBirth
+
+        ///<summary>
+        /// NEMSIS V2 - D08_12 Element - EMS Personnel&apos;s Gender
+        ///</summary>
+        public int Gender { get; set; } // Gender
+
+        ///<summary>
+        /// NEMSIS V2 - D08_13 Element - EMS Personnel&apos;s Race
+        ///</summary>
+        public int? Race { get; set; } // Race
+
+        ///<summary>
+        /// NEMSIS V2 - D08_14 Element - EMS Personnel&apos;s Ethnicity
+        ///</summary>
+        public int? Ethnicity { get; set; } // Ethnicity
+
+        ///<summary>
+        /// NEMSIS V2 - D08_15 Element - State EMS Certification Licensure Level
+        ///</summary>
+        public int? AgencyCertificationLicensureLevelId { get; set; } // AgencyCertificationLicensureLevelId
+
+        ///<summary>
+        /// NEMSIS V2 - D08_16 Element - National Registry Credentialed
+        ///</summary>
+        public int? NationalRegistryCredentialed { get; set; } // NationalRegistryCredentialed
+
+        ///<summary>
+        /// NEMSIS V2 - D08_17 Element - State EMS Current Certification Date
+        ///</summary>
+        public System.DateTime? CurrentCertificationDate { get; set; } // CurrentCertificationDate
+
+        ///<summary>
+        /// NEMSIS V2 - D08_18 Element - Initial State Certification Date
+        ///</summary>
+        public System.DateTime? InitialCertificationDate { get; set; } // InitialCertificationDate
+
+        ///<summary>
+        /// NEMSIS V2 - D08_19 Element - Total Length of Service
+        ///</summary>
+        public int? TotalLengthService { get; set; } // TotalLengthService
+
+        ///<summary>
+        /// NEMSIS V2 - D08_20 Element - Date Length of Service Documented
+        ///</summary>
+        public System.DateTime? DocumentedLengthService { get; set; } // DocumentedLengthService
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent AgencyCertificationLicensureLevel pointed by [AgencyPersonnelGeneral].([AgencyCertificationLicensureLevelId]) (FK_AgencyPersonnelGeneral_AgencyCertificationLicensureLevels)
+        /// </summary>
+        public virtual AgencyCertificationLicensureLevelEntity AgencyCertificationLicensureLevel { get; set; } // FK_AgencyPersonnelGeneral_AgencyCertificationLicensureLevels
+
+        /// <summary>
+        /// Parent AgencyPersonnel pointed by [AgencyPersonnelGeneral].([AgencyPersonnelId]) (FK_AgencyPersonnelGeneral_AgencyPersonnel)
+        /// </summary>
+        public virtual AgencyPersonnelEntity AgencyPersonnel { get; set; } // FK_AgencyPersonnelGeneral_AgencyPersonnel
+
+        public AgencyPersonnelGeneralEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyProcedures
+    ///<summary>
+    /// NEMSIS V2 - D04	- Agency Configuration Information: Procedures
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyProcedureEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D04_04 Element - Procedure
+        ///</summary>
+        public string Procedure { get; set; } // Procedure (length: 30)
+        public int? AgencyCertificationLicensureLevelId { get; set; } // AgencyCertificationLicensureLevelId
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent AgencyCertificationLicensureLevel pointed by [AgencyProcedures].([AgencyCertificationLicensureLevelId]) (FK_AgencyProcedures_AgencyCertificationLicensureLevels)
+        /// </summary>
+        public virtual AgencyCertificationLicensureLevelEntity AgencyCertificationLicensureLevel { get; set; } // FK_AgencyProcedures_AgencyCertificationLicensureLevels
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyProcedures].([AgencyId]) (FK_AgencyProcedures_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyProcedures_Agency
+
+        public AgencyProcedureEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyProtocol
+    ///<summary>
+    /// NEMSIS V2 - D04 - Agency Configuration Information: Protocol
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyProtocolEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D04_08 Element - Protocol
+        ///</summary>
+        public string Protocol { get; set; } // Protocol (length: 30)
+        public int? AgencyCertificationLicensureLevelId { get; set; } // AgencyCertificationLicensureLevelId
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent AgencyCertificationLicensureLevel pointed by [AgencyProtocol].([AgencyCertificationLicensureLevelId]) (FK_AgencyProtocol_AgencyCertificationLicensureLevels)
+        /// </summary>
+        public virtual AgencyCertificationLicensureLevelEntity AgencyCertificationLicensureLevel { get; set; } // FK_AgencyProtocol_AgencyCertificationLicensureLevels
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyProtocol].([AgencyId]) (FK_AgencyProtocol_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyProtocol_Agency
+
+        public AgencyProtocolEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyState
+    ///<summary>
+    /// NEMSIS V2 - D01_03 - Agency State Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyStateEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D01_03 Element - The agency state
+        ///</summary>
+        public string State { get; set; } // State (length: 2)
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyState].([AgencyId]) (FK_AgencyState_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyState_Agency
+
+        public AgencyStateEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyStation
+    ///<summary>
+    /// NEMSIS V2 - D05 - Agency Station Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyStationEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D05_01 Element - Station Name
+        ///</summary>
+        public string StationName { get; set; } // StationName (length: 50)
+
+        ///<summary>
+        /// NEMSIS V2 - D05_02 Element - Station Number
+        ///</summary>
+        public string StationNumber { get; set; } // StationNumber (length: 50)
+
+        ///<summary>
+        /// NEMSIS V2 - D05_03 Element - Station Zone
+        ///</summary>
+        public string StationZone { get; set; } // StationZone (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - D05_04 Element - Station GPS
+        ///</summary>
+        public string Lat { get; set; } // Lat (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - D05_04 Element - Station GPS
+        ///</summary>
+        public string Long { get; set; } // Long (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - D05_05 Element - Station Address
+        ///</summary>
+        public string Address { get; set; } // Address (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - D05_06 Element - Station City
+        ///</summary>
+        public string City { get; set; } // City (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - D05_07 Element - Station State
+        ///</summary>
+        public string State { get; set; } // State (length: 3)
+
+        ///<summary>
+        /// NEMSIS V2 - D05_08 Element - Station Zip
+        ///</summary>
+        public string ZipCode { get; set; } // ZipCode (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - D05_09 Element - Station Telephone Number
+        ///</summary>
+        public string TelephoneNumber { get; set; } // TelephoneNumber (length: 10)
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyStation].([AgencyId]) (FK_AgencyStation_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyStation_Agency
+
+        public AgencyStationEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyStatistics
+    ///<summary>
+    /// NEMSIS V2 - D01_10 - Agency Statistical Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyStatisticEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D01_10 Element - Statistical Year
+        ///</summary>
+        public int StatisticalYear { get; set; } // StatisticalYear
+
+        ///<summary>
+        /// NEMSIS V2 - D01_12 Element - Total Service Size Area
+        ///</summary>
+        public int ServiceAreaSize { get; set; } // ServiceAreaSize
+
+        ///<summary>
+        /// NEMSIS V2 - D01_13 Element - Total Service Area Population
+        ///</summary>
+        public int ServiceAreaPopulation { get; set; } // ServiceAreaPopulation
+
+        ///<summary>
+        /// NEMSIS V2 - D01_14 Element - The 911 call volume per year
+        ///</summary>
+        public int CallVolumePerYear { get; set; } // CallVolumePerYear
+
+        ///<summary>
+        /// NEMSIS V2 - D01_15 Element - The EMS dispatch year
+        ///</summary>
+        public int DispatchYear { get; set; } // DispatchYear
+
+        ///<summary>
+        /// NEMSIS V2 - D01_16 Element - The EMS transports per year
+        ///</summary>
+        public int TransportsPerYear { get; set; } // TransportsPerYear
+
+        ///<summary>
+        /// NEMSIS V2 - D01_17 Element - The EMS patient contacts per year
+        ///</summary>
+        public int PatientContactsPerYear { get; set; } // PatientContactsPerYear
+
+        ///<summary>
+        /// NEMSIS V2 - D01_18 Element - The EMS Billable Calls per Year
+        ///</summary>
+        public int? BillableCallsPerYear { get; set; } // BillableCallsPerYear
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyStatistics].([AgencyId]) (FK_AgencyStatistics_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyStatistics_Agency
+
+        public AgencyStatisticEntity()
+        {
             InitializePartial();
         }
 
@@ -606,7 +3246,7 @@ namespace CD.ClaimSoft.Database
 
     // AgencyUser
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AgencyUser
+    public partial class AgencyUserEntity
     {
         public int Id { get; set; } // Id (Primary key)
         public int AgencyId { get; set; } // AgencyId
@@ -621,14 +3261,9 @@ namespace CD.ClaimSoft.Database
         /// <summary>
         /// Parent Agency pointed by [AgencyUser].([AgencyId]) (FK_AgencyUser_Agency)
         /// </summary>
-        public virtual Agency Agency { get; set; } // FK_AgencyUser_Agency
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyUser_Agency
 
-        /// <summary>
-        /// Parent AspNetUser pointed by [AgencyUser].([AspNetUserId]) (FK_AgencyUser_AspNetUsers)
-        /// </summary>
-        public virtual AspNetUser AspNetUser { get; set; } // FK_AgencyUser_AspNetUsers
-
-        public AgencyUser()
+        public AgencyUserEntity()
         {
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
@@ -640,17 +3275,213 @@ namespace CD.ClaimSoft.Database
         partial void InitializePartial();
     }
 
-    // ApplicationLog
+    // AgencyVehicle
+    ///<summary>
+    /// NEMSIS V2 - D06 - Agency Vehicle Information: Unit/Vehicle Number
+    ///</summary>
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class ApplicationLog
+    public partial class AgencyVehicleEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - D06_01 Element - Unit/Vehicle Number
+        ///</summary>
+        public string VehicleNumber { get; set; } // VehicleNumber (Primary key) (length: 50)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D06_03 Element - Vehicle Type
+        ///</summary>
+        public int VehicleType { get; set; } // VehicleType
+
+        ///<summary>
+        /// NEMSIS V2 - D06_06 Element - Vehicle Initial Cost
+        ///</summary>
+        public decimal? InitialCost { get; set; } // InitialCost
+
+        ///<summary>
+        /// NEMSIS V2 - D06_07 Element - Vehicle Model Year
+        ///</summary>
+        public int? ModelYear { get; set; } // ModelYear
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child AgencyVehicleCertifications where [AgencyVehicleCertification].[AgencyVehicleNumber] point to this entity (FK_AgencyVehicleCertification_AgencyVehicle)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyVehicleCertificationEntity> AgencyVehicleCertifications { get; set; } // AgencyVehicleCertification.FK_AgencyVehicleCertification_AgencyVehicle
+        /// <summary>
+        /// Child AgencyVehicleMilesHoursLogs where [AgencyVehicleMilesHoursLog].[AgencyVehicleNumber] point to this entity (FK_AgencyVehicleMilesHoursLog_AgencyVehicle)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<AgencyVehicleMilesHoursLogEntity> AgencyVehicleMilesHoursLogs { get; set; } // AgencyVehicleMilesHoursLog.FK_AgencyVehicleMilesHoursLog_AgencyVehicle
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyVehicle].([AgencyId]) (FK_AgencyVehicle_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyVehicle_Agency
+
+        public AgencyVehicleEntity()
+        {
+            AgencyVehicleCertifications = new System.Collections.Generic.List<AgencyVehicleCertificationEntity>();
+            AgencyVehicleMilesHoursLogs = new System.Collections.Generic.List<AgencyVehicleMilesHoursLogEntity>();
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyVehicleCertification
+    ///<summary>
+    /// NEMSIS V2 - D06 - Agency Vehicle Information: State Certification/Licensure Levels
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyVehicleCertificationEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - D06_04 Element - State Certification/Licensure Levels
+        ///</summary>
+        public int Id { get; set; } // Id (Primary key)
+        public string AgencyVehicleNumber { get; set; } // AgencyVehicleNumber (length: 50)
+        public int AgencyCertificationLicensureLevelId { get; set; } // AgencyCertificationLicensureLevelId
+
+        ///<summary>
+        /// NEMSIS V2 - D06_05 Element - Number Of Each Personnel Level on the Vehicle Crew
+        ///</summary>
+        public int VehiclePersonnelLevel { get; set; } // VehiclePersonnelLevel
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent AgencyCertificationLicensureLevel pointed by [AgencyVehicleCertification].([AgencyCertificationLicensureLevelId]) (FK_AgencyVehicleCertification_AgencyCertificationLicensureLevels)
+        /// </summary>
+        public virtual AgencyCertificationLicensureLevelEntity AgencyCertificationLicensureLevel { get; set; } // FK_AgencyVehicleCertification_AgencyCertificationLicensureLevels
+
+        /// <summary>
+        /// Parent AgencyVehicle pointed by [AgencyVehicleCertification].([AgencyVehicleNumber]) (FK_AgencyVehicleCertification_AgencyVehicle)
+        /// </summary>
+        public virtual AgencyVehicleEntity AgencyVehicle { get; set; } // FK_AgencyVehicleCertification_AgencyVehicle
+
+        public AgencyVehicleCertificationEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyVehicleMilesHoursLog
+    ///<summary>
+    /// NEMSIS V2 - D06 - Agency Vehicle Information: Vehicle Miles/Hours Log
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyVehicleMilesHoursLogEntity
     {
         public int Id { get; set; } // Id (Primary key)
+        public string AgencyVehicleNumber { get; set; } // AgencyVehicleNumber (length: 50)
+
+        ///<summary>
+        /// NEMSIS V2 - D06_08 Element - Year Miles/Hours Accrued
+        ///</summary>
+        public int YearAccrued { get; set; } // YearAccrued
+
+        ///<summary>
+        /// NEMSIS V2 - D06_09 Element - Annual Vehicle Hours
+        ///</summary>
+        public int AnnualVehicleHours { get; set; } // AnnualVehicleHours
+
+        ///<summary>
+        /// NEMSIS V2 - D06_10 Element - Annual Vehicle Miles
+        ///</summary>
+        public int AnnualVehicleMiles { get; set; } // AnnualVehicleMiles
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent AgencyVehicle pointed by [AgencyVehicleMilesHoursLog].([AgencyVehicleNumber]) (FK_AgencyVehicleMilesHoursLog_AgencyVehicle)
+        /// </summary>
+        public virtual AgencyVehicleEntity AgencyVehicle { get; set; } // FK_AgencyVehicleMilesHoursLog_AgencyVehicle
+
+        public AgencyVehicleMilesHoursLogEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // AgencyZones
+    ///<summary>
+    /// NEMSIS V2 - D04 - Agency Configuration Information: Zones
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyZoneEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - D04_03 Element - Zone
+        ///</summary>
+        public string Zone { get; set; } // Zone (length: 30)
+        public string Status { get; set; } // Status (length: 1)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [AgencyZones].([AgencyId]) (FK_AgencyZones_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_AgencyZones_Agency
+
+        public AgencyZoneEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // ApplicationLog
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class ApplicationLogEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int? AgencyId { get; set; } // AgencyId
         public string Severity { get; set; } // Severity (length: 255)
         public string Logger { get; set; } // Logger (length: 255)
         public string Message { get; set; } // Message
         public System.DateTime LogDate { get; set; } // LogDate
+        public string UserId { get; set; } // UserId (length: 128)
 
-        public ApplicationLog()
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [ApplicationLog].([AgencyId]) (FK_ApplicationLog_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_ApplicationLog_Agency
+
+        public ApplicationLogEntity()
         {
             InitializePartial();
         }
@@ -660,9 +3491,10 @@ namespace CD.ClaimSoft.Database
 
     // ApplicationSettings
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class ApplicationSetting
+    public partial class ApplicationSettingEntity
     {
         public int Id { get; set; } // Id (Primary key)
+        public int? AgencyId { get; set; } // AgencyId
         public int SettingTypeId { get; set; } // SettingTypeId
         public string SettingKey { get; set; } // SettingKey (length: 50)
         public string SettingValue { get; set; } // SettingValue (length: 255)
@@ -674,196 +3506,16 @@ namespace CD.ClaimSoft.Database
         // Foreign keys
 
         /// <summary>
+        /// Parent Agency pointed by [ApplicationSettings].([AgencyId]) (FK_ApplicationSettings_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_ApplicationSettings_Agency
+
+        /// <summary>
         /// Parent SettingType pointed by [ApplicationSettings].([SettingTypeId]) (FK_ApplicationSettings_SettingType)
         /// </summary>
-        public virtual SettingType SettingType { get; set; } // FK_ApplicationSettings_SettingType
+        public virtual SettingTypeEntity SettingType { get; set; } // FK_ApplicationSettings_SettingType
 
-        public ApplicationSetting()
-        {
-            CreateBy = "CDUNCAN";
-            CreateDate = System.DateTime.Now;
-            LastModifyBy = "CDUNCAN";
-            LastModifyDate = System.DateTime.Now;
-            InitializePartial();
-        }
-
-        partial void InitializePartial();
-    }
-
-    // AspNetRoles
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AspNetRole
-    {
-        public string Id { get; set; } // Id (Primary key) (length: 128)
-        public string Name { get; set; } // Name (length: 256)
-        public string CreateBy { get; set; } // CreateBy (length: 50)
-        public System.DateTime CreateDate { get; set; } // CreateDate
-        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
-        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
-
-        // Reverse navigation
-
-        /// <summary>
-        /// Child AspNetUserRoles where [AspNetUserRoles].[RoleId] point to this entity (FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<AspNetUserRole> AspNetUserRoles { get; set; } // AspNetUserRoles.FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId
-
-        public AspNetRole()
-        {
-            CreateBy = "CDUNCAN";
-            CreateDate = System.DateTime.Now;
-            LastModifyBy = "CDUNCAN";
-            LastModifyDate = System.DateTime.Now;
-            AspNetUserRoles = new System.Collections.Generic.List<AspNetUserRole>();
-            InitializePartial();
-        }
-
-        partial void InitializePartial();
-    }
-
-    // AspNetUsers
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AspNetUser
-    {
-        public string Id { get; set; } // Id (Primary key) (length: 128)
-        public string Email { get; set; } // Email (length: 256)
-        public bool EmailConfirmed { get; set; } // EmailConfirmed
-        public string PasswordHash { get; set; } // PasswordHash
-        public string SecurityStamp { get; set; } // SecurityStamp
-        public string PhoneNumber { get; set; } // PhoneNumber
-        public bool PhoneNumberConfirmed { get; set; } // PhoneNumberConfirmed
-        public bool TwoFactorEnabled { get; set; } // TwoFactorEnabled
-        public System.DateTime? LockoutEndDateUtc { get; set; } // LockoutEndDateUtc
-        public bool LockoutEnabled { get; set; } // LockoutEnabled
-        public int AccessFailedCount { get; set; } // AccessFailedCount
-        public string UserName { get; set; } // UserName (length: 256)
-        public string CreateBy { get; set; } // CreateBy (length: 50)
-        public System.DateTime CreateDate { get; set; } // CreateDate
-        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
-        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
-
-        // Reverse navigation
-
-        /// <summary>
-        /// Child AgencyUsers where [AgencyUser].[AspNetUserId] point to this entity (FK_AgencyUser_AspNetUsers)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<AgencyUser> AgencyUsers { get; set; } // AgencyUser.FK_AgencyUser_AspNetUsers
-        /// <summary>
-        /// Child AspNetUserClaims where [AspNetUserClaims].[UserId] point to this entity (FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<AspNetUserClaim> AspNetUserClaims { get; set; } // AspNetUserClaims.FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId
-        /// <summary>
-        /// Child AspNetUserLogins where [AspNetUserLogins].[UserId] point to this entity (FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<AspNetUserLogin> AspNetUserLogins { get; set; } // AspNetUserLogins.FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId
-        /// <summary>
-        /// Child AspNetUserRoles where [AspNetUserRoles].[UserId] point to this entity (FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<AspNetUserRole> AspNetUserRoles { get; set; } // AspNetUserRoles.FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId
-
-        public AspNetUser()
-        {
-            CreateBy = "CDUNCAN";
-            CreateDate = System.DateTime.Now;
-            LastModifyBy = "CDUNCAN";
-            LastModifyDate = System.DateTime.Now;
-            AgencyUsers = new System.Collections.Generic.List<AgencyUser>();
-            AspNetUserClaims = new System.Collections.Generic.List<AspNetUserClaim>();
-            AspNetUserLogins = new System.Collections.Generic.List<AspNetUserLogin>();
-            AspNetUserRoles = new System.Collections.Generic.List<AspNetUserRole>();
-            InitializePartial();
-        }
-
-        partial void InitializePartial();
-    }
-
-    // AspNetUserClaims
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AspNetUserClaim
-    {
-        public int Id { get; set; } // Id (Primary key)
-        public string UserId { get; set; } // UserId (length: 128)
-        public string ClaimType { get; set; } // ClaimType
-        public string ClaimValue { get; set; } // ClaimValue
-        public string CreateBy { get; set; } // CreateBy (length: 50)
-        public System.DateTime CreateDate { get; set; } // CreateDate
-        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
-        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
-
-        // Foreign keys
-
-        /// <summary>
-        /// Parent AspNetUser pointed by [AspNetUserClaims].([UserId]) (FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId)
-        /// </summary>
-        public virtual AspNetUser AspNetUser { get; set; } // FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId
-
-        public AspNetUserClaim()
-        {
-            CreateBy = "CDUNCAN";
-            CreateDate = System.DateTime.Now;
-            LastModifyBy = "CDUNCAN";
-            LastModifyDate = System.DateTime.Now;
-            InitializePartial();
-        }
-
-        partial void InitializePartial();
-    }
-
-    // AspNetUserLogins
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AspNetUserLogin
-    {
-        public string LoginProvider { get; set; } // LoginProvider (Primary key) (length: 128)
-        public string ProviderKey { get; set; } // ProviderKey (Primary key) (length: 128)
-        public string UserId { get; set; } // UserId (Primary key) (length: 128)
-        public string CreateBy { get; set; } // CreateBy (length: 50)
-        public System.DateTime CreateDate { get; set; } // CreateDate
-        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
-        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
-
-        // Foreign keys
-
-        /// <summary>
-        /// Parent AspNetUser pointed by [AspNetUserLogins].([UserId]) (FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId)
-        /// </summary>
-        public virtual AspNetUser AspNetUser { get; set; } // FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId
-
-        public AspNetUserLogin()
-        {
-            CreateBy = "CDUNCAN";
-            CreateDate = System.DateTime.Now;
-            LastModifyBy = "CDUNCAN";
-            LastModifyDate = System.DateTime.Now;
-            InitializePartial();
-        }
-
-        partial void InitializePartial();
-    }
-
-    // AspNetUserRoles
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AspNetUserRole
-    {
-        public string UserId { get; set; } // UserId (Primary key) (length: 128)
-        public string RoleId { get; set; } // RoleId (Primary key) (length: 128)
-        public string CreateBy { get; set; } // CreateBy (length: 50)
-        public System.DateTime CreateDate { get; set; } // CreateDate
-        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
-        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
-
-        // Foreign keys
-
-        /// <summary>
-        /// Parent AspNetRole pointed by [AspNetUserRoles].([RoleId]) (FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId)
-        /// </summary>
-        public virtual AspNetRole AspNetRole { get; set; } // FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId
-
-        /// <summary>
-        /// Parent AspNetUser pointed by [AspNetUserRoles].([UserId]) (FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId)
-        /// </summary>
-        public virtual AspNetUser AspNetUser { get; set; } // FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId
-
-        public AspNetUserRole()
+        public ApplicationSettingEntity()
         {
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
@@ -877,7 +3529,7 @@ namespace CD.ClaimSoft.Database
 
     // Country
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class Country
+    public partial class CountryEntity
     {
         public int Id { get; set; } // Id (Primary key)
         public string Iso { get; set; } // Iso (length: 2)
@@ -894,22 +3546,17 @@ namespace CD.ClaimSoft.Database
         // Reverse navigation
 
         /// <summary>
-        /// Child AgencyAddresses where [AgencyAddress].[CountyId] point to this entity (FK_AgencyAddress_Country)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<AgencyAddress> AgencyAddresses { get; set; } // AgencyAddress.FK_AgencyAddress_Country
-        /// <summary>
         /// Child States where [State].[CountryId] point to this entity (FK_State_Country)
         /// </summary>
-        public virtual System.Collections.Generic.ICollection<State> States { get; set; } // State.FK_State_Country
+        public virtual System.Collections.Generic.ICollection<StateEntity> States { get; set; } // State.FK_State_Country
 
-        public Country()
+        public CountryEntity()
         {
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
             LastModifyBy = "CDUNCAN";
             LastModifyDate = System.DateTime.Now;
-            AgencyAddresses = new System.Collections.Generic.List<AgencyAddress>();
-            States = new System.Collections.Generic.List<State>();
+            States = new System.Collections.Generic.List<StateEntity>();
             InitializePartial();
         }
 
@@ -918,7 +3565,7 @@ namespace CD.ClaimSoft.Database
 
     // County
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class County
+    public partial class CountyEntity
     {
         public int Id { get; set; } // Id (Primary key)
         public int StateId { get; set; } // StateId
@@ -932,27 +3579,37 @@ namespace CD.ClaimSoft.Database
         public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
         public System.DateTime LastModifyDate { get; set; } // LastModifyDate
 
-        // Reverse navigation
-
-        /// <summary>
-        /// Child AgencyAddresses where [AgencyAddress].[CountyId] point to this entity (FK_AgencyAddress_County)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<AgencyAddress> AgencyAddresses { get; set; } // AgencyAddress.FK_AgencyAddress_County
-
         // Foreign keys
 
         /// <summary>
         /// Parent State pointed by [County].([StateId]) (FK_County_State)
         /// </summary>
-        public virtual State State { get; set; } // FK_County_State
+        public virtual StateEntity State { get; set; } // FK_County_State
 
-        public County()
+        public CountyEntity()
         {
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
             LastModifyBy = "CDUNCAN";
             LastModifyDate = System.DateTime.Now;
-            AgencyAddresses = new System.Collections.Generic.List<AgencyAddress>();
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // Element_to_Variables
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class ElementToVariableEntity
+    {
+        public int DataElementId { get; set; } // DataElementID (Primary key)
+        public string DataElementNumber { get; set; } // DataElementNumber (length: 10)
+        public string DataElementName { get; set; } // DataElementName (length: 255)
+        public double? DataElementVariableCode { get; set; } // DataElementVariableCode
+        public string DataElementVariableName { get; set; } // DataElementVariableName (length: 255)
+
+        public ElementToVariableEntity()
+        {
             InitializePartial();
         }
 
@@ -961,7 +3618,112 @@ namespace CD.ClaimSoft.Database
 
     // EmailType
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class EmailType
+    public partial class EmailTypeEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public string Name { get; set; } // Name (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 50)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        public EmailTypeEntity()
+        {
+            CreateBy = "CDUNCAN";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "CDUNCAN";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // FileImport
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class FileImportEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+        public bool Success { get; set; } // Success
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child FileImportRecords where [FileImportRecords].[FileImportId] point to this entity (FK_FileImportRecords_FileImport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<FileImportRecordEntity> FileImportRecords { get; set; } // FileImportRecords.FK_FileImportRecords_FileImport
+        /// <summary>
+        /// Child PcrHeaders where [PCRHeader].[FileImportId] point to this entity (FK_PCRHeader_FileImport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrHeaderEntity> PcrHeaders { get; set; } // PCRHeader.FK_PCRHeader_FileImport
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [FileImport].([AgencyId]) (FK_FileImport_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_FileImport_Agency
+
+        public FileImportEntity()
+        {
+            Success = false;
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            FileImportRecords = new System.Collections.Generic.List<FileImportRecordEntity>();
+            PcrHeaders = new System.Collections.Generic.List<PcrHeaderEntity>();
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // FileImportRecords
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class FileImportRecordEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+        public int FileImportId { get; set; } // FileImportId
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [FileImportRecords].([AgencyId]) (FK_FileImportRecords_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_FileImportRecords_Agency
+
+        /// <summary>
+        /// Parent FileImport pointed by [FileImportRecords].([FileImportId]) (FK_FileImportRecords_FileImport)
+        /// </summary>
+        public virtual FileImportEntity FileImport { get; set; } // FK_FileImportRecords_FileImport
+
+        public FileImportRecordEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // FileType
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class FileTypeEntity
     {
         public int Id { get; set; } // Id (Primary key)
         public string Name { get; set; } // Name (length: 50)
@@ -973,17 +3735,4985 @@ namespace CD.ClaimSoft.Database
         // Reverse navigation
 
         /// <summary>
-        /// Child AgencyEmails where [AgencyEmail].[EmailTypeId] point to this entity (FK_AgencyEmail_EmailType)
+        /// Child AgencyFiles where [AgencyFiles].[FileTypeId] point to this entity (FK_AgencyFiles_FileType)
         /// </summary>
-        public virtual System.Collections.Generic.ICollection<AgencyEmail> AgencyEmails { get; set; } // AgencyEmail.FK_AgencyEmail_EmailType
+        public virtual System.Collections.Generic.ICollection<AgencyFileEntity> AgencyFiles { get; set; } // AgencyFiles.FK_AgencyFiles_FileType
 
-        public EmailType()
+        public FileTypeEntity()
         {
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
             LastModifyBy = "CDUNCAN";
             LastModifyDate = System.DateTime.Now;
-            AgencyEmails = new System.Collections.Generic.List<AgencyEmail>();
+            AgencyFiles = new System.Collections.Generic.List<AgencyFileEntity>();
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // The table 'LookupValues' is not usable by entity framework because it
+    // does not have a primary key. It is listed here for completeness.
+    // LookupValues
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class LookupValueEntity
+    {
+        public double? DataElementVariableCode { get; set; } // DataElementVariableCode
+        public string DataElementVariableName { get; set; } // DataElementVariableName (length: 255)
+
+        public LookupValueEntity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PatientCareReport
+    ///<summary>
+    /// NEMSIS V2 - E01 - Patient Care Report
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PatientCareReportEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+
+        ///<summary>
+        /// NEMSIS V2 - D01 - Agency General Information
+        ///</summary>
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01_01 Element - Patient Care Report Number
+        ///</summary>
+        public string PatientCareReportNumber { get; set; } // PatientCareReportNumber (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E01_02 Element - Software Creator
+        ///</summary>
+        public string SoftwareCreator { get; set; } // SoftwareCreator (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E01_03 Element - Software Name
+        ///</summary>
+        public string SoftwareName { get; set; } // SoftwareName (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E01_04 Element - Software Version
+        ///</summary>
+        public string SoftwareVersion { get; set; } // SoftwareVersion (length: 30)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Parent (One-to-One) PatientCareReportEntity pointed by [PCRAssessmentExam].[PatientCareReportId] (FK_PCRAssessmentExam_PatientCareReport)
+        /// </summary>
+        public virtual PcrAssessmentExamEntity PcrAssessmentExam { get; set; } // PCRAssessmentExam.FK_PCRAssessmentExam_PatientCareReport
+        /// <summary>
+        /// Parent (One-to-One) PatientCareReportEntity pointed by [PCRBilling].[PatientCareReportId] (FK_PCRBilling_PatientCareReport)
+        /// </summary>
+        public virtual PcrBillingEntity PcrBilling { get; set; } // PCRBilling.FK_PCRBilling_PatientCareReport
+        /// <summary>
+        /// Parent (One-to-One) PatientCareReportEntity pointed by [PCRCPR].[PatientCareReportId] (FK_PCRCPR_PatientCareReport)
+        /// </summary>
+        public virtual PcrcprEntity Pcrcpr { get; set; } // PCRCPR.FK_PCRCPR_PatientCareReport
+        /// <summary>
+        /// Parent (One-to-One) PatientCareReportEntity pointed by [PCRDisposition].[PatientCareReportId] (FK_PCRDisposition_PatientCareReport)
+        /// </summary>
+        public virtual PcrDispositionEntity PcrDisposition { get; set; } // PCRDisposition.FK_PCRDisposition_PatientCareReport
+        /// <summary>
+        /// Parent (One-to-One) PatientCareReportEntity pointed by [PCRMedicalHistory].[PatientCareReportId] (FK_PCRMedicalHistory_PatientCareReport)
+        /// </summary>
+        public virtual PcrMedicalHistoryEntity PcrMedicalHistory { get; set; } // PCRMedicalHistory.FK_PCRMedicalHistory_PatientCareReport
+        /// <summary>
+        /// Parent (One-to-One) PatientCareReportEntity pointed by [PCRMiscellaneous].[PatientCareReportId] (FK_PCRMiscellaneous_PatientCareReport)
+        /// </summary>
+        public virtual PcrMiscellaneouEntity PcrMiscellaneou { get; set; } // PCRMiscellaneous.FK_PCRMiscellaneous_PatientCareReport
+        /// <summary>
+        /// Parent (One-to-One) PatientCareReportEntity pointed by [PCRNarrative].[PatientCareReportId] (FK_PCRNarrative_PatientCareReport)
+        /// </summary>
+        public virtual PcrNarrativeEntity PcrNarrative { get; set; } // PCRNarrative.FK_PCRNarrative_PatientCareReport
+        /// <summary>
+        /// Parent (One-to-One) PatientCareReportEntity pointed by [PCROutcomeLinkage].[PatientCareReportId] (FK_PCROutcomeLinkage_PatientCareReport)
+        /// </summary>
+        public virtual PcrOutcomeLinkageEntity PcrOutcomeLinkage { get; set; } // PCROutcomeLinkage.FK_PCROutcomeLinkage_PatientCareReport
+        /// <summary>
+        /// Parent (One-to-One) PatientCareReportEntity pointed by [PCRPatient].[PatientCareReportId] (FK_PCRPatient_PatientCareReport)
+        /// </summary>
+        public virtual PcrPatientEntity PcrPatient { get; set; } // PCRPatient.FK_PCRPatient_PatientCareReport
+        /// <summary>
+        /// Parent (One-to-One) PatientCareReportEntity pointed by [PCRScene].[PatientCareReportId] (FK_PCRScene_PatientCareReport)
+        /// </summary>
+        public virtual PcrSceneEntity PcrScene { get; set; } // PCRScene.FK_PCRScene_PatientCareReport
+        /// <summary>
+        /// Parent (One-to-One) PatientCareReportEntity pointed by [PCRSituation].[PatientCareReportId] (FK_PCRSituation_PatientCareReport)
+        /// </summary>
+        public virtual PcrSituationEntity PcrSituation { get; set; } // PCRSituation.FK_PCRSituation_PatientCareReport
+        /// <summary>
+        /// Parent (One-to-One) PatientCareReportEntity pointed by [PCRTimes].[PatientCareReportId] (FK_PCRTimes_PatientCareReport)
+        /// </summary>
+        public virtual PcrTimeEntity PcrTime { get; set; } // PCRTimes.FK_PCRTimes_PatientCareReport
+        /// <summary>
+        /// Parent (One-to-One) PatientCareReportEntity pointed by [PCRTrauma].[PatientCareReportId] (FK_PCRTrauma_PatientCareReport)
+        /// </summary>
+        public virtual PcrTraumaEntity PcrTrauma { get; set; } // PCRTrauma.FK_PCRTrauma_PatientCareReport
+        /// <summary>
+        /// Parent (One-to-One) PatientCareReportEntity pointed by [PCRUnitAgency].[PatientCareReportId] (FK_PCRUnitAgency_PatientCareReport)
+        /// </summary>
+        public virtual PcrUnitAgencyEntity PcrUnitAgency { get; set; } // PCRUnitAgency.FK_PCRUnitAgency_PatientCareReport
+        /// <summary>
+        /// Parent (One-to-One) PatientCareReportEntity pointed by [PCRUnitCall].[PatientCareReportId] (FK_PCRUnitCall_PatientCareReport)
+        /// </summary>
+        public virtual PcrUnitCallEntity PcrUnitCall { get; set; } // PCRUnitCall.FK_PCRUnitCall_PatientCareReport
+        /// <summary>
+        /// Child PcrAssessmentExamsDifferents where [PCRAssessmentExamsDifferent].[PatientCareReportId] point to this entity (FK_PCRAssessmentExamsDifferent_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrAssessmentExamsDifferentEntity> PcrAssessmentExamsDifferents { get; set; } // PCRAssessmentExamsDifferent.FK_PCRAssessmentExamsDifferent_PatientCareReport
+        /// <summary>
+        /// Child PcrAssessmentInjuries where [PCRAssessmentInjury].[PatientCareReportId] point to this entity (FK_PCRAssessmentInjury_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrAssessmentInjuryEntity> PcrAssessmentInjuries { get; set; } // PCRAssessmentInjury.FK_PCRAssessmentInjury_PatientCareReport
+        /// <summary>
+        /// Child PcrBillingConditionCodes where [PCRBillingConditionCodes].[PatientCareReportId] point to this entity (FK_PCRBillingConditionCodes_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrBillingConditionCodeEntity> PcrBillingConditionCodes { get; set; } // PCRBillingConditionCodes.FK_PCRBillingConditionCodes_PatientCareReport
+        /// <summary>
+        /// Child PcrBillingConditionCodesModifiers where [PCRBillingConditionCodesModifier].[PatientCareReportId] point to this entity (FK_PCRBillingConditionCodesModifier_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrBillingConditionCodesModifierEntity> PcrBillingConditionCodesModifiers { get; set; } // PCRBillingConditionCodesModifier.FK_PCRBillingConditionCodesModifier_PatientCareReport
+        /// <summary>
+        /// Child PcrBillingInsurances where [PCRBillingInsurance].[PatientCareReportId] point to this entity (FK_PCRBillingInsurance_PatientCareReport1)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrBillingInsuranceEntity> PcrBillingInsurances { get; set; } // PCRBillingInsurance.FK_PCRBillingInsurance_PatientCareReport1
+        /// <summary>
+        /// Child PcrcprCardiacRhythmDeliveries where [PCRCPRCardiacRhythmDelivery].[PatientCareReportId] point to this entity (FK_PCRCPRCardiacRhythmDelivery_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrcprCardiacRhythmDeliveryEntity> PcrcprCardiacRhythmDeliveries { get; set; } // PCRCPRCardiacRhythmDelivery.FK_PCRCPRCardiacRhythmDelivery_PatientCareReport
+        /// <summary>
+        /// Child PcrcprIndicationAttemptResuscitates where [PCRCPRIndicationAttemptResuscitate].[PatientCareReportId] point to this entity (FK_PCRCPRIndicationAttemptResuscitate_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrcprIndicationAttemptResuscitateEntity> PcrcprIndicationAttemptResuscitates { get; set; } // PCRCPRIndicationAttemptResuscitate.FK_PCRCPRIndicationAttemptResuscitate_PatientCareReport
+        /// <summary>
+        /// Child PcrInterventions where [PCRIntervention].[PatientCareReportId] point to this entity (FK_PCRIntervention_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrInterventionEntity> PcrInterventions { get; set; } // PCRIntervention.FK_PCRIntervention_PatientCareReport
+        /// <summary>
+        /// Child PcrInterventionMedications where [PCRInterventionMedications].[PatientCareReportId] point to this entity (FK_PCRInterventionMedications_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrInterventionMedicationEntity> PcrInterventionMedications { get; set; } // PCRInterventionMedications.FK_PCRInterventionMedications_PatientCareReport
+        /// <summary>
+        /// Child PcrInterventionProceduresPerformeds where [PCRInterventionProceduresPerformed].[PatientCareReportId] point to this entity (FK_PCRInterventionProceduresPerformed_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrInterventionProceduresPerformedEntity> PcrInterventionProceduresPerformeds { get; set; } // PCRInterventionProceduresPerformed.FK_PCRInterventionProceduresPerformed_PatientCareReport
+        /// <summary>
+        /// Child PcrInterventionProceduresPerformedSuccessfulIvSites where [PCRInterventionProceduresPerformedSuccessfulIVSite].[PatientCareReportId] point to this entity (FK_PCRInterventionProceduresPerformedSuccessfulIVSite_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrInterventionProceduresPerformedSuccessfulIvSiteEntity> PcrInterventionProceduresPerformedSuccessfulIvSites { get; set; } // PCRInterventionProceduresPerformedSuccessfulIVSite.FK_PCRInterventionProceduresPerformedSuccessfulIVSite_PatientCareReport
+        /// <summary>
+        /// Child PcrInterventionProceduresPerformedTubeConfirmations where [PCRInterventionProceduresPerformedTubeConfirmation].[PatientCareReportId] point to this entity (FK_PCRInterventionProceduresPerformedTubeConfirmation_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrInterventionProceduresPerformedTubeConfirmationEntity> PcrInterventionProceduresPerformedTubeConfirmations { get; set; } // PCRInterventionProceduresPerformedTubeConfirmation.FK_PCRInterventionProceduresPerformedTubeConfirmation_PatientCareReport
+        /// <summary>
+        /// Child PcrInterventionProceduresPerformedTubePlacements where [PCRInterventionProceduresPerformedTubePlacement].[PatientCareReportId] point to this entity (FK_PCRInterventionProceduresPerformedTubePlacement_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrInterventionProceduresPerformedTubePlacementEntity> PcrInterventionProceduresPerformedTubePlacements { get; set; } // PCRInterventionProceduresPerformedTubePlacement.FK_PCRInterventionProceduresPerformedTubePlacement_PatientCareReport
+        /// <summary>
+        /// Child PcrMedicalDeviceDatas where [PCRMedicalDeviceData].[PatientCareReportId] point to this entity (FK_PCRMedicalDeviceData_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalDeviceDataEntity> PcrMedicalDeviceDatas { get; set; } // PCRMedicalDeviceData.FK_PCRMedicalDeviceData_PatientCareReport
+        /// <summary>
+        /// Child PcrMedicalHistoryAlcoholDrugIndicators where [PCRMedicalHistoryAlcoholDrugIndicators].[PatientCareReportId] point to this entity (FK_PCRMedicalHistoryAlcoholDrugIndicators_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryAlcoholDrugIndicatorEntity> PcrMedicalHistoryAlcoholDrugIndicators { get; set; } // PCRMedicalHistoryAlcoholDrugIndicators.FK_PCRMedicalHistoryAlcoholDrugIndicators_PatientCareReport
+        /// <summary>
+        /// Child PcrMedicalHistoryAllergies where [PCRMedicalHistoryAllergies].[PatientCareReportId] point to this entity (FK_PCRMedicalHistoryAllergies_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryAllergyEntity> PcrMedicalHistoryAllergies { get; set; } // PCRMedicalHistoryAllergies.FK_PCRMedicalHistoryAllergies_PatientCareReport
+        /// <summary>
+        /// Child PcrMedicalHistoryCurrentMedications where [PCRMedicalHistoryCurrentMedication].[PatientCareReportId] point to this entity (FK_PCRMedicalHistoryCurrentMedication_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryCurrentMedicationEntity> PcrMedicalHistoryCurrentMedications { get; set; } // PCRMedicalHistoryCurrentMedication.FK_PCRMedicalHistoryCurrentMedication_PatientCareReport
+        /// <summary>
+        /// Child PcrMedicalHistoryImmunizationDetails where [PCRMedicalHistoryImmunizationDetails].[PatientCareReportId] point to this entity (FK_PCRMedicalHistoryImmunizationDetails_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryImmunizationDetailEntity> PcrMedicalHistoryImmunizationDetails { get; set; } // PCRMedicalHistoryImmunizationDetails.FK_PCRMedicalHistoryImmunizationDetails_PatientCareReport
+        /// <summary>
+        /// Child PcrMedicalHistoryLivingWills where [PCRMedicalHistoryLivingWill].[PatientCareReportId] point to this entity (FK_PCRMedicalHistoryLivingWill_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryLivingWillEntity> PcrMedicalHistoryLivingWills { get; set; } // PCRMedicalHistoryLivingWill.FK_PCRMedicalHistoryLivingWill_PatientCareReport
+        /// <summary>
+        /// Child PcrMedicalHistoryMedicationAllergies where [PCRMedicalHistoryMedicationAllergies].[PatientCareReportId] point to this entity (FK_PCRMedicalHistoryMedicationAllergies_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryMedicationAllergyEntity> PcrMedicalHistoryMedicationAllergies { get; set; } // PCRMedicalHistoryMedicationAllergies.FK_PCRMedicalHistoryMedicationAllergies_PatientCareReport
+        /// <summary>
+        /// Child PcrMedicalHistoryPatientBarriers where [PCRMedicalHistoryPatientBarriers].[PatientCareReportId] point to this entity (FK_PCRMedicalHistoryPatientBarriers_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryPatientBarrierEntity> PcrMedicalHistoryPatientBarriers { get; set; } // PCRMedicalHistoryPatientBarriers.FK_PCRMedicalHistoryPatientBarriers_PatientCareReport
+        /// <summary>
+        /// Child PcrMedicalHistoryPreexistingMedicalSurgeries where [PCRMedicalHistoryPreexistingMedicalSurgery].[PatientCareReportId] point to this entity (FK_MedicalHistoryPreexistingMedicalSurgery_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMedicalHistoryPreexistingMedicalSurgeryEntity> PcrMedicalHistoryPreexistingMedicalSurgeries { get; set; } // PCRMedicalHistoryPreexistingMedicalSurgery.FK_MedicalHistoryPreexistingMedicalSurgery_PatientCareReport
+        /// <summary>
+        /// Child PcrMiscellaneousLocalAgencyResearchFields where [PCRMiscellaneousLocalAgencyResearchField].[PatientCareReportId] point to this entity (FK_PCRMiscellaneousLocalAgencyResearchField_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMiscellaneousLocalAgencyResearchFieldEntity> PcrMiscellaneousLocalAgencyResearchFields { get; set; } // PCRMiscellaneousLocalAgencyResearchField.FK_PCRMiscellaneousLocalAgencyResearchField_PatientCareReport
+        /// <summary>
+        /// Child PcrMiscellaneousPatientIndicationCriteriaRegistries where [PCRMiscellaneousPatientIndicationCriteriaRegistry].[PatientCareReportId] point to this entity (FK_PCRMiscellaneousPatientIndicationCriteriaRegistry_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMiscellaneousPatientIndicationCriteriaRegistryEntity> PcrMiscellaneousPatientIndicationCriteriaRegistries { get; set; } // PCRMiscellaneousPatientIndicationCriteriaRegistry.FK_PCRMiscellaneousPatientIndicationCriteriaRegistry_PatientCareReport
+        /// <summary>
+        /// Child PcrMiscellaneousPersonnelExposedFluids where [PCRMiscellaneousPersonnelExposedFluids].[PatientCareReportId] point to this entity (FK_PCRMiscellaneousPersonnelExposedFluids_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMiscellaneousPersonnelExposedFluidEntity> PcrMiscellaneousPersonnelExposedFluids { get; set; } // PCRMiscellaneousPersonnelExposedFluids.FK_PCRMiscellaneousPersonnelExposedFluids_PatientCareReport
+        /// <summary>
+        /// Child PcrMiscellaneousProtectiveEquipmentUseds where [PCRMiscellaneousProtectiveEquipmentUsed].[PatientCareReportId] point to this entity (FK_PCRMiscellaneousProtectiveEquipmentUsed_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMiscellaneousProtectiveEquipmentUsedEntity> PcrMiscellaneousProtectiveEquipmentUseds { get; set; } // PCRMiscellaneousProtectiveEquipmentUsed.FK_PCRMiscellaneousProtectiveEquipmentUsed_PatientCareReport
+        /// <summary>
+        /// Child PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorism where [PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism].[PatientCareReportId] point to this entity (FK_PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorismEntity> PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorism { get; set; } // PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism.FK_PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism_PatientCareReport
+        /// <summary>
+        /// Child PcrMiscellaneousTypeExposureBodilyFluids where [PCRMiscellaneousTypeExposureBodilyFluids].[PatientCareReportId] point to this entity (FK_PCRMiscellaneousTypeExposureBodilyFluids_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrMiscellaneousTypeExposureBodilyFluidEntity> PcrMiscellaneousTypeExposureBodilyFluids { get; set; } // PCRMiscellaneousTypeExposureBodilyFluids.FK_PCRMiscellaneousTypeExposureBodilyFluids_PatientCareReport
+        /// <summary>
+        /// Child PcrSceneOtherEmsAgencies where [PCRSceneOtherEMSAgencies].[PatientCareReportId] point to this entity (FK_PCRSceneOtherEMSAgencies_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrSceneOtherEmsAgencyEntity> PcrSceneOtherEmsAgencies_PatientCareReportId { get; set; } // PCRSceneOtherEMSAgencies.FK_PCRSceneOtherEMSAgencies_PatientCareReport
+        /// <summary>
+        /// Child PcrSceneOtherEmsAgencies where [PCRSceneOtherEMSAgencies].[PatientCareReportId] point to this entity (FK_PCRSceneOtherEMSAgencies_PatientCareReport1)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrSceneOtherEmsAgencyEntity> PcrSceneOtherEmsAgencies1 { get; set; } // PCRSceneOtherEMSAgencies.FK_PCRSceneOtherEMSAgencies_PatientCareReport1
+        /// <summary>
+        /// Child PcrSceneOtherServices where [PCRSceneOtherServices].[PatientCareReportId] point to this entity (FK_PCRSceneOtherServices_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrSceneOtherServiceEntity> PcrSceneOtherServices { get; set; } // PCRSceneOtherServices.FK_PCRSceneOtherServices_PatientCareReport
+        /// <summary>
+        /// Child PcrSituationOtherSymptoms where [PCRSituationOtherSymptoms].[PatientCareReportId] point to this entity (FK_PCRSituationOtherSymptoms_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrSituationOtherSymptomEntity> PcrSituationOtherSymptoms { get; set; } // PCRSituationOtherSymptoms.FK_PCRSituationOtherSymptoms_PatientCareReport
+        /// <summary>
+        /// Child PcrSituationPriorAids where [PCRSituationPriorAid].[PatientCareReportId] point to this entity (FK_PCRSituationPriorAid_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrSituationPriorAidEntity> PcrSituationPriorAids { get; set; } // PCRSituationPriorAid.FK_PCRSituationPriorAid_PatientCareReport
+        /// <summary>
+        /// Child PcrSituationPriorAidPerformedBies where [PCRSituationPriorAidPerformedBy].[PatientCareReportId] point to this entity (FK_PCRSituationPriorAidPerformedBy_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrSituationPriorAidPerformedByEntity> PcrSituationPriorAidPerformedBies { get; set; } // PCRSituationPriorAidPerformedBy.FK_PCRSituationPriorAidPerformedBy_PatientCareReport
+        /// <summary>
+        /// Child PcrTraumaAirbagDeployments where [PCRTraumaAirbagDeployment].[PatientCareReportId] point to this entity (FK_PCRTraumaAirbagDeployment_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrTraumaAirbagDeploymentEntity> PcrTraumaAirbagDeployments { get; set; } // PCRTraumaAirbagDeployment.FK_PCRTraumaAirbagDeployment_PatientCareReport
+        /// <summary>
+        /// Child PcrTraumaInjuryMechanism where [PCRTraumaInjuryMechanism].[PatientCareReportId] point to this entity (FK_PCRTraumaInjuryMechanism_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrTraumaInjuryMechanismEntity> PcrTraumaInjuryMechanism { get; set; } // PCRTraumaInjuryMechanism.FK_PCRTraumaInjuryMechanism_PatientCareReport
+        /// <summary>
+        /// Child PcrTraumaOccupantSafetyEquipments where [PCRTraumaOccupantSafetyEquipment].[PatientCareReportId] point to this entity (FK_PCRTraumaOccupantSafetyEquipment_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrTraumaOccupantSafetyEquipmentEntity> PcrTraumaOccupantSafetyEquipments { get; set; } // PCRTraumaOccupantSafetyEquipment.FK_PCRTraumaOccupantSafetyEquipment_PatientCareReport
+        /// <summary>
+        /// Child PcrTraumaRiskFactorPredictors where [PCRTraumaRiskFactorPredictors].[PatientCareReportId] point to this entity (FK_PCRTraumaRiskFactorPredictors_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrTraumaRiskFactorPredictorEntity> PcrTraumaRiskFactorPredictors { get; set; } // PCRTraumaRiskFactorPredictors.FK_PCRTraumaRiskFactorPredictors_PatientCareReport
+        /// <summary>
+        /// Child PcrTraumaVehicleImpactLocations where [PCRTraumaVehicleImpactLocation].[PatientCareReportId] point to this entity (FK_PCRTraumaVehicleImpactLocation_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrTraumaVehicleImpactLocationEntity> PcrTraumaVehicleImpactLocations { get; set; } // PCRTraumaVehicleImpactLocation.FK_PCRTraumaVehicleImpactLocation_PatientCareReport
+        /// <summary>
+        /// Child PcrUnitAgencyDispatchDelays where [PCRUnitAgencyDispatchDelays].[PatientCareReportId] point to this entity (FK_PCRUnitAgencyDispatchDelays_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrUnitAgencyDispatchDelayEntity> PcrUnitAgencyDispatchDelays { get; set; } // PCRUnitAgencyDispatchDelays.FK_PCRUnitAgencyDispatchDelays_PatientCareReport
+        /// <summary>
+        /// Child PcrUnitAgencyResponseDelays where [PCRUnitAgencyResponseDelays].[PatientCareReportId] point to this entity (FK_PCRUnitAgencyResponseDelays_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrUnitAgencyResponseDelayEntity> PcrUnitAgencyResponseDelays { get; set; } // PCRUnitAgencyResponseDelays.FK_PCRUnitAgencyResponseDelays_PatientCareReport
+        /// <summary>
+        /// Child PcrUnitAgencySceneDelays where [PCRUnitAgencySceneDelays].[PatientCareReportId] point to this entity (FK_PCRUnitAgencySceneDelays_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrUnitAgencySceneDelayEntity> PcrUnitAgencySceneDelays { get; set; } // PCRUnitAgencySceneDelays.FK_PCRUnitAgencySceneDelays_PatientCareReport
+        /// <summary>
+        /// Child PcrUnitAgencyTransportDelays where [PCRUnitAgencyTransportDelays].[PatientCareReportId] point to this entity (FK_PCRUnitAgencyTransportDelays_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrUnitAgencyTransportDelayEntity> PcrUnitAgencyTransportDelays { get; set; } // PCRUnitAgencyTransportDelays.FK_PCRUnitAgencyTransportDelays_PatientCareReport
+        /// <summary>
+        /// Child PcrUnitAgencyTurnAroundDelays where [PCRUnitAgencyTurnAroundDelays].[PatientCareReportId] point to this entity (FK_PCRUnitAgencyTurnAroundDelays_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrUnitAgencyTurnAroundDelayEntity> PcrUnitAgencyTurnAroundDelays { get; set; } // PCRUnitAgencyTurnAroundDelays.FK_PCRUnitAgencyTurnAroundDelays_PatientCareReport
+        /// <summary>
+        /// Child PcrUnitPersonnels where [PCRUnitPersonnel].[PatientCareReportId] point to this entity (FK_PCRUnitPersonnel_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrUnitPersonnelEntity> PcrUnitPersonnels { get; set; } // PCRUnitPersonnel.FK_PCRUnitPersonnel_PatientCareReport
+        /// <summary>
+        /// Child PcrVitalSignsAssessments where [PCRVitalSignsAssessment].[PatientCareReportId] point to this entity (FK_PCRVitalSignsAssessment_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrVitalSignsAssessmentEntity> PcrVitalSignsAssessments { get; set; } // PCRVitalSignsAssessment.FK_PCRVitalSignsAssessment_PatientCareReport
+        /// <summary>
+        /// Child PcrVitalSignsAssessmentInitialCardiacRhythms where [PCRVitalSignsAssessmentInitialCardiacRhythm].[PatientCareReportId] point to this entity (FK_PCRVitalSignsAssessmentInitialCardiacRhythm_PatientCareReport)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrVitalSignsAssessmentInitialCardiacRhythmEntity> PcrVitalSignsAssessmentInitialCardiacRhythms { get; set; } // PCRVitalSignsAssessmentInitialCardiacRhythm.FK_PCRVitalSignsAssessmentInitialCardiacRhythm_PatientCareReport
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PatientCareReport].([AgencyId]) (FK_PatientCareReport_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PatientCareReport_Agency
+
+        public PatientCareReportEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            PcrAssessmentExamsDifferents = new System.Collections.Generic.List<PcrAssessmentExamsDifferentEntity>();
+            PcrAssessmentInjuries = new System.Collections.Generic.List<PcrAssessmentInjuryEntity>();
+            PcrBillingConditionCodes = new System.Collections.Generic.List<PcrBillingConditionCodeEntity>();
+            PcrBillingConditionCodesModifiers = new System.Collections.Generic.List<PcrBillingConditionCodesModifierEntity>();
+            PcrBillingInsurances = new System.Collections.Generic.List<PcrBillingInsuranceEntity>();
+            PcrcprCardiacRhythmDeliveries = new System.Collections.Generic.List<PcrcprCardiacRhythmDeliveryEntity>();
+            PcrcprIndicationAttemptResuscitates = new System.Collections.Generic.List<PcrcprIndicationAttemptResuscitateEntity>();
+            PcrInterventions = new System.Collections.Generic.List<PcrInterventionEntity>();
+            PcrInterventionMedications = new System.Collections.Generic.List<PcrInterventionMedicationEntity>();
+            PcrInterventionProceduresPerformeds = new System.Collections.Generic.List<PcrInterventionProceduresPerformedEntity>();
+            PcrInterventionProceduresPerformedSuccessfulIvSites = new System.Collections.Generic.List<PcrInterventionProceduresPerformedSuccessfulIvSiteEntity>();
+            PcrInterventionProceduresPerformedTubeConfirmations = new System.Collections.Generic.List<PcrInterventionProceduresPerformedTubeConfirmationEntity>();
+            PcrInterventionProceduresPerformedTubePlacements = new System.Collections.Generic.List<PcrInterventionProceduresPerformedTubePlacementEntity>();
+            PcrMedicalDeviceDatas = new System.Collections.Generic.List<PcrMedicalDeviceDataEntity>();
+            PcrMedicalHistoryAlcoholDrugIndicators = new System.Collections.Generic.List<PcrMedicalHistoryAlcoholDrugIndicatorEntity>();
+            PcrMedicalHistoryAllergies = new System.Collections.Generic.List<PcrMedicalHistoryAllergyEntity>();
+            PcrMedicalHistoryCurrentMedications = new System.Collections.Generic.List<PcrMedicalHistoryCurrentMedicationEntity>();
+            PcrMedicalHistoryImmunizationDetails = new System.Collections.Generic.List<PcrMedicalHistoryImmunizationDetailEntity>();
+            PcrMedicalHistoryLivingWills = new System.Collections.Generic.List<PcrMedicalHistoryLivingWillEntity>();
+            PcrMedicalHistoryMedicationAllergies = new System.Collections.Generic.List<PcrMedicalHistoryMedicationAllergyEntity>();
+            PcrMedicalHistoryPatientBarriers = new System.Collections.Generic.List<PcrMedicalHistoryPatientBarrierEntity>();
+            PcrMedicalHistoryPreexistingMedicalSurgeries = new System.Collections.Generic.List<PcrMedicalHistoryPreexistingMedicalSurgeryEntity>();
+            PcrMiscellaneousLocalAgencyResearchFields = new System.Collections.Generic.List<PcrMiscellaneousLocalAgencyResearchFieldEntity>();
+            PcrMiscellaneousPatientIndicationCriteriaRegistries = new System.Collections.Generic.List<PcrMiscellaneousPatientIndicationCriteriaRegistryEntity>();
+            PcrMiscellaneousPersonnelExposedFluids = new System.Collections.Generic.List<PcrMiscellaneousPersonnelExposedFluidEntity>();
+            PcrMiscellaneousProtectiveEquipmentUseds = new System.Collections.Generic.List<PcrMiscellaneousProtectiveEquipmentUsedEntity>();
+            PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorism = new System.Collections.Generic.List<PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorismEntity>();
+            PcrMiscellaneousTypeExposureBodilyFluids = new System.Collections.Generic.List<PcrMiscellaneousTypeExposureBodilyFluidEntity>();
+            PcrSceneOtherEmsAgencies_PatientCareReportId = new System.Collections.Generic.List<PcrSceneOtherEmsAgencyEntity>();
+            PcrSceneOtherEmsAgencies1 = new System.Collections.Generic.List<PcrSceneOtherEmsAgencyEntity>();
+            PcrSceneOtherServices = new System.Collections.Generic.List<PcrSceneOtherServiceEntity>();
+            PcrSituationOtherSymptoms = new System.Collections.Generic.List<PcrSituationOtherSymptomEntity>();
+            PcrSituationPriorAids = new System.Collections.Generic.List<PcrSituationPriorAidEntity>();
+            PcrSituationPriorAidPerformedBies = new System.Collections.Generic.List<PcrSituationPriorAidPerformedByEntity>();
+            PcrTraumaAirbagDeployments = new System.Collections.Generic.List<PcrTraumaAirbagDeploymentEntity>();
+            PcrTraumaInjuryMechanism = new System.Collections.Generic.List<PcrTraumaInjuryMechanismEntity>();
+            PcrTraumaOccupantSafetyEquipments = new System.Collections.Generic.List<PcrTraumaOccupantSafetyEquipmentEntity>();
+            PcrTraumaRiskFactorPredictors = new System.Collections.Generic.List<PcrTraumaRiskFactorPredictorEntity>();
+            PcrTraumaVehicleImpactLocations = new System.Collections.Generic.List<PcrTraumaVehicleImpactLocationEntity>();
+            PcrUnitAgencyDispatchDelays = new System.Collections.Generic.List<PcrUnitAgencyDispatchDelayEntity>();
+            PcrUnitAgencyResponseDelays = new System.Collections.Generic.List<PcrUnitAgencyResponseDelayEntity>();
+            PcrUnitAgencySceneDelays = new System.Collections.Generic.List<PcrUnitAgencySceneDelayEntity>();
+            PcrUnitAgencyTransportDelays = new System.Collections.Generic.List<PcrUnitAgencyTransportDelayEntity>();
+            PcrUnitAgencyTurnAroundDelays = new System.Collections.Generic.List<PcrUnitAgencyTurnAroundDelayEntity>();
+            PcrUnitPersonnels = new System.Collections.Generic.List<PcrUnitPersonnelEntity>();
+            PcrVitalSignsAssessments = new System.Collections.Generic.List<PcrVitalSignsAssessmentEntity>();
+            PcrVitalSignsAssessmentInitialCardiacRhythms = new System.Collections.Generic.List<PcrVitalSignsAssessmentInitialCardiacRhythmEntity>();
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRAssessmentExam
+    ///<summary>
+    /// NEMSIS V2 - E16 - Assessment Exam
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrAssessmentExamEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E16_01 Element - Estimated Body Weight
+        ///</summary>
+        public decimal? EstimatedBodyWeight { get; set; } // EstimatedBodyWeight
+
+        ///<summary>
+        /// NEMSIS V2 - E16_02 Element - Broselow/Luten Color
+        ///</summary>
+        public int? BroselowLutenColor { get; set; } // BroselowLutenColor
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRAssessmentExam].([AgencyId]) (FK_PCRAssessmentExam_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRAssessmentExam_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRAssessmentExam].([PatientCareReportId]) (FK_PCRAssessmentExam_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRAssessmentExam_PatientCareReport
+
+        public PcrAssessmentExamEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRAssessmentExamsDifferent
+    ///<summary>
+    /// NEMSIS V2 - E16 - Assessment Exam: Different Asssessments
+    ///     /// Section E16 has special table requirements and is configured in the second normal form. By configuring this table in second normal form it breaks the table naming convention outlined above. The Data Element Attribute (Column/Field) Name will be listed in the E15_DE column as a value. The E15_DE_VALUE holds the value for the identified Data Element. Technically the E16_03 is independent of the other values according to the XSD, but it has been interpreted here as being related to all the other data elements in the tag as a set.
+    ///     /// NEMSIS V2 - E16_04 Element - Skin Assessment
+    ///     /// NEMSIS V2 - E16_05 Element - Head/Face Assessment
+    ///     /// NEMSIS V2 - E16_06 Element - Neck Assessment
+    ///     /// NEMSIS V2 - E16_07 Element - Chest/Lungs Assessment
+    ///     /// NEMSIS V2 - E16_08 Element - Heart Assessment
+    ///     /// NEMSIS V2 - E16_09 Element - Abdomen Left Upper Assessment
+    ///     /// NEMSIS V2 - E16_10 Element - Abdomen Left Lower Assessment
+    ///     /// NEMSIS V2 - E16_11 Element - Abdomen Right Upper Assessment
+    ///     /// NEMSIS V2 - E16_12 Element - Abdomen Right Lower Assessment
+    ///     /// NEMSIS V2 - E16_13 Element - GU Assessment
+    ///     /// NEMSIS V2 - E16_14 Element - Back Cervical Assessment
+    ///     /// NEMSIS V2 - E16_15 Element - Back Thoracic Assessment
+    ///     /// NEMSIS V2 - E16_16 Element - Back Lumbar/Sacral Assessment
+    ///     /// NEMSIS V2 - E16_17 Element - Extremities-Right Upper Assessment
+    ///     /// NEMSIS V2 - E16_18 Element - Extremities-Right  Lower Assessment
+    ///     /// NEMSIS V2 - E16_19 Element - Extremities-Left Upper Assessment
+    ///     /// NEMSIS V2 - E16_20 Element - Extremities-Left Lower Assessment
+    ///     /// NEMSIS V2 - E16_21 Element - Eyes-Left Assessment
+    ///     /// NEMSIS V2 - E16_22 Element - Eyes-Right Assessment
+    ///     /// NEMSIS V2 - E16_23 Element - Mental Status Assessment
+    ///     /// NEMSIS V2 - E16_24 Element - Neurological Assessment
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrAssessmentExamsDifferentEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E16_03 Element - Date/Time of Assessment
+        ///</summary>
+        public System.DateTime? AssessmentDateTime { get; set; } // AssessmentDateTime
+        public string AssessmentCode { get; set; } // AssessmentCode (length: 6)
+        public int AssessmentValue { get; set; } // AssessmentValue
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRAssessmentExamsDifferent].([AgencyId]) (FK_PCRAssessmentExamsDifferent_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRAssessmentExamsDifferent_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRAssessmentExamsDifferent].([PatientCareReportId]) (FK_PCRAssessmentExamsDifferent_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRAssessmentExamsDifferent_PatientCareReport
+
+        public PcrAssessmentExamsDifferentEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRAssessmentInjury
+    ///<summary>
+    /// NEMSIS V2 - E15 - Assessment Injury: Section E15 has special table requirements and is configured in the second normal form. By configuring this table in second normal form it breaks the table naming convention outlined above. The Data Element (DE) Attribute (Column/Field) Name will be listed in the E15_DE column as a value. The E15_DE_VALUE holds the value for the identified Data Element.
+    ///     /// E15_01 Element - NHTSA Injury Matrix External/Skin
+    ///     /// E15_02 Element - NHTSA Injury Matrix Head
+    ///     /// E15_03 Element - NHTSA Injury Matrix Face
+    ///     /// E15_04 Element - NHTSA Injury Matrix Neck
+    ///     /// E15_05 Element - NHTSA Injury Matrix Thorax
+    ///     /// E15_06 Element - NHTSA Injury Matrix Abdomen
+    ///     /// E15_07 Element - NHTSA Injury Matrix Spine
+    ///     /// E15_08 Element - NHTSA Injury Matrix Upper Extremities
+    ///     /// E15_09 Element - NHTSA Injury Matrix Pelvis
+    ///     /// E15_10 Element - NHTSA Injury Matrix Lower Extremities
+    ///     /// E15_11 Element - NHTSA Injury Matrix Unspecified
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrAssessmentInjuryEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+        public string AssessmentInjuryCode { get; set; } // AssessmentInjuryCode (length: 6)
+        public int AssessmentInjuryValue { get; set; } // AssessmentInjuryValue
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRAssessmentInjury].([AgencyId]) (FK_PCRAssessmentInjury_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRAssessmentInjury_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRAssessmentInjury].([PatientCareReportId]) (FK_PCRAssessmentInjury_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRAssessmentInjury_PatientCareReport
+
+        public PcrAssessmentInjuryEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRBilling
+    ///<summary>
+    /// NEMSIS V2 - E07 - Billing
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrBillingEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E07_01 Element - Primary Method of Payment
+        ///</summary>
+        public int PrimaryPaymentMethod { get; set; } // PrimaryPaymentMethod
+
+        ///<summary>
+        /// NEMSIS V2 - E07_02 Element - Certificate of Medical Necessity
+        ///</summary>
+        public int? CertificateMedicalNecessity { get; set; } // CertificateMedicalNecessity
+
+        ///<summary>
+        /// NEMSIS V2 - E07_15 Element - Work-Related
+        ///</summary>
+        public int? WorkRelated { get; set; } // WorkRelated
+
+        ///<summary>
+        /// NEMSIS V2 - E07_16 Element - Patient’s Occupational Industry
+        ///</summary>
+        public int? PatientOccupationalIndustry { get; set; } // PatientOccupationalIndustry
+
+        ///<summary>
+        /// NEMSIS V2 - E07_17 Element - Patient’s Occupation
+        ///</summary>
+        public int? PatientOccupation { get; set; } // PatientOccupation
+
+        ///<summary>
+        /// NEMSIS V2 - E07_32 Element - Patient&apos;s Work Telephone Number
+        ///</summary>
+        public string PatientWorkTelephoneNumber { get; set; } // PatientWorkTelephoneNumber (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_33 Element - Response Urgency
+        ///</summary>
+        public int? ResponseUrgency { get; set; } // ResponseUrgency
+
+        ///<summary>
+        /// NEMSIS V2 - E07_34 Element - CMS Service Level
+        ///</summary>
+        public int CmsServiceLevel { get; set; } // CMSServiceLevel
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRBilling].([AgencyId]) (FK_PCRBilling_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRBilling_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRBilling].([PatientCareReportId]) (FK_PCRBilling_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRBilling_PatientCareReport
+
+        public PcrBillingEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRBillingConditionCodes
+    ///<summary>
+    /// NEMSIS V2 - E07 - Billing: Condition Codes
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrBillingConditionCodeEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E07_35 Element - Condition Code Number
+        ///</summary>
+        public string CodeNumber { get; set; } // CodeNumber (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_36 Element - ICD-9 Code for the Condition Code Number
+        ///</summary>
+        public string Icd9Code { get; set; } // ICD9Code (length: 30)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRBillingConditionCodes].([AgencyId]) (FK_PCRBillingConditionCodes_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRBillingConditionCodes_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRBillingConditionCodes].([PatientCareReportId]) (FK_PCRBillingConditionCodes_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRBillingConditionCodes_PatientCareReport
+
+        public PcrBillingConditionCodeEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRBillingConditionCodesModifier
+    ///<summary>
+    /// NEMSIS V2 - E07 - Billing: CMS Air Ambulance Condition Code Modifier
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrBillingConditionCodesModifierEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E07_37 Element - Condition Code Modifier
+        ///</summary>
+        public int CodeModifier { get; set; } // CodeModifier
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRBillingConditionCodesModifier].([AgencyId]) (FK_PCRBillingConditionCodesModifier_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRBillingConditionCodesModifier_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRBillingConditionCodesModifier].([PatientCareReportId]) (FK_PCRBillingConditionCodesModifier_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRBillingConditionCodesModifier_PatientCareReport
+
+        public PcrBillingConditionCodesModifierEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRBillingInsurance
+    ///<summary>
+    /// NEMSIS V2 - E07 - Billing: Insurance
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrBillingInsuranceEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E07_03 Element - Insurance Company ID/Name
+        ///</summary>
+        public string InsuranceCompanyId { get; set; } // InsuranceCompanyId (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_04 Element - Insurance Company Billing Priority
+        ///</summary>
+        public int? InsuranceCompanyBillingPriority { get; set; } // InsuranceCompanyBillingPriority
+
+        ///<summary>
+        /// NEMSIS V2 - E07_05 Element - Insurance Company Address
+        ///</summary>
+        public string InsuranceCompanyAddress { get; set; } // InsuranceCompanyAddress (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_06 Element - Insurance Company City
+        ///</summary>
+        public string InsuranceCompanyCity { get; set; } // InsuranceCompanyCity (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_07 Element - Insurance Company State
+        ///</summary>
+        public string InsuranceCompanyState { get; set; } // InsuranceCompanyState (length: 3)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_08 Element - Insurance Company Zip Code
+        ///</summary>
+        public string InsuranceCompanyZipCode { get; set; } // InsuranceCompanyZipCode (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_09 Element - Insurance Group ID/Name
+        ///</summary>
+        public string InsuranceGroupId { get; set; } // InsuranceGroupId (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_10 Element - Insurance Policy ID Number
+        ///</summary>
+        public string InsurancePolicyIdNumber { get; set; } // InsurancePolicyIdNumber (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_11 Element - Last Name of the Insured
+        ///</summary>
+        public string InsuredLastName { get; set; } // InsuredLastName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_12 Element - First Name of the Insured
+        ///</summary>
+        public string InsuredFirstName { get; set; } // InsuredFirstName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_13 Element - Middle Initial/Name of the Insured
+        ///</summary>
+        public string InsuredMiddleName { get; set; } // InsuredMiddleName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_14 Element - Relationship to the Insured
+        ///</summary>
+        public int? RelationshipToInsured { get; set; } // RelationshipToInsured
+
+        ///<summary>
+        /// NEMSIS V2 - E07_18 Element - Closest Relative/Guardian Last Name
+        ///</summary>
+        public string GuardianLastName { get; set; } // GuardianLastName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_19 Element - First Name of the Closest Relative/Guardian
+        ///</summary>
+        public string GuardianFirstName { get; set; } // GuardianFirstName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_20 Element - Middle Initial/Name of the Closest Relative/Guardian
+        ///</summary>
+        public string GuardianMiddleName { get; set; } // GuardianMiddleName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_21 Element - Closest Relative/Guardian Street Address
+        ///</summary>
+        public string GuardianAddress { get; set; } // GuardianAddress (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_22 Element - Closest Relative/Guardian City
+        ///</summary>
+        public string GuardianCity { get; set; } // GuardianCity (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_23 Element - Closest Relative/Guardian State
+        ///</summary>
+        public string GuardianState { get; set; } // GuardianState (length: 3)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_24 Element - Closest Relative/Guardian Zip Code
+        ///</summary>
+        public string GuardianZipCode { get; set; } // GuardianZipCode (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_25 Element - Closest Relative/Guardian Phone Number
+        ///</summary>
+        public string GuardianPhoneNumber { get; set; } // GuardianPhoneNumber (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_26 Element - Closest Relative/Guardian Relationship
+        ///</summary>
+        public int? GuardianRelationship { get; set; } // GuardianRelationship
+
+        ///<summary>
+        /// NEMSIS V2 - E07_27 Element - Patient&apos;s Employer
+        ///</summary>
+        public string PatientEmployer { get; set; } // PatientEmployer (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_28 Element - Patient&apos;s Employer&apos;s Address
+        ///</summary>
+        public string PatientEmployerAddress { get; set; } // PatientEmployerAddress (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_29 Element - Patient’s Employer’s City
+        ///</summary>
+        public string PatientEmployerCity { get; set; } // PatientEmployerCity (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_30 Element - Patient’s Employer’s State
+        ///</summary>
+        public string PatientEmployerState { get; set; } // PatientEmployerState (length: 3)
+
+        ///<summary>
+        /// NEMSIS V2 - E07_31 Element - Patient’s Employer’s Zip Code
+        ///</summary>
+        public string PatientEmployerZipCode { get; set; } // PatientEmployerZipCode (length: 10)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRBillingInsurance].([AgencyId]) (FK_PCRBillingInsurance_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRBillingInsurance_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRBillingInsurance].([PatientCareReportId]) (FK_PCRBillingInsurance_PatientCareReport1)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRBillingInsurance_PatientCareReport1
+
+        public PcrBillingInsuranceEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRCPR
+    ///<summary>
+    /// NEMSIS V2 - E11 - Situation CPR
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrcprEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E11_01 Element - Cardiac Arrest
+        ///</summary>
+        public int CardiacArrest { get; set; } // CardiacArrest
+
+        ///<summary>
+        /// NEMSIS V2 - E11_02 Element - Cardiac Arrest Etiology
+        ///</summary>
+        public int CardiacArrestEtiology { get; set; } // CardiacArrestEtiology
+
+        ///<summary>
+        /// NEMSIS V2 - E11_04 Element - Arrest Witnessed by
+        ///</summary>
+        public int? ArrestWitnessedBy { get; set; } // ArrestWitnessedBy
+
+        ///<summary>
+        /// NEMSIS V2 - E11_05 Element - First Monitored Rhythm of the  Patient
+        ///</summary>
+        public int? FirstMonitoredRhythm { get; set; } // FirstMonitoredRhythm
+
+        ///<summary>
+        /// NEMSIS V2 - E11_06 Element - Any Return of Spontaneous Circulation
+        ///</summary>
+        public int? AnyReturnSpontaneousCirculation { get; set; } // AnyReturnSpontaneousCirculation
+
+        ///<summary>
+        /// NEMSIS V2 - E11_07 Element - Neurological Outcome at Hospital Discharge
+        ///</summary>
+        public int? NeurologicalOutcome { get; set; } // NeurologicalOutcome
+
+        ///<summary>
+        /// NEMSIS V2 - E11_08 Element - Estimated Time of  Arrest Prior to EMS Arrival
+        ///</summary>
+        public int? EstimatedTimeArrestPriorEmsArrival { get; set; } // EstimatedTimeArrestPriorEMSArrival
+
+        ///<summary>
+        /// NEMSIS V2 - E11_09 Element - Date/Time Resuscitation Discontinued
+        ///</summary>
+        public System.DateTime? DateTimeResuscitationDiscontinued { get; set; } // DateTimeResuscitationDiscontinued
+
+        ///<summary>
+        /// NEMSIS V2 - E11_10 Element - Reason CPR Discontinued
+        ///</summary>
+        public int? ReasonCprDiscontinued { get; set; } // ReasonCPRDiscontinued
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRCPR].([AgencyId]) (FK_PCRCPR_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRCPR_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRCPR].([PatientCareReportId]) (FK_PCRCPR_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRCPR_PatientCareReport
+
+        public PcrcprEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRCPRCardiacRhythmDelivery
+    ///<summary>
+    /// NEMSIS V2 - E11 - Situation CPR: Patient&apos;s cardiac rhythm at delivery or transfer
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrcprCardiacRhythmDeliveryEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E11_11 Element - Cardiac Rhythm on Arrival at Destination
+        ///</summary>
+        public string CardiacRhythmDestination { get; set; } // CardiacRhythmDestination (length: 255)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRCPRCardiacRhythmDelivery].([AgencyId]) (FK_PCRCPRCardiacRhythmDelivery_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRCPRCardiacRhythmDelivery_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRCPRCardiacRhythmDelivery].([PatientCareReportId]) (FK_PCRCPRCardiacRhythmDelivery_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRCPRCardiacRhythmDelivery_PatientCareReport
+
+        public PcrcprCardiacRhythmDeliveryEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRCPRIndicationAttemptResuscitate
+    ///<summary>
+    /// NEMSIS V2 - E11 - Situation CPR: Indication of attempt to resuscitate cardiac arrest
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrcprIndicationAttemptResuscitateEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E11_03 Element - Resuscitation Attempted
+        ///</summary>
+        public string ResuscitationAttempted { get; set; } // ResuscitationAttempted (length: 255)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRCPRIndicationAttemptResuscitate].([AgencyId]) (FK_PCRCPRIndicationAttemptResuscitate_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRCPRIndicationAttemptResuscitate_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRCPRIndicationAttemptResuscitate].([PatientCareReportId]) (FK_PCRCPRIndicationAttemptResuscitate_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRCPRIndicationAttemptResuscitate_PatientCareReport
+
+        public PcrcprIndicationAttemptResuscitateEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRDisposition
+    ///<summary>
+    /// NEMSIS V2 - E20 - Disposition
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrDispositionEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E20_01 Element - Destination/Transferred To, Name
+        ///</summary>
+        public string DestinationTransferredToName { get; set; } // DestinationTransferredToName (length: 50)
+
+        ///<summary>
+        /// NEMSIS V2 - E20_02 Element - Destination/Transferred To, Code
+        ///</summary>
+        public string DestinationTransferredToCode { get; set; } // DestinationTransferredToCode (length: 50)
+
+        ///<summary>
+        /// NEMSIS V2 - E20_03 Element - Destination Street Address
+        ///</summary>
+        public string DestinationStreetAddress { get; set; } // DestinationStreetAddress (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E20_04 Element - Destination City
+        ///</summary>
+        public string DestinationCity { get; set; } // DestinationCity (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E20_05 Element - Destination State
+        ///</summary>
+        public string DestinationState { get; set; } // DestinationState (length: 3)
+
+        ///<summary>
+        /// NEMSIS V2 - E20_06 Element - Destination County
+        ///</summary>
+        public string DestinationCounty { get; set; } // DestinationCounty (length: 5)
+
+        ///<summary>
+        /// NEMSIS V2 - E20_07 Element - Destination Zip Code
+        ///</summary>
+        public string DestinationZipCode { get; set; } // DestinationZipCode (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - E20_08 Element - Destination GPS Location
+        ///</summary>
+        public decimal? DestinationGpsLocationLatitude { get; set; } // DestinationGPSLocationLatitude
+
+        ///<summary>
+        /// NEMSIS V2 - E20_08 Element - Destination GPS Location
+        ///</summary>
+        public decimal? DestinationGpsLocationLongitude { get; set; } // DestinationGPSLocationLongitude
+
+        ///<summary>
+        /// NEMSIS V2 - E20_09 Element - Destination Zone Number
+        ///</summary>
+        public string DestinationZoneNumber { get; set; } // DestinationZoneNumber (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E20_10 Element - Incident/Patient Disposition
+        ///</summary>
+        public int IncidentPatientDisposition { get; set; } // IncidentPatientDisposition
+
+        ///<summary>
+        /// NEMSIS V2 - E20_11 Element - How Patient Was Moved to Ambulance
+        ///</summary>
+        public int? HowPatientMovedToAmbulance { get; set; } // HowPatientMovedToAmbulance
+
+        ///<summary>
+        /// NEMSIS V2 - E20_12 Element - Position of Patient During Transport
+        ///</summary>
+        public int? PatientPositionDuringTransport { get; set; } // PatientPositionDuringTransport
+
+        ///<summary>
+        /// NEMSIS V2 - E20_13 Element - How Patient Was Transported From Ambulance
+        ///</summary>
+        public int? HowPatientTransportedFromAmbulance { get; set; } // HowPatientTransportedFromAmbulance
+
+        ///<summary>
+        /// NEMSIS V2 - E20_14 Element - Transport Mode from Scene
+        ///</summary>
+        public int TransportMode { get; set; } // TransportMode
+
+        ///<summary>
+        /// NEMSIS V2 - E20_15 Element - Condition of Patient at Destination
+        ///</summary>
+        public int? DestinationPatientCondition { get; set; } // DestinationPatientCondition
+
+        ///<summary>
+        /// NEMSIS V2 - E20_16 Element - Reason for Choosing Destination
+        ///</summary>
+        public int DestinationReason { get; set; } // DestinationReason
+
+        ///<summary>
+        /// NEMSIS V2 - E20_17 Element - Type of Destination
+        ///</summary>
+        public int DestinationType { get; set; } // DestinationType
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRDisposition].([AgencyId]) (FK_PCRDisposition_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRDisposition_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRDisposition].([PatientCareReportId]) (FK_PCRDisposition_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRDisposition_PatientCareReport
+
+        public PcrDispositionEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRHeader
+    ///<summary>
+    /// Header record that maps to:
+    ///     /// Table         | Column             | Description
+    ///     /// Agency        | AgencyNumber       | NEMSIS V2 - D01_01 Element - The state-assigned provider number of the agency
+    ///     /// AgencyState   | State              | NEMSIS V2 - D01_03 Element - The agency state
+    ///     /// AgencyCounty  | County             | NEMSIS V2 - D01_04 Element - The agency county
+    ///     /// Agency        | LevelOfService     | NEMSIS V2 - D01_07 Element - The agency level of service
+    ///     /// Agency        | OrganizationType   | NEMSIS V2 - D01_08 Element - The agency organization type
+    ///     /// Agency        | OrganizationStatus | NEMSIS V2 - D01_09 Element - The agency organization status
+    ///     /// Agency        | NationalProviderId | NEMSIS V2 - D01_21 Element - The agency national provider ID
+    ///     /// AgencyContact | ZipCode            | NEMSIS V2 - D02_07 Element - Zip Code
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrHeaderEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - D01 - Agency General Information
+        ///</summary>
+        public int Id { get; set; } // Id (Primary key)
+
+        ///<summary>
+        /// NEMSIS V2 - D01 - Agency General Information
+        ///</summary>
+        public int AgencyId { get; set; } // AgencyId
+        public int FileImportId { get; set; } // FileImportId
+
+        ///<summary>
+        /// NEMSIS V2 - D01_01 Element - The state-assigned provider number of the agency
+        ///</summary>
+        public string AgencyNumber { get; set; } // AgencyNumber (length: 15)
+
+        ///<summary>
+        /// NEMSIS V2 - D01_03 Element - The agency state
+        ///</summary>
+        public string State { get; set; } // State (length: 3)
+
+        ///<summary>
+        /// NEMSIS V2 - D01_04 Element - The agency county
+        ///</summary>
+        public string County { get; set; } // County (length: 5)
+
+        ///<summary>
+        /// NEMSIS V2 - D01_07 Element - The agency level of service
+        ///</summary>
+        public string LevelOfService { get; set; } // LevelOfService (length: 100)
+
+        ///<summary>
+        /// NEMSIS V2 - D01_08 Element - The agency organization type
+        ///</summary>
+        public int OrganizationType { get; set; } // OrganizationType
+
+        ///<summary>
+        /// NEMSIS V2 - D01_09 Element - The agency organization status
+        ///</summary>
+        public int OrganizationStatus { get; set; } // OrganizationStatus
+
+        ///<summary>
+        /// NEMSIS V2 - D01_21 Element - The agency national provider ID
+        ///</summary>
+        public string NationalProviderId { get; set; } // NationalProviderId (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - D02_07 Element - Zip Code
+        ///</summary>
+        public string ZipCode { get; set; } // ZipCode (length: 255)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Parent (One-to-One) PcrHeaderEntity pointed by [PCRHeader].[Id] (FK_PCRHeader_PCRHeader)
+        /// </summary>
+        public virtual PcrHeaderEntity PcrHeader1 { get; set; } // PCRHeader.FK_PCRHeader_PCRHeader
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRHeader].([AgencyId]) (FK_PCRHeader_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRHeader_Agency
+
+        /// <summary>
+        /// Parent FileImport pointed by [PCRHeader].([FileImportId]) (FK_PCRHeader_FileImport)
+        /// </summary>
+        public virtual FileImportEntity FileImport { get; set; } // FK_PCRHeader_FileImport
+
+        /// <summary>
+        /// Parent PcrHeader pointed by [PCRHeader].([Id]) (FK_PCRHeader_PCRHeader)
+        /// </summary>
+        public virtual PcrHeaderEntity PcrHeader_Id { get; set; } // FK_PCRHeader_PCRHeader
+
+        public PcrHeaderEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRIntervention
+    ///<summary>
+    /// NEMSIS V2 - E17 - Intervention (Protocol driving clinical care)
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrInterventionEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E17_01 Element - Protocols Used
+        ///</summary>
+        public string ProtocolUsed { get; set; } // ProtocolUsed (length: 100)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRIntervention].([AgencyId]) (FK_PCRIntervention_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRIntervention_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRIntervention].([PatientCareReportId]) (FK_PCRIntervention_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRIntervention_PatientCareReport
+
+        public PcrInterventionEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRInterventionMedications
+    ///<summary>
+    /// NEMSIS V2 - E18 - Intervention Medications
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrInterventionMedicationEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E18_01 Element - Date/Time Medication Administered
+        ///</summary>
+        public System.DateTime? AdministeredDateTime { get; set; } // AdministeredDateTime
+
+        ///<summary>
+        /// NEMSIS V2 - E18_02 Element - Medication Administered Prior to this Units EMS Care
+        ///</summary>
+        public int? AdministeredPriorUnitsEmsCare { get; set; } // AdministeredPriorUnitsEMSCare
+
+        ///<summary>
+        /// NEMSIS V2 - E18_03 Element - Medication Given
+        ///</summary>
+        public string MedicationGiven { get; set; } // MedicationGiven (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E18_04 Element - Medication Administered Route
+        ///</summary>
+        public int? AdministeredRoute { get; set; } // AdministeredRoute
+
+        ///<summary>
+        /// NEMSIS V2 - E18_05 Element - Medication Dosage
+        ///</summary>
+        public decimal? Dosage { get; set; } // Dosage
+
+        ///<summary>
+        /// NEMSIS V2 - E18_06 Element - Medication Dosage Units
+        ///</summary>
+        public int? DosageUnits { get; set; } // DosageUnits
+
+        ///<summary>
+        /// NEMSIS V2 - E18_07 Element - Response to Medication
+        ///</summary>
+        public int? Response { get; set; } // Response
+
+        ///<summary>
+        /// NEMSIS V2 - E18_09 Element - Medication Crew Member ID
+        ///</summary>
+        public string CrewMemberId { get; set; } // CrewMemberId (length: 15)
+
+        ///<summary>
+        /// NEMSIS V2 - E18_10 Element - Medication Authorization
+        ///</summary>
+        public int? Authorization { get; set; } // Authorization
+
+        ///<summary>
+        /// NEMSIS V2 - E18_11 Element - Medication Authorizing Physician
+        ///</summary>
+        public string AuthorizingPhysician { get; set; } // AuthorizingPhysician (length: 20)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child PcrInterventionMedicationComplications where [PCRInterventionMedicationComplications].[PCRInterventionMedicationId] point to this entity (FK_E18_08_E18)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrInterventionMedicationComplicationEntity> PcrInterventionMedicationComplications { get; set; } // PCRInterventionMedicationComplications.FK_E18_08_E18
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRInterventionMedications].([AgencyId]) (FK_PCRInterventionMedications_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRInterventionMedications_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRInterventionMedications].([PatientCareReportId]) (FK_PCRInterventionMedications_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRInterventionMedications_PatientCareReport
+
+        public PcrInterventionMedicationEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            PcrInterventionMedicationComplications = new System.Collections.Generic.List<PcrInterventionMedicationComplicationEntity>();
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRInterventionMedicationComplications
+    ///<summary>
+    /// NEMSIS V2 - E18 - Intervention Medications: EMS given Medication Complication
+    ///     /// The XDSs for medication complications do not indicate a relationship with a specific medication given. It makes little sense to document the medication complication without associating the medication given that caused the complication. Therefore a relationship has been added here to support it. This may need to be revised if excessive numbers of processed XML files fail to insert correctly do to the difference in key constraints as compared to the XSDs.
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrInterventionMedicationComplicationEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E18 - Intervention Medications
+        ///</summary>
+        public int PcrInterventionMedicationId { get; set; } // PCRInterventionMedicationId
+
+        ///<summary>
+        /// NEMSIS V2 - E18_08 Element - Medication Complication
+        ///</summary>
+        public int MedicationComplication { get; set; } // MedicationComplication
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRInterventionMedicationComplications].([AgencyId]) (FK_PCRInterventionMedicationComplications_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRInterventionMedicationComplications_Agency
+
+        /// <summary>
+        /// Parent PcrInterventionMedication pointed by [PCRInterventionMedicationComplications].([PcrInterventionMedicationId]) (FK_E18_08_E18)
+        /// </summary>
+        public virtual PcrInterventionMedicationEntity PcrInterventionMedication { get; set; } // FK_E18_08_E18
+
+        public PcrInterventionMedicationComplicationEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRInterventionProceduresPerformed
+    ///<summary>
+    /// NEMSIS V2 - E19 - Intervention Procedures Performed
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrInterventionProceduresPerformedEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E19_01 Element - Date/Time Procedure Performed Successfully
+        ///</summary>
+        public System.DateTime? PerformedSuccessfullyDateTime { get; set; } // PerformedSuccessfullyDateTime
+
+        ///<summary>
+        /// NEMSIS V2 - E19_02 Element - Procedure Performed Prior to this Units EMS Care
+        ///</summary>
+        public int? PerformedPriorToUnitsEmsCare { get; set; } // PerformedPriorToUnitsEMSCare
+
+        ///<summary>
+        /// NEMSIS V2 - E19_03 Element - Procedure
+        ///</summary>
+        public string Procedure { get; set; } // Procedure (length: 255)
+
+        ///<summary>
+        /// NEMSIS V2 - E19_04 Element - Size of Procedure Equipment
+        ///</summary>
+        public string EquipmentSize { get; set; } // EquipmentSize (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E19_05 Element - Number of Procedure Attempts
+        ///</summary>
+        public string NumberOfAttempts { get; set; } // NumberOfAttempts (length: 255)
+
+        ///<summary>
+        /// NEMSIS V2 - E19_06 Element - Procedure Successful
+        ///</summary>
+        public int ProcedureSuccessful { get; set; } // ProcedureSuccessful
+
+        ///<summary>
+        /// NEMSIS V2 - E19_08 Element - Response to Procedure
+        ///</summary>
+        public int? Response { get; set; } // Response
+
+        ///<summary>
+        /// NEMSIS V2 - E19_09 Element - Procedure Crew Members ID
+        ///</summary>
+        public string CrewMembersId { get; set; } // CrewMembersId (length: 15)
+
+        ///<summary>
+        /// NEMSIS V2 - E19_10 Element - Procedure Authorization
+        ///</summary>
+        public int? Authorization { get; set; } // Authorization
+
+        ///<summary>
+        /// NEMSIS V2 - E19_11 Element - Procedure Authorizing Physician
+        ///</summary>
+        public string AuthorizingPhysician { get; set; } // AuthorizingPhysician (length: 20)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child PcrInterventionProceduresPerformedComplications where [PCRInterventionProceduresPerformedComplications].[PCRInterventionProceduresPerformedId] point to this entity (FK_PCRInterventionProceduresPerformedComplications_PCRInterventionProceduresPerformed)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<PcrInterventionProceduresPerformedComplicationEntity> PcrInterventionProceduresPerformedComplications { get; set; } // PCRInterventionProceduresPerformedComplications.FK_PCRInterventionProceduresPerformedComplications_PCRInterventionProceduresPerformed
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRInterventionProceduresPerformed].([AgencyId]) (FK_PCRInterventionProceduresPerformed_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRInterventionProceduresPerformed_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRInterventionProceduresPerformed].([PatientCareReportId]) (FK_PCRInterventionProceduresPerformed_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRInterventionProceduresPerformed_PatientCareReport
+
+        public PcrInterventionProceduresPerformedEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            PcrInterventionProceduresPerformedComplications = new System.Collections.Generic.List<PcrInterventionProceduresPerformedComplicationEntity>();
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRInterventionProceduresPerformedComplications
+    ///<summary>
+    /// NEMSIS V2 - E19 - Intervention Procedures Performed: Procedure Complication
+    ///     /// The XDSs for procedure complications do not indicate a relationship with a specific procedure performed. It makes little sence to document the procedure complication without associating the procedure performed that caused the complication. Therefore a relationship has been added here to support it. This may need to be revised if excesive numbers of processed XML files fail to insert correctly do to the difference in key constraints as compaired to the XSDs.
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrInterventionProceduresPerformedComplicationEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E19 - Intervention Procedures Performed
+        ///</summary>
+        public int PcrInterventionProceduresPerformedId { get; set; } // PCRInterventionProceduresPerformedId
+
+        ///<summary>
+        /// NEMSIS V2 - E19_07 Element - Procedure Complication
+        ///</summary>
+        public int ProcedureComplication { get; set; } // ProcedureComplication
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRInterventionProceduresPerformedComplications].([AgencyId]) (FK_PCRInterventionProceduresPerformedComplications_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRInterventionProceduresPerformedComplications_Agency
+
+        /// <summary>
+        /// Parent PcrInterventionProceduresPerformed pointed by [PCRInterventionProceduresPerformedComplications].([PcrInterventionProceduresPerformedId]) (FK_PCRInterventionProceduresPerformedComplications_PCRInterventionProceduresPerformed)
+        /// </summary>
+        public virtual PcrInterventionProceduresPerformedEntity PcrInterventionProceduresPerformed { get; set; } // FK_PCRInterventionProceduresPerformedComplications_PCRInterventionProceduresPerformed
+
+        public PcrInterventionProceduresPerformedComplicationEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRInterventionProceduresPerformedSuccessfulIVSite
+    ///<summary>
+    /// NEMSIS V2 - E19 - Intervention Procedures Performed: Successful IV Site
+    ///     /// The data elements E19_12 - 14 seem to go together as a group even though the group may repeat, therefore they are grouped together here in this table as a set.
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrInterventionProceduresPerformedSuccessfulIvSiteEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E19_12 Element - Successful IV Site
+        ///</summary>
+        public int? SuccessfulIvSite { get; set; } // SuccessfulIVSite
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRInterventionProceduresPerformedSuccessfulIVSite].([AgencyId]) (FK_PCRInterventionProceduresPerformedSuccessfulIVSite_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRInterventionProceduresPerformedSuccessfulIVSite_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRInterventionProceduresPerformedSuccessfulIVSite].([PatientCareReportId]) (FK_PCRInterventionProceduresPerformedSuccessfulIVSite_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRInterventionProceduresPerformedSuccessfulIVSite_PatientCareReport
+
+        public PcrInterventionProceduresPerformedSuccessfulIvSiteEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRInterventionProceduresPerformedTubeConfirmation
+    ///<summary>
+    /// NEMSIS V2 - E19 - Intervention Procedures Performed: Tube Confirmation
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrInterventionProceduresPerformedTubeConfirmationEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E19_13 Element - Tube Confirmation
+        ///</summary>
+        public int? TubeConfirmation { get; set; } // TubeConfirmation
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRInterventionProceduresPerformedTubeConfirmation].([AgencyId]) (FK_PCRInterventionProceduresPerformedTubeConfirmation_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRInterventionProceduresPerformedTubeConfirmation_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRInterventionProceduresPerformedTubeConfirmation].([PatientCareReportId]) (FK_PCRInterventionProceduresPerformedTubeConfirmation_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRInterventionProceduresPerformedTubeConfirmation_PatientCareReport
+
+        public PcrInterventionProceduresPerformedTubeConfirmationEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRInterventionProceduresPerformedTubePlacement
+    ///<summary>
+    /// NEMSIS V2 - E19 - Intervention Procedures Performed: Destination Confirmation of Tube Placement
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrInterventionProceduresPerformedTubePlacementEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E19_14 Element - Destination Confirmation of Tube Placement
+        ///</summary>
+        public int? TubePlacement { get; set; } // TubePlacement
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRInterventionProceduresPerformedTubePlacement].([AgencyId]) (FK_PCRInterventionProceduresPerformedTubePlacement_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRInterventionProceduresPerformedTubePlacement_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRInterventionProceduresPerformedTubePlacement].([PatientCareReportId]) (FK_PCRInterventionProceduresPerformedTubePlacement_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRInterventionProceduresPerformedTubePlacement_PatientCareReport
+
+        public PcrInterventionProceduresPerformedTubePlacementEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalDeviceData
+    ///<summary>
+    /// NEMSIS V2 - E21 - Medical Device Data
+    ///     /// Parts of this table can be split out to reduce the number of unused fields in the primary E21 table. (E.G. E21_18 and E21_19 are 2 fields that will only be used for specific medical devices and therefore may be reported at a lower frequency than the reset of the medical device data.) By splitting these out into their own table (see example below) seek times and table space can be saved. This may apply to other fields as well.
+    ///     /// !!! ALERT !!! If you split out any columns remember to remove them from the original table.
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalDeviceDataEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E21_01 Element - Event Date/Time
+        ///</summary>
+        public System.DateTime? EventDateTime { get; set; } // EventDateTime
+
+        ///<summary>
+        /// NEMSIS V2 - E21_02 Element - Medical Device Event Name
+        ///</summary>
+        public int? MedicalDeviceEventName { get; set; } // MedicalDeviceEventName
+
+        ///<summary>
+        /// NEMSIS V2 - E21_03 Element - Waveform Graphic Type
+        ///</summary>
+        public int? WaveformGraphicType { get; set; } // WaveformGraphicType
+
+        ///<summary>
+        /// NEMSIS V2 - E21_04 Element - Waveform Graphic
+        ///</summary>
+        public byte[] WaveformGraphic { get; set; } // WaveformGraphic (length: 2147483647)
+
+        ///<summary>
+        /// NEMSIS V2 - E21_05 Element - AED, Pacing, or CO2 Mode
+        ///</summary>
+        public int? AedPacingCo2Mode { get; set; } // AEDPacingCO2Mode
+
+        ///<summary>
+        /// NEMSIS V2 - E21_06 Element - ECG Lead
+        ///</summary>
+        public int? EcgLead { get; set; } // ECGLead
+
+        ///<summary>
+        /// NEMSIS V2 - E21_07 Element - ECG Interpretation
+        ///</summary>
+        public string EcgInterpretation { get; set; } // ECGInterpretation (length: 2000)
+
+        ///<summary>
+        /// NEMSIS V2 - E21_08 Element - Type of Shock
+        ///</summary>
+        public int? ShockType { get; set; } // ShockType
+
+        ///<summary>
+        /// NEMSIS V2 - E21_09 Element - Shock or Pacing Energy
+        ///</summary>
+        public decimal? ShockPacingEnergy { get; set; } // ShockPacingEnergy
+
+        ///<summary>
+        /// NEMSIS V2 - E21_10 Element - Total Number of Shocks Delivered
+        ///</summary>
+        public int? TotalNumberShocksDelivered { get; set; } // TotalNumberShocksDelivered
+
+        ///<summary>
+        /// NEMSIS V2 - E21_11 Element - Pacing Rate
+        ///</summary>
+        public int? PacingRate { get; set; } // PacingRate
+
+        ///<summary>
+        /// NEMSIS V2 - E21_12 Element - Device Heart Rate
+        ///</summary>
+        public int? HeartRate { get; set; } // HeartRate
+
+        ///<summary>
+        /// NEMSIS V2 - E21_13 Element - Device Pulse Rate
+        ///</summary>
+        public int? PulseRate { get; set; } // PulseRate
+
+        ///<summary>
+        /// NEMSIS V2 - E21_14 Element - Device Systolic Blood Pressure
+        ///</summary>
+        public int? SystolicBloodPressure { get; set; } // SystolicBloodPressure
+
+        ///<summary>
+        /// NEMSIS V2 - E21_15 Element - Device Diastolic Blood Pressure
+        ///</summary>
+        public int? DiastolicBloodPressure { get; set; } // DiastolicBloodPressure
+
+        ///<summary>
+        /// NEMSIS V2 - E21_16 Element - Device Respiratory Rate
+        ///</summary>
+        public int? RespiratoryRate { get; set; } // RespiratoryRate
+
+        ///<summary>
+        /// NEMSIS V2 - E21_17 Element - Device Pulse Oximetry
+        ///</summary>
+        public int? PulseOximetry { get; set; } // PulseOximetry
+
+        ///<summary>
+        /// NEMSIS V2 - E21_18 Element - Device CO2 or etCO2
+        ///</summary>
+        public int? Co2EtCo2 { get; set; } // CO2etCO2
+
+        ///<summary>
+        /// NEMSIS V2 - E21_19 Element - Device CO2, etCO2, or Invasive Pressure Monitor Units
+        ///</summary>
+        public int? Co2EtCo2InvasivePressureMonitorUnits { get; set; } // CO2etCO2InvasivePressureMonitorUnits
+
+        ///<summary>
+        /// NEMSIS V2 - E21_20 Element - Device Invasive Pressure Mean
+        ///</summary>
+        public int? InvasivePressureMean { get; set; } // InvasivePressureMean
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMedicalDeviceData].([AgencyId]) (FK_PCRMedicalDeviceData_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRMedicalDeviceData_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMedicalDeviceData].([PatientCareReportId]) (FK_PCRMedicalDeviceData_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRMedicalDeviceData_PatientCareReport
+
+        public PcrMedicalDeviceDataEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistory
+    ///<summary>
+    /// NEMSIS V2 - E12 - Medical History
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E12_02 Element - Sending Facility Medical Record Number
+        ///</summary>
+        public string SendingFacilityMrNumber { get; set; } // SendingFacilityMRNumber (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E12_03 Element - Destination Medical Record Number
+        ///</summary>
+        public string DestinationMrNumber { get; set; } // DestinationMRNumber (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E12_04 Element - First Name of Patient&apos;s Primary Practitioner
+        ///</summary>
+        public string PrimaryPractitionerFirstName { get; set; } // PrimaryPractitionerFirstName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E12_05 Element - Middle Name of Patient&apos;s Primary Practitioner
+        ///</summary>
+        public string PrimaryPractitionerMiddleName { get; set; } // PrimaryPractitionerMiddleName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E12_06 Element - Last Name of Patient&apos;s Primary Practitioner
+        ///</summary>
+        public string PrimaryPractitionerLastName { get; set; } // PrimaryPractitionerLastName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E12_11 Element - Medical History Obtained From
+        ///</summary>
+        public int? MedicalHistoryObtainedFrom { get; set; } // MedicalHistoryObtainedFrom
+
+        ///<summary>
+        /// NEMSIS V2 - E12_18 Element - Presence of Emergency Information Form
+        ///</summary>
+        public int? PresenceEmergencyInformationForm { get; set; } // PresenceEmergencyInformationForm
+
+        ///<summary>
+        /// NEMSIS V2 - E12_20 Element - Pregnancy
+        ///</summary>
+        public int? Pregnancy { get; set; } // Pregnancy
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMedicalHistory].([AgencyId]) (FK_PCRMedicalHistory_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRMedicalHistory_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMedicalHistory].([PatientCareReportId]) (FK_PCRMedicalHistory_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRMedicalHistory_PatientCareReport
+
+        public PcrMedicalHistoryEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistoryAlcoholDrugIndicators
+    ///<summary>
+    /// NEMSIS V2 - E12 - Medical History: Indicators for the potential use of A&amp;D by patient
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryAlcoholDrugIndicatorEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E12_19 Element - Alcohol/Drug Use Indicators
+        ///</summary>
+        public int AlcoholDrugUseIndicator { get; set; } // AlcoholDrugUseIndicator
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMedicalHistoryAlcoholDrugIndicators].([AgencyId]) (FK_PCRMedicalHistoryAlcoholDrugIndicators_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRMedicalHistoryAlcoholDrugIndicators_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMedicalHistoryAlcoholDrugIndicators].([PatientCareReportId]) (FK_PCRMedicalHistoryAlcoholDrugIndicators_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRMedicalHistoryAlcoholDrugIndicators_PatientCareReport
+
+        public PcrMedicalHistoryAlcoholDrugIndicatorEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistoryAllergies
+    ///<summary>
+    /// NEMSIS V2 - E12 - Medical History: Food and Environmental Allergies
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryAllergyEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E12_09 Element - Environmental/Food Allergies
+        ///</summary>
+        public int EnvironmentalFoodAllergy { get; set; } // EnvironmentalFoodAllergy
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMedicalHistoryAllergies].([AgencyId]) (FK_PCRMedicalHistoryAllergies_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRMedicalHistoryAllergies_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMedicalHistoryAllergies].([PatientCareReportId]) (FK_PCRMedicalHistoryAllergies_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRMedicalHistoryAllergies_PatientCareReport
+
+        public PcrMedicalHistoryAllergyEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistoryCurrentMedication
+    ///<summary>
+    /// NEMSIS V2 - E12 - Medical History: Current Medication
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryCurrentMedicationEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E12_14 Element - Current Medications
+        ///</summary>
+        public string CurrentMedication { get; set; } // CurrentMedication (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E12_15 Element - Current Medication Dose
+        ///</summary>
+        public decimal? CurrentMedicationDose { get; set; } // CurrentMedicationDose
+
+        ///<summary>
+        /// NEMSIS V2 - E12_16 Element - Current Medication Dosage Unit
+        ///</summary>
+        public int? CurrentMedicationDosageUnit { get; set; } // CurrentMedicationDosageUnit
+
+        ///<summary>
+        /// NEMSIS V2 - E12_17 Element - Current Medication Administration Route
+        ///</summary>
+        public int? CurrentMedicationAdministrationRoute { get; set; } // CurrentMedicationAdministrationRoute
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMedicalHistoryCurrentMedication].([AgencyId]) (FK_PCRMedicalHistoryCurrentMedication_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRMedicalHistoryCurrentMedication_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMedicalHistoryCurrentMedication].([PatientCareReportId]) (FK_PCRMedicalHistoryCurrentMedication_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRMedicalHistoryCurrentMedication_PatientCareReport
+
+        public PcrMedicalHistoryCurrentMedicationEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistoryImmunizationDetails
+    ///<summary>
+    /// NEMSIS V2 - E12 - Medical History: Details of Immunization
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryImmunizationDetailEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E12_12 Element - Immunization History
+        ///</summary>
+        public int ImmunizationHistory { get; set; } // ImmunizationHistory
+
+        ///<summary>
+        /// NEMSIS V2 - E12_13 Element - Immunization Date
+        ///</summary>
+        public int? ImmunizationDate { get; set; } // ImmunizationDate
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMedicalHistoryImmunizationDetails].([AgencyId]) (FK_PCRMedicalHistoryImmunizationDetails_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRMedicalHistoryImmunizationDetails_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMedicalHistoryImmunizationDetails].([PatientCareReportId]) (FK_PCRMedicalHistoryImmunizationDetails_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRMedicalHistoryImmunizationDetails_PatientCareReport
+
+        public PcrMedicalHistoryImmunizationDetailEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistoryLivingWill
+    ///<summary>
+    /// NEMSIS V2 - E12 - Medical History: Presence of a valid living will or EOL treatment document
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryLivingWillEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E12_07 Element - Advanced Directives
+        ///</summary>
+        public int AdvancedDirective { get; set; } // AdvancedDirective
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMedicalHistoryLivingWill].([AgencyId]) (FK_PCRMedicalHistoryLivingWill_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRMedicalHistoryLivingWill_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMedicalHistoryLivingWill].([PatientCareReportId]) (FK_PCRMedicalHistoryLivingWill_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRMedicalHistoryLivingWill_PatientCareReport
+
+        public PcrMedicalHistoryLivingWillEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistoryMedicationAllergies
+    ///<summary>
+    /// NEMSIS V2 - E12 - Medical History: Medication Allergies
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryMedicationAllergyEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E12_08 Element - Medication Allergies
+        ///</summary>
+        public string MedicationAllergy { get; set; } // MedicationAllergy (length: 30)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMedicalHistoryMedicationAllergies].([AgencyId]) (FK_PCRMedicalHistoryMedicationAllergies_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRMedicalHistoryMedicationAllergies_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMedicalHistoryMedicationAllergies].([PatientCareReportId]) (FK_PCRMedicalHistoryMedicationAllergies_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRMedicalHistoryMedicationAllergies_PatientCareReport
+
+        public PcrMedicalHistoryMedicationAllergyEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistoryPatientBarriers
+    ///<summary>
+    /// NEMSIS V2 - E12 - Medical History: Patient specific barriers at scene
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryPatientBarrierEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E12_01 Element - Barriers to Patient Care
+        ///</summary>
+        public int BarriersPatientCare { get; set; } // BarriersPatientCare
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMedicalHistoryPatientBarriers].([AgencyId]) (FK_PCRMedicalHistoryPatientBarriers_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRMedicalHistoryPatientBarriers_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMedicalHistoryPatientBarriers].([PatientCareReportId]) (FK_PCRMedicalHistoryPatientBarriers_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRMedicalHistoryPatientBarriers_PatientCareReport
+
+        public PcrMedicalHistoryPatientBarrierEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistoryPreexistingMedicalSurgery
+    ///<summary>
+    /// NEMSIS V2 - E12 - Medical History: Pre-existing medical and surgery history
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryPreexistingMedicalSurgeryEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E12_10 Element - Medical/Surgical History
+        ///</summary>
+        public string MedicalSurgicalHistory { get; set; } // MedicalSurgicalHistory (length: 30)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMedicalHistoryPreexistingMedicalSurgery].([AgencyId]) (FK_MedicalHistoryPreexistingMedicalSurgery_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_MedicalHistoryPreexistingMedicalSurgery_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMedicalHistoryPreexistingMedicalSurgery].([PatientCareReportId]) (FK_MedicalHistoryPreexistingMedicalSurgery_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_MedicalHistoryPreexistingMedicalSurgery_PatientCareReport
+
+        public PcrMedicalHistoryPreexistingMedicalSurgeryEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMiscellaneous
+    ///<summary>
+    /// NEMSIS V2 - E23 - Miscellaneous
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMiscellaneouEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E23_01 Element - Review Requested
+        ///</summary>
+        public int? ReviewRequested { get; set; } // ReviewRequested
+
+        ///<summary>
+        /// NEMSIS V2 - E23_05 Element - Suspected Contact with Blood/Body Fluids of EMS Injury or Death
+        ///</summary>
+        public int? SuspectedContactBodyFluidsEmsInjuryDeath { get; set; } // SuspectedContactBodyFluidsEMSInjuryDeath
+
+        ///<summary>
+        /// NEMSIS V2 - E23_08 Element - Required Reportable Conditions
+        ///</summary>
+        public int? RequiredReportableCondition { get; set; } // RequiredReportableCondition
+
+        ///<summary>
+        /// NEMSIS V2 - E23_10 Element - Who Generated this Report?
+        ///</summary>
+        public string ReportGeneratedBy { get; set; } // ReportGeneratedBy (length: 15)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMiscellaneous].([AgencyId]) (FK_PCRMiscellaneous_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRMiscellaneous_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMiscellaneous].([PatientCareReportId]) (FK_PCRMiscellaneous_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRMiscellaneous_PatientCareReport
+
+        public PcrMiscellaneouEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMiscellaneousLocalAgencyResearchField
+    ///<summary>
+    /// NEMSIS V2 - E23 - Miscellaneous: Customizable Local Agency Research Field
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMiscellaneousLocalAgencyResearchFieldEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E23_09 Element - Research Survey Field
+        ///</summary>
+        public string ResearchSurveyField { get; set; } // ResearchSurveyField (length: 50)
+
+        ///<summary>
+        /// NEMSIS V2 - E23_11 Element - Research Survey Field Title
+        ///</summary>
+        public string ResearchSurveyFieldTitle { get; set; } // ResearchSurveyFieldTitle (length: 30)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMiscellaneousLocalAgencyResearchField].([AgencyId]) (FK_PCRMiscellaneousLocalAgencyResearchField_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRMiscellaneousLocalAgencyResearchField_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMiscellaneousLocalAgencyResearchField].([PatientCareReportId]) (FK_PCRMiscellaneousLocalAgencyResearchField_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRMiscellaneousLocalAgencyResearchField_PatientCareReport
+
+        public PcrMiscellaneousLocalAgencyResearchFieldEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMiscellaneousPatientIndicationCriteriaRegistry
+    ///<summary>
+    /// NEMSIS V2 - E23 - Miscellaneous: Patient Indication Criteria for Injury or Illness Specific Registry
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMiscellaneousPatientIndicationCriteriaRegistryEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E23_02 Element - Potential Registry Candidate
+        ///</summary>
+        public int PotentialRegistryCandidate { get; set; } // PotentialRegistryCandidate
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMiscellaneousPatientIndicationCriteriaRegistry].([AgencyId]) (FK_PCRMiscellaneousPatientIndicationCriteriaRegistry_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRMiscellaneousPatientIndicationCriteriaRegistry_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMiscellaneousPatientIndicationCriteriaRegistry].([PatientCareReportId]) (FK_PCRMiscellaneousPatientIndicationCriteriaRegistry_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRMiscellaneousPatientIndicationCriteriaRegistry_PatientCareReport
+
+        public PcrMiscellaneousPatientIndicationCriteriaRegistryEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMiscellaneousPersonnelExposedFluids
+    ///<summary>
+    /// NEMSIS V2 - E23 - Miscellaneous: The EMS personnel exposed to unprotected contact with blood or body fluids
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMiscellaneousPersonnelExposedFluidEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E23_07 Element - Personnel Exposed
+        ///</summary>
+        public int PersonnelExposed { get; set; } // PersonnelExposed
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMiscellaneousPersonnelExposedFluids].([AgencyId]) (FK_PCRMiscellaneousPersonnelExposedFluids_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRMiscellaneousPersonnelExposedFluids_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMiscellaneousPersonnelExposedFluids].([PatientCareReportId]) (FK_PCRMiscellaneousPersonnelExposedFluids_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRMiscellaneousPersonnelExposedFluids_PatientCareReport
+
+        public PcrMiscellaneousPersonnelExposedFluidEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMiscellaneousProtectiveEquipmentUsed
+    ///<summary>
+    /// NEMSIS V2 - E23 - Miscellaneous: Personnel Protective Equipment Used During Patient Contact
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMiscellaneousProtectiveEquipmentUsedEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E23_03 Element - Personal Protective Equipment Used
+        ///</summary>
+        public int PersonalProtectiveEquipmentUsed { get; set; } // PersonalProtectiveEquipmentUsed
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMiscellaneousProtectiveEquipmentUsed].([AgencyId]) (FK_PCRMiscellaneousProtectiveEquipmentUsed_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRMiscellaneousProtectiveEquipmentUsed_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMiscellaneousProtectiveEquipmentUsed].([PatientCareReportId]) (FK_PCRMiscellaneousProtectiveEquipmentUsed_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRMiscellaneousProtectiveEquipmentUsed_PatientCareReport
+
+        public PcrMiscellaneousProtectiveEquipmentUsedEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism
+    ///<summary>
+    /// NEMSIS V2 - E23 - Miscellaneous: Suspicion of Multi-Casualty or Domestic Terrorism Causes
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorismEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E23_04 Element - Suspected Intentional, or Unintentional Disaster
+        ///</summary>
+        public int SuspectedIntentionalUnintentionalDisaster { get; set; } // SuspectedIntentionalUnintentionalDisaster
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism].([AgencyId]) (FK_PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism].([PatientCareReportId]) (FK_PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism_PatientCareReport
+
+        public PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorismEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRMiscellaneousTypeExposureBodilyFluids
+    ///<summary>
+    /// NEMSIS V2 - E23 - Miscellaneous: Type of exposure or unprotected contact with bodily fluids
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMiscellaneousTypeExposureBodilyFluidEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E23_06 Element - Type of Suspected Blood/Body Fluid Exposure, Injury, or Death
+        ///</summary>
+        public int TypeSuspectedFluidExposure { get; set; } // TypeSuspectedFluidExposure
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRMiscellaneousTypeExposureBodilyFluids].([AgencyId]) (FK_PCRMiscellaneousTypeExposureBodilyFluids_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRMiscellaneousTypeExposureBodilyFluids_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRMiscellaneousTypeExposureBodilyFluids].([PatientCareReportId]) (FK_PCRMiscellaneousTypeExposureBodilyFluids_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRMiscellaneousTypeExposureBodilyFluids_PatientCareReport
+
+        public PcrMiscellaneousTypeExposureBodilyFluidEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRNarrative
+    ///<summary>
+    /// NEMSIS V2 - E13 - Narrative
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrNarrativeEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E13_01 Element - Run Report Narrative
+        ///</summary>
+        public string RunReportNarrative { get; set; } // RunReportNarrative (length: 4000)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRNarrative].([AgencyId]) (FK_PCRNarrative_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRNarrative_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRNarrative].([PatientCareReportId]) (FK_PCRNarrative_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRNarrative_PatientCareReport
+
+        public PcrNarrativeEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCROutcomeLinkage
+    ///<summary>
+    /// NEMSIS V2 - E22 - Outcome and Linkage
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrOutcomeLinkageEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E22_01 Element - Emergency Department Disposition
+        ///</summary>
+        public int EmergencyDepartmentDisposition { get; set; } // EmergencyDepartmentDisposition
+
+        ///<summary>
+        /// NEMSIS V2 - E22_02 Element - Hospital Disposition
+        ///</summary>
+        public int HospitalDisposition { get; set; } // HospitalDisposition
+
+        ///<summary>
+        /// NEMSIS V2 - E22_03 Element - Law Enforcement/Crash Report Number
+        ///</summary>
+        public string LawEnforcementReportNumber { get; set; } // LawEnforcementReportNumber (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E22_04 Element - Trauma Registry ID
+        ///</summary>
+        public string TraumaRegistryId { get; set; } // TraumaRegistryId (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E22_05 Element - Fire Incident Report Number
+        ///</summary>
+        public string FireIncidentReportNumber { get; set; } // FireIncidentReportNumber (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E22_06 Element - Patient ID Band/Tag Number
+        ///</summary>
+        public string PatientIdBandTagNumber { get; set; } // PatientIdBandTagNumber (length: 20)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCROutcomeLinkage].([AgencyId]) (FK_PCROutcomeLinkage_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCROutcomeLinkage_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCROutcomeLinkage].([PatientCareReportId]) (FK_PCROutcomeLinkage_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCROutcomeLinkage_PatientCareReport
+
+        public PcrOutcomeLinkageEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRPatient
+    ///<summary>
+    /// NEMSIS V2 - E06 - Patient
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrPatientEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E06_01 Element - Last Name
+        ///</summary>
+        public string LastName { get; set; } // LastName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E06_02 Element - First Name
+        ///</summary>
+        public string FirstName { get; set; } // FirstName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E06_03 Element - Middle Initial/Name
+        ///</summary>
+        public string MiddleName { get; set; } // MiddleName (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E06_04 Element - Patient&apos;s Home Address
+        ///</summary>
+        public string HomeAddress { get; set; } // HomeAddress (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E06_05 Element - Patient&apos;s Home City
+        ///</summary>
+        public string HomeCity { get; set; } // HomeCity (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E06_06 Element - Patient&apos;s Home County
+        ///</summary>
+        public string HomeCounty { get; set; } // HomeCounty (length: 5)
+
+        ///<summary>
+        /// NEMSIS V2 - E06_07 Element - Patient&apos;s Home State
+        ///</summary>
+        public string HomeState { get; set; } // HomeState (length: 3)
+
+        ///<summary>
+        /// NEMSIS V2 - E06_08 Element - Patient&apos;s Home Zip Code
+        ///</summary>
+        public string HomeZipCode { get; set; } // HomeZipCode (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - E06_09 Element - Patient’s Home Country
+        ///</summary>
+        public string HomeCountry { get; set; } // HomeCountry (length: 20)
+
+        ///<summary>
+        /// NEMSIS V2 - E06_10 Element - Social Security Number
+        ///</summary>
+        public string SocialSecurityNumber { get; set; } // SocialSecurityNumber (length: 11)
+
+        ///<summary>
+        /// NEMSIS V2 - E06_11 Element - Gender
+        ///</summary>
+        public int Gender { get; set; } // Gender
+
+        ///<summary>
+        /// NEMSIS V2 - E06_12 Element - Race
+        ///</summary>
+        public int Race { get; set; } // Race
+
+        ///<summary>
+        /// NEMSIS V2 - E06_13 Element - Ethnicity
+        ///</summary>
+        public int Ethnicity { get; set; } // Ethnicity
+
+        ///<summary>
+        /// NEMSIS V2 - E06_14 Element - Age
+        ///</summary>
+        public int? Age { get; set; } // Age
+
+        ///<summary>
+        /// NEMSIS V2 - E06_15 Element - Age Units
+        ///</summary>
+        public int AgeUnits { get; set; } // AgeUnits
+
+        ///<summary>
+        /// NEMSIS V2 - E06_16 Element - Date of Birth
+        ///</summary>
+        public System.DateTime? DateOfBirth { get; set; } // DateOfBirth
+
+        ///<summary>
+        /// NEMSIS V2 - E06_17 Element - Primary or Home Telephone Number
+        ///</summary>
+        public string PrimaryorHomeTelephoneNumber { get; set; } // PrimaryorHomeTelephoneNumber (length: 10)
+
+        ///<summary>
+        /// NEMSIS V2 - E06_18 Element - State Issuing Driver&apos;s License
+        ///</summary>
+        public string StateIssuingDriverLicense { get; set; } // StateIssuingDriverLicense (length: 3)
+
+        ///<summary>
+        /// NEMSIS V2 - E06_19 Element - Driver&apos;s License Number
+        ///</summary>
+        public string DriverLicenseNumber { get; set; } // DriverLicenseNumber (length: 30)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRPatient].([AgencyId]) (FK_PCRPatient_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRPatient_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRPatient].([PatientCareReportId]) (FK_PCRPatient_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRPatient_PatientCareReport
+
+        public PcrPatientEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRScene
+    ///<summary>
+    /// NEMSIS V2 - E08 - Scene
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrSceneEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E08_03 Element - Estimated Date/Time Initial Responder Arrived on Scene
+        ///</summary>
+        public int? EstimatedDateTimeInitialResponderArrived { get; set; } // EstimatedDateTimeInitialResponderArrived
+
+        ///<summary>
+        /// NEMSIS V2 - E08_04 Element - Date/Time Initial Responder Arrived on Scene
+        ///</summary>
+        public System.DateTime? DateTimeInitialResponderArrived { get; set; } // DateTimeInitialResponderArrived
+
+        ///<summary>
+        /// NEMSIS V2 - E08_05 Element - Number of Patients at Scene
+        ///</summary>
+        public int NumberPatientsScene { get; set; } // NumberPatientsScene
+
+        ///<summary>
+        /// NEMSIS V2 - E08_06 Element - Mass Casualty Incident
+        ///</summary>
+        public int MassCasualtyIncident { get; set; } // MassCasualtyIncident
+
+        ///<summary>
+        /// NEMSIS V2 - E08_07 Element - Incident Location Type
+        ///</summary>
+        public int IncidentLocationType { get; set; } // IncidentLocationType
+
+        ///<summary>
+        /// NEMSIS V2 - E08_08 Element - Incident Facility Code
+        ///</summary>
+        public string IncidentFacilityCode { get; set; } // IncidentFacilityCode (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E08_09 Element - Scene Zone Number
+        ///</summary>
+        public string SceneZoneNumber { get; set; } // SceneZoneNumber (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E08_10 Element - Scene GPS Location
+        ///</summary>
+        public decimal? SceneGpsLocationLatitude { get; set; } // SceneGPSLocationLatitude
+
+        ///<summary>
+        /// NEMSIS V2 - E08_10 Element - Scene GPS Location
+        ///</summary>
+        public decimal? SceneGpsLocationLongitude { get; set; } // SceneGPSLocationLongitude
+
+        ///<summary>
+        /// NEMSIS V2 - E08_11 Element - Incident Address
+        ///</summary>
+        public string IncidentAddress { get; set; } // IncidentAddress (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E08_12 Element - Incident City
+        ///</summary>
+        public string IncidentCity { get; set; } // IncidentCity (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E08_13 Element - Incident County
+        ///</summary>
+        public string IncidentCounty { get; set; } // IncidentCounty (length: 5)
+
+        ///<summary>
+        /// NEMSIS V2 - E08_14 Element - Incident State
+        ///</summary>
+        public string IncidentState { get; set; } // IncidentState (length: 3)
+
+        ///<summary>
+        /// NEMSIS V2 - E08_15 Element - Incident ZIP Code
+        ///</summary>
+        public string IncidentZipCode { get; set; } // IncidentZipCode (length: 10)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRScene].([AgencyId]) (FK_PCRScene_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRScene_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRScene].([PatientCareReportId]) (FK_PCRScene_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRScene_PatientCareReport
+
+        public PcrSceneEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRSceneOtherEMSAgencies
+    ///<summary>
+    /// NEMSIS V2 - E08 - Scene: Other EMS Agencies at the Scene
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrSceneOtherEmsAgencyEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E08_01 Element - Other EMS Agencies at Scene
+        ///</summary>
+        public string OtherEmsAgencies { get; set; } // OtherEMSAgencies (length: 30)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRSceneOtherEMSAgencies].([AgencyId]) (FK_PCRSceneOtherEMSAgencies_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRSceneOtherEMSAgencies_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRSceneOtherEMSAgencies].([PatientCareReportId]) (FK_PCRSceneOtherEMSAgencies_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport_PatientCareReportId { get; set; } // FK_PCRSceneOtherEMSAgencies_PatientCareReport
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRSceneOtherEMSAgencies].([PatientCareReportId]) (FK_PCRSceneOtherEMSAgencies_PatientCareReport1)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport1 { get; set; } // FK_PCRSceneOtherEMSAgencies_PatientCareReport1
+
+        public PcrSceneOtherEmsAgencyEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRSceneOtherServices
+    ///<summary>
+    /// NEMSIS V2 - E08 - Scene: Other Services at the Scene
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrSceneOtherServiceEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E08_02 Element - Other Services at Scene
+        ///</summary>
+        public int OtherService { get; set; } // OtherService
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRSceneOtherServices].([AgencyId]) (FK_PCRSceneOtherServices_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRSceneOtherServices_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRSceneOtherServices].([PatientCareReportId]) (FK_PCRSceneOtherServices_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRSceneOtherServices_PatientCareReport
+
+        public PcrSceneOtherServiceEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRSituation
+    ///<summary>
+    /// NEMSIS V2 - E09 - Situation
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrSituationEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E09_03 Element - Outcome of the Prior Aid
+        ///</summary>
+        public int PriorAidOutcome { get; set; } // PriorAidOutcome
+
+        ///<summary>
+        /// NEMSIS V2 - E09_04 Element - Possible Injury
+        ///</summary>
+        public int PossibleInjury { get; set; } // PossibleInjury
+
+        ///<summary>
+        /// NEMSIS V2 - E09_05 Element - Chief Complaint
+        ///</summary>
+        public string ChiefComplaint { get; set; } // ChiefComplaint (length: 50)
+
+        ///<summary>
+        /// NEMSIS V2 - E09_06 Element - Duration of Chief Complaint
+        ///</summary>
+        public int? DurationChiefComplaint { get; set; } // DurationChiefComplaint
+
+        ///<summary>
+        /// NEMSIS V2 - E09_07 Element - Time Units of Duration of Chief Complaint
+        ///</summary>
+        public int? TimeChiefComplaintUnitsDuration { get; set; } // TimeChiefComplaintUnitsDuration
+
+        ///<summary>
+        /// NEMSIS V2 - E09_08 Element - Secondary Complaint Narrative
+        ///</summary>
+        public string SecondaryComplaintNarrative { get; set; } // SecondaryComplaintNarrative (length: 50)
+
+        ///<summary>
+        /// NEMSIS V2 - E09_09 Element - Duration of Secondary Complaint
+        ///</summary>
+        public int? DurationSecondaryComplaint { get; set; } // DurationSecondaryComplaint
+
+        ///<summary>
+        /// NEMSIS V2 - E09_10 Element - Time Units of Duration of Secondary Complaint
+        ///</summary>
+        public int? TimeUnitsDurationSecondaryComplaint { get; set; } // TimeUnitsDurationSecondaryComplaint
+
+        ///<summary>
+        /// NEMSIS V2 - E09_11 Element - Chief Complaint Anatomic Location
+        ///</summary>
+        public int ChiefComplaintAnatomicLocation { get; set; } // ChiefComplaintAnatomicLocation
+
+        ///<summary>
+        /// NEMSIS V2 - E09_12 Element - Chief Complaint Organ System
+        ///</summary>
+        public int ChiefComplaintOrganSystem { get; set; } // ChiefComplaintOrganSystem
+
+        ///<summary>
+        /// NEMSIS V2 - E09_13 Element - Primary Symptom
+        ///</summary>
+        public int PrimarySymptom { get; set; } // PrimarySymptom
+
+        ///<summary>
+        /// NEMSIS V2 - E09_15 Element - Provider&apos;s Primary Impression
+        ///</summary>
+        public int ProvidersPrimaryImpression { get; set; } // ProvidersPrimaryImpression
+
+        ///<summary>
+        /// NEMSIS V2 - E09_16 Element - Provider’s Secondary Impression
+        ///</summary>
+        public int ProvidersSecondaryImpression { get; set; } // ProvidersSecondaryImpression
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRSituation].([AgencyId]) (FK_PCRSituation_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRSituation_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRSituation].([PatientCareReportId]) (FK_PCRSituation_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRSituation_PatientCareReport
+
+        public PcrSituationEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRSituationOtherSymptoms
+    ///<summary>
+    /// NEMSIS V2 - E09 - Situation: Other Symptoms Identified
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrSituationOtherSymptomEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E09_14 Element - Other Associated Symptoms
+        ///</summary>
+        public int OtherAssociatedSymptom { get; set; } // OtherAssociatedSymptom
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRSituationOtherSymptoms].([AgencyId]) (FK_PCRSituationOtherSymptoms_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRSituationOtherSymptoms_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRSituationOtherSymptoms].([PatientCareReportId]) (FK_PCRSituationOtherSymptoms_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRSituationOtherSymptoms_PatientCareReport
+
+        public PcrSituationOtherSymptomEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRSituationPriorAid
+    ///<summary>
+    /// NEMSIS V2 - E09 - Situation: Prior Aid
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrSituationPriorAidEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E09_01 Element - Prior Aid
+        ///</summary>
+        public string PriorAid { get; set; } // PriorAid (length: 30)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRSituationPriorAid].([AgencyId]) (FK_PCRSituationPriorAid_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRSituationPriorAid_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRSituationPriorAid].([PatientCareReportId]) (FK_PCRSituationPriorAid_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRSituationPriorAid_PatientCareReport
+
+        public PcrSituationPriorAidEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRSituationPriorAidPerformedBy
+    ///<summary>
+    /// NEMSIS V2 - E09 - Situation: Type of Individual Providing Prior Aid
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrSituationPriorAidPerformedByEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E09_02 Element - Prior Aid Performed By
+        ///</summary>
+        public int PriorAidPerformedBy { get; set; } // PriorAidPerformedBy
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRSituationPriorAidPerformedBy].([AgencyId]) (FK_PCRSituationPriorAidPerformedBy_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRSituationPriorAidPerformedBy_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRSituationPriorAidPerformedBy].([PatientCareReportId]) (FK_PCRSituationPriorAidPerformedBy_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRSituationPriorAidPerformedBy_PatientCareReport
+
+        public PcrSituationPriorAidPerformedByEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRTimes
+    ///<summary>
+    /// NEMSIS V2 - E05 - Times
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrTimeEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E05_01 Element - Incident or Onset Date/Time
+        ///</summary>
+        public System.DateTime? IncidentDateTime { get; set; } // IncidentDateTime
+
+        ///<summary>
+        /// NEMSIS V2 - E05_02 Element - PSAP Call Date/Time
+        ///</summary>
+        public System.DateTime? PsapCallDateTime { get; set; } // PSAPCallDateTime
+
+        ///<summary>
+        /// NEMSIS V2 - E05_03 Element - Dispatch Notified Date/Time
+        ///</summary>
+        public System.DateTime? DispatchNotifiedDateTime { get; set; } // DispatchNotifiedDateTime
+
+        ///<summary>
+        /// NEMSIS V2 - E05_04 Element - Unit Notified by Dispatch Date/Time
+        ///</summary>
+        public System.DateTime UnitNotifiedByDispatchDateTime { get; set; } // UnitNotifiedByDispatchDateTime
+
+        ///<summary>
+        /// NEMSIS V2 - E05_05 Element - Unit En Route Date/Time
+        ///</summary>
+        public System.DateTime? UnitEnRouteDateTime { get; set; } // UnitEnRouteDateTime
+
+        ///<summary>
+        /// NEMSIS V2 - E05_06 Element - Unit Arrived on Scene Date/Time
+        ///</summary>
+        public System.DateTime? UnitArrivedSceneDateTime { get; set; } // UnitArrivedSceneDateTime
+
+        ///<summary>
+        /// NEMSIS V2 - E05_07 Element - Arrived at Patient Date/Time
+        ///</summary>
+        public System.DateTime? ArrivedAtPatientDateTime { get; set; } // ArrivedAtPatientDateTime
+
+        ///<summary>
+        /// NEMSIS V2 - E05_08 Element - Transfer of Patient Care Date/Time
+        ///</summary>
+        public System.DateTime? TransferPatientCareDateTime { get; set; } // TransferPatientCareDateTime
+
+        ///<summary>
+        /// NEMSIS V2 - E05_09 Element - Unit Left Scene Date/Time
+        ///</summary>
+        public System.DateTime? UnitLeftSceneDateTime { get; set; } // UnitLeftSceneDateTime
+
+        ///<summary>
+        /// NEMSIS V2 - E05_10 Element - Patient Arrived at Destination Date/Time
+        ///</summary>
+        public System.DateTime? PatientArrivedDestinationDateTime { get; set; } // PatientArrivedDestinationDateTime
+
+        ///<summary>
+        /// NEMSIS V2 - E05_11 Element - Unit Back in Service Date/Time
+        ///</summary>
+        public System.DateTime UnitBackInServiceDateTime { get; set; } // UnitBackInServiceDateTime
+
+        ///<summary>
+        /// NEMSIS V2 - E05_12 Element - Unit Cancelled Date/Time
+        ///</summary>
+        public System.DateTime? UnitCancelledDateTime { get; set; } // UnitCancelledDateTime
+
+        ///<summary>
+        /// NEMSIS V2 - E05_13 Element - Unit Back at Home Location Date/Time
+        ///</summary>
+        public System.DateTime? UnitBackHomeLocationDateTime { get; set; } // UnitBackHomeLocationDateTime
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRTimes].([AgencyId]) (FK_PCRTimes_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRTimes_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRTimes].([PatientCareReportId]) (FK_PCRTimes_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRTimes_PatientCareReport
+
+        public PcrTimeEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRTrauma
+    ///<summary>
+    /// NEMSIS V2 - E10 - Trauma
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrTraumaEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E10_01 Element - Cause of Injury
+        ///</summary>
+        public int InjuryCause { get; set; } // InjuryCause
+
+        ///<summary>
+        /// NEMSIS V2 - E10_02 Element - Intent of the Injury
+        ///</summary>
+        public int? InjuryIntent { get; set; } // InjuryIntent
+
+        ///<summary>
+        /// NEMSIS V2 - E10_06 Element - Seat Row Location of Patient in Vehicle
+        ///</summary>
+        public int? SeatRowLocation { get; set; } // SeatRowLocation
+
+        ///<summary>
+        /// NEMSIS V2 - E10_07 Element - Position of Patient in the Seat of the Vehicle
+        ///</summary>
+        public int? PatientSeatPosition { get; set; } // PatientSeatPosition
+
+        ///<summary>
+        /// NEMSIS V2 - E10_10 Element - Height of Fall
+        ///</summary>
+        public int? FallHeight { get; set; } // FallHeight
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRTrauma].([AgencyId]) (FK_PCRTrauma_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRTrauma_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRTrauma].([PatientCareReportId]) (FK_PCRTrauma_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRTrauma_PatientCareReport
+
+        public PcrTraumaEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRTraumaAirbagDeployment
+    ///<summary>
+    /// NEMSIS V2 - E10 - Trauma: Indication of Airbag Deployment
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrTraumaAirbagDeploymentEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E10_09 Element - Airbag Deployment
+        ///</summary>
+        public int AirbagDeployment { get; set; } // AirbagDeployment
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRTraumaAirbagDeployment].([AgencyId]) (FK_PCRTraumaAirbagDeployment_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRTraumaAirbagDeployment_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRTraumaAirbagDeployment].([PatientCareReportId]) (FK_PCRTraumaAirbagDeployment_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRTraumaAirbagDeployment_PatientCareReport
+
+        public PcrTraumaAirbagDeploymentEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRTraumaInjuryMechanism
+    ///<summary>
+    /// NEMSIS V2 - E10 - Trauma: The Mechanism of the Event Causing Injury
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrTraumaInjuryMechanismEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E10_03 Element - Mechanism of Injury
+        ///</summary>
+        public string InjuryMechanism { get; set; } // InjuryMechanism (length: 255)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRTraumaInjuryMechanism].([AgencyId]) (FK_PCRTraumaInjuryMechanism_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRTraumaInjuryMechanism_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRTraumaInjuryMechanism].([PatientCareReportId]) (FK_PCRTraumaInjuryMechanism_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRTraumaInjuryMechanism_PatientCareReport
+
+        public PcrTraumaInjuryMechanismEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRTraumaOccupantSafetyEquipment
+    ///<summary>
+    /// NEMSIS V2 - E09 - Trauma: Safety Equipment in Use by Patient at Time of Injury
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrTraumaOccupantSafetyEquipmentEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E10_08 Element - Use of Occupant Safety Equipment
+        ///</summary>
+        public int OccupantSafetyEquipment { get; set; } // OccupantSafetyEquipment
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRTraumaOccupantSafetyEquipment].([AgencyId]) (FK_PCRTraumaOccupantSafetyEquipment_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRTraumaOccupantSafetyEquipment_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRTraumaOccupantSafetyEquipment].([PatientCareReportId]) (FK_PCRTraumaOccupantSafetyEquipment_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRTraumaOccupantSafetyEquipment_PatientCareReport
+
+        public PcrTraumaOccupantSafetyEquipmentEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRTraumaRiskFactorPredictors
+    ///<summary>
+    /// NEMSIS V2 - E10 - Trauma: Type of Risk Factor Predictors located at the incident
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrTraumaRiskFactorPredictorEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E10_04 Element - Vehicular Injury Indicators
+        ///</summary>
+        public int VehicularInjuryIndicator { get; set; } // VehicularInjuryIndicator
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRTraumaRiskFactorPredictors].([AgencyId]) (FK_PCRTraumaRiskFactorPredictors_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRTraumaRiskFactorPredictors_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRTraumaRiskFactorPredictors].([PatientCareReportId]) (FK_PCRTraumaRiskFactorPredictors_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRTraumaRiskFactorPredictors_PatientCareReport
+
+        public PcrTraumaRiskFactorPredictorEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRTraumaVehicleImpactLocation
+    ///<summary>
+    /// NEMSIS V2 - E09 - Trauma: Location or area of impact on the vehicle
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrTraumaVehicleImpactLocationEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E10_05 Element - Area of the Vehicle impacted by the collision
+        ///</summary>
+        public int AreaVehicleImpacted { get; set; } // AreaVehicleImpacted
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRTraumaVehicleImpactLocation].([AgencyId]) (FK_PCRTraumaVehicleImpactLocation_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRTraumaVehicleImpactLocation_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRTraumaVehicleImpactLocation].([PatientCareReportId]) (FK_PCRTraumaVehicleImpactLocation_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRTraumaVehicleImpactLocation_PatientCareReport
+
+        public PcrTraumaVehicleImpactLocationEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRUnitAgency
+    ///<summary>
+    /// NEMSIS V2 - E02 - Patient Care Report: Unit/ Agency Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrUnitAgencyEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E02_01 Element - EMS Agency Number
+        ///</summary>
+        public string AgencyNumber { get; set; } // AgencyNumber (length: 15)
+
+        ///<summary>
+        /// NEMSIS V2 - E02_02 Element - Incident Number
+        ///</summary>
+        public string IncidentNumber { get; set; } // IncidentNumber (length: 15)
+
+        ///<summary>
+        /// NEMSIS V2 - E02_03 Element - EMS Unit (Vehicle) Response Number
+        ///</summary>
+        public string UnitResponseNumber { get; set; } // UnitResponseNumber (length: 15)
+
+        ///<summary>
+        /// NEMSIS V2 - E02_04 Element - Type of Service Requested
+        ///</summary>
+        public int ServiceTypeRequested { get; set; } // ServiceTypeRequested
+
+        ///<summary>
+        /// NEMSIS V2 - E02_05 Element - Primary Role of the Unit
+        ///</summary>
+        public int PrimaryUnitRole { get; set; } // PrimaryUnitRole
+
+        ///<summary>
+        /// NEMSIS V2 - E02_11 Element - EMS Unit/Vehicle Number
+        ///</summary>
+        public string UnitVehicleNumber { get; set; } // UnitVehicleNumber (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E02_12 Element - EMS Unit Call Sign (Radio Number)
+        ///</summary>
+        public string UnitCallSign { get; set; } // UnitCallSign (length: 15)
+
+        ///<summary>
+        /// NEMSIS V2 - E02_13 Element - Vehicle Dispatch Location
+        ///</summary>
+        public string VehicleDispatchLocation { get; set; } // VehicleDispatchLocation (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E02_14 Element - Vehicle Dispatch Zone
+        ///</summary>
+        public string VehicleDispatchZone { get; set; } // VehicleDispatchZone (length: 30)
+
+        ///<summary>
+        /// NEMSIS V2 - E02_15 Element - Vehicle Dispatch GPS Location
+        ///</summary>
+        public decimal? VehicleDispatchGpsLatitude { get; set; } // VehicleDispatchGPSLatitude
+
+        ///<summary>
+        /// NEMSIS V2 - E02_15 Element - Vehicle Dispatch GPS Location
+        ///</summary>
+        public decimal? VehicleDispatchGpsLongitude { get; set; } // VehicleDispatchGPSLongitude
+
+        ///<summary>
+        /// NEMSIS V2 - E02_16 Element - Beginning Odometer Reading of Responding Vehicle
+        ///</summary>
+        public decimal? BeginningOdometer { get; set; } // BeginningOdometer
+
+        ///<summary>
+        /// NEMSIS V2 - E02_17 Element - On-Scene Odometer Reading of Responding Vehicle
+        ///</summary>
+        public decimal? OnSceneOdometer { get; set; } // OnSceneOdometer
+
+        ///<summary>
+        /// NEMSIS V2 - E02_18 Element - Patient Destination Odometer Reading of Responding Vehicle
+        ///</summary>
+        public decimal? PatientDestinationOdometer { get; set; } // PatientDestinationOdometer
+
+        ///<summary>
+        /// NEMSIS V2 - E02_19 Element - Ending Odometer Reading of Responding Vehicle
+        ///</summary>
+        public decimal? EndingOdometer { get; set; } // EndingOdometer
+
+        ///<summary>
+        /// NEMSIS V2 - E02_20 Element - Response Mode to Scene
+        ///</summary>
+        public int SceneResponseMode { get; set; } // SceneResponseMode
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRUnitAgency].([AgencyId]) (FK_PCRUnitAgency_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRUnitAgency_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRUnitAgency].([PatientCareReportId]) (FK_PCRUnitAgency_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRUnitAgency_PatientCareReport
+
+        public PcrUnitAgencyEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRUnitAgencyDispatchDelays
+    ///<summary>
+    /// NEMSIS V2 - E02_06 - Patient Care Report: Unit Agency Dispatch Delays
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrUnitAgencyDispatchDelayEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E02_06 Element - Type of Dispatch Delay
+        ///</summary>
+        public int DispatchDelayType { get; set; } // DispatchDelayType
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRUnitAgencyDispatchDelays].([AgencyId]) (FK_PCRUnitAgencyDispatchDelays_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRUnitAgencyDispatchDelays_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRUnitAgencyDispatchDelays].([PatientCareReportId]) (FK_PCRUnitAgencyDispatchDelays_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRUnitAgencyDispatchDelays_PatientCareReport
+
+        public PcrUnitAgencyDispatchDelayEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRUnitAgencyResponseDelays
+    ///<summary>
+    /// NEMSIS V2 - E02_07 - Unit Agency Patient Care Report: Response Delays
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrUnitAgencyResponseDelayEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E02_07 Element - Type of Response Delay
+        ///</summary>
+        public int ResponseDelayType { get; set; } // ResponseDelayType
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRUnitAgencyResponseDelays].([AgencyId]) (FK_PCRUnitAgencyResponseDelays_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRUnitAgencyResponseDelays_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRUnitAgencyResponseDelays].([PatientCareReportId]) (FK_PCRUnitAgencyResponseDelays_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRUnitAgencyResponseDelays_PatientCareReport
+
+        public PcrUnitAgencyResponseDelayEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRUnitAgencySceneDelays
+    ///<summary>
+    /// NEMSIS V2 - E02_08 - Patient Care Report: Unit Agency Scene Delays
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrUnitAgencySceneDelayEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E02_08 Element - Type of Scene Delay
+        ///</summary>
+        public int SceneDelayType { get; set; } // SceneDelayType
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRUnitAgencySceneDelays].([AgencyId]) (FK_PCRUnitAgencySceneDelays_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRUnitAgencySceneDelays_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRUnitAgencySceneDelays].([PatientCareReportId]) (FK_PCRUnitAgencySceneDelays_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRUnitAgencySceneDelays_PatientCareReport
+
+        public PcrUnitAgencySceneDelayEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRUnitAgencyTransportDelays
+    ///<summary>
+    /// NEMSIS V2 - E02_09 - Patient Care Report: Unit Agency Transport Delays
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrUnitAgencyTransportDelayEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E02_09 Element - Type of Transport Delay
+        ///</summary>
+        public int TransportDelayType { get; set; } // TransportDelayType
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRUnitAgencyTransportDelays].([AgencyId]) (FK_PCRUnitAgencyTransportDelays_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRUnitAgencyTransportDelays_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRUnitAgencyTransportDelays].([PatientCareReportId]) (FK_PCRUnitAgencyTransportDelays_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRUnitAgencyTransportDelays_PatientCareReport
+
+        public PcrUnitAgencyTransportDelayEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRUnitAgencyTurnAroundDelays
+    ///<summary>
+    /// NEMSIS V2 - E02_10 - Patient Care Report: Unit Agency Turn-Around Delay
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrUnitAgencyTurnAroundDelayEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E02_10 Element - Type of Turn-Around Delay
+        ///</summary>
+        public int TurnAroundDelayType { get; set; } // TurnAroundDelayType
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRUnitAgencyTurnAroundDelays].([AgencyId]) (FK_PCRUnitAgencyTurnAroundDelays_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRUnitAgencyTurnAroundDelays_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRUnitAgencyTurnAroundDelays].([PatientCareReportId]) (FK_PCRUnitAgencyTurnAroundDelays_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRUnitAgencyTurnAroundDelays_PatientCareReport
+
+        public PcrUnitAgencyTurnAroundDelayEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRUnitCall
+    ///<summary>
+    /// NEMSIS V2 - E03 - Unit/Call Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrUnitCallEntity
+    {
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E03_01 Element - Complaint Reported by Dispatch
+        ///</summary>
+        public int DispatchComplaintReported { get; set; } // DispatchComplaintReported
+
+        ///<summary>
+        /// NEMSIS V2 - E03_02 Element - EMD Performed
+        ///</summary>
+        public int EmdPerformed { get; set; } // EMDPerformed
+
+        ///<summary>
+        /// NEMSIS V2 - E03_03 Element - EMD Card Number
+        ///</summary>
+        public string EmdCardNumber { get; set; } // EMDCardNumber (length: 10)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRUnitCall].([AgencyId]) (FK_PCRUnitCall_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRUnitCall_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRUnitCall].([PatientCareReportId]) (FK_PCRUnitCall_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRUnitCall_PatientCareReport
+
+        public PcrUnitCallEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRUnitPersonnel
+    ///<summary>
+    /// NEMSIS V2 - E04 - Unit/Personnel Information
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrUnitPersonnelEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E04_01 Element - Crew Member ID
+        ///</summary>
+        public string CrewMemberId { get; set; } // CrewMemberId (length: 15)
+
+        ///<summary>
+        /// NEMSIS V2 - E04_02 Element - Crew Member Role
+        ///</summary>
+        public int? CrewMemberRole { get; set; } // CrewMemberRole
+
+        ///<summary>
+        /// NEMSIS V2 - E04_03 Element - Crew Member Level
+        ///</summary>
+        public int? CrewMemberLevel { get; set; } // CrewMemberLevel
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRUnitPersonnel].([AgencyId]) (FK_PCRUnitPersonnel_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRUnitPersonnel_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRUnitPersonnel].([PatientCareReportId]) (FK_PCRUnitPersonnel_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRUnitPersonnel_PatientCareReport
+
+        public PcrUnitPersonnelEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRVitalSignsAssessment
+    ///<summary>
+    /// NEMSIS V2 - E14 - Assessment / Vital Signs
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrVitalSignsAssessmentEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E14_01 Element - Date/Time Vital Signs Taken
+        ///</summary>
+        public System.DateTime? DateTimeVitalSignsTaken { get; set; } // DateTimeVitalSignsTaken
+
+        ///<summary>
+        /// NEMSIS V2 - E14_02 Element - Obtained Prior to this Units EMS Care
+        ///</summary>
+        public int? ObtainedPriorUnitsEmsCare { get; set; } // ObtainedPriorUnitsEMSCare
+
+        ///<summary>
+        /// NEMSIS V2 - E14_04 Element - SBP (Systolic Blood Pressure)
+        ///</summary>
+        public int? SystolicBloodPressure { get; set; } // SystolicBloodPressure
+
+        ///<summary>
+        /// NEMSIS V2 - E14_05 Element - DBP (Diastolic Blood Pressure)
+        ///</summary>
+        public int? DiastolicBloodPressure { get; set; } // DiastolicBloodPressure
+
+        ///<summary>
+        /// NEMSIS V2 - E14_06 Element - Method of Blood Pressure Measurement
+        ///</summary>
+        public int? MethodBloodPressureMeasurement { get; set; } // MethodBloodPressureMeasurement
+
+        ///<summary>
+        /// NEMSIS V2 - E14_07 Element - Pulse Rate
+        ///</summary>
+        public int? PulseRate { get; set; } // PulseRate
+
+        ///<summary>
+        /// NEMSIS V2 - E14_08 Element - Electronic Monitor Rate
+        ///</summary>
+        public int? ElectronicMonitorRate { get; set; } // ElectronicMonitorRate
+
+        ///<summary>
+        /// NEMSIS V2 - E14_09 Element - Pulse Oximetry
+        ///</summary>
+        public int? PulseOximetry { get; set; } // PulseOximetry
+
+        ///<summary>
+        /// NEMSIS V2 - E14_10 Element - Pulse Rhythm
+        ///</summary>
+        public int? PulseRhythm { get; set; } // PulseRhythm
+
+        ///<summary>
+        /// NEMSIS V2 - E14_11 Element - Respiratory Rate
+        ///</summary>
+        public int? RespiratoryRate { get; set; } // RespiratoryRate
+
+        ///<summary>
+        /// NEMSIS V2 - E14_12 Element - Respiratory Effort
+        ///</summary>
+        public int? RespiratoryEffort { get; set; } // RespiratoryEffort
+
+        ///<summary>
+        /// NEMSIS V2 - E14_13 Element - Carbon Dioxide
+        ///</summary>
+        public int? CarbonDioxide { get; set; } // CarbonDioxide
+
+        ///<summary>
+        /// NEMSIS V2 - E14_14 Element - Blood Glucose Level
+        ///</summary>
+        public int? BloodGlucoseLevel { get; set; } // BloodGlucoseLevel
+
+        ///<summary>
+        /// NEMSIS V2 - E14_15 Element - Glasgow Coma Score-Eye
+        ///</summary>
+        public int? GlasgowComaScoreEye { get; set; } // GlasgowComaScoreEye
+
+        ///<summary>
+        /// NEMSIS V2 - E14_16 Element - Glasgow Coma Score-Verbal
+        ///</summary>
+        public int? GlasgowComaScoreVerbal { get; set; } // GlasgowComaScoreVerbal
+
+        ///<summary>
+        /// NEMSIS V2 - E14_17 Element - Glasgow Coma Score-Motor
+        ///</summary>
+        public int? GlasgowComaScoreMotor { get; set; } // GlasgowComaScoreMotor
+
+        ///<summary>
+        /// NEMSIS V2 - E14_18 Element - Glasgow Coma Score-Qualifier
+        ///</summary>
+        public int? GlasgowComaScoreQualifier { get; set; } // GlasgowComaScoreQualifier
+
+        ///<summary>
+        /// NEMSIS V2 - E14_19 Element - Total Glasgow Coma Score
+        ///</summary>
+        public int? TotalGlasgowComaScore { get; set; } // TotalGlasgowComaScore
+
+        ///<summary>
+        /// NEMSIS V2 - E14_20 Element - Temperature
+        ///</summary>
+        public decimal? Temperature { get; set; } // Temperature
+
+        ///<summary>
+        /// NEMSIS V2 - E14_21 Element - Temperature Method
+        ///</summary>
+        public int? TemperatureMethod { get; set; } // TemperatureMethod
+
+        ///<summary>
+        /// NEMSIS V2 - E14_22 Element - Level of Responsiveness
+        ///</summary>
+        public int? LevelOfResponsiveness { get; set; } // LevelOfResponsiveness
+
+        ///<summary>
+        /// NEMSIS V2 - E14_23 Element - Pain Scale
+        ///</summary>
+        public int? PainScale { get; set; } // PainScale
+
+        ///<summary>
+        /// NEMSIS V2 - E14_24 Element - Stroke Scale
+        ///</summary>
+        public int? StrokeScale { get; set; } // StrokeScale
+
+        ///<summary>
+        /// NEMSIS V2 - E14_25 Element - Thrombolytic Screen
+        ///</summary>
+        public int? ThrombolyticScreen { get; set; } // ThrombolyticScreen
+
+        ///<summary>
+        /// NEMSIS V2 - E14_26 Element - APGAR
+        ///</summary>
+        public int? Apgar { get; set; } // APGAR
+
+        ///<summary>
+        /// NEMSIS V2 - E14_27 Element - Revised Trauma Score
+        ///</summary>
+        public int? RevisedTraumaScore { get; set; } // RevisedTraumaScore
+
+        ///<summary>
+        /// NEMSIS V2 - E14_28 Element - Pediatric Trauma Score
+        ///</summary>
+        public int? PediatricTraumaScore { get; set; } // PediatricTraumaScore
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRVitalSignsAssessment].([AgencyId]) (FK_PCRVitalSignsAssessment_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRVitalSignsAssessment_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRVitalSignsAssessment].([PatientCareReportId]) (FK_PCRVitalSignsAssessment_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRVitalSignsAssessment_PatientCareReport
+
+        public PcrVitalSignsAssessmentEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
+    }
+
+    // PCRVitalSignsAssessmentInitialCardiacRhythm
+    ///<summary>
+    /// NEMSIS V2 - E14 - Assessment / Vital Signs: Initial Cardiac Rhythm
+    ///     /// It is not explicitly defined in the XDSs that the cardiac rhythm be associated with the data time stamp of the vitals. If this should be the case the foreign key needs to be changed to the E14 table instead of the base record table E01.
+    ///</summary>
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrVitalSignsAssessmentInitialCardiacRhythmEntity
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int AgencyId { get; set; } // AgencyId
+
+        ///<summary>
+        /// NEMSIS V2 - E01 - Patient Care Report
+        ///</summary>
+        public int PatientCareReportId { get; set; } // PatientCareReportId
+
+        ///<summary>
+        /// NEMSIS V2 - E14_03 Element - Cardiac Rhythm
+        ///</summary>
+        public string CardiacRhythm { get; set; } // CardiacRhythm (length: 255)
+
+        ///<summary>
+        /// Import Record Id
+        ///</summary>
+        public string FileImportRecordId { get; set; } // FileImportRecordId (length: 50)
+        public string CreateBy { get; set; } // CreateBy (length: 128)
+        public System.DateTime CreateDate { get; set; } // CreateDate
+        public string LastModifyBy { get; set; } // LastModifyBy (length: 128)
+        public System.DateTime LastModifyDate { get; set; } // LastModifyDate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Agency pointed by [PCRVitalSignsAssessmentInitialCardiacRhythm].([AgencyId]) (FK_PCRVitalSignsAssessmentInitialCardiacRhythm_Agency)
+        /// </summary>
+        public virtual AgencyEntity Agency { get; set; } // FK_PCRVitalSignsAssessmentInitialCardiacRhythm_Agency
+
+        /// <summary>
+        /// Parent PatientCareReport pointed by [PCRVitalSignsAssessmentInitialCardiacRhythm].([PatientCareReportId]) (FK_PCRVitalSignsAssessmentInitialCardiacRhythm_PatientCareReport)
+        /// </summary>
+        public virtual PatientCareReportEntity PatientCareReport { get; set; } // FK_PCRVitalSignsAssessmentInitialCardiacRhythm_PatientCareReport
+
+        public PcrVitalSignsAssessmentInitialCardiacRhythmEntity()
+        {
+            CreateBy = "ClaimSoftAdmin";
+            CreateDate = System.DateTime.Now;
+            LastModifyBy = "ClaimSoftAdmin";
+            LastModifyDate = System.DateTime.Now;
             InitializePartial();
         }
 
@@ -992,7 +8722,7 @@ namespace CD.ClaimSoft.Database
 
     // PhoneType
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class PhoneType
+    public partial class PhoneTypeEntity
     {
         public int Id { get; set; } // Id (Primary key)
         public string Name { get; set; } // Name (length: 50)
@@ -1001,20 +8731,12 @@ namespace CD.ClaimSoft.Database
         public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
         public System.DateTime LastModifyDate { get; set; } // LastModifyDate
 
-        // Reverse navigation
-
-        /// <summary>
-        /// Child AgencyPhones where [AgencyPhone].[PhoneTypeId] point to this entity (FK_AgencyPhone_PhoneType)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<AgencyPhone> AgencyPhones { get; set; } // AgencyPhone.FK_AgencyPhone_PhoneType
-
-        public PhoneType()
+        public PhoneTypeEntity()
         {
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
             LastModifyBy = "CDUNCAN";
             LastModifyDate = System.DateTime.Now;
-            AgencyPhones = new System.Collections.Generic.List<AgencyPhone>();
             InitializePartial();
         }
 
@@ -1023,7 +8745,7 @@ namespace CD.ClaimSoft.Database
 
     // SettingType
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class SettingType
+    public partial class SettingTypeEntity
     {
         public int Id { get; set; } // Id (Primary key)
         public string Name { get; set; } // Name (length: 50)
@@ -1037,15 +8759,15 @@ namespace CD.ClaimSoft.Database
         /// <summary>
         /// Child ApplicationSettings where [ApplicationSettings].[SettingTypeId] point to this entity (FK_ApplicationSettings_SettingType)
         /// </summary>
-        public virtual System.Collections.Generic.ICollection<ApplicationSetting> ApplicationSettings { get; set; } // ApplicationSettings.FK_ApplicationSettings_SettingType
+        public virtual System.Collections.Generic.ICollection<ApplicationSettingEntity> ApplicationSettings { get; set; } // ApplicationSettings.FK_ApplicationSettings_SettingType
 
-        public SettingType()
+        public SettingTypeEntity()
         {
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
             LastModifyBy = "CDUNCAN";
             LastModifyDate = System.DateTime.Now;
-            ApplicationSettings = new System.Collections.Generic.List<ApplicationSetting>();
+            ApplicationSettings = new System.Collections.Generic.List<ApplicationSettingEntity>();
             InitializePartial();
         }
 
@@ -1054,7 +8776,7 @@ namespace CD.ClaimSoft.Database
 
     // State
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class State
+    public partial class StateEntity
     {
         public int Id { get; set; } // Id (Primary key)
         public int CountryId { get; set; } // CountryId
@@ -1068,29 +8790,24 @@ namespace CD.ClaimSoft.Database
         // Reverse navigation
 
         /// <summary>
-        /// Child AgencyAddresses where [AgencyAddress].[StateId] point to this entity (FK_AgencyAddress_State)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<AgencyAddress> AgencyAddresses { get; set; } // AgencyAddress.FK_AgencyAddress_State
-        /// <summary>
         /// Child Counties where [County].[StateId] point to this entity (FK_County_State)
         /// </summary>
-        public virtual System.Collections.Generic.ICollection<County> Counties { get; set; } // County.FK_County_State
+        public virtual System.Collections.Generic.ICollection<CountyEntity> Counties { get; set; } // County.FK_County_State
 
         // Foreign keys
 
         /// <summary>
         /// Parent Country pointed by [State].([CountryId]) (FK_State_Country)
         /// </summary>
-        public virtual Country Country { get; set; } // FK_State_Country
+        public virtual CountryEntity Country { get; set; } // FK_State_Country
 
-        public State()
+        public StateEntity()
         {
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
             LastModifyBy = "CDUNCAN";
             LastModifyDate = System.DateTime.Now;
-            AgencyAddresses = new System.Collections.Generic.List<AgencyAddress>();
-            Counties = new System.Collections.Generic.List<County>();
+            Counties = new System.Collections.Generic.List<CountyEntity>();
             InitializePartial();
         }
 
@@ -1099,7 +8816,7 @@ namespace CD.ClaimSoft.Database
 
     // UnitRoundingType
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class UnitRoundingType
+    public partial class UnitRoundingTypeEntity
     {
         public int Id { get; set; } // Id (Primary key)
         public string Name { get; set; } // Name (length: 50)
@@ -1108,7 +8825,7 @@ namespace CD.ClaimSoft.Database
         public string LastModifyBy { get; set; } // LastModifyBy (length: 50)
         public System.DateTime LastModifyDate { get; set; } // LastModifyDate
 
-        public UnitRoundingType()
+        public UnitRoundingTypeEntity()
         {
             CreateBy = "CDUNCAN";
             CreateDate = System.DateTime.Now;
@@ -1126,14 +8843,14 @@ namespace CD.ClaimSoft.Database
 
     // AddressType
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AddressTypeConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AddressType>
+    public partial class AddressTypeEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AddressTypeEntity>
     {
-        public AddressTypeConfiguration()
+        public AddressTypeEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public AddressTypeConfiguration(string schema)
+        public AddressTypeEntityConfiguration(string schema)
         {
             ToTable("AddressType", schema);
             HasKey(x => x.Id);
@@ -1151,41 +8868,43 @@ namespace CD.ClaimSoft.Database
 
     // Agency
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AgencyConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Agency>
+    public partial class AgencyEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyEntity>
     {
-        public AgencyConfiguration()
+        public AgencyEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public AgencyConfiguration(string schema)
+        public AgencyEntityConfiguration(string schema)
         {
             ToTable("Agency", schema);
             HasKey(x => x.Id);
 
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
-            Property(x => x.AgencyTenantId).HasColumnName(@"AgencyTenantId").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
-            Property(x => x.Code).HasColumnName(@"Code").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
-            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("nvarchar").IsRequired().HasMaxLength(100);
+            Property(x => x.AgencyNumber).HasColumnName(@"AgencyNumber").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.AgencyName).HasColumnName(@"AgencyName").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.PrimaryServiceType).HasColumnName(@"PrimaryServiceType").HasColumnType("int").IsOptional();
+            Property(x => x.LevelOfService).HasColumnName(@"LevelOfService").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.OrganizationType).HasColumnName(@"OrganizationType").HasColumnType("int").IsRequired();
+            Property(x => x.OrganizationStatus).HasColumnName(@"OrganizationStatus").HasColumnType("int").IsRequired();
+            Property(x => x.TimeZone).HasColumnName(@"TimeZone").HasColumnType("int").IsOptional();
+            Property(x => x.DaylightSavings).HasColumnName(@"DaylightSavings").HasColumnType("int").IsOptional();
+            Property(x => x.NationalProviderId).HasColumnName(@"NationalProviderId").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(10);
             Property(x => x.IsActive).HasColumnName(@"IsActive").HasColumnType("bit").IsRequired();
             Property(x => x.InactiveDate).HasColumnName(@"InactiveDate").HasColumnType("datetime").IsOptional();
             Property(x => x.ParentAgencyId).HasColumnName(@"ParentAgencyId").HasColumnType("int").IsOptional();
             Property(x => x.WebSite).HasColumnName(@"WebSite").HasColumnType("nvarchar").IsOptional().HasMaxLength(250);
             Property(x => x.ContactName).HasColumnName(@"ContactName").HasColumnType("nvarchar").IsRequired().HasMaxLength(250);
-            Property(x => x.NpiNumber).HasColumnName(@"NpiNumber").HasColumnType("int").IsRequired();
             Property(x => x.TaxIdNumber).HasColumnName(@"TaxIdNumber").HasColumnType("int").IsOptional();
             Property(x => x.Taxonomy).HasColumnName(@"Taxonomy").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
             Property(x => x.DisableLifetimeSignature).HasColumnName(@"DisableLifetimeSignature").HasColumnType("bit").IsRequired();
-            Property(x => x.LogoFileName).HasColumnName(@"LogoFileName").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
-            Property(x => x.LogoStreamId).HasColumnName(@"LogoStreamId").HasColumnType("uniqueidentifier").IsOptional();
+            Property(x => x.LogoFileName).HasColumnName(@"LogoFileName").HasColumnType("nvarchar").IsOptional().HasMaxLength(255);
+            Property(x => x.LogoStreamId).HasColumnName(@"LogoStreamId").HasColumnType("nvarchar").IsOptional().HasMaxLength(128);
             Property(x => x.UseImageOnStatement).HasColumnName(@"UseImageOnStatement").HasColumnType("bit").IsOptional();
-            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
             Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
-            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
-            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
-
-            // Foreign keys
-            HasOptional(a => a.ParentAgency).WithMany(b => b.Agencies).HasForeignKey(c => c.ParentAgencyId).WillCascadeOnDelete(false); // FK_Agency_Agency
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsOptional().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsOptional();
             InitializePartial();
         }
         partial void InitializePartial();
@@ -1193,14 +8912,14 @@ namespace CD.ClaimSoft.Database
 
     // AgencyAddress
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AgencyAddressConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyAddress>
+    public partial class AgencyAddressEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyAddressEntity>
     {
-        public AgencyAddressConfiguration()
+        public AgencyAddressEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public AgencyAddressConfiguration(string schema)
+        public AgencyAddressEntityConfiguration(string schema)
         {
             ToTable("AgencyAddress", schema);
             HasKey(x => x.Id);
@@ -1224,11 +8943,7 @@ namespace CD.ClaimSoft.Database
             Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
 
             // Foreign keys
-            HasOptional(a => a.Country).WithMany(b => b.AgencyAddresses).HasForeignKey(c => c.CountyId).WillCascadeOnDelete(false); // FK_AgencyAddress_Country
-            HasOptional(a => a.County).WithMany(b => b.AgencyAddresses).HasForeignKey(c => c.CountyId).WillCascadeOnDelete(false); // FK_AgencyAddress_County
-            HasRequired(a => a.AddressType).WithMany(b => b.AgencyAddresses).HasForeignKey(c => c.AddressTypeId).WillCascadeOnDelete(false); // FK_AgencyAddress_AddressType
             HasRequired(a => a.Agency).WithMany(b => b.AgencyAddresses).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyAddress_Agency
-            HasRequired(a => a.State).WithMany(b => b.AgencyAddresses).HasForeignKey(c => c.StateId).WillCascadeOnDelete(false); // FK_AgencyAddress_State
             InitializePartial();
         }
         partial void InitializePartial();
@@ -1236,14 +8951,14 @@ namespace CD.ClaimSoft.Database
 
     // AgencyAttachments
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AgencyAttachmentConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyAttachment>
+    public partial class AgencyAttachmentEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyAttachmentEntity>
     {
-        public AgencyAttachmentConfiguration()
+        public AgencyAttachmentEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public AgencyAttachmentConfiguration(string schema)
+        public AgencyAttachmentEntityConfiguration(string schema)
         {
             ToTable("AgencyAttachments", schema);
             HasKey(x => x.Id);
@@ -1259,40 +8974,394 @@ namespace CD.ClaimSoft.Database
             Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
 
             // Foreign keys
-            HasRequired(a => a.Agency).WithMany(b => b.AgencyAttachments).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyAttachments_Agency
             HasRequired(a => a.AgencyNote).WithMany(b => b.AgencyAttachments).HasForeignKey(c => c.AgencyNoteId).WillCascadeOnDelete(false); // FK_AgencyAttachments_AgencyNotes
             InitializePartial();
         }
         partial void InitializePartial();
     }
 
-    // AgencyEmail
+    // AgencyBillingStatus
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AgencyEmailConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyEmail>
+    public partial class AgencyBillingStatuEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyBillingStatuEntity>
     {
-        public AgencyEmailConfiguration()
+        public AgencyBillingStatuEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public AgencyEmailConfiguration(string schema)
+        public AgencyBillingStatuEntityConfiguration(string schema)
         {
-            ToTable("AgencyEmail", schema);
+            ToTable("AgencyBillingStatus", schema);
             HasKey(x => x.Id);
 
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
-            Property(x => x.EmailTypeId).HasColumnName(@"EmailTypeId").HasColumnType("int").IsRequired();
-            Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("nvarchar").IsRequired().HasMaxLength(255);
-            Property(x => x.IsDefault).HasColumnName(@"IsDefault").HasColumnType("bit").IsRequired();
+            Property(x => x.BillingStatus).HasColumnName(@"BillingStatus").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
             Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
             Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
             Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
             Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
 
             // Foreign keys
-            HasRequired(a => a.Agency).WithMany(b => b.AgencyEmails).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyEmail_Agency
-            HasRequired(a => a.EmailType).WithMany(b => b.AgencyEmails).HasForeignKey(c => c.EmailTypeId).WillCascadeOnDelete(false); // FK_AgencyEmail_EmailType
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyBillingStatus).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyBillingStatus_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyCallSign
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyCallSignEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyCallSignEntity>
+    {
+        public AgencyCallSignEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyCallSignEntityConfiguration(string schema)
+        {
+            ToTable("AgencyCallSign", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.UnitCallSign).HasColumnName(@"UnitCallSign").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyCallSigns).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyCallSign_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyCertificationLicensureLevels
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyCertificationLicensureLevelEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyCertificationLicensureLevelEntity>
+    {
+        public AgencyCertificationLicensureLevelEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyCertificationLicensureLevelEntityConfiguration(string schema)
+        {
+            ToTable("AgencyCertificationLicensureLevels", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.StateCertificationLevel).HasColumnName(@"StateCertificationLevel").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyContact
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyContactEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyContactEntity>
+    {
+        public AgencyContactEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyContactEntityConfiguration(string schema)
+        {
+            ToTable("AgencyContact", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.LastName).HasColumnName(@"LastName").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.MiddleName).HasColumnName(@"MiddleName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.FirstName).HasColumnName(@"FirstName").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.Address).HasColumnName(@"Address").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.City).HasColumnName(@"City").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.State).HasColumnName(@"State").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(3);
+            Property(x => x.ZipCode).HasColumnName(@"ZipCode").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.TelephoneNumber).HasColumnName(@"TelephoneNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.FaxNumber).HasColumnName(@"FaxNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.WebAddress).HasColumnName(@"WebAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyContacts).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyContact_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyCounty
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyCountyEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyCountyEntity>
+    {
+        public AgencyCountyEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyCountyEntityConfiguration(string schema)
+        {
+            ToTable("AgencyCounty", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.County).HasColumnName(@"County").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(5);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyCounties).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyCounty_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyEMDVendor
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyEmdVendorEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyEmdVendorEntity>
+    {
+        public AgencyEmdVendorEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyEmdVendorEntityConfiguration(string schema)
+        {
+            ToTable("AgencyEMDVendor", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.EmdVendor).HasColumnName(@"EMDVendor").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyEmdVendors).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyEMDVendor_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyFiles
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyFileEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyFileEntity>
+    {
+        public AgencyFileEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyFileEntityConfiguration(string schema)
+        {
+            ToTable("AgencyFiles", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.StreamId).HasColumnName(@"stream_id").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("nvarchar").IsRequired().HasMaxLength(255);
+            Property(x => x.FileTypeId).HasColumnName(@"FileTypeId").HasColumnType("int").IsRequired();
+            Property(x => x.ProcessedDate).HasColumnName(@"ProcessedDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyFiles).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyFiles_Agency
+            HasRequired(a => a.FileType).WithMany(b => b.AgencyFiles).HasForeignKey(c => c.FileTypeId).WillCascadeOnDelete(false); // FK_AgencyFiles_FileType
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyHospital
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyHospitalEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyHospitalEntity>
+    {
+        public AgencyHospitalEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyHospitalEntityConfiguration(string schema)
+        {
+            ToTable("AgencyHospital", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.HospitalsServed).HasColumnName(@"HospitalsServed").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.FacilityNumber).HasColumnName(@"FacilityNumber").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyHospitals).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyHospital_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyInsuranceCompany
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyInsuranceCompanyEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyInsuranceCompanyEntity>
+    {
+        public AgencyInsuranceCompanyEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyInsuranceCompanyEntityConfiguration(string schema)
+        {
+            ToTable("AgencyInsuranceCompany", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.InsuranceCompanyUsed).HasColumnName(@"InsuranceCompanyUsed").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyInsuranceCompanies).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyInsuranceCompany_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyMedicalDevice
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyMedicalDeviceEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyMedicalDeviceEntity>
+    {
+        public AgencyMedicalDeviceEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyMedicalDeviceEntityConfiguration(string schema)
+        {
+            ToTable("AgencyMedicalDevice", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.SerialNumber).HasColumnName(@"SerialNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.NameOrId).HasColumnName(@"NameOrId").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.Manufacturer).HasColumnName(@"Manufacturer").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.ModelNumber).HasColumnName(@"ModelNumber").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.PurchaseDate).HasColumnName(@"PurchaseDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyMedicalDevices).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyMedicalDevice_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyMedicalDirector
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyMedicalDirectorEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyMedicalDirectorEntity>
+    {
+        public AgencyMedicalDirectorEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyMedicalDirectorEntityConfiguration(string schema)
+        {
+            ToTable("AgencyMedicalDirector", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.LastName).HasColumnName(@"LastName").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.MiddleName).HasColumnName(@"MiddleName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.FirstName).HasColumnName(@"FirstName").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.Address).HasColumnName(@"Address").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.City).HasColumnName(@"City").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.State).HasColumnName(@"State").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(3);
+            Property(x => x.ZipCode).HasColumnName(@"ZipCode").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.TelephoneNumber).HasColumnName(@"TelephoneNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.FaxNumber).HasColumnName(@"FaxNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.MedicalSpecialty).HasColumnName(@"MedicalSpecialty").HasColumnType("int").IsOptional();
+            Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyMedicalDirectors).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyMedicalDirector_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyMedicationsGiven
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyMedicationsGivenEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyMedicationsGivenEntity>
+    {
+        public AgencyMedicationsGivenEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyMedicationsGivenEntityConfiguration(string schema)
+        {
+            ToTable("AgencyMedicationsGiven", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.Medication).HasColumnName(@"Medication").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.AgencyCertificationLicensureLevelId).HasColumnName(@"AgencyCertificationLicensureLevelId").HasColumnType("int").IsOptional();
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasOptional(a => a.AgencyCertificationLicensureLevel).WithMany(b => b.AgencyMedicationsGivens).HasForeignKey(c => c.AgencyCertificationLicensureLevelId).WillCascadeOnDelete(false); // FK_AgencyMedicationsGiven_AgencyCertificationLicensureLevels
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyMedicationsGivens).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyMedicationsGiven_Agency
             InitializePartial();
         }
         partial void InitializePartial();
@@ -1300,14 +9369,14 @@ namespace CD.ClaimSoft.Database
 
     // AgencyNotes
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AgencyNoteConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyNote>
+    public partial class AgencyNoteEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyNoteEntity>
     {
-        public AgencyNoteConfiguration()
+        public AgencyNoteEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public AgencyNoteConfiguration(string schema)
+        public AgencyNoteEntityConfiguration(string schema)
         {
             ToTable("AgencyNotes", schema);
             HasKey(x => x.Id);
@@ -1327,63 +9396,376 @@ namespace CD.ClaimSoft.Database
         partial void InitializePartial();
     }
 
-    // AgencyNumber
+    // AgencyOtherDestinations
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AgencyNumberConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyNumber>
+    public partial class AgencyOtherDestinationEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyOtherDestinationEntity>
     {
-        public AgencyNumberConfiguration()
+        public AgencyOtherDestinationEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public AgencyNumberConfiguration(string schema)
+        public AgencyOtherDestinationEntityConfiguration(string schema)
         {
-            ToTable("AgencyNumber", schema);
+            ToTable("AgencyOtherDestinations", schema);
             HasKey(x => x.Id);
 
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
-            Property(x => x.Number).HasColumnName(@"Number").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
-            Property(x => x.IgnoreTimeStamps).HasColumnName(@"IgnoreTimeStamps").HasColumnType("bit").IsRequired();
+            Property(x => x.OtherDestination).HasColumnName(@"OtherDestination").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.DestinationFacilityNumber).HasColumnName(@"DestinationFacilityNumber").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.DestinationType).HasColumnName(@"DestinationType").HasColumnType("int").IsRequired();
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
             Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
             Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
             Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
             Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
 
             // Foreign keys
-            HasRequired(a => a.Agency).WithMany(b => b.AgencyNumbers).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyNumber_Agency
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyOtherDestinations).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyOtherDestinations_Agency
             InitializePartial();
         }
         partial void InitializePartial();
     }
 
-    // AgencyPhone
+    // AgencyOtherInformation
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AgencyPhoneConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyPhone>
+    public partial class AgencyOtherInformationEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyOtherInformationEntity>
     {
-        public AgencyPhoneConfiguration()
+        public AgencyOtherInformationEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public AgencyPhoneConfiguration(string schema)
+        public AgencyOtherInformationEntityConfiguration(string schema)
         {
-            ToTable("AgencyPhone", schema);
+            ToTable("AgencyOtherInformation", schema);
             HasKey(x => x.Id);
 
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
-            Property(x => x.PhoneTypeId).HasColumnName(@"PhoneTypeId").HasColumnType("int").IsRequired();
-            Property(x => x.PhoneNumber).HasColumnName(@"PhoneNumber").HasColumnType("nvarchar").IsRequired().HasMaxLength(25);
-            Property(x => x.IsDefault).HasColumnName(@"IsDefault").HasColumnType("bit").IsRequired();
+            Property(x => x.OtherAgenciesInArea).HasColumnName(@"OtherAgenciesInArea").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
             Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
             Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
             Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
             Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
 
             // Foreign keys
-            HasRequired(a => a.Agency).WithMany(b => b.AgencyPhones).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyPhone_Agency
-            HasRequired(a => a.PhoneType).WithMany(b => b.AgencyPhones).HasForeignKey(c => c.PhoneTypeId).WillCascadeOnDelete(false); // FK_AgencyPhone_PhoneType
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyOtherInformations).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyOtherInformation_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyOtherTypesService
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyOtherTypesServiceEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyOtherTypesServiceEntity>
+    {
+        public AgencyOtherTypesServiceEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyOtherTypesServiceEntityConfiguration(string schema)
+        {
+            ToTable("AgencyOtherTypesService", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.OtherServiceType).HasColumnName(@"OtherServiceType").HasColumnType("int").IsRequired();
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyOtherTypesServices).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyOtherTypesService_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyPersonnel
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyPersonnelEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyPersonnelEntity>
+    {
+        public AgencyPersonnelEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyPersonnelEntityConfiguration(string schema)
+        {
+            ToTable("AgencyPersonnel", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.StateLicensureId).HasColumnName(@"StateLicensureId").HasColumnType("int").IsRequired();
+            Property(x => x.EmploymentStatus).HasColumnName(@"EmploymentStatus").HasColumnType("int").IsRequired();
+            Property(x => x.StatusDate).HasColumnName(@"StatusDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyPersonnels).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyPersonnel_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyPersonnelCertificationLevel
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyPersonnelCertificationLevelEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyPersonnelCertificationLevelEntity>
+    {
+        public AgencyPersonnelCertificationLevelEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyPersonnelCertificationLevelEntityConfiguration(string schema)
+        {
+            ToTable("AgencyPersonnelCertificationLevel", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyPersonnelId).HasColumnName(@"AgencyPersonnelId").HasColumnType("int").IsRequired();
+            Property(x => x.AgencyCertificationLicensureLevelId).HasColumnName(@"AgencyCertificationLicensureLevelId").HasColumnType("int").IsRequired();
+            Property(x => x.CertificationDate).HasColumnName(@"CertificationDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.AgencyCertificationLicensureLevel).WithMany(b => b.AgencyPersonnelCertificationLevels).HasForeignKey(c => c.AgencyCertificationLicensureLevelId).WillCascadeOnDelete(false); // FK_AgencyPersonnelCertificationLevel_AgencyCertificationLicensureLevels
+            HasRequired(a => a.AgencyPersonnel).WithMany(b => b.AgencyPersonnelCertificationLevels).HasForeignKey(c => c.AgencyPersonnelId).WillCascadeOnDelete(false); // FK_AgencyPersonnelCertificationLevel_AgencyPersonnel
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyPersonnelGeneral
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyPersonnelGeneralEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyPersonnelGeneralEntity>
+    {
+        public AgencyPersonnelGeneralEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyPersonnelGeneralEntityConfiguration(string schema)
+        {
+            ToTable("AgencyPersonnelGeneral", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyPersonnelId).HasColumnName(@"AgencyPersonnelId").HasColumnType("int").IsRequired();
+            Property(x => x.LastName).HasColumnName(@"LastName").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.MiddleName).HasColumnName(@"MiddleName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.FirstName).HasColumnName(@"FirstName").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.Address).HasColumnName(@"Address").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.City).HasColumnName(@"City").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.State).HasColumnName(@"State").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(3);
+            Property(x => x.ZipCode).HasColumnName(@"ZipCode").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.WorkTelephone).HasColumnName(@"WorkTelephone").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.HomeTelephone).HasColumnName(@"HomeTelephone").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.EmailAddress).HasColumnName(@"EmailAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.DateOfBirth).HasColumnName(@"DateOfBirth").HasColumnType("datetime").IsOptional();
+            Property(x => x.Gender).HasColumnName(@"Gender").HasColumnType("int").IsRequired();
+            Property(x => x.Race).HasColumnName(@"Race").HasColumnType("int").IsOptional();
+            Property(x => x.Ethnicity).HasColumnName(@"Ethnicity").HasColumnType("int").IsOptional();
+            Property(x => x.AgencyCertificationLicensureLevelId).HasColumnName(@"AgencyCertificationLicensureLevelId").HasColumnType("int").IsOptional();
+            Property(x => x.NationalRegistryCredentialed).HasColumnName(@"NationalRegistryCredentialed").HasColumnType("int").IsOptional();
+            Property(x => x.CurrentCertificationDate).HasColumnName(@"CurrentCertificationDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.InitialCertificationDate).HasColumnName(@"InitialCertificationDate").HasColumnType("datetime").IsOptional();
+            Property(x => x.TotalLengthService).HasColumnName(@"TotalLengthService").HasColumnType("int").IsOptional();
+            Property(x => x.DocumentedLengthService).HasColumnName(@"DocumentedLengthService").HasColumnType("datetime").IsOptional();
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasOptional(a => a.AgencyCertificationLicensureLevel).WithMany(b => b.AgencyPersonnelGenerals).HasForeignKey(c => c.AgencyCertificationLicensureLevelId).WillCascadeOnDelete(false); // FK_AgencyPersonnelGeneral_AgencyCertificationLicensureLevels
+            HasRequired(a => a.AgencyPersonnel).WithMany(b => b.AgencyPersonnelGenerals).HasForeignKey(c => c.AgencyPersonnelId).WillCascadeOnDelete(false); // FK_AgencyPersonnelGeneral_AgencyPersonnel
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyProcedures
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyProcedureEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyProcedureEntity>
+    {
+        public AgencyProcedureEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyProcedureEntityConfiguration(string schema)
+        {
+            ToTable("AgencyProcedures", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.Procedure).HasColumnName(@"Procedure").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.AgencyCertificationLicensureLevelId).HasColumnName(@"AgencyCertificationLicensureLevelId").HasColumnType("int").IsOptional();
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasOptional(a => a.AgencyCertificationLicensureLevel).WithMany(b => b.AgencyProcedures).HasForeignKey(c => c.AgencyCertificationLicensureLevelId).WillCascadeOnDelete(false); // FK_AgencyProcedures_AgencyCertificationLicensureLevels
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyProcedures).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyProcedures_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyProtocol
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyProtocolEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyProtocolEntity>
+    {
+        public AgencyProtocolEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyProtocolEntityConfiguration(string schema)
+        {
+            ToTable("AgencyProtocol", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.Protocol).HasColumnName(@"Protocol").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.AgencyCertificationLicensureLevelId).HasColumnName(@"AgencyCertificationLicensureLevelId").HasColumnType("int").IsOptional();
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasOptional(a => a.AgencyCertificationLicensureLevel).WithMany(b => b.AgencyProtocols).HasForeignKey(c => c.AgencyCertificationLicensureLevelId).WillCascadeOnDelete(false); // FK_AgencyProtocol_AgencyCertificationLicensureLevels
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyProtocols).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyProtocol_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyState
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyStateEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyStateEntity>
+    {
+        public AgencyStateEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyStateEntityConfiguration(string schema)
+        {
+            ToTable("AgencyState", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.State).HasColumnName(@"State").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(2);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyStates).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyState_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyStation
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyStationEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyStationEntity>
+    {
+        public AgencyStationEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyStationEntityConfiguration(string schema)
+        {
+            ToTable("AgencyStation", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.StationName).HasColumnName(@"StationName").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.StationNumber).HasColumnName(@"StationNumber").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.StationZone).HasColumnName(@"StationZone").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.Lat).HasColumnName(@"Lat").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.Long).HasColumnName(@"Long").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.Address).HasColumnName(@"Address").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.City).HasColumnName(@"City").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.State).HasColumnName(@"State").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(3);
+            Property(x => x.ZipCode).HasColumnName(@"ZipCode").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.TelephoneNumber).HasColumnName(@"TelephoneNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyStations).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyStation_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyStatistics
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyStatisticEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyStatisticEntity>
+    {
+        public AgencyStatisticEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyStatisticEntityConfiguration(string schema)
+        {
+            ToTable("AgencyStatistics", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.StatisticalYear).HasColumnName(@"StatisticalYear").HasColumnType("int").IsRequired();
+            Property(x => x.ServiceAreaSize).HasColumnName(@"ServiceAreaSize").HasColumnType("int").IsRequired();
+            Property(x => x.ServiceAreaPopulation).HasColumnName(@"ServiceAreaPopulation").HasColumnType("int").IsRequired();
+            Property(x => x.CallVolumePerYear).HasColumnName(@"CallVolumePerYear").HasColumnType("int").IsRequired();
+            Property(x => x.DispatchYear).HasColumnName(@"DispatchYear").HasColumnType("int").IsRequired();
+            Property(x => x.TransportsPerYear).HasColumnName(@"TransportsPerYear").HasColumnType("int").IsRequired();
+            Property(x => x.PatientContactsPerYear).HasColumnName(@"PatientContactsPerYear").HasColumnType("int").IsRequired();
+            Property(x => x.BillableCallsPerYear).HasColumnName(@"BillableCallsPerYear").HasColumnType("int").IsOptional();
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyStatistics).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyStatistics_Agency
             InitializePartial();
         }
         partial void InitializePartial();
@@ -1391,14 +9773,14 @@ namespace CD.ClaimSoft.Database
 
     // AgencyUser
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AgencyUserConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyUser>
+    public partial class AgencyUserEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyUserEntity>
     {
-        public AgencyUserConfiguration()
+        public AgencyUserEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public AgencyUserConfiguration(string schema)
+        public AgencyUserEntityConfiguration(string schema)
         {
             ToTable("AgencyUser", schema);
             HasKey(x => x.Id);
@@ -1413,7 +9795,132 @@ namespace CD.ClaimSoft.Database
 
             // Foreign keys
             HasRequired(a => a.Agency).WithMany(b => b.AgencyUsers).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyUser_Agency
-            HasRequired(a => a.AspNetUser).WithMany(b => b.AgencyUsers).HasForeignKey(c => c.AspNetUserId).WillCascadeOnDelete(false); // FK_AgencyUser_AspNetUsers
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyVehicle
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyVehicleEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyVehicleEntity>
+    {
+        public AgencyVehicleEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyVehicleEntityConfiguration(string schema)
+        {
+            ToTable("AgencyVehicle", schema);
+            HasKey(x => x.VehicleNumber);
+
+            Property(x => x.VehicleNumber).HasColumnName(@"VehicleNumber").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.VehicleType).HasColumnName(@"VehicleType").HasColumnType("int").IsRequired();
+            Property(x => x.InitialCost).HasColumnName(@"InitialCost").HasColumnType("money").IsOptional().HasPrecision(19,4);
+            Property(x => x.ModelYear).HasColumnName(@"ModelYear").HasColumnType("int").IsOptional();
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyVehicles).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyVehicle_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyVehicleCertification
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyVehicleCertificationEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyVehicleCertificationEntity>
+    {
+        public AgencyVehicleCertificationEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyVehicleCertificationEntityConfiguration(string schema)
+        {
+            ToTable("AgencyVehicleCertification", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyVehicleNumber).HasColumnName(@"AgencyVehicleNumber").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.AgencyCertificationLicensureLevelId).HasColumnName(@"AgencyCertificationLicensureLevelId").HasColumnType("int").IsRequired();
+            Property(x => x.VehiclePersonnelLevel).HasColumnName(@"VehiclePersonnelLevel").HasColumnType("int").IsRequired();
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.AgencyCertificationLicensureLevel).WithMany(b => b.AgencyVehicleCertifications).HasForeignKey(c => c.AgencyCertificationLicensureLevelId).WillCascadeOnDelete(false); // FK_AgencyVehicleCertification_AgencyCertificationLicensureLevels
+            HasRequired(a => a.AgencyVehicle).WithMany(b => b.AgencyVehicleCertifications).HasForeignKey(c => c.AgencyVehicleNumber).WillCascadeOnDelete(false); // FK_AgencyVehicleCertification_AgencyVehicle
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyVehicleMilesHoursLog
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyVehicleMilesHoursLogEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyVehicleMilesHoursLogEntity>
+    {
+        public AgencyVehicleMilesHoursLogEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyVehicleMilesHoursLogEntityConfiguration(string schema)
+        {
+            ToTable("AgencyVehicleMilesHoursLog", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyVehicleNumber).HasColumnName(@"AgencyVehicleNumber").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.YearAccrued).HasColumnName(@"YearAccrued").HasColumnType("int").IsRequired();
+            Property(x => x.AnnualVehicleHours).HasColumnName(@"AnnualVehicleHours").HasColumnType("int").IsRequired();
+            Property(x => x.AnnualVehicleMiles).HasColumnName(@"AnnualVehicleMiles").HasColumnType("int").IsRequired();
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.AgencyVehicle).WithMany(b => b.AgencyVehicleMilesHoursLogs).HasForeignKey(c => c.AgencyVehicleNumber).WillCascadeOnDelete(false); // FK_AgencyVehicleMilesHoursLog_AgencyVehicle
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // AgencyZones
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class AgencyZoneEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AgencyZoneEntity>
+    {
+        public AgencyZoneEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AgencyZoneEntityConfiguration(string schema)
+        {
+            ToTable("AgencyZones", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.Zone).HasColumnName(@"Zone").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.Status).HasColumnName(@"Status").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(1);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.AgencyZones).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_AgencyZones_Agency
             InitializePartial();
         }
         partial void InitializePartial();
@@ -1421,23 +9928,28 @@ namespace CD.ClaimSoft.Database
 
     // ApplicationLog
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class ApplicationLogConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<ApplicationLog>
+    public partial class ApplicationLogEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<ApplicationLogEntity>
     {
-        public ApplicationLogConfiguration()
+        public ApplicationLogEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public ApplicationLogConfiguration(string schema)
+        public ApplicationLogEntityConfiguration(string schema)
         {
             ToTable("ApplicationLog", schema);
             HasKey(x => x.Id);
 
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsOptional();
             Property(x => x.Severity).HasColumnName(@"Severity").HasColumnType("nvarchar").IsOptional().HasMaxLength(255);
             Property(x => x.Logger).HasColumnName(@"Logger").HasColumnType("nvarchar").IsOptional().HasMaxLength(255);
             Property(x => x.Message).HasColumnName(@"Message").HasColumnType("nvarchar(max)").IsRequired();
             Property(x => x.LogDate).HasColumnName(@"LogDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.UserId).HasColumnName(@"UserId").HasColumnType("nvarchar").IsOptional().HasMaxLength(128);
+
+            // Foreign keys
+            HasOptional(a => a.Agency).WithMany(b => b.ApplicationLogs).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_ApplicationLog_Agency
             InitializePartial();
         }
         partial void InitializePartial();
@@ -1445,19 +9957,20 @@ namespace CD.ClaimSoft.Database
 
     // ApplicationSettings
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class ApplicationSettingConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<ApplicationSetting>
+    public partial class ApplicationSettingEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<ApplicationSettingEntity>
     {
-        public ApplicationSettingConfiguration()
+        public ApplicationSettingEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public ApplicationSettingConfiguration(string schema)
+        public ApplicationSettingEntityConfiguration(string schema)
         {
             ToTable("ApplicationSettings", schema);
             HasKey(x => x.Id);
 
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsOptional();
             Property(x => x.SettingTypeId).HasColumnName(@"SettingTypeId").HasColumnType("int").IsRequired();
             Property(x => x.SettingKey).HasColumnName(@"SettingKey").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
             Property(x => x.SettingValue).HasColumnName(@"SettingValue").HasColumnType("nvarchar").IsRequired().HasMaxLength(255);
@@ -1467,155 +9980,8 @@ namespace CD.ClaimSoft.Database
             Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
 
             // Foreign keys
+            HasOptional(a => a.Agency).WithMany(b => b.ApplicationSettings).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_ApplicationSettings_Agency
             HasRequired(a => a.SettingType).WithMany(b => b.ApplicationSettings).HasForeignKey(c => c.SettingTypeId).WillCascadeOnDelete(false); // FK_ApplicationSettings_SettingType
-            InitializePartial();
-        }
-        partial void InitializePartial();
-    }
-
-    // AspNetRoles
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AspNetRoleConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AspNetRole>
-    {
-        public AspNetRoleConfiguration()
-            : this("dbo")
-        {
-        }
-
-        public AspNetRoleConfiguration(string schema)
-        {
-            ToTable("AspNetRoles", schema);
-            HasKey(x => x.Id);
-
-            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("nvarchar").IsRequired().HasMaxLength(128).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("nvarchar").IsRequired().HasMaxLength(256);
-            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
-            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
-            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
-            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
-            InitializePartial();
-        }
-        partial void InitializePartial();
-    }
-
-    // AspNetUsers
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AspNetUserConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AspNetUser>
-    {
-        public AspNetUserConfiguration()
-            : this("dbo")
-        {
-        }
-
-        public AspNetUserConfiguration(string schema)
-        {
-            ToTable("AspNetUsers", schema);
-            HasKey(x => x.Id);
-
-            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("nvarchar").IsRequired().HasMaxLength(128).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.Email).HasColumnName(@"Email").HasColumnType("nvarchar").IsOptional().HasMaxLength(256);
-            Property(x => x.EmailConfirmed).HasColumnName(@"EmailConfirmed").HasColumnType("bit").IsRequired();
-            Property(x => x.PasswordHash).HasColumnName(@"PasswordHash").HasColumnType("nvarchar(max)").IsOptional();
-            Property(x => x.SecurityStamp).HasColumnName(@"SecurityStamp").HasColumnType("nvarchar(max)").IsOptional();
-            Property(x => x.PhoneNumber).HasColumnName(@"PhoneNumber").HasColumnType("nvarchar(max)").IsOptional();
-            Property(x => x.PhoneNumberConfirmed).HasColumnName(@"PhoneNumberConfirmed").HasColumnType("bit").IsRequired();
-            Property(x => x.TwoFactorEnabled).HasColumnName(@"TwoFactorEnabled").HasColumnType("bit").IsRequired();
-            Property(x => x.LockoutEndDateUtc).HasColumnName(@"LockoutEndDateUtc").HasColumnType("datetime").IsOptional();
-            Property(x => x.LockoutEnabled).HasColumnName(@"LockoutEnabled").HasColumnType("bit").IsRequired();
-            Property(x => x.AccessFailedCount).HasColumnName(@"AccessFailedCount").HasColumnType("int").IsRequired();
-            Property(x => x.UserName).HasColumnName(@"UserName").HasColumnType("nvarchar").IsRequired().HasMaxLength(256);
-            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
-            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
-            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
-            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
-            InitializePartial();
-        }
-        partial void InitializePartial();
-    }
-
-    // AspNetUserClaims
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AspNetUserClaimConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AspNetUserClaim>
-    {
-        public AspNetUserClaimConfiguration()
-            : this("dbo")
-        {
-        }
-
-        public AspNetUserClaimConfiguration(string schema)
-        {
-            ToTable("AspNetUserClaims", schema);
-            HasKey(x => x.Id);
-
-            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
-            Property(x => x.UserId).HasColumnName(@"UserId").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
-            Property(x => x.ClaimType).HasColumnName(@"ClaimType").HasColumnType("nvarchar(max)").IsOptional();
-            Property(x => x.ClaimValue).HasColumnName(@"ClaimValue").HasColumnType("nvarchar(max)").IsOptional();
-            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
-            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
-            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
-            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
-
-            // Foreign keys
-            HasRequired(a => a.AspNetUser).WithMany(b => b.AspNetUserClaims).HasForeignKey(c => c.UserId); // FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId
-            InitializePartial();
-        }
-        partial void InitializePartial();
-    }
-
-    // AspNetUserLogins
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AspNetUserLoginConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AspNetUserLogin>
-    {
-        public AspNetUserLoginConfiguration()
-            : this("dbo")
-        {
-        }
-
-        public AspNetUserLoginConfiguration(string schema)
-        {
-            ToTable("AspNetUserLogins", schema);
-            HasKey(x => new { x.LoginProvider, x.ProviderKey, x.UserId });
-
-            Property(x => x.LoginProvider).HasColumnName(@"LoginProvider").HasColumnType("nvarchar").IsRequired().HasMaxLength(128).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.ProviderKey).HasColumnName(@"ProviderKey").HasColumnType("nvarchar").IsRequired().HasMaxLength(128).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.UserId).HasColumnName(@"UserId").HasColumnType("nvarchar").IsRequired().HasMaxLength(128).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
-            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
-            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
-            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
-
-            // Foreign keys
-            HasRequired(a => a.AspNetUser).WithMany(b => b.AspNetUserLogins).HasForeignKey(c => c.UserId); // FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId
-            InitializePartial();
-        }
-        partial void InitializePartial();
-    }
-
-    // AspNetUserRoles
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class AspNetUserRoleConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AspNetUserRole>
-    {
-        public AspNetUserRoleConfiguration()
-            : this("dbo")
-        {
-        }
-
-        public AspNetUserRoleConfiguration(string schema)
-        {
-            ToTable("AspNetUserRoles", schema);
-            HasKey(x => new { x.UserId, x.RoleId });
-
-            Property(x => x.UserId).HasColumnName(@"UserId").HasColumnType("nvarchar").IsRequired().HasMaxLength(128).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.RoleId).HasColumnName(@"RoleId").HasColumnType("nvarchar").IsRequired().HasMaxLength(128).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
-            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
-            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
-            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
-
-            // Foreign keys
-            HasRequired(a => a.AspNetRole).WithMany(b => b.AspNetUserRoles).HasForeignKey(c => c.RoleId); // FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId
-            HasRequired(a => a.AspNetUser).WithMany(b => b.AspNetUserRoles).HasForeignKey(c => c.UserId); // FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId
             InitializePartial();
         }
         partial void InitializePartial();
@@ -1623,14 +9989,14 @@ namespace CD.ClaimSoft.Database
 
     // Country
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class CountryConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Country>
+    public partial class CountryEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CountryEntity>
     {
-        public CountryConfiguration()
+        public CountryEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public CountryConfiguration(string schema)
+        public CountryEntityConfiguration(string schema)
         {
             ToTable("Country", schema);
             HasKey(x => x.Id);
@@ -1653,14 +10019,14 @@ namespace CD.ClaimSoft.Database
 
     // County
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class CountyConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<County>
+    public partial class CountyEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CountyEntity>
     {
-        public CountyConfiguration()
+        public CountyEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public CountyConfiguration(string schema)
+        public CountyEntityConfiguration(string schema)
         {
             ToTable("County", schema);
             HasKey(x => x.Id);
@@ -1684,16 +10050,40 @@ namespace CD.ClaimSoft.Database
         partial void InitializePartial();
     }
 
-    // EmailType
+    // Element_to_Variables
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class EmailTypeConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<EmailType>
+    public partial class ElementToVariableEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<ElementToVariableEntity>
     {
-        public EmailTypeConfiguration()
+        public ElementToVariableEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public EmailTypeConfiguration(string schema)
+        public ElementToVariableEntityConfiguration(string schema)
+        {
+            ToTable("Element_to_Variables", schema);
+            HasKey(x => x.DataElementId);
+
+            Property(x => x.DataElementId).HasColumnName(@"DataElementID").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.DataElementNumber).HasColumnName(@"DataElementNumber").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.DataElementName).HasColumnName(@"DataElementName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.DataElementVariableCode).HasColumnName(@"DataElementVariableCode").HasColumnType("float").IsOptional();
+            Property(x => x.DataElementVariableName).HasColumnName(@"DataElementVariableName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // EmailType
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class EmailTypeEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<EmailTypeEntity>
+    {
+        public EmailTypeEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public EmailTypeEntityConfiguration(string schema)
         {
             ToTable("EmailType", schema);
             HasKey(x => x.Id);
@@ -1709,16 +10099,2398 @@ namespace CD.ClaimSoft.Database
         partial void InitializePartial();
     }
 
-    // PhoneType
+    // FileImport
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class PhoneTypeConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PhoneType>
+    public partial class FileImportEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<FileImportEntity>
     {
-        public PhoneTypeConfiguration()
+        public FileImportEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public PhoneTypeConfiguration(string schema)
+        public FileImportEntityConfiguration(string schema)
+        {
+            ToTable("FileImport", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.Success).HasColumnName(@"Success").HasColumnType("bit").IsRequired();
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.FileImports).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_FileImport_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // FileImportRecords
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class FileImportRecordEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<FileImportRecordEntity>
+    {
+        public FileImportRecordEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public FileImportRecordEntityConfiguration(string schema)
+        {
+            ToTable("FileImportRecords", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportId).HasColumnName(@"FileImportId").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.FileImportRecords).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_FileImportRecords_Agency
+            HasRequired(a => a.FileImport).WithMany(b => b.FileImportRecords).HasForeignKey(c => c.FileImportId).WillCascadeOnDelete(false); // FK_FileImportRecords_FileImport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // FileType
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class FileTypeEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<FileTypeEntity>
+    {
+        public FileTypeEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public FileTypeEntityConfiguration(string schema)
+        {
+            ToTable("FileType", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PatientCareReport
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PatientCareReportEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PatientCareReportEntity>
+    {
+        public PatientCareReportEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PatientCareReportEntityConfiguration(string schema)
+        {
+            ToTable("PatientCareReport", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportNumber).HasColumnName(@"PatientCareReportNumber").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.SoftwareCreator).HasColumnName(@"SoftwareCreator").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.SoftwareName).HasColumnName(@"SoftwareName").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.SoftwareVersion).HasColumnName(@"SoftwareVersion").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PatientCareReports).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PatientCareReport_Agency
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRAssessmentExam
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrAssessmentExamEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrAssessmentExamEntity>
+    {
+        public PcrAssessmentExamEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrAssessmentExamEntityConfiguration(string schema)
+        {
+            ToTable("PCRAssessmentExam", schema);
+            HasKey(x => x.PatientCareReportId);
+
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.EstimatedBodyWeight).HasColumnName(@"EstimatedBodyWeight").HasColumnType("decimal").IsOptional().HasPrecision(4,1);
+            Property(x => x.BroselowLutenColor).HasColumnName(@"BroselowLutenColor").HasColumnType("int").IsOptional();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrAssessmentExams).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRAssessmentExam_Agency
+            HasRequired(a => a.PatientCareReport).WithOptional(b => b.PcrAssessmentExam).WillCascadeOnDelete(false); // FK_PCRAssessmentExam_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRAssessmentExamsDifferent
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrAssessmentExamsDifferentEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrAssessmentExamsDifferentEntity>
+    {
+        public PcrAssessmentExamsDifferentEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrAssessmentExamsDifferentEntityConfiguration(string schema)
+        {
+            ToTable("PCRAssessmentExamsDifferent", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.AssessmentDateTime).HasColumnName(@"AssessmentDateTime").HasColumnType("datetime").IsOptional();
+            Property(x => x.AssessmentCode).HasColumnName(@"AssessmentCode").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(6);
+            Property(x => x.AssessmentValue).HasColumnName(@"AssessmentValue").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrAssessmentExamsDifferents).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRAssessmentExamsDifferent_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrAssessmentExamsDifferents).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRAssessmentExamsDifferent_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRAssessmentInjury
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrAssessmentInjuryEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrAssessmentInjuryEntity>
+    {
+        public PcrAssessmentInjuryEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrAssessmentInjuryEntityConfiguration(string schema)
+        {
+            ToTable("PCRAssessmentInjury", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.AssessmentInjuryCode).HasColumnName(@"AssessmentInjuryCode").HasColumnType("char").IsRequired().IsFixedLength().IsUnicode(false).HasMaxLength(6);
+            Property(x => x.AssessmentInjuryValue).HasColumnName(@"AssessmentInjuryValue").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrAssessmentInjuries).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRAssessmentInjury_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrAssessmentInjuries).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRAssessmentInjury_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRBilling
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrBillingEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrBillingEntity>
+    {
+        public PcrBillingEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrBillingEntityConfiguration(string schema)
+        {
+            ToTable("PCRBilling", schema);
+            HasKey(x => x.PatientCareReportId);
+
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PrimaryPaymentMethod).HasColumnName(@"PrimaryPaymentMethod").HasColumnType("int").IsRequired();
+            Property(x => x.CertificateMedicalNecessity).HasColumnName(@"CertificateMedicalNecessity").HasColumnType("int").IsOptional();
+            Property(x => x.WorkRelated).HasColumnName(@"WorkRelated").HasColumnType("int").IsOptional();
+            Property(x => x.PatientOccupationalIndustry).HasColumnName(@"PatientOccupationalIndustry").HasColumnType("int").IsOptional();
+            Property(x => x.PatientOccupation).HasColumnName(@"PatientOccupation").HasColumnType("int").IsOptional();
+            Property(x => x.PatientWorkTelephoneNumber).HasColumnName(@"PatientWorkTelephoneNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.ResponseUrgency).HasColumnName(@"ResponseUrgency").HasColumnType("int").IsOptional();
+            Property(x => x.CmsServiceLevel).HasColumnName(@"CMSServiceLevel").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrBillings).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRBilling_Agency
+            HasRequired(a => a.PatientCareReport).WithOptional(b => b.PcrBilling).WillCascadeOnDelete(false); // FK_PCRBilling_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRBillingConditionCodes
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrBillingConditionCodeEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrBillingConditionCodeEntity>
+    {
+        public PcrBillingConditionCodeEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrBillingConditionCodeEntityConfiguration(string schema)
+        {
+            ToTable("PCRBillingConditionCodes", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.CodeNumber).HasColumnName(@"CodeNumber").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.Icd9Code).HasColumnName(@"ICD9Code").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrBillingConditionCodes).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRBillingConditionCodes_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrBillingConditionCodes).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRBillingConditionCodes_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRBillingConditionCodesModifier
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrBillingConditionCodesModifierEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrBillingConditionCodesModifierEntity>
+    {
+        public PcrBillingConditionCodesModifierEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrBillingConditionCodesModifierEntityConfiguration(string schema)
+        {
+            ToTable("PCRBillingConditionCodesModifier", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.CodeModifier).HasColumnName(@"CodeModifier").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrBillingConditionCodesModifiers).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRBillingConditionCodesModifier_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrBillingConditionCodesModifiers).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRBillingConditionCodesModifier_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRBillingInsurance
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrBillingInsuranceEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrBillingInsuranceEntity>
+    {
+        public PcrBillingInsuranceEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrBillingInsuranceEntityConfiguration(string schema)
+        {
+            ToTable("PCRBillingInsurance", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.InsuranceCompanyId).HasColumnName(@"InsuranceCompanyId").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.InsuranceCompanyBillingPriority).HasColumnName(@"InsuranceCompanyBillingPriority").HasColumnType("int").IsOptional();
+            Property(x => x.InsuranceCompanyAddress).HasColumnName(@"InsuranceCompanyAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.InsuranceCompanyCity).HasColumnName(@"InsuranceCompanyCity").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.InsuranceCompanyState).HasColumnName(@"InsuranceCompanyState").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(3);
+            Property(x => x.InsuranceCompanyZipCode).HasColumnName(@"InsuranceCompanyZipCode").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.InsuranceGroupId).HasColumnName(@"InsuranceGroupId").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.InsurancePolicyIdNumber).HasColumnName(@"InsurancePolicyIdNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.InsuredLastName).HasColumnName(@"InsuredLastName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.InsuredFirstName).HasColumnName(@"InsuredFirstName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.InsuredMiddleName).HasColumnName(@"InsuredMiddleName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.RelationshipToInsured).HasColumnName(@"RelationshipToInsured").HasColumnType("int").IsOptional();
+            Property(x => x.GuardianLastName).HasColumnName(@"GuardianLastName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.GuardianFirstName).HasColumnName(@"GuardianFirstName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.GuardianMiddleName).HasColumnName(@"GuardianMiddleName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.GuardianAddress).HasColumnName(@"GuardianAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.GuardianCity).HasColumnName(@"GuardianCity").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.GuardianState).HasColumnName(@"GuardianState").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(3);
+            Property(x => x.GuardianZipCode).HasColumnName(@"GuardianZipCode").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.GuardianPhoneNumber).HasColumnName(@"GuardianPhoneNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.GuardianRelationship).HasColumnName(@"GuardianRelationship").HasColumnType("int").IsOptional();
+            Property(x => x.PatientEmployer).HasColumnName(@"PatientEmployer").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.PatientEmployerAddress).HasColumnName(@"PatientEmployerAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.PatientEmployerCity).HasColumnName(@"PatientEmployerCity").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.PatientEmployerState).HasColumnName(@"PatientEmployerState").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(3);
+            Property(x => x.PatientEmployerZipCode).HasColumnName(@"PatientEmployerZipCode").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrBillingInsurances).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRBillingInsurance_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrBillingInsurances).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRBillingInsurance_PatientCareReport1
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRCPR
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrcprEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrcprEntity>
+    {
+        public PcrcprEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrcprEntityConfiguration(string schema)
+        {
+            ToTable("PCRCPR", schema);
+            HasKey(x => x.PatientCareReportId);
+
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.CardiacArrest).HasColumnName(@"CardiacArrest").HasColumnType("int").IsRequired();
+            Property(x => x.CardiacArrestEtiology).HasColumnName(@"CardiacArrestEtiology").HasColumnType("int").IsRequired();
+            Property(x => x.ArrestWitnessedBy).HasColumnName(@"ArrestWitnessedBy").HasColumnType("int").IsOptional();
+            Property(x => x.FirstMonitoredRhythm).HasColumnName(@"FirstMonitoredRhythm").HasColumnType("int").IsOptional();
+            Property(x => x.AnyReturnSpontaneousCirculation).HasColumnName(@"AnyReturnSpontaneousCirculation").HasColumnType("int").IsOptional();
+            Property(x => x.NeurologicalOutcome).HasColumnName(@"NeurologicalOutcome").HasColumnType("int").IsOptional();
+            Property(x => x.EstimatedTimeArrestPriorEmsArrival).HasColumnName(@"EstimatedTimeArrestPriorEMSArrival").HasColumnType("int").IsOptional();
+            Property(x => x.DateTimeResuscitationDiscontinued).HasColumnName(@"DateTimeResuscitationDiscontinued").HasColumnType("datetime").IsOptional();
+            Property(x => x.ReasonCprDiscontinued).HasColumnName(@"ReasonCPRDiscontinued").HasColumnType("int").IsOptional();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.Pcrcprs).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRCPR_Agency
+            HasRequired(a => a.PatientCareReport).WithOptional(b => b.Pcrcpr).WillCascadeOnDelete(false); // FK_PCRCPR_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRCPRCardiacRhythmDelivery
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrcprCardiacRhythmDeliveryEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrcprCardiacRhythmDeliveryEntity>
+    {
+        public PcrcprCardiacRhythmDeliveryEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrcprCardiacRhythmDeliveryEntityConfiguration(string schema)
+        {
+            ToTable("PCRCPRCardiacRhythmDelivery", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.CardiacRhythmDestination).HasColumnName(@"CardiacRhythmDestination").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrcprCardiacRhythmDeliveries).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRCPRCardiacRhythmDelivery_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrcprCardiacRhythmDeliveries).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRCPRCardiacRhythmDelivery_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRCPRIndicationAttemptResuscitate
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrcprIndicationAttemptResuscitateEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrcprIndicationAttemptResuscitateEntity>
+    {
+        public PcrcprIndicationAttemptResuscitateEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrcprIndicationAttemptResuscitateEntityConfiguration(string schema)
+        {
+            ToTable("PCRCPRIndicationAttemptResuscitate", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.ResuscitationAttempted).HasColumnName(@"ResuscitationAttempted").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrcprIndicationAttemptResuscitates).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRCPRIndicationAttemptResuscitate_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrcprIndicationAttemptResuscitates).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRCPRIndicationAttemptResuscitate_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRDisposition
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrDispositionEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrDispositionEntity>
+    {
+        public PcrDispositionEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrDispositionEntityConfiguration(string schema)
+        {
+            ToTable("PCRDisposition", schema);
+            HasKey(x => x.PatientCareReportId);
+
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.DestinationTransferredToName).HasColumnName(@"DestinationTransferredToName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.DestinationTransferredToCode).HasColumnName(@"DestinationTransferredToCode").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.DestinationStreetAddress).HasColumnName(@"DestinationStreetAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.DestinationCity).HasColumnName(@"DestinationCity").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.DestinationState).HasColumnName(@"DestinationState").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(3);
+            Property(x => x.DestinationCounty).HasColumnName(@"DestinationCounty").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(5);
+            Property(x => x.DestinationZipCode).HasColumnName(@"DestinationZipCode").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.DestinationGpsLocationLatitude).HasColumnName(@"DestinationGPSLocationLatitude").HasColumnType("decimal").IsOptional().HasPrecision(4,2);
+            Property(x => x.DestinationGpsLocationLongitude).HasColumnName(@"DestinationGPSLocationLongitude").HasColumnType("decimal").IsOptional().HasPrecision(5,2);
+            Property(x => x.DestinationZoneNumber).HasColumnName(@"DestinationZoneNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.IncidentPatientDisposition).HasColumnName(@"IncidentPatientDisposition").HasColumnType("int").IsRequired();
+            Property(x => x.HowPatientMovedToAmbulance).HasColumnName(@"HowPatientMovedToAmbulance").HasColumnType("int").IsOptional();
+            Property(x => x.PatientPositionDuringTransport).HasColumnName(@"PatientPositionDuringTransport").HasColumnType("int").IsOptional();
+            Property(x => x.HowPatientTransportedFromAmbulance).HasColumnName(@"HowPatientTransportedFromAmbulance").HasColumnType("int").IsOptional();
+            Property(x => x.TransportMode).HasColumnName(@"TransportMode").HasColumnType("int").IsRequired();
+            Property(x => x.DestinationPatientCondition).HasColumnName(@"DestinationPatientCondition").HasColumnType("int").IsOptional();
+            Property(x => x.DestinationReason).HasColumnName(@"DestinationReason").HasColumnType("int").IsRequired();
+            Property(x => x.DestinationType).HasColumnName(@"DestinationType").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrDispositions).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRDisposition_Agency
+            HasRequired(a => a.PatientCareReport).WithOptional(b => b.PcrDisposition).WillCascadeOnDelete(false); // FK_PCRDisposition_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRHeader
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrHeaderEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrHeaderEntity>
+    {
+        public PcrHeaderEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrHeaderEntityConfiguration(string schema)
+        {
+            ToTable("PCRHeader", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportId).HasColumnName(@"FileImportId").HasColumnType("int").IsRequired();
+            Property(x => x.AgencyNumber).HasColumnName(@"AgencyNumber").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.State).HasColumnName(@"State").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(3);
+            Property(x => x.County).HasColumnName(@"County").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(5);
+            Property(x => x.LevelOfService).HasColumnName(@"LevelOfService").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.OrganizationType).HasColumnName(@"OrganizationType").HasColumnType("int").IsRequired();
+            Property(x => x.OrganizationStatus).HasColumnName(@"OrganizationStatus").HasColumnType("int").IsRequired();
+            Property(x => x.NationalProviderId).HasColumnName(@"NationalProviderId").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.ZipCode).HasColumnName(@"ZipCode").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrHeaders).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRHeader_Agency
+            HasRequired(a => a.FileImport).WithMany(b => b.PcrHeaders).HasForeignKey(c => c.FileImportId).WillCascadeOnDelete(false); // FK_PCRHeader_FileImport
+            HasRequired(a => a.PcrHeader_Id).WithOptional(b => b.PcrHeader1).WillCascadeOnDelete(false); // FK_PCRHeader_PCRHeader
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRIntervention
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrInterventionEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrInterventionEntity>
+    {
+        public PcrInterventionEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrInterventionEntityConfiguration(string schema)
+        {
+            ToTable("PCRIntervention", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.ProtocolUsed).HasColumnName(@"ProtocolUsed").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(100);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrInterventions).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRIntervention_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrInterventions).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRIntervention_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRInterventionMedications
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrInterventionMedicationEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrInterventionMedicationEntity>
+    {
+        public PcrInterventionMedicationEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrInterventionMedicationEntityConfiguration(string schema)
+        {
+            ToTable("PCRInterventionMedications", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.AdministeredDateTime).HasColumnName(@"AdministeredDateTime").HasColumnType("datetime").IsOptional();
+            Property(x => x.AdministeredPriorUnitsEmsCare).HasColumnName(@"AdministeredPriorUnitsEMSCare").HasColumnType("int").IsOptional();
+            Property(x => x.MedicationGiven).HasColumnName(@"MedicationGiven").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.AdministeredRoute).HasColumnName(@"AdministeredRoute").HasColumnType("int").IsOptional();
+            Property(x => x.Dosage).HasColumnName(@"Dosage").HasColumnType("decimal").IsOptional().HasPrecision(8,2);
+            Property(x => x.DosageUnits).HasColumnName(@"DosageUnits").HasColumnType("int").IsOptional();
+            Property(x => x.Response).HasColumnName(@"Response").HasColumnType("int").IsOptional();
+            Property(x => x.CrewMemberId).HasColumnName(@"CrewMemberId").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.Authorization).HasColumnName(@"Authorization").HasColumnType("int").IsOptional();
+            Property(x => x.AuthorizingPhysician).HasColumnName(@"AuthorizingPhysician").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrInterventionMedications).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRInterventionMedications_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrInterventionMedications).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRInterventionMedications_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRInterventionMedicationComplications
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrInterventionMedicationComplicationEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrInterventionMedicationComplicationEntity>
+    {
+        public PcrInterventionMedicationComplicationEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrInterventionMedicationComplicationEntityConfiguration(string schema)
+        {
+            ToTable("PCRInterventionMedicationComplications", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PcrInterventionMedicationId).HasColumnName(@"PCRInterventionMedicationId").HasColumnType("int").IsRequired();
+            Property(x => x.MedicationComplication).HasColumnName(@"MedicationComplication").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrInterventionMedicationComplications).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRInterventionMedicationComplications_Agency
+            HasRequired(a => a.PcrInterventionMedication).WithMany(b => b.PcrInterventionMedicationComplications).HasForeignKey(c => c.PcrInterventionMedicationId).WillCascadeOnDelete(false); // FK_E18_08_E18
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRInterventionProceduresPerformed
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrInterventionProceduresPerformedEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrInterventionProceduresPerformedEntity>
+    {
+        public PcrInterventionProceduresPerformedEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrInterventionProceduresPerformedEntityConfiguration(string schema)
+        {
+            ToTable("PCRInterventionProceduresPerformed", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.PerformedSuccessfullyDateTime).HasColumnName(@"PerformedSuccessfullyDateTime").HasColumnType("datetime").IsOptional();
+            Property(x => x.PerformedPriorToUnitsEmsCare).HasColumnName(@"PerformedPriorToUnitsEMSCare").HasColumnType("int").IsOptional();
+            Property(x => x.Procedure).HasColumnName(@"Procedure").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.EquipmentSize).HasColumnName(@"EquipmentSize").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.NumberOfAttempts).HasColumnName(@"NumberOfAttempts").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.ProcedureSuccessful).HasColumnName(@"ProcedureSuccessful").HasColumnType("int").IsRequired();
+            Property(x => x.Response).HasColumnName(@"Response").HasColumnType("int").IsOptional();
+            Property(x => x.CrewMembersId).HasColumnName(@"CrewMembersId").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.Authorization).HasColumnName(@"Authorization").HasColumnType("int").IsOptional();
+            Property(x => x.AuthorizingPhysician).HasColumnName(@"AuthorizingPhysician").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrInterventionProceduresPerformeds).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRInterventionProceduresPerformed_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrInterventionProceduresPerformeds).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRInterventionProceduresPerformed_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRInterventionProceduresPerformedComplications
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrInterventionProceduresPerformedComplicationEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrInterventionProceduresPerformedComplicationEntity>
+    {
+        public PcrInterventionProceduresPerformedComplicationEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrInterventionProceduresPerformedComplicationEntityConfiguration(string schema)
+        {
+            ToTable("PCRInterventionProceduresPerformedComplications", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PcrInterventionProceduresPerformedId).HasColumnName(@"PCRInterventionProceduresPerformedId").HasColumnType("int").IsRequired();
+            Property(x => x.ProcedureComplication).HasColumnName(@"ProcedureComplication").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrInterventionProceduresPerformedComplications).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRInterventionProceduresPerformedComplications_Agency
+            HasRequired(a => a.PcrInterventionProceduresPerformed).WithMany(b => b.PcrInterventionProceduresPerformedComplications).HasForeignKey(c => c.PcrInterventionProceduresPerformedId).WillCascadeOnDelete(false); // FK_PCRInterventionProceduresPerformedComplications_PCRInterventionProceduresPerformed
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRInterventionProceduresPerformedSuccessfulIVSite
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrInterventionProceduresPerformedSuccessfulIvSiteEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrInterventionProceduresPerformedSuccessfulIvSiteEntity>
+    {
+        public PcrInterventionProceduresPerformedSuccessfulIvSiteEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrInterventionProceduresPerformedSuccessfulIvSiteEntityConfiguration(string schema)
+        {
+            ToTable("PCRInterventionProceduresPerformedSuccessfulIVSite", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.SuccessfulIvSite).HasColumnName(@"SuccessfulIVSite").HasColumnType("int").IsOptional();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrInterventionProceduresPerformedSuccessfulIvSites).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRInterventionProceduresPerformedSuccessfulIVSite_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrInterventionProceduresPerformedSuccessfulIvSites).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRInterventionProceduresPerformedSuccessfulIVSite_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRInterventionProceduresPerformedTubeConfirmation
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrInterventionProceduresPerformedTubeConfirmationEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrInterventionProceduresPerformedTubeConfirmationEntity>
+    {
+        public PcrInterventionProceduresPerformedTubeConfirmationEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrInterventionProceduresPerformedTubeConfirmationEntityConfiguration(string schema)
+        {
+            ToTable("PCRInterventionProceduresPerformedTubeConfirmation", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.TubeConfirmation).HasColumnName(@"TubeConfirmation").HasColumnType("int").IsOptional();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrInterventionProceduresPerformedTubeConfirmations).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRInterventionProceduresPerformedTubeConfirmation_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrInterventionProceduresPerformedTubeConfirmations).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRInterventionProceduresPerformedTubeConfirmation_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRInterventionProceduresPerformedTubePlacement
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrInterventionProceduresPerformedTubePlacementEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrInterventionProceduresPerformedTubePlacementEntity>
+    {
+        public PcrInterventionProceduresPerformedTubePlacementEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrInterventionProceduresPerformedTubePlacementEntityConfiguration(string schema)
+        {
+            ToTable("PCRInterventionProceduresPerformedTubePlacement", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.TubePlacement).HasColumnName(@"TubePlacement").HasColumnType("int").IsOptional();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrInterventionProceduresPerformedTubePlacements).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRInterventionProceduresPerformedTubePlacement_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrInterventionProceduresPerformedTubePlacements).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRInterventionProceduresPerformedTubePlacement_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalDeviceData
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalDeviceDataEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMedicalDeviceDataEntity>
+    {
+        public PcrMedicalDeviceDataEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMedicalDeviceDataEntityConfiguration(string schema)
+        {
+            ToTable("PCRMedicalDeviceData", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.EventDateTime).HasColumnName(@"EventDateTime").HasColumnType("datetime").IsOptional();
+            Property(x => x.MedicalDeviceEventName).HasColumnName(@"MedicalDeviceEventName").HasColumnType("int").IsOptional();
+            Property(x => x.WaveformGraphicType).HasColumnName(@"WaveformGraphicType").HasColumnType("int").IsOptional();
+            Property(x => x.WaveformGraphic).HasColumnName(@"WaveformGraphic").HasColumnType("image").IsOptional().HasMaxLength(2147483647);
+            Property(x => x.AedPacingCo2Mode).HasColumnName(@"AEDPacingCO2Mode").HasColumnType("int").IsOptional();
+            Property(x => x.EcgLead).HasColumnName(@"ECGLead").HasColumnType("int").IsOptional();
+            Property(x => x.EcgInterpretation).HasColumnName(@"ECGInterpretation").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(2000);
+            Property(x => x.ShockType).HasColumnName(@"ShockType").HasColumnType("int").IsOptional();
+            Property(x => x.ShockPacingEnergy).HasColumnName(@"ShockPacingEnergy").HasColumnType("decimal").IsOptional().HasPrecision(5,1);
+            Property(x => x.TotalNumberShocksDelivered).HasColumnName(@"TotalNumberShocksDelivered").HasColumnType("int").IsOptional();
+            Property(x => x.PacingRate).HasColumnName(@"PacingRate").HasColumnType("int").IsOptional();
+            Property(x => x.HeartRate).HasColumnName(@"HeartRate").HasColumnType("int").IsOptional();
+            Property(x => x.PulseRate).HasColumnName(@"PulseRate").HasColumnType("int").IsOptional();
+            Property(x => x.SystolicBloodPressure).HasColumnName(@"SystolicBloodPressure").HasColumnType("int").IsOptional();
+            Property(x => x.DiastolicBloodPressure).HasColumnName(@"DiastolicBloodPressure").HasColumnType("int").IsOptional();
+            Property(x => x.RespiratoryRate).HasColumnName(@"RespiratoryRate").HasColumnType("int").IsOptional();
+            Property(x => x.PulseOximetry).HasColumnName(@"PulseOximetry").HasColumnType("int").IsOptional();
+            Property(x => x.Co2EtCo2).HasColumnName(@"CO2etCO2").HasColumnType("int").IsOptional();
+            Property(x => x.Co2EtCo2InvasivePressureMonitorUnits).HasColumnName(@"CO2etCO2InvasivePressureMonitorUnits").HasColumnType("int").IsOptional();
+            Property(x => x.InvasivePressureMean).HasColumnName(@"InvasivePressureMean").HasColumnType("int").IsOptional();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMedicalDeviceDatas).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRMedicalDeviceData_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrMedicalDeviceDatas).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRMedicalDeviceData_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistory
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMedicalHistoryEntity>
+    {
+        public PcrMedicalHistoryEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMedicalHistoryEntityConfiguration(string schema)
+        {
+            ToTable("PCRMedicalHistory", schema);
+            HasKey(x => x.PatientCareReportId);
+
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.SendingFacilityMrNumber).HasColumnName(@"SendingFacilityMRNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.DestinationMrNumber).HasColumnName(@"DestinationMRNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.PrimaryPractitionerFirstName).HasColumnName(@"PrimaryPractitionerFirstName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.PrimaryPractitionerMiddleName).HasColumnName(@"PrimaryPractitionerMiddleName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.PrimaryPractitionerLastName).HasColumnName(@"PrimaryPractitionerLastName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.MedicalHistoryObtainedFrom).HasColumnName(@"MedicalHistoryObtainedFrom").HasColumnType("int").IsOptional();
+            Property(x => x.PresenceEmergencyInformationForm).HasColumnName(@"PresenceEmergencyInformationForm").HasColumnType("int").IsOptional();
+            Property(x => x.Pregnancy).HasColumnName(@"Pregnancy").HasColumnType("int").IsOptional();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMedicalHistories).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRMedicalHistory_Agency
+            HasRequired(a => a.PatientCareReport).WithOptional(b => b.PcrMedicalHistory).WillCascadeOnDelete(false); // FK_PCRMedicalHistory_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistoryAlcoholDrugIndicators
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryAlcoholDrugIndicatorEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMedicalHistoryAlcoholDrugIndicatorEntity>
+    {
+        public PcrMedicalHistoryAlcoholDrugIndicatorEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMedicalHistoryAlcoholDrugIndicatorEntityConfiguration(string schema)
+        {
+            ToTable("PCRMedicalHistoryAlcoholDrugIndicators", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.AlcoholDrugUseIndicator).HasColumnName(@"AlcoholDrugUseIndicator").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMedicalHistoryAlcoholDrugIndicators).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRMedicalHistoryAlcoholDrugIndicators_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrMedicalHistoryAlcoholDrugIndicators).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRMedicalHistoryAlcoholDrugIndicators_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistoryAllergies
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryAllergyEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMedicalHistoryAllergyEntity>
+    {
+        public PcrMedicalHistoryAllergyEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMedicalHistoryAllergyEntityConfiguration(string schema)
+        {
+            ToTable("PCRMedicalHistoryAllergies", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.EnvironmentalFoodAllergy).HasColumnName(@"EnvironmentalFoodAllergy").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMedicalHistoryAllergies).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRMedicalHistoryAllergies_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrMedicalHistoryAllergies).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRMedicalHistoryAllergies_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistoryCurrentMedication
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryCurrentMedicationEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMedicalHistoryCurrentMedicationEntity>
+    {
+        public PcrMedicalHistoryCurrentMedicationEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMedicalHistoryCurrentMedicationEntityConfiguration(string schema)
+        {
+            ToTable("PCRMedicalHistoryCurrentMedication", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.CurrentMedication).HasColumnName(@"CurrentMedication").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.CurrentMedicationDose).HasColumnName(@"CurrentMedicationDose").HasColumnType("decimal").IsOptional().HasPrecision(8,2);
+            Property(x => x.CurrentMedicationDosageUnit).HasColumnName(@"CurrentMedicationDosageUnit").HasColumnType("int").IsOptional();
+            Property(x => x.CurrentMedicationAdministrationRoute).HasColumnName(@"CurrentMedicationAdministrationRoute").HasColumnType("int").IsOptional();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMedicalHistoryCurrentMedications).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRMedicalHistoryCurrentMedication_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrMedicalHistoryCurrentMedications).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRMedicalHistoryCurrentMedication_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistoryImmunizationDetails
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryImmunizationDetailEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMedicalHistoryImmunizationDetailEntity>
+    {
+        public PcrMedicalHistoryImmunizationDetailEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMedicalHistoryImmunizationDetailEntityConfiguration(string schema)
+        {
+            ToTable("PCRMedicalHistoryImmunizationDetails", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.ImmunizationHistory).HasColumnName(@"ImmunizationHistory").HasColumnType("int").IsRequired();
+            Property(x => x.ImmunizationDate).HasColumnName(@"ImmunizationDate").HasColumnType("int").IsOptional();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMedicalHistoryImmunizationDetails).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRMedicalHistoryImmunizationDetails_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrMedicalHistoryImmunizationDetails).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRMedicalHistoryImmunizationDetails_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistoryLivingWill
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryLivingWillEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMedicalHistoryLivingWillEntity>
+    {
+        public PcrMedicalHistoryLivingWillEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMedicalHistoryLivingWillEntityConfiguration(string schema)
+        {
+            ToTable("PCRMedicalHistoryLivingWill", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.AdvancedDirective).HasColumnName(@"AdvancedDirective").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMedicalHistoryLivingWills).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRMedicalHistoryLivingWill_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrMedicalHistoryLivingWills).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRMedicalHistoryLivingWill_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistoryMedicationAllergies
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryMedicationAllergyEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMedicalHistoryMedicationAllergyEntity>
+    {
+        public PcrMedicalHistoryMedicationAllergyEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMedicalHistoryMedicationAllergyEntityConfiguration(string schema)
+        {
+            ToTable("PCRMedicalHistoryMedicationAllergies", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.MedicationAllergy).HasColumnName(@"MedicationAllergy").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMedicalHistoryMedicationAllergies).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRMedicalHistoryMedicationAllergies_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrMedicalHistoryMedicationAllergies).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRMedicalHistoryMedicationAllergies_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistoryPatientBarriers
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryPatientBarrierEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMedicalHistoryPatientBarrierEntity>
+    {
+        public PcrMedicalHistoryPatientBarrierEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMedicalHistoryPatientBarrierEntityConfiguration(string schema)
+        {
+            ToTable("PCRMedicalHistoryPatientBarriers", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.BarriersPatientCare).HasColumnName(@"BarriersPatientCare").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMedicalHistoryPatientBarriers).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRMedicalHistoryPatientBarriers_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrMedicalHistoryPatientBarriers).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRMedicalHistoryPatientBarriers_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMedicalHistoryPreexistingMedicalSurgery
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMedicalHistoryPreexistingMedicalSurgeryEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMedicalHistoryPreexistingMedicalSurgeryEntity>
+    {
+        public PcrMedicalHistoryPreexistingMedicalSurgeryEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMedicalHistoryPreexistingMedicalSurgeryEntityConfiguration(string schema)
+        {
+            ToTable("PCRMedicalHistoryPreexistingMedicalSurgery", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.MedicalSurgicalHistory).HasColumnName(@"MedicalSurgicalHistory").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMedicalHistoryPreexistingMedicalSurgeries).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_MedicalHistoryPreexistingMedicalSurgery_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrMedicalHistoryPreexistingMedicalSurgeries).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_MedicalHistoryPreexistingMedicalSurgery_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMiscellaneous
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMiscellaneouEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMiscellaneouEntity>
+    {
+        public PcrMiscellaneouEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMiscellaneouEntityConfiguration(string schema)
+        {
+            ToTable("PCRMiscellaneous", schema);
+            HasKey(x => x.PatientCareReportId);
+
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.ReviewRequested).HasColumnName(@"ReviewRequested").HasColumnType("int").IsOptional();
+            Property(x => x.SuspectedContactBodyFluidsEmsInjuryDeath).HasColumnName(@"SuspectedContactBodyFluidsEMSInjuryDeath").HasColumnType("int").IsOptional();
+            Property(x => x.RequiredReportableCondition).HasColumnName(@"RequiredReportableCondition").HasColumnType("int").IsOptional();
+            Property(x => x.ReportGeneratedBy).HasColumnName(@"ReportGeneratedBy").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMiscellaneous).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRMiscellaneous_Agency
+            HasRequired(a => a.PatientCareReport).WithOptional(b => b.PcrMiscellaneou).WillCascadeOnDelete(false); // FK_PCRMiscellaneous_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMiscellaneousLocalAgencyResearchField
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMiscellaneousLocalAgencyResearchFieldEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMiscellaneousLocalAgencyResearchFieldEntity>
+    {
+        public PcrMiscellaneousLocalAgencyResearchFieldEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMiscellaneousLocalAgencyResearchFieldEntityConfiguration(string schema)
+        {
+            ToTable("PCRMiscellaneousLocalAgencyResearchField", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.ResearchSurveyField).HasColumnName(@"ResearchSurveyField").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.ResearchSurveyFieldTitle).HasColumnName(@"ResearchSurveyFieldTitle").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMiscellaneousLocalAgencyResearchFields).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRMiscellaneousLocalAgencyResearchField_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrMiscellaneousLocalAgencyResearchFields).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRMiscellaneousLocalAgencyResearchField_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMiscellaneousPatientIndicationCriteriaRegistry
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMiscellaneousPatientIndicationCriteriaRegistryEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMiscellaneousPatientIndicationCriteriaRegistryEntity>
+    {
+        public PcrMiscellaneousPatientIndicationCriteriaRegistryEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMiscellaneousPatientIndicationCriteriaRegistryEntityConfiguration(string schema)
+        {
+            ToTable("PCRMiscellaneousPatientIndicationCriteriaRegistry", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.PotentialRegistryCandidate).HasColumnName(@"PotentialRegistryCandidate").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMiscellaneousPatientIndicationCriteriaRegistries).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRMiscellaneousPatientIndicationCriteriaRegistry_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrMiscellaneousPatientIndicationCriteriaRegistries).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRMiscellaneousPatientIndicationCriteriaRegistry_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMiscellaneousPersonnelExposedFluids
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMiscellaneousPersonnelExposedFluidEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMiscellaneousPersonnelExposedFluidEntity>
+    {
+        public PcrMiscellaneousPersonnelExposedFluidEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMiscellaneousPersonnelExposedFluidEntityConfiguration(string schema)
+        {
+            ToTable("PCRMiscellaneousPersonnelExposedFluids", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.PersonnelExposed).HasColumnName(@"PersonnelExposed").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMiscellaneousPersonnelExposedFluids).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRMiscellaneousPersonnelExposedFluids_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrMiscellaneousPersonnelExposedFluids).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRMiscellaneousPersonnelExposedFluids_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMiscellaneousProtectiveEquipmentUsed
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMiscellaneousProtectiveEquipmentUsedEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMiscellaneousProtectiveEquipmentUsedEntity>
+    {
+        public PcrMiscellaneousProtectiveEquipmentUsedEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMiscellaneousProtectiveEquipmentUsedEntityConfiguration(string schema)
+        {
+            ToTable("PCRMiscellaneousProtectiveEquipmentUsed", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.PersonalProtectiveEquipmentUsed).HasColumnName(@"PersonalProtectiveEquipmentUsed").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMiscellaneousProtectiveEquipmentUseds).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRMiscellaneousProtectiveEquipmentUsed_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrMiscellaneousProtectiveEquipmentUseds).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRMiscellaneousProtectiveEquipmentUsed_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorismEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorismEntity>
+    {
+        public PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorismEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorismEntityConfiguration(string schema)
+        {
+            ToTable("PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.SuspectedIntentionalUnintentionalDisaster).HasColumnName(@"SuspectedIntentionalUnintentionalDisaster").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorism).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrMiscellaneousSuspicionMultiCasualtyDomesticTerrorism).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRMiscellaneousSuspicionMultiCasualtyDomesticTerrorism_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRMiscellaneousTypeExposureBodilyFluids
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrMiscellaneousTypeExposureBodilyFluidEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrMiscellaneousTypeExposureBodilyFluidEntity>
+    {
+        public PcrMiscellaneousTypeExposureBodilyFluidEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrMiscellaneousTypeExposureBodilyFluidEntityConfiguration(string schema)
+        {
+            ToTable("PCRMiscellaneousTypeExposureBodilyFluids", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.TypeSuspectedFluidExposure).HasColumnName(@"TypeSuspectedFluidExposure").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrMiscellaneousTypeExposureBodilyFluids).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRMiscellaneousTypeExposureBodilyFluids_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrMiscellaneousTypeExposureBodilyFluids).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRMiscellaneousTypeExposureBodilyFluids_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRNarrative
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrNarrativeEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrNarrativeEntity>
+    {
+        public PcrNarrativeEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrNarrativeEntityConfiguration(string schema)
+        {
+            ToTable("PCRNarrative", schema);
+            HasKey(x => x.PatientCareReportId);
+
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.RunReportNarrative).HasColumnName(@"RunReportNarrative").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(4000);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrNarratives).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRNarrative_Agency
+            HasRequired(a => a.PatientCareReport).WithOptional(b => b.PcrNarrative).WillCascadeOnDelete(false); // FK_PCRNarrative_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCROutcomeLinkage
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrOutcomeLinkageEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrOutcomeLinkageEntity>
+    {
+        public PcrOutcomeLinkageEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrOutcomeLinkageEntityConfiguration(string schema)
+        {
+            ToTable("PCROutcomeLinkage", schema);
+            HasKey(x => x.PatientCareReportId);
+
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.EmergencyDepartmentDisposition).HasColumnName(@"EmergencyDepartmentDisposition").HasColumnType("int").IsRequired();
+            Property(x => x.HospitalDisposition).HasColumnName(@"HospitalDisposition").HasColumnType("int").IsRequired();
+            Property(x => x.LawEnforcementReportNumber).HasColumnName(@"LawEnforcementReportNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.TraumaRegistryId).HasColumnName(@"TraumaRegistryId").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.FireIncidentReportNumber).HasColumnName(@"FireIncidentReportNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.PatientIdBandTagNumber).HasColumnName(@"PatientIdBandTagNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrOutcomeLinkages).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCROutcomeLinkage_Agency
+            HasRequired(a => a.PatientCareReport).WithOptional(b => b.PcrOutcomeLinkage).WillCascadeOnDelete(false); // FK_PCROutcomeLinkage_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRPatient
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrPatientEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrPatientEntity>
+    {
+        public PcrPatientEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrPatientEntityConfiguration(string schema)
+        {
+            ToTable("PCRPatient", schema);
+            HasKey(x => x.PatientCareReportId);
+
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.LastName).HasColumnName(@"LastName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.FirstName).HasColumnName(@"FirstName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.MiddleName).HasColumnName(@"MiddleName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.HomeAddress).HasColumnName(@"HomeAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.HomeCity).HasColumnName(@"HomeCity").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.HomeCounty).HasColumnName(@"HomeCounty").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(5);
+            Property(x => x.HomeState).HasColumnName(@"HomeState").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(3);
+            Property(x => x.HomeZipCode).HasColumnName(@"HomeZipCode").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.HomeCountry).HasColumnName(@"HomeCountry").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.SocialSecurityNumber).HasColumnName(@"SocialSecurityNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(11);
+            Property(x => x.Gender).HasColumnName(@"Gender").HasColumnType("int").IsRequired();
+            Property(x => x.Race).HasColumnName(@"Race").HasColumnType("int").IsRequired();
+            Property(x => x.Ethnicity).HasColumnName(@"Ethnicity").HasColumnType("int").IsRequired();
+            Property(x => x.Age).HasColumnName(@"Age").HasColumnType("int").IsOptional();
+            Property(x => x.AgeUnits).HasColumnName(@"AgeUnits").HasColumnType("int").IsRequired();
+            Property(x => x.DateOfBirth).HasColumnName(@"DateOfBirth").HasColumnType("datetime").IsOptional();
+            Property(x => x.PrimaryorHomeTelephoneNumber).HasColumnName(@"PrimaryorHomeTelephoneNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.StateIssuingDriverLicense).HasColumnName(@"StateIssuingDriverLicense").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(3);
+            Property(x => x.DriverLicenseNumber).HasColumnName(@"DriverLicenseNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrPatients).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRPatient_Agency
+            HasRequired(a => a.PatientCareReport).WithOptional(b => b.PcrPatient).WillCascadeOnDelete(false); // FK_PCRPatient_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRScene
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrSceneEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrSceneEntity>
+    {
+        public PcrSceneEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrSceneEntityConfiguration(string schema)
+        {
+            ToTable("PCRScene", schema);
+            HasKey(x => x.PatientCareReportId);
+
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.EstimatedDateTimeInitialResponderArrived).HasColumnName(@"EstimatedDateTimeInitialResponderArrived").HasColumnType("int").IsOptional();
+            Property(x => x.DateTimeInitialResponderArrived).HasColumnName(@"DateTimeInitialResponderArrived").HasColumnType("datetime").IsOptional();
+            Property(x => x.NumberPatientsScene).HasColumnName(@"NumberPatientsScene").HasColumnType("int").IsRequired();
+            Property(x => x.MassCasualtyIncident).HasColumnName(@"MassCasualtyIncident").HasColumnType("int").IsRequired();
+            Property(x => x.IncidentLocationType).HasColumnName(@"IncidentLocationType").HasColumnType("int").IsRequired();
+            Property(x => x.IncidentFacilityCode).HasColumnName(@"IncidentFacilityCode").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.SceneZoneNumber).HasColumnName(@"SceneZoneNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.SceneGpsLocationLatitude).HasColumnName(@"SceneGPSLocationLatitude").HasColumnType("decimal").IsOptional().HasPrecision(4,2);
+            Property(x => x.SceneGpsLocationLongitude).HasColumnName(@"SceneGPSLocationLongitude").HasColumnType("decimal").IsOptional().HasPrecision(5,2);
+            Property(x => x.IncidentAddress).HasColumnName(@"IncidentAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.IncidentCity).HasColumnName(@"IncidentCity").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.IncidentCounty).HasColumnName(@"IncidentCounty").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(5);
+            Property(x => x.IncidentState).HasColumnName(@"IncidentState").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(3);
+            Property(x => x.IncidentZipCode).HasColumnName(@"IncidentZipCode").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrScenes).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRScene_Agency
+            HasRequired(a => a.PatientCareReport).WithOptional(b => b.PcrScene).WillCascadeOnDelete(false); // FK_PCRScene_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRSceneOtherEMSAgencies
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrSceneOtherEmsAgencyEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrSceneOtherEmsAgencyEntity>
+    {
+        public PcrSceneOtherEmsAgencyEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrSceneOtherEmsAgencyEntityConfiguration(string schema)
+        {
+            ToTable("PCRSceneOtherEMSAgencies", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.OtherEmsAgencies).HasColumnName(@"OtherEMSAgencies").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrSceneOtherEmsAgencies).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRSceneOtherEMSAgencies_Agency
+            HasRequired(a => a.PatientCareReport_PatientCareReportId).WithMany(b => b.PcrSceneOtherEmsAgencies_PatientCareReportId).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRSceneOtherEMSAgencies_PatientCareReport
+            HasRequired(a => a.PatientCareReport1).WithMany(b => b.PcrSceneOtherEmsAgencies1).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRSceneOtherEMSAgencies_PatientCareReport1
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRSceneOtherServices
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrSceneOtherServiceEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrSceneOtherServiceEntity>
+    {
+        public PcrSceneOtherServiceEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrSceneOtherServiceEntityConfiguration(string schema)
+        {
+            ToTable("PCRSceneOtherServices", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.OtherService).HasColumnName(@"OtherService").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrSceneOtherServices).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRSceneOtherServices_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrSceneOtherServices).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRSceneOtherServices_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRSituation
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrSituationEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrSituationEntity>
+    {
+        public PcrSituationEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrSituationEntityConfiguration(string schema)
+        {
+            ToTable("PCRSituation", schema);
+            HasKey(x => x.PatientCareReportId);
+
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PriorAidOutcome).HasColumnName(@"PriorAidOutcome").HasColumnType("int").IsRequired();
+            Property(x => x.PossibleInjury).HasColumnName(@"PossibleInjury").HasColumnType("int").IsRequired();
+            Property(x => x.ChiefComplaint).HasColumnName(@"ChiefComplaint").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.DurationChiefComplaint).HasColumnName(@"DurationChiefComplaint").HasColumnType("int").IsOptional();
+            Property(x => x.TimeChiefComplaintUnitsDuration).HasColumnName(@"TimeChiefComplaintUnitsDuration").HasColumnType("int").IsOptional();
+            Property(x => x.SecondaryComplaintNarrative).HasColumnName(@"SecondaryComplaintNarrative").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.DurationSecondaryComplaint).HasColumnName(@"DurationSecondaryComplaint").HasColumnType("int").IsOptional();
+            Property(x => x.TimeUnitsDurationSecondaryComplaint).HasColumnName(@"TimeUnitsDurationSecondaryComplaint").HasColumnType("int").IsOptional();
+            Property(x => x.ChiefComplaintAnatomicLocation).HasColumnName(@"ChiefComplaintAnatomicLocation").HasColumnType("int").IsRequired();
+            Property(x => x.ChiefComplaintOrganSystem).HasColumnName(@"ChiefComplaintOrganSystem").HasColumnType("int").IsRequired();
+            Property(x => x.PrimarySymptom).HasColumnName(@"PrimarySymptom").HasColumnType("int").IsRequired();
+            Property(x => x.ProvidersPrimaryImpression).HasColumnName(@"ProvidersPrimaryImpression").HasColumnType("int").IsRequired();
+            Property(x => x.ProvidersSecondaryImpression).HasColumnName(@"ProvidersSecondaryImpression").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrSituations).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRSituation_Agency
+            HasRequired(a => a.PatientCareReport).WithOptional(b => b.PcrSituation).WillCascadeOnDelete(false); // FK_PCRSituation_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRSituationOtherSymptoms
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrSituationOtherSymptomEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrSituationOtherSymptomEntity>
+    {
+        public PcrSituationOtherSymptomEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrSituationOtherSymptomEntityConfiguration(string schema)
+        {
+            ToTable("PCRSituationOtherSymptoms", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.OtherAssociatedSymptom).HasColumnName(@"OtherAssociatedSymptom").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrSituationOtherSymptoms).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRSituationOtherSymptoms_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrSituationOtherSymptoms).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRSituationOtherSymptoms_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRSituationPriorAid
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrSituationPriorAidEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrSituationPriorAidEntity>
+    {
+        public PcrSituationPriorAidEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrSituationPriorAidEntityConfiguration(string schema)
+        {
+            ToTable("PCRSituationPriorAid", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.PriorAid).HasColumnName(@"PriorAid").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrSituationPriorAids).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRSituationPriorAid_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrSituationPriorAids).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRSituationPriorAid_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRSituationPriorAidPerformedBy
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrSituationPriorAidPerformedByEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrSituationPriorAidPerformedByEntity>
+    {
+        public PcrSituationPriorAidPerformedByEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrSituationPriorAidPerformedByEntityConfiguration(string schema)
+        {
+            ToTable("PCRSituationPriorAidPerformedBy", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.PriorAidPerformedBy).HasColumnName(@"PriorAidPerformedBy").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrSituationPriorAidPerformedBies).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRSituationPriorAidPerformedBy_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrSituationPriorAidPerformedBies).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRSituationPriorAidPerformedBy_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRTimes
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrTimeEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrTimeEntity>
+    {
+        public PcrTimeEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrTimeEntityConfiguration(string schema)
+        {
+            ToTable("PCRTimes", schema);
+            HasKey(x => x.PatientCareReportId);
+
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.IncidentDateTime).HasColumnName(@"IncidentDateTime").HasColumnType("datetime").IsOptional();
+            Property(x => x.PsapCallDateTime).HasColumnName(@"PSAPCallDateTime").HasColumnType("datetime").IsOptional();
+            Property(x => x.DispatchNotifiedDateTime).HasColumnName(@"DispatchNotifiedDateTime").HasColumnType("datetime").IsOptional();
+            Property(x => x.UnitNotifiedByDispatchDateTime).HasColumnName(@"UnitNotifiedByDispatchDateTime").HasColumnType("datetime").IsRequired();
+            Property(x => x.UnitEnRouteDateTime).HasColumnName(@"UnitEnRouteDateTime").HasColumnType("datetime").IsOptional();
+            Property(x => x.UnitArrivedSceneDateTime).HasColumnName(@"UnitArrivedSceneDateTime").HasColumnType("datetime").IsOptional();
+            Property(x => x.ArrivedAtPatientDateTime).HasColumnName(@"ArrivedAtPatientDateTime").HasColumnType("datetime").IsOptional();
+            Property(x => x.TransferPatientCareDateTime).HasColumnName(@"TransferPatientCareDateTime").HasColumnType("datetime").IsOptional();
+            Property(x => x.UnitLeftSceneDateTime).HasColumnName(@"UnitLeftSceneDateTime").HasColumnType("datetime").IsOptional();
+            Property(x => x.PatientArrivedDestinationDateTime).HasColumnName(@"PatientArrivedDestinationDateTime").HasColumnType("datetime").IsOptional();
+            Property(x => x.UnitBackInServiceDateTime).HasColumnName(@"UnitBackInServiceDateTime").HasColumnType("datetime").IsRequired();
+            Property(x => x.UnitCancelledDateTime).HasColumnName(@"UnitCancelledDateTime").HasColumnType("datetime").IsOptional();
+            Property(x => x.UnitBackHomeLocationDateTime).HasColumnName(@"UnitBackHomeLocationDateTime").HasColumnType("datetime").IsOptional();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrTimes).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRTimes_Agency
+            HasRequired(a => a.PatientCareReport).WithOptional(b => b.PcrTime).WillCascadeOnDelete(false); // FK_PCRTimes_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRTrauma
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrTraumaEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrTraumaEntity>
+    {
+        public PcrTraumaEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrTraumaEntityConfiguration(string schema)
+        {
+            ToTable("PCRTrauma", schema);
+            HasKey(x => x.PatientCareReportId);
+
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.InjuryCause).HasColumnName(@"InjuryCause").HasColumnType("int").IsRequired();
+            Property(x => x.InjuryIntent).HasColumnName(@"InjuryIntent").HasColumnType("int").IsOptional();
+            Property(x => x.SeatRowLocation).HasColumnName(@"SeatRowLocation").HasColumnType("int").IsOptional();
+            Property(x => x.PatientSeatPosition).HasColumnName(@"PatientSeatPosition").HasColumnType("int").IsOptional();
+            Property(x => x.FallHeight).HasColumnName(@"FallHeight").HasColumnType("int").IsOptional();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrTraumas).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRTrauma_Agency
+            HasRequired(a => a.PatientCareReport).WithOptional(b => b.PcrTrauma).WillCascadeOnDelete(false); // FK_PCRTrauma_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRTraumaAirbagDeployment
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrTraumaAirbagDeploymentEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrTraumaAirbagDeploymentEntity>
+    {
+        public PcrTraumaAirbagDeploymentEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrTraumaAirbagDeploymentEntityConfiguration(string schema)
+        {
+            ToTable("PCRTraumaAirbagDeployment", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.AirbagDeployment).HasColumnName(@"AirbagDeployment").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrTraumaAirbagDeployments).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRTraumaAirbagDeployment_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrTraumaAirbagDeployments).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRTraumaAirbagDeployment_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRTraumaInjuryMechanism
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrTraumaInjuryMechanismEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrTraumaInjuryMechanismEntity>
+    {
+        public PcrTraumaInjuryMechanismEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrTraumaInjuryMechanismEntityConfiguration(string schema)
+        {
+            ToTable("PCRTraumaInjuryMechanism", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.InjuryMechanism).HasColumnName(@"InjuryMechanism").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrTraumaInjuryMechanism).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRTraumaInjuryMechanism_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrTraumaInjuryMechanism).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRTraumaInjuryMechanism_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRTraumaOccupantSafetyEquipment
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrTraumaOccupantSafetyEquipmentEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrTraumaOccupantSafetyEquipmentEntity>
+    {
+        public PcrTraumaOccupantSafetyEquipmentEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrTraumaOccupantSafetyEquipmentEntityConfiguration(string schema)
+        {
+            ToTable("PCRTraumaOccupantSafetyEquipment", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.OccupantSafetyEquipment).HasColumnName(@"OccupantSafetyEquipment").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrTraumaOccupantSafetyEquipments).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRTraumaOccupantSafetyEquipment_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrTraumaOccupantSafetyEquipments).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRTraumaOccupantSafetyEquipment_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRTraumaRiskFactorPredictors
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrTraumaRiskFactorPredictorEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrTraumaRiskFactorPredictorEntity>
+    {
+        public PcrTraumaRiskFactorPredictorEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrTraumaRiskFactorPredictorEntityConfiguration(string schema)
+        {
+            ToTable("PCRTraumaRiskFactorPredictors", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.VehicularInjuryIndicator).HasColumnName(@"VehicularInjuryIndicator").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrTraumaRiskFactorPredictors).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRTraumaRiskFactorPredictors_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrTraumaRiskFactorPredictors).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRTraumaRiskFactorPredictors_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRTraumaVehicleImpactLocation
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrTraumaVehicleImpactLocationEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrTraumaVehicleImpactLocationEntity>
+    {
+        public PcrTraumaVehicleImpactLocationEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrTraumaVehicleImpactLocationEntityConfiguration(string schema)
+        {
+            ToTable("PCRTraumaVehicleImpactLocation", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.AreaVehicleImpacted).HasColumnName(@"AreaVehicleImpacted").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrTraumaVehicleImpactLocations).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRTraumaVehicleImpactLocation_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrTraumaVehicleImpactLocations).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRTraumaVehicleImpactLocation_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRUnitAgency
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrUnitAgencyEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrUnitAgencyEntity>
+    {
+        public PcrUnitAgencyEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrUnitAgencyEntityConfiguration(string schema)
+        {
+            ToTable("PCRUnitAgency", schema);
+            HasKey(x => x.PatientCareReportId);
+
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.AgencyNumber).HasColumnName(@"AgencyNumber").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.IncidentNumber).HasColumnName(@"IncidentNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.UnitResponseNumber).HasColumnName(@"UnitResponseNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.ServiceTypeRequested).HasColumnName(@"ServiceTypeRequested").HasColumnType("int").IsRequired();
+            Property(x => x.PrimaryUnitRole).HasColumnName(@"PrimaryUnitRole").HasColumnType("int").IsRequired();
+            Property(x => x.UnitVehicleNumber).HasColumnName(@"UnitVehicleNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.UnitCallSign).HasColumnName(@"UnitCallSign").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.VehicleDispatchLocation).HasColumnName(@"VehicleDispatchLocation").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.VehicleDispatchZone).HasColumnName(@"VehicleDispatchZone").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.VehicleDispatchGpsLatitude).HasColumnName(@"VehicleDispatchGPSLatitude").HasColumnType("decimal").IsOptional().HasPrecision(4,2);
+            Property(x => x.VehicleDispatchGpsLongitude).HasColumnName(@"VehicleDispatchGPSLongitude").HasColumnType("decimal").IsOptional().HasPrecision(5,2);
+            Property(x => x.BeginningOdometer).HasColumnName(@"BeginningOdometer").HasColumnType("decimal").IsOptional().HasPrecision(6,1);
+            Property(x => x.OnSceneOdometer).HasColumnName(@"OnSceneOdometer").HasColumnType("decimal").IsOptional().HasPrecision(6,1);
+            Property(x => x.PatientDestinationOdometer).HasColumnName(@"PatientDestinationOdometer").HasColumnType("decimal").IsOptional().HasPrecision(6,1);
+            Property(x => x.EndingOdometer).HasColumnName(@"EndingOdometer").HasColumnType("decimal").IsOptional().HasPrecision(6,1);
+            Property(x => x.SceneResponseMode).HasColumnName(@"SceneResponseMode").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrUnitAgencies).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRUnitAgency_Agency
+            HasRequired(a => a.PatientCareReport).WithOptional(b => b.PcrUnitAgency).WillCascadeOnDelete(false); // FK_PCRUnitAgency_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRUnitAgencyDispatchDelays
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrUnitAgencyDispatchDelayEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrUnitAgencyDispatchDelayEntity>
+    {
+        public PcrUnitAgencyDispatchDelayEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrUnitAgencyDispatchDelayEntityConfiguration(string schema)
+        {
+            ToTable("PCRUnitAgencyDispatchDelays", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.DispatchDelayType).HasColumnName(@"DispatchDelayType").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrUnitAgencyDispatchDelays).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRUnitAgencyDispatchDelays_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrUnitAgencyDispatchDelays).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRUnitAgencyDispatchDelays_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRUnitAgencyResponseDelays
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrUnitAgencyResponseDelayEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrUnitAgencyResponseDelayEntity>
+    {
+        public PcrUnitAgencyResponseDelayEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrUnitAgencyResponseDelayEntityConfiguration(string schema)
+        {
+            ToTable("PCRUnitAgencyResponseDelays", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.ResponseDelayType).HasColumnName(@"ResponseDelayType").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrUnitAgencyResponseDelays).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRUnitAgencyResponseDelays_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrUnitAgencyResponseDelays).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRUnitAgencyResponseDelays_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRUnitAgencySceneDelays
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrUnitAgencySceneDelayEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrUnitAgencySceneDelayEntity>
+    {
+        public PcrUnitAgencySceneDelayEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrUnitAgencySceneDelayEntityConfiguration(string schema)
+        {
+            ToTable("PCRUnitAgencySceneDelays", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.SceneDelayType).HasColumnName(@"SceneDelayType").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrUnitAgencySceneDelays).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRUnitAgencySceneDelays_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrUnitAgencySceneDelays).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRUnitAgencySceneDelays_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRUnitAgencyTransportDelays
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrUnitAgencyTransportDelayEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrUnitAgencyTransportDelayEntity>
+    {
+        public PcrUnitAgencyTransportDelayEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrUnitAgencyTransportDelayEntityConfiguration(string schema)
+        {
+            ToTable("PCRUnitAgencyTransportDelays", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.TransportDelayType).HasColumnName(@"TransportDelayType").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrUnitAgencyTransportDelays).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRUnitAgencyTransportDelays_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrUnitAgencyTransportDelays).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRUnitAgencyTransportDelays_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRUnitAgencyTurnAroundDelays
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrUnitAgencyTurnAroundDelayEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrUnitAgencyTurnAroundDelayEntity>
+    {
+        public PcrUnitAgencyTurnAroundDelayEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrUnitAgencyTurnAroundDelayEntityConfiguration(string schema)
+        {
+            ToTable("PCRUnitAgencyTurnAroundDelays", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.TurnAroundDelayType).HasColumnName(@"TurnAroundDelayType").HasColumnType("int").IsRequired();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrUnitAgencyTurnAroundDelays).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRUnitAgencyTurnAroundDelays_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrUnitAgencyTurnAroundDelays).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRUnitAgencyTurnAroundDelays_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRUnitCall
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrUnitCallEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrUnitCallEntity>
+    {
+        public PcrUnitCallEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrUnitCallEntityConfiguration(string schema)
+        {
+            ToTable("PCRUnitCall", schema);
+            HasKey(x => x.PatientCareReportId);
+
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.DispatchComplaintReported).HasColumnName(@"DispatchComplaintReported").HasColumnType("int").IsRequired();
+            Property(x => x.EmdPerformed).HasColumnName(@"EMDPerformed").HasColumnType("int").IsRequired();
+            Property(x => x.EmdCardNumber).HasColumnName(@"EMDCardNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrUnitCalls).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRUnitCall_Agency
+            HasRequired(a => a.PatientCareReport).WithOptional(b => b.PcrUnitCall).WillCascadeOnDelete(false); // FK_PCRUnitCall_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRUnitPersonnel
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrUnitPersonnelEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrUnitPersonnelEntity>
+    {
+        public PcrUnitPersonnelEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrUnitPersonnelEntityConfiguration(string schema)
+        {
+            ToTable("PCRUnitPersonnel", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.CrewMemberId).HasColumnName(@"CrewMemberId").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.CrewMemberRole).HasColumnName(@"CrewMemberRole").HasColumnType("int").IsOptional();
+            Property(x => x.CrewMemberLevel).HasColumnName(@"CrewMemberLevel").HasColumnType("int").IsOptional();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrUnitPersonnels).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRUnitPersonnel_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrUnitPersonnels).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRUnitPersonnel_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRVitalSignsAssessment
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrVitalSignsAssessmentEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrVitalSignsAssessmentEntity>
+    {
+        public PcrVitalSignsAssessmentEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrVitalSignsAssessmentEntityConfiguration(string schema)
+        {
+            ToTable("PCRVitalSignsAssessment", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.DateTimeVitalSignsTaken).HasColumnName(@"DateTimeVitalSignsTaken").HasColumnType("datetime").IsOptional();
+            Property(x => x.ObtainedPriorUnitsEmsCare).HasColumnName(@"ObtainedPriorUnitsEMSCare").HasColumnType("int").IsOptional();
+            Property(x => x.SystolicBloodPressure).HasColumnName(@"SystolicBloodPressure").HasColumnType("int").IsOptional();
+            Property(x => x.DiastolicBloodPressure).HasColumnName(@"DiastolicBloodPressure").HasColumnType("int").IsOptional();
+            Property(x => x.MethodBloodPressureMeasurement).HasColumnName(@"MethodBloodPressureMeasurement").HasColumnType("int").IsOptional();
+            Property(x => x.PulseRate).HasColumnName(@"PulseRate").HasColumnType("int").IsOptional();
+            Property(x => x.ElectronicMonitorRate).HasColumnName(@"ElectronicMonitorRate").HasColumnType("int").IsOptional();
+            Property(x => x.PulseOximetry).HasColumnName(@"PulseOximetry").HasColumnType("int").IsOptional();
+            Property(x => x.PulseRhythm).HasColumnName(@"PulseRhythm").HasColumnType("int").IsOptional();
+            Property(x => x.RespiratoryRate).HasColumnName(@"RespiratoryRate").HasColumnType("int").IsOptional();
+            Property(x => x.RespiratoryEffort).HasColumnName(@"RespiratoryEffort").HasColumnType("int").IsOptional();
+            Property(x => x.CarbonDioxide).HasColumnName(@"CarbonDioxide").HasColumnType("int").IsOptional();
+            Property(x => x.BloodGlucoseLevel).HasColumnName(@"BloodGlucoseLevel").HasColumnType("int").IsOptional();
+            Property(x => x.GlasgowComaScoreEye).HasColumnName(@"GlasgowComaScoreEye").HasColumnType("int").IsOptional();
+            Property(x => x.GlasgowComaScoreVerbal).HasColumnName(@"GlasgowComaScoreVerbal").HasColumnType("int").IsOptional();
+            Property(x => x.GlasgowComaScoreMotor).HasColumnName(@"GlasgowComaScoreMotor").HasColumnType("int").IsOptional();
+            Property(x => x.GlasgowComaScoreQualifier).HasColumnName(@"GlasgowComaScoreQualifier").HasColumnType("int").IsOptional();
+            Property(x => x.TotalGlasgowComaScore).HasColumnName(@"TotalGlasgowComaScore").HasColumnType("int").IsOptional();
+            Property(x => x.Temperature).HasColumnName(@"Temperature").HasColumnType("decimal").IsOptional().HasPrecision(4,2);
+            Property(x => x.TemperatureMethod).HasColumnName(@"TemperatureMethod").HasColumnType("int").IsOptional();
+            Property(x => x.LevelOfResponsiveness).HasColumnName(@"LevelOfResponsiveness").HasColumnType("int").IsOptional();
+            Property(x => x.PainScale).HasColumnName(@"PainScale").HasColumnType("int").IsOptional();
+            Property(x => x.StrokeScale).HasColumnName(@"StrokeScale").HasColumnType("int").IsOptional();
+            Property(x => x.ThrombolyticScreen).HasColumnName(@"ThrombolyticScreen").HasColumnType("int").IsOptional();
+            Property(x => x.Apgar).HasColumnName(@"APGAR").HasColumnType("int").IsOptional();
+            Property(x => x.RevisedTraumaScore).HasColumnName(@"RevisedTraumaScore").HasColumnType("int").IsOptional();
+            Property(x => x.PediatricTraumaScore).HasColumnName(@"PediatricTraumaScore").HasColumnType("int").IsOptional();
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrVitalSignsAssessments).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRVitalSignsAssessment_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrVitalSignsAssessments).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRVitalSignsAssessment_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PCRVitalSignsAssessmentInitialCardiacRhythm
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PcrVitalSignsAssessmentInitialCardiacRhythmEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PcrVitalSignsAssessmentInitialCardiacRhythmEntity>
+    {
+        public PcrVitalSignsAssessmentInitialCardiacRhythmEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PcrVitalSignsAssessmentInitialCardiacRhythmEntityConfiguration(string schema)
+        {
+            ToTable("PCRVitalSignsAssessmentInitialCardiacRhythm", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.AgencyId).HasColumnName(@"AgencyId").HasColumnType("int").IsRequired();
+            Property(x => x.PatientCareReportId).HasColumnName(@"PatientCareReportId").HasColumnType("int").IsRequired();
+            Property(x => x.CardiacRhythm).HasColumnName(@"CardiacRhythm").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.FileImportRecordId).HasColumnName(@"FileImportRecordId").HasColumnType("nvarchar").IsRequired().HasMaxLength(50);
+            Property(x => x.CreateBy).HasColumnName(@"CreateBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsRequired();
+            Property(x => x.LastModifyBy).HasColumnName(@"LastModifyBy").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.LastModifyDate).HasColumnName(@"LastModifyDate").HasColumnType("datetime").IsRequired();
+
+            // Foreign keys
+            HasRequired(a => a.Agency).WithMany(b => b.PcrVitalSignsAssessmentInitialCardiacRhythms).HasForeignKey(c => c.AgencyId).WillCascadeOnDelete(false); // FK_PCRVitalSignsAssessmentInitialCardiacRhythm_Agency
+            HasRequired(a => a.PatientCareReport).WithMany(b => b.PcrVitalSignsAssessmentInitialCardiacRhythms).HasForeignKey(c => c.PatientCareReportId).WillCascadeOnDelete(false); // FK_PCRVitalSignsAssessmentInitialCardiacRhythm_PatientCareReport
+            InitializePartial();
+        }
+        partial void InitializePartial();
+    }
+
+    // PhoneType
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class PhoneTypeEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PhoneTypeEntity>
+    {
+        public PhoneTypeEntityConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PhoneTypeEntityConfiguration(string schema)
         {
             ToTable("PhoneType", schema);
             HasKey(x => x.Id);
@@ -1736,14 +12508,14 @@ namespace CD.ClaimSoft.Database
 
     // SettingType
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class SettingTypeConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<SettingType>
+    public partial class SettingTypeEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<SettingTypeEntity>
     {
-        public SettingTypeConfiguration()
+        public SettingTypeEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public SettingTypeConfiguration(string schema)
+        public SettingTypeEntityConfiguration(string schema)
         {
             ToTable("SettingType", schema);
             HasKey(x => x.Id);
@@ -1761,14 +12533,14 @@ namespace CD.ClaimSoft.Database
 
     // State
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class StateConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<State>
+    public partial class StateEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<StateEntity>
     {
-        public StateConfiguration()
+        public StateEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public StateConfiguration(string schema)
+        public StateEntityConfiguration(string schema)
         {
             ToTable("State", schema);
             HasKey(x => x.Id);
@@ -1791,14 +12563,14 @@ namespace CD.ClaimSoft.Database
 
     // UnitRoundingType
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
-    public partial class UnitRoundingTypeConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<UnitRoundingType>
+    public partial class UnitRoundingTypeEntityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<UnitRoundingTypeEntity>
     {
-        public UnitRoundingTypeConfiguration()
+        public UnitRoundingTypeEntityConfiguration()
             : this("dbo")
         {
         }
 
-        public UnitRoundingTypeConfiguration(string schema)
+        public UnitRoundingTypeEntityConfiguration(string schema)
         {
             ToTable("UnitRoundingType", schema);
             HasKey(x => x.Id);
@@ -1812,6 +12584,21 @@ namespace CD.ClaimSoft.Database
             InitializePartial();
         }
         partial void InitializePartial();
+    }
+
+    #endregion
+
+    #region Stored procedure return models
+
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.34.1.0")]
+    public partial class UspGetErrorInfoReturnModel
+    {
+        public System.Int32? ErrorNumber { get; set; }
+        public System.Int32? ErrorSeverity { get; set; }
+        public System.Int32? ErrorState { get; set; }
+        public System.String ErrorProcedure { get; set; }
+        public System.Int32? ErrorLine { get; set; }
+        public System.String ErrorMessage { get; set; }
     }
 
     #endregion

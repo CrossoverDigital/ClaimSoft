@@ -1,0 +1,30 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eCad.21"  minOccurs="0"  maxOccurs="1"  dataTypeName="UnitLevelOfCare"  isNillable="No">
+<name>Level of Care of This Unit</name>
+<national>No</national>
+<deprecated></deprecated>
+<state>No</state>
+<definition>The level of care (BLS or ALS) the unit is able to provide based on the units? treatment capabilities for this EMS response.</definition>
+<v2Number></v2Number>
+<usage>Optional</usage>
+<performanceMeasuresGroup></performanceMeasuresGroup>
+<v3Comment>Added to identify the level of care (license level) the EMS unit/crew can provide regardless of patient need, based on this unit?s capabilities.                 <br/><br/>For example, if a unit/crew is staffed with an EMT-Intermediate or EMT-Paramedic but the unit is either licensed or stocked at a BLS level the appropriate level of care is "BLS-Basic?. This is because the care provided to patients is limited to BLS skills.</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <UnitLevelOfCare baseType="string">
+    <facet name="enumeration" value="2215001" annotation="BLS-First Responder/EMR"/>
+    <facet name="enumeration" value="2215003" annotation="BLS-Basic /EMT"/>
+    <facet name="enumeration" value="2215005" annotation="BLS-AEMT"/>
+    <facet name="enumeration" value="2215007" annotation="BLS-Intermediate"/>
+    <facet name="enumeration" value="2215023" annotation="BLS-Community Paramedicine"/>
+    <facet name="enumeration" value="2215009" annotation="ALS-AEMT"/>
+    <facet name="enumeration" value="2215011" annotation="ALS-Intermediate"/>
+    <facet name="enumeration" value="2215013" annotation="ALS-Paramedic"/>
+    <facet name="enumeration" value="2215015" annotation="ALS-Community Paramedicine"/>
+    <facet name="enumeration" value="2215017" annotation="ALS-Nurse"/>
+    <facet name="enumeration" value="2215019" annotation="ALS-Physician"/>
+    <facet name="enumeration" value="2215021" annotation="Specialty Critical Care"/>
+  </UnitLevelOfCare>
+</restrictions>
+</element>

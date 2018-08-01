@@ -1,0 +1,35 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eDisposition.20"  minOccurs="1"  maxOccurs="M"  dataTypeName="ReasonForChoosingDestination"  isNillable="Yes">
+<name>Reason for Choosing Destination</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>The reason the unit chose to deliver or transfer the patient to the destination</definition>
+<v2Number>E20_16</v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>Required if Patient Transported</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <ReasonForChoosingDestination baseType="string">
+    <facet name="enumeration" value="4220001" annotation="Closest Facility"/>
+    <facet name="enumeration" value="4220003" annotation="Diversion"/>
+    <facet name="enumeration" value="4220005" annotation="Family Choice"/>
+    <facet name="enumeration" value="4220007" annotation="Insurance Status/Requirement"/>
+    <facet name="enumeration" value="4220009" annotation="Law Enforcement Choice"/>
+    <facet name="enumeration" value="4220011" annotation="On-Line/On-Scene Medical Direction"/>
+    <facet name="enumeration" value="4220013" annotation="Other"/>
+    <facet name="enumeration" value="4220015" annotation="Patient's Choice"/>
+    <facet name="enumeration" value="4220017" annotation="Patient's Physician's Choice"/>
+    <facet name="enumeration" value="4220019" annotation="Protocol"/>
+    <facet name="enumeration" value="4220021" annotation="Regional Specialty Center"/>
+  </ReasonForChoosingDestination>
+</restrictions>
+<attributes>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+</attributes>
+</element>

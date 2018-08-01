@@ -1,4 +1,5 @@
 ﻿using System;
+using CD.ClaimSoft.Application.Model.User;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CD.ClaimSoft.Database.Identity.Security
@@ -19,7 +20,7 @@ namespace CD.ClaimSoft.Database.Identity.Security
         {
             Id = Guid.NewGuid().ToString();
         }
-
+        
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="T:CD.ClaimSoft.Application.Security.MultiTenantIdentityUser" /> class.

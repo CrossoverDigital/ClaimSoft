@@ -1,0 +1,36 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="eHistory.17"  minOccurs="1"  maxOccurs="M"  dataTypeName="AlcoholDrugUseIndicators"  isNillable="Yes">
+<name>Alcohol/Drug Use Indicators</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>Indicators for the potential use of alcohol or drugs by the patient related to the patient's current illness or injury.</definition>
+<v2Number>E12_19</v2Number>
+<usage>Required</usage>
+<performanceMeasuresGroup><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment></v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <AlcoholDrugUseIndicators baseType="string">
+    <facet name="enumeration" value="3117001" annotation="Alcohol Containers/Paraphernalia at Scene"/>
+    <facet name="enumeration" value="3117003" annotation="Drug Paraphernalia at Scene"/>
+    <facet name="enumeration" value="3117005" annotation="Patient Admits to Alcohol Use"/>
+    <facet name="enumeration" value="3117007" annotation="Patient Admits to Drug Use"/>
+    <facet name="enumeration" value="3117009" annotation="Positive Level known from Law Enforcement or Hospital Record"/>
+    <facet name="enumeration" value="3117011" annotation="Smell of Alcohol on Breath"/>
+  </AlcoholDrugUseIndicators>
+</restrictions>
+<attributes>
+  <PN>
+    <PN.NoneReported><facet name="enumeration" value="8801015" annotation="None Reported"/></PN.NoneReported>
+    <PN.Refused><facet name="enumeration" value="8801019" annotation="Refused"/></PN.Refused>
+    <PN.UnableToComplete><facet name="enumeration" value="8801023" annotation="Unable to Complete"/></PN.UnableToComplete>
+  </PN>
+  <NV>
+    <NV.NotApplicable><facet name="enumeration" value="7701001" annotation="Not Applicable"/></NV.NotApplicable>
+    <NV.NotRecorded><facet name="enumeration" value="7701003" annotation="Not Recorded"/></NV.NotRecorded>
+  </NV>
+  <CorrelationID baseType="string"><facet name="minLength" value="0"/><facet name="maxLength" value="255"/></CorrelationID>
+</attributes>
+</element>

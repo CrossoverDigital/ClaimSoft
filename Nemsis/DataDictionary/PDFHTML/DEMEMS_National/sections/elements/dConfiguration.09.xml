@@ -1,0 +1,29 @@
+<?xml-stylesheet type="text/xsl" href="../../xslt/element.xslt"?>
+<element number="dConfiguration.09"  minOccurs="1"  maxOccurs="M"  dataTypeName="Medication"  isNillable="No">
+<name>EMS Agency Medications</name>
+<national>Yes</national>
+<deprecated></deprecated>
+<state>Yes</state>
+<definition>A list of all medications the agency has implemented and have available for use.</definition>
+<v2Number>D04_06</v2Number>
+<usage>Mandatory</usage>
+<performanceMeasuresGroup><performanceMeasure>Airway</performanceMeasure><performanceMeasure>Cardiac Arrest</performanceMeasure><performanceMeasure>Pediatric</performanceMeasure><performanceMeasure>Response</performanceMeasure><performanceMeasure>STEMI</performanceMeasure><performanceMeasure>Stroke</performanceMeasure><performanceMeasure>Trauma</performanceMeasure></performanceMeasuresGroup>
+<v3Comment>The medication list is stored as the RxNorm (RXCUI) Code. This is associated with the EMS Agency Number (dAgency.02) since each EMS Agency Number may have different capabilities. 
+
+<br/><br/>List of medications based on RxNorm (RXCUI) code. Reference the NEMSIS Suggested Lists at: http://nemsis.org/v3/resources.html 
+
+<br/><br/>RxNorm 
+<br/>Website - http://uts.nlm.nih.gov 
+
+<br/><br/>Product - UMLS Metathesaurus 
+<br/>Website - http://www.nlm.nih.gov/research/umls/rxnorm/docs/rxnormfiles.html 
+<br/>Product - RxNorm Full Monthly Release</v3Comment>
+<v3Changes></v3Changes>
+<deprecatedComment></deprecatedComment>
+<restrictions>
+  <Medication baseType="string">
+    <facet name="minLength" value="2"/>
+    <facet name="maxLength" value="7"/>
+  </Medication>
+</restrictions>
+</element>
